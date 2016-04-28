@@ -11,7 +11,7 @@ var knex = require('knex')({
 })
 
 knex.schema.createTableIfNotExists('user', function (user) {
-  user.increments('id').primary
+  user.increments('id').primary()
   user.string('username')
   user.integer('age')
   user.integer('height')
@@ -26,16 +26,8 @@ knex.schema.createTableIfNotExists('user', function (user) {
   console.log('user table created')
 })
 
-knex.schema.createTableIfNotExists('user_skills', function (user) {
-  user.increments('id').primary
-  user.integer('user_id').references('id').inTable('user')
-  user.integer('skill_id').references('id').inTable('skills')
-}).then(function () {
-  console.log('user_skills table created')
-})
-
 knex.schema.createTableIfNotExists('skills', function (skill) {
-  skill.increments('id').primary
+  skill.increments('id').primary()
   skill.string('name')
   skill.string('type')
   skill.string('description')
@@ -44,21 +36,14 @@ knex.schema.createTableIfNotExists('skills', function (skill) {
   console.log('skills table created')
 })
 
-knex.schema.createTableIfNotExists('equipment', function (equip) {
-  equip.increments('id').primary
-  equip.integer('user_id').references('id').inTable('user')
-  equip.integer('invent_id').references('id').inTable('inventory')
+knex.schema.createTableIfNotExists('user_skills', function (user) {
+  user.increments('id').primary()
+  user.integer('user_id').unsigned().references('id').inTable('user')
+  user.integer('skill_id').unsigned().references('id').inTable('skills')
 }).then(function () {
-  console.log('equipment table created')
+  console.log('user_skills table created')
 })
 
-knex.schema.createTableIfNotExists('inventory', function (invent) {
-  invent.increments('id').primary
-  invent.integer('user_id')
-  invent.integer('item_id')
-}).then(function () {
-  console.log('inventory table created')
-})
 knex.schema.createTableIfNotExists('items', function (item) {
   item.increments('id').primary
   item.string('name', 50)
@@ -70,23 +55,20 @@ knex.schema.createTableIfNotExists('items', function (item) {
   console.log('items table created')
 })
 
-knex.schema.createTableIfNotExists('physical_records', function (physical) {
-  physical.increments('id').primary
-  physical.integer('user_id').references('id').inTable('user')
-  physical.string('name', 50)
-  physical.integer('type_id').references('id').inTable('physical_type')
-  physical.integer('duration')
+knex.schema.createTableIfNotExists('equipment', function (equip) {
+  equip.increments('id').primary
+  equip.integer('user_id').unsigned().references('id').inTable('user')
+  equip.integer('invent_id').unsigned().references('id').inTable('inventory')
 }).then(function () {
-  console.log('physical_records table created')
+  console.log('equipment table created')
 })
 
-knex.schema.createTableIfNotExists('dietary_record', function (dietary) {
-  dietary.increments('id').primary
-  dietary.integer('user_id').references('id').inTable('user')
-  dietary.string('name', 50)
-  dietary.integer('type_id').references('id').inTable('dietary_type')
+knex.schema.createTableIfNotExists('inventory', function (invent) {
+  invent.increments('id').primary
+  invent.integer('user_id').unsigned().references('id').inTable('user')
+  invent.integer('item_id').unsigned().references('id').inTable('items')
 }).then(function () {
-  console.log('dietary_records table created')
+  console.log('inventory table created')
 })
 
 knex.schema.createTableIfNotExists('dietary_type', function (diet) {
@@ -102,6 +84,25 @@ knex.schema.createTableIfNotExists('physical_type', function (physical) {
   physical.string('type', 50)
 }).then(function () {
   console.log('physical_type table created')
+})
+
+knex.schema.createTableIfNotExists('physical_records', function (physical) {
+  physical.increments('id').primary
+  physical.string('name', 50)
+  physical.integer('duration')
+  physical.integer('user_id').unsigned().references('id').inTable('user')
+  physical.integer('type_id').unsigned().references('id').inTable('physical_type')
+}).then(function () {
+  console.log('physical_records table created')
+})
+
+knex.schema.createTableIfNotExists('dietary_record', function (dietary) {
+  dietary.increments('id').primary
+  dietary.string('name', 50)
+  dietary.integer('user_id').unsigned().references('id').inTable('user')
+  dietary.integer('type_id').unsigned().references('id').inTable('dietary_type')
+}).then(function () {
+  console.log('dietary_records table created')
 })
 
 module.exports = knex
