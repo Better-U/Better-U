@@ -13,7 +13,7 @@ var landing = require('./routes/landing');
 var users = require('./routes/users');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true, limit: '25mb', extended:true}));
+app.use(bodyParser.urlencoded({extended: true, limit: '25mb'}));
 app.use(bodyParser.json({limit: '25mb', extended:true}));
 
 app.use('/api/users/', users);
