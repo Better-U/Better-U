@@ -3,7 +3,7 @@ var app = express()
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var dotenv = require('dotenv')
-var db = require('./db.js')
+// var db = require('./db.js')
 dotenv.config()
 
 var health = require('./routes/health')
