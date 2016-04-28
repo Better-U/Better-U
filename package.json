@@ -1,0 +1,30 @@
+{
+  "name": "team-haskell-1",
+  "version": "1.0.0",
+  "description": "Fitness RPG Web Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-haskell/team-haskell.git"
+  },
+  "author": "Eirik Lin, Eric So, Michelle Tham, Jessica Chou, Jane Fong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/team-haskell/team-haskell/issues"
+  },
+  "homepage": "https://github.com/team-haskell/team-haskell#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "knex": "^0.10.0",
+    "mysql": "^2.10.2"
+  }
+}
