@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.static('./client'))
 app.use(bodyParser.urlencoded({extended: true, limit: '25mb'}))
 app.use(bodyParser.json({limit: '25mb', extended: true}))
-app.use('/scripts', express.static(__dirname + '/../node_modules'))
+app.use('/scripts', express.static(path.join(__dirname, '/../node_modules'))
 
 app.use('/api/users/', users)
 app.use('/api/landing/', landing)
