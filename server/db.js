@@ -16,6 +16,7 @@ knex.schema.createTableIfNotExists('user', function (user) {
   user.integer('age')
   user.integer('height')
   user.string('gender')
+  user.integer('weight')
   user.integer('goalweight')
   user.integer('att_health')
   user.integer('att_strength')
