@@ -17,7 +17,7 @@
     "url": "https://github.com/team-haskell/team-haskell/issues"
   },
   "homepage": "https://github.com/team-haskell/team-haskell#readme",
-  "devdependencies": {
+  "devDependencies": {
     "semistandard": "^7.0.5"
   },
   "dependencies": {
