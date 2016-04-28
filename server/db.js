@@ -11,7 +11,7 @@ var knex = require('knex')({
 })
 
 knex.schema.createTableIfNotExists('user', function (user) {
-  user.increments('id').primary()
+  user.increments('id').primary
   user.string('username')
   user.integer('age')
   user.integer('height')
@@ -27,7 +27,7 @@ knex.schema.createTableIfNotExists('user', function (user) {
 })
 
 knex.schema.createTableIfNotExists('skills', function (skill) {
-  skill.increments('id').primary()
+  skill.increments('id').primary
   skill.string('name')
   skill.string('type')
   skill.string('description')
@@ -37,7 +37,7 @@ knex.schema.createTableIfNotExists('skills', function (skill) {
 })
 
 knex.schema.createTableIfNotExists('user_skills', function (user) {
-  user.increments('id').primary()
+  user.increments('id').primary
   user.integer('user_id').unsigned().references('id').inTable('user')
   user.integer('skill_id').unsigned().references('id').inTable('skills')
 }).then(function () {
