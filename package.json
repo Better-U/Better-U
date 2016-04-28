@@ -17,7 +17,9 @@
     "url": "https://github.com/team-haskell/team-haskell/issues"
   },
   "homepage": "https://github.com/team-haskell/team-haskell#readme",
-  "devdependencies": {},
+  "devdependencies": {
+    "semistandard": "^7.0.5"
+  },
   "dependencies": {
     "angular": "^1.5.5",
     "angular-ui-router": "^0.2.18",
@@ -27,8 +29,5 @@
     "express": "^4.13.4",
     "knex": "^0.10.0",
     "mysql": "^2.10.2"
-  },
-  "devDependencies": {
-    "semistandard": "^7.0.5"
   }
 }
