@@ -2,7 +2,6 @@ var express = require('express')
 var app = express()
 var cors = require('cors')
 var bodyParser = require('body-parser')
-// var db = require('./db.js')
 var dotenv = require('dotenv')
 dotenv.config()
 
