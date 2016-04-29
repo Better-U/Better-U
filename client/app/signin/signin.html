@@ -1,9 +1,9 @@
-<div class='login' ng-controller="LoginCtrl">
-  <h1>Login</h1>
+<div class="authContainer">
+<h1>Signin</h1>
   <form name='login_form' ng-submit='login()'>
     <input type='text' ng-model='user.name' placeholder='username'>
     <input type="password" ng-model='user.password' placeholder='password'>
     <button>login</button>
   </form>
-  Don't have an account? Click <a href='/landing'> here</a>
+    <button ng-click="goSignup()">Have an account? Sign in!</button>
 </div>

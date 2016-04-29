@@ -7,11 +7,19 @@ angular.module('factories', [])
       password: password
     }
     console.log('inside authFactory signup', form)
-    return $http.post('/api/users/signup', form)
+    return $http.post('/api/signup', form)
   }
 
+  function signIn(username, password){
+  	var form = {
+  		username: username,
+  		password: password
+  	}
+  	return $http.post('/api/signin')
+  }
   return {
-    signUp: signUp
+    signUp: signUp,
+    signIn: signIn
   }
 })
 .factory('profileFactory', function ($http) {
