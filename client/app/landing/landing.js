@@ -1,12 +1,10 @@
-angular.module('myApp.landing', ['factories'])
+angular.module('myApp.landing', [])
+.controller('LandingCtrl', function($scope, $state){
+  $scope.signin = function(){
+  	$state.go('signin')
+  }
 
-  .controller('LandingCtrl', function ($scope, authFactory) {
-    $scope.signUp = function () {
-      console.log('signup button')
-		 authFactory.signUp( $scope.user.name, $scope.user.password)
-		 .then(function(data){
-		 	console.log(data);
-		 })
-    
-    }
-  })
+  $scope.signup = function(){
+  	$state.go('signup')
+  }
+})
