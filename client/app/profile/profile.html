@@ -1,0 +1,41 @@
+<h1>Profile</h1>
+<div id='profile-page'>
+  <form name='profile-setup' method='post'>
+  <fieldset>
+    Age:
+    <div id='profile-age'>
+    <input type='text' placeholder='Age'>
+    <br>
+    </div>
+  
+    Gender:
+    <div id='profile-gender'>
+    <select name='gender' style='width:80px'>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+    <br>
+    </div>
+
+    Height:
+    <div id='profile-height'>
+    <input type='text' placeholder='Height'>
+    <br>
+    </div>
+
+    <div id='profile-weight'>
+    Weight:
+    <input type='text' placeholder='Weight'>
+    <br>
+    </div>
+
+    <div id='profile-goal-weight'>
+    Goal Weight:
+    <input type='text' placeholder='Goal Weight'>
+    <br>
+    </div>
+
+    <input type='submit' ng-click='submitProfile()'/>
+    </fieldset>
+	</form>
+  </div>
