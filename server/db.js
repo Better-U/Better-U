@@ -1,5 +1,5 @@
 require('dotenv').config()
-console.log("hello (:")
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
