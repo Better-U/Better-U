@@ -1,5 +1,4 @@
-angular.module('myApp', ['myApp.signin','myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories'])
-
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')

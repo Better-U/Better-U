@@ -9,7 +9,7 @@ angular.module('myApp.signup', ['factories'])
         })
     }
 
-    $scope.goSignin = function(){
-    	$state.go('signin');
+    $scope.goSignin = function () {
+      $state.go('signin')
     }
   })

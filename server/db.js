@@ -105,5 +105,4 @@ knex.schema.createTableIfNotExists('dietary_record', function (dietary) {
   console.log('dietary_records table created')
 })
 
-
 module.exports = knex

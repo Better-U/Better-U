@@ -15,14 +15,11 @@ describe('Protractor Demo App', function () {
 
   it('should add one and two', function () {
     browser.get('http://localhost:8080/#/')
-    inputer1.sendKeys("eric")
-    inputer2.sendKeys("so")
+    inputer1.sendKeys('eric')
+    inputer2.sendKeys('so')
 
     submitter.click()
 
-    expect(nameHolder.getText()).toEqual("eric")
-
+    expect(nameHolder.getText()).toEqual('eric')
   })
-
-
 })
