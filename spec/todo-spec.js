@@ -1,31 +1,28 @@
-describe('Protractor Demo App', function() {
-  var firstNumber = element(by.model('first'));
-  var secondNumber = element(by.model('second'));
-  var goButton = element(by.id('gobutton'));
-  var latestResult = element(by.binding('latest'));
+describe('Protractor Demo App', function () {
+  var inputer1 = element(by.id('input1'))
+  var inputer2 = element(by.id('input2'))
+  var submitter = element(by.id('submit'))
+  var nameHolder = element(by.id('nameHolder'))
+  // beforeEach(function () {
+  //   browser.get('http://juliemr.github.io/protractor-demo/')
+  // })
 
-  beforeEach(function() {
-    browser.get('http://juliemr.github.io/protractor-demo/');
-  });
+  it('should have a title', function () {
+    browser.get('http://localhost:8080/#/')
 
-  it('should have a title', function() {
-    expect(browser.getTitle()).toEqual('Super Calculator');
-  });
+    expect(browser.getTitle()).toEqual('Fitness')
+  })
 
-  it('should add one and two', function() {
-    firstNumber.sendKeys(1);
-    secondNumber.sendKeys(2);
+  it('should add one and two', function () {
+    browser.get('http://localhost:8080/#/')
+    inputer1.sendKeys("eric")
+    inputer2.sendKeys("so")
 
-    goButton.click();
+    submitter.click()
 
-    expect(latestResult.getText()).toEqual('3');
-  });
+    expect(nameHolder.getText()).toEqual("eric")
 
-  it('should add four and six', function() {
-        firstNumber.sendKeys(4);
-    secondNumber.sendKeys(6);
+  })
 
-    goButton.click();
-    expect(latestResult.getText()).toEqual('10');
-  });
-});
+
+})
