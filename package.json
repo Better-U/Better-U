@@ -20,6 +20,7 @@
   "dependencies": {
     "angular": "^1.5.5",
     "angular-ui-router": "^0.2.18",
+    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "dotenv": "^2.0.0",
