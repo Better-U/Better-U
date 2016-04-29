@@ -1,0 +1,36 @@
+fieldset {
+  width: 120px;
+}
+
+#profile-age {
+  margin: 4px;
+}
+
+#profile-gender {
+  margin: 4px;
+}
+
+#profile-height {
+  margin: 4px;
+}
+
+#profile-weight {
+  margin: 4px;
+}
+
+#profile-goal-weight {
+  margin: 4px;
+}
+
+.authContainer {
+	width: 300px;
+	max-width: 50%;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+.container {
+	width: 300px;
+	margin: 0 auto;
+	padding: 5px;
+}
