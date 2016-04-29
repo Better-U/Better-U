@@ -1,0 +1,23 @@
+fieldset {
+  width: 120px;
+}
+
+#profile-age {
+  margin: 4px;
+}
+
+#profile-gender {
+  margin: 4px;
+}
+
+#profile-height {
+  margin: 4px;
+}
+
+#profile-weight {
+  margin: 4px;
+}
+
+#profile-goal-weight {
+  margin: 4px;
+}

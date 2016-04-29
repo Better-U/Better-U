@@ -1,4 +1,5 @@
-angular.module('myApp', ['myApp.login', 'myApp.landing', 'ui.router', 'factories'])
+angular.module('myApp', ['myApp.login', 'myApp.landing', 'myApp.profile', 'ui.router', 'factories'])
+
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/')
@@ -13,5 +14,10 @@ angular.module('myApp', ['myApp.login', 'myApp.landing', 'ui.router', 'factories
         url: '/login',
         templateUrl: '/app/login/login.html',
         controller: 'LoginCtrl'
+      })
+      .state('profile', {
+        url: '/profile',
+        templateUrl: '/app/profile/profile.html',
+        controller: 'ProfileCtrl'
       })
   })
