@@ -13,27 +13,20 @@ router.post('/', function (req, res) {
   // req.body.username and req.body.password hold info
 
   User.findUser(req.body.username)
-  .then(function(data){
-  	if (data.length === 0){
-  		User.hashPassword(req.body.password)
-  		.then(function(hash){
-  			User.insertUserPw(req.body.username, hash)
-  			  .then(function(){
-  			  	res.send('user added')
-  			  })
-
-  		})
-  	} else {
-  		res.send('You have an account')
-  	}
-  })
-
+    .then(function (data) {
+      if (data.length === 0) {
+        User.hashPassword(req.body.password)
+          .then(function (hash) {
+            User.insertUserPw(req.body.username, hash)
+              .then(function () {
+                res.send('user added')
+              })
+          })
+      } else {
+        res.send('You have an account')
+      }
+    })
 })
-
-
-
-
- 
 
 
 
