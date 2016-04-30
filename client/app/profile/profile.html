@@ -1,9 +1,15 @@
-<div class="container">
+<div class="container" ng-controller='ProfileCtrl'>
 <h1>Profile</h1>
 <div id='profile-page'>
   <form name='profile-setup' method='post'>
   <fieldset>
   <legend>Profile</legend>
+    Name:
+    <div id='profile-name'>
+    <input type='text' placeholder='Full Name'>
+    <br>
+    </div>
+
     Age:
     <div id='profile-age'>
     <input type='text' placeholder='Age'>
@@ -19,10 +25,9 @@
     <br>
     </div>
 
-    Height:
     <div id='profile-height'>
+    Height:
     <input type='text' placeholder='Height'>
-    <br>
     </div>
 
     <div id='profile-weight'>
@@ -31,14 +36,47 @@
     <br>
     </div>
 
-    <div id='profile-goal-weight'>
-    Goal Weight:
-    <input type='text' placeholder='Goal Weight'>
+    <div id='profile-bodyfat'>
+    Body Fat (%):
+    <input type='text' ng-model='prof.bodyFat' placeholder='Body Fat'>
     <br>
     </div>
 
+    Activity Level:
+    <div id='profile-activity' ng-model='prof.activity'>
+      <input type='radio' name='prof.activity' value='sedentary'>  Sedentary (little to no exercise)<br>
+      <input type='radio' name='prof.activity' value='light'>     Lightly Active (light exercise; 1-3x/wk)<br>
+      <input type='radio' name='prof.activity' value='moderate'> Moderately Active (moderate exercise; 3-5x/wk)<br>
+      <input type='radio' name='prof.activity' value='very'> Very Active (hard exercise; 6-7x/wk)<br>
+    </div>
+    <br>
+
+    <div id='profile-interest'>
+    Fitness Interest:
+    <select name='Fitness Interest'  ng-model='prof.interest' style='width:140px'>
+      <option>Cardio</option>
+      <option>Strength</option>
+      <option>Both</option>
+    </select>
+    <br>
+    </div>
+
+    <div id='profile-gym'>
+    Gym of Choice: 
+    <input type='text' placeholder='Gym'>
+    <br>
+    </div>
+
+    <div id='profile-zip'>
+    Zip Code
+    <input type='text' placeholder='City'>
+    <br>
+    </div>
+
+
+
     <input type='submit' ng-click='submitProfile()'/>
     </fieldset>
-	</form>
+  </form>
   </div>
   </div>

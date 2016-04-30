@@ -1,5 +1,5 @@
 fieldset {
-  width: 120px;
+  width: relative;
 }
 
 #profile-age {
