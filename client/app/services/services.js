@@ -1,5 +1,7 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
+    var userData;
+    
     function signUp (username, password) {
       var form = {
         username: username,
@@ -10,13 +12,14 @@ angular.module('factories', [])
     }
 
     function signIn (username, password) {
-      var form = {
+      var plugin = {
         username: username,
         password: password
       }
-      return $http.post('/api/signin')
+      return $http.post('/api/signin', plugin)
     }
     return {
+      userData: userData,
       signUp: signUp,
       signIn: signIn
     }
