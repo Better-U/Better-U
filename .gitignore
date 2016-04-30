@@ -3,5 +3,5 @@
 .idea
 *.env
 
-
+/bower.json
 .eslintrc
