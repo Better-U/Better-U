@@ -1,7 +1,7 @@
 angular.module('myApp.signin', ['factories'])
 
   .controller('SigninCtrl', function ($scope, $state, authFactory) {
-
+    
     $scope.alert = function () {
       console.log('logged')
     }
@@ -15,7 +15,6 @@ angular.module('myApp.signin', ['factories'])
           authFactory.userData = data.data
           $scope.token = data.data.token
           window.localStorage.setItem('token', authFactory.userData.token)
-
         })
     }
   })
