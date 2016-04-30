@@ -1,10 +1,19 @@
-<div>
+<div ng-controller="CardioCtrl">
 	<form>
-		<input type="date" placeholder="date">
-		<select name="exercise">
-			<option value="cardio">Cardio</option>
-			<option value="strength">Strength</option>
-		</select>
+    <div>
+    Date: <input type="date" placeholder="date"><br>
+    Category:
+      <input type="radio" name="category" value="cardio"> Cardio
+      <input type="radio" name="category" value="strength"> Strength<br>
+    Types: <select name="type">
+      <option value="running">Running</option>
+      <option value="cycling">Cycling</option>
+      <option value="swimming">Swimming</option>
+      <option value="rowing">Rowing</option>
+      <option value="jumpingrope">Jumping Rope</option>
+      <option value="steppers">Steppers</option>
+      <option value="ellipticals">Ellipticals</option>
 		<button>Submit</button>
 	</form>
+  </div>
 </div>
