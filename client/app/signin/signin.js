@@ -14,7 +14,9 @@ angular.module('myApp.signin', ['factories'])
         .then(function (data) {
           authFactory.userData = data.data
           $scope.token = data.data.token
+          console.log($scope.token)
           window.localStorage.setItem('token', authFactory.userData.token)
+          $state.go('dashboard')
         })
     }
   })
