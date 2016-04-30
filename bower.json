@@ -1,0 +1,24 @@
+{
+  "name": "team-haskell-1",
+  "description": "Fitness RPG Web Application",
+  "main": "index.js",
+  "authors": [
+    "Eirik Lin",
+    "Eric So",
+    "Michelle Tham",
+    "Jessica Chou",
+    "Jane Fong"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/janeefongg/team-haskell-1",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-mocks": "^1.5.5"
+  }
+}
