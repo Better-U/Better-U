@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
               })
           })
       } else {
-        res.send('You have an account')
+        res.json({exists: true})
       }
     })
 })

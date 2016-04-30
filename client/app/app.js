@@ -1,4 +1,4 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories', 'myApp.dashboard'])
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -38,5 +38,10 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         url: '/strength',
         templateUrl: '/app/fitness/strength.html',
         controller: 'StrengthCtrl'
+      })
+      .state('registerProfile', {
+        url: '/registerProfile',
+        templateUrl: '/app/signup/registerProfile.html',
+        controller: 'SignupCtrl'
       })
   })

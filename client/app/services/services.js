@@ -1,6 +1,6 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
-    var userData;
+    var userData
     
     function signUp (username, password) {
       var form = {
