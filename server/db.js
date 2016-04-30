@@ -16,98 +16,85 @@ var knex = require('knex')({
 
 knex.schema.createTableIfNotExists('user', function (user) {
   user.increments('id').primary()
-  user.string('username')
-  user.string('password')
+  user.string('username', 50)
+  user.string('password', 50)
   user.integer('age')
   user.integer('height')
-  user.string('gender')
   user.integer('weight')
-  user.integer('goalweight')
-  user.integer('att_health')
-  user.integer('att_strength')
-  user.integer('att_stamina')
-  user.integer('att_agility')
+  user.string('gender')
+  user.integer('bodyfat')
+  user.string('activitylvl', 50)
+  user.string('interest', 50)
+  user.string('gym', 50)
+  user.integer('zipcode')
 }).then(function () {
   console.log('user table created')
 })
 
-knex.schema.createTableIfNotExists('skills', function (skill) {
-  skill.increments('id').primary()
-  skill.string('name')
-  skill.string('type')
-  skill.string('description')
-  skill.integer('attack')
+knex.schema.createTableIfNotExists('strength_record', function (strength) {
+  strength.increments('id').primary()
+  strength.integer('user_id').unsigned().references('id').inTable('user')
+  strength.integer('type_id').unsigned().references('id').inTable('strength_type')
+  strength.date('date')
+  strength.integer('duration')
+  strength.integer('weight')
+  strength.integer('reps')
 }).then(function () {
-  console.log('skills table created')
+  console.log('strength_record table created')
 })
 
-knex.schema.createTableIfNotExists('user_skills', function (user) {
-  user.increments('id').primary()
-  user.integer('user_id').unsigned().references('id').inTable('user')
-  user.integer('skill_id').unsigned().references('id').inTable('skills')
+knex.schema.createTableIfNotExists('strength_type', function (strength_t) {
+  strength_t.increments('id').primary()
+  strength_t.string('type', 50)
 }).then(function () {
-  console.log('user_skills table created')
+  console.log('strength_type table created')
 })
 
-knex.schema.createTableIfNotExists('items', function (item) {
-  item.increments('id').primary()
-  item.string('name', 50)
-  item.string('type', 30)
-  item.string('description')
-  item.integer('attack')
-  item.integer('defense')
+knex.schema.createTableIfNotExists('goals', function (goals) {
+  goals.increments('id').primary()
+  goals.integer('user_id').unsigned().references('id').inTable('user')
+  goals.string('type', 50)
+  goals.string('inc_dec', 50)
+  goals.integer('range')
+  goals.date('date')
 }).then(function () {
-  console.log('items table created')
+  console.log('goals table created')
 })
 
-knex.schema.createTableIfNotExists('equipment', function (equip) {
-  equip.increments('id').primary()
-  equip.integer('user_id').unsigned().references('id').inTable('user')
-  equip.integer('invent_id').unsigned().references('id').inTable('inventory')
+knex.schema.createTableIfNotExists('nutrition_record', function (nutrition) {
+  nutrition.increments('id').primary()
+  nutrition.integer('user_id').unsigned().references('id').inTable('user')
+  nutrition.string('name', 50)
+  nutrition.integer('type_id').unsigned().references('id').inTable('nutrition_type')
+  nutrition.integer('water')
 }).then(function () {
-  console.log('equipment table created')
+  console.log('nutrition_records table created')
 })
 
-knex.schema.createTableIfNotExists('inventory', function (invent) {
-  invent.increments('id').primary()
-  invent.integer('user_id').unsigned().references('id').inTable('user')
-  invent.integer('item_id').unsigned().references('id').inTable('items')
+knex.schema.createTableIfNotExists('nutrition_type', function (nutrition_t) {
+  nutrition_t.increments('id').primary()
+  nutrition_t.string('type', 50)
+  nutrition_t.integer('calories')
 }).then(function () {
-  console.log('inventory table created')
+  console.log('nutrition_type table created')
 })
 
-knex.schema.createTableIfNotExists('dietary_type', function (diet) {
-  diet.increments('id').primary()
-  diet.string('type', 50)
-  diet.integer('calories', 50)
+knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
+  cardio.increments('id').primary()
+  cardio.integer('user_id').unsigned().references('id').inTable('user')
+  cardio.integer('distance')
+  cardio.integer('duration')
+  cardio.integer('type_id').unsigned().references('id').inTable('cardio_type')
+  cardio.date('date')
 }).then(function () {
-  console.log('dietary_type table created')
+  console.log('cardio_record table created')
 })
 
-knex.schema.createTableIfNotExists('physical_type', function (physical) {
-  physical.increments('id').primary()
-  physical.string('type', 50)
+knex.schema.createTableIfNotExists('cardio_type', function (cardio_t) {
+  cardio_t.increments('id').primary()
+  cardio_t.string('type', 50)
 }).then(function () {
-  console.log('physical_type table created')
-})
-
-knex.schema.createTableIfNotExists('physical_records', function (physical) {
-  physical.increments('id').primary()
-  physical.string('name', 50)
-  physical.integer('duration')
-  physical.integer('user_id').unsigned().references('id').inTable('user')
-  physical.integer('type_id').unsigned().references('id').inTable('physical_type')
-}).then(function () {
-  console.log('physical_records table created')
-})
-
-knex.schema.createTableIfNotExists('dietary_record', function (dietary) {
-  dietary.increments('id').primary()
-  dietary.string('name', 50)
-  dietary.integer('user_id').unsigned().references('id').inTable('user')
-  dietary.integer('type_id').unsigned().references('id').inTable('dietary_type')
-}).then(function () {
-  console.log('dietary_records table created')
+  console.log('cardio_type table created')
 })
 
 module.exports = knex
