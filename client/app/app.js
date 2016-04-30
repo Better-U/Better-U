@@ -1,4 +1,4 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories'])
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.profile', 'ui.router', 'factories', 'myApp.dashboard'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -23,5 +23,20 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         url: '/landing',
         templateUrl: '/app/landing/landing.html',
         controller: 'LandingCtrl'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: '/app/dashboard/dashboard.html',
+        controller: 'DashboardCtrl'
+      })
+      .state('cardio', {
+        url: '/cardio',
+        templateUrl: '/app/fitness/cardio.html',
+        controller: 'CardioCtrl'
+      })
+      .state('strength', {
+        url: '/strength',
+        templateUrl: '/app/fitness/strength.html',
+        controller: 'StrengthCtrl'
       })
   })
