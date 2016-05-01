@@ -2,7 +2,9 @@ angular.module('factories', [])
   .factory('authFactory', function ($http) {
     var userData
 
+
     function registerUserDetails (username, password) {
+
       var form = {
         username: username,
         password: password
