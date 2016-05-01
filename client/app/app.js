@@ -36,7 +36,7 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('cardio', {
         url: '/cardio',
         templateUrl: '/app/fitness/cardio.html',
-        controller: 'CardioCtrl as cardio'
+        controller: 'CardioCtrl'
       })
       .state('strength', {
         url: '/strength',
