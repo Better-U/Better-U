@@ -5,11 +5,12 @@ var app = express()
 var bodyParser = require('body-parser')
 var bcrypt = require('bcrypt')
 var User = require('../helpers/user')
+var Auth = require('../helpers/auth')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 var saltRounds = 10
-router.post('/', function (req, res) {
+router.post('/regUser', function (req, res) {
   // req.body.username and req.body.password hold info
 
   User.findUser(req.body.username)
@@ -28,6 +29,27 @@ router.post('/', function (req, res) {
     })
 })
 
+router.post('/regProfile', function (req, res) {
+  // req.body.username and req.body.password hold info
+  var user;
+
+  User.findUser(req.body.username)
+    .then(function (data) {
+      console.log('data', data)
+      user = {
+        id: data[0].id,
+        username: req.body.username
+      }
+      User.insertUserProfile(req.body.age, req.body.weight, req.body.height, req.body.gender, req.body.interest, req.body.gym, data[0].id)
+        .then(function (data) {
+          res.json({
+            success: true,
+            message: 'Logged in!',
+            token: Auth.genToken(user)
+          })
+        })
+    })
+})
 
 
 module.exports = router

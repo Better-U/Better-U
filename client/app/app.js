@@ -5,7 +5,7 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
 
     $stateProvider
       .state('signup', {
-        url: '/',
+        url: '/signup',
         templateUrl: '/app/signup/signup.html',
         controller: 'SignupCtrl'
       })
