@@ -45,4 +45,19 @@ User.insertUserPw = function (username, password) {
   }
   return db('user').insert(signUpObj)
 }
+
+User.insertUserProfile = function (age, weight, height, gender, interest, gym, id) {
+  console.log('inside helper', id)
+  var profileObj = {
+    age: age,
+    weight: weight,
+    height: height,
+    gender: gender,
+    interest: interest,
+    gym: gym
+  }
+
+  return db('user').where({id: id}).update(profileObj)
+}
+
 module.exports = User

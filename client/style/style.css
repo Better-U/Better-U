@@ -22,15 +22,20 @@ fieldset {
   margin: 4px;
 }
 
-.authContainer {
-	width: 300px;
-	max-width: 50%;
-	margin: 0 auto;
-	padding: 5px;
-}
+/*.authContainer {*/
+	/*width: 300px;*/
+	/*max-width: 50%;*/
+	/*margin: 0 auto;*/
+	/*padding: 5px;*/
+/*}*/
 
-.container {
-	width: 300px;
-	margin: 0 auto;
+/*.container {*/
+	/*width: 300px;*/
+	/*margin: 0 auto;*/
+	/*padding: 5px;*/
+/*}*/
+
+.signup {
+	margin: 50px;
 	padding: 5px;
 }

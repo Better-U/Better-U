@@ -25,7 +25,7 @@ app.use('/api/signin', signin)
 app.use('/api/health/', health)
 app.use('/api/fitness/', fitness)
 app.use('/api/challenge/', challenge)
-app.use('/api/signup', signup)
+app.use('/api/signup/', signup)
 
 var port = process.env.PORT || 8080
 

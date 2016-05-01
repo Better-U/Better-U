@@ -30,7 +30,7 @@ router.post('/', function (req, res) {
                 success: true,
                 message: 'Logged in!',
                 token: Auth.genToken(user)
-              });
+              })
             } else {
               res.send('YOU DONT EXIST')
             }

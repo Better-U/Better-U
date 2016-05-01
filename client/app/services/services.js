@@ -2,13 +2,33 @@ angular.module('factories', [])
   .factory('authFactory', function ($http) {
     var userData
     
-    function signUp (username, password) {
+    function registerUserDetails (username, password) {
       var form = {
         username: username,
         password: password
       }
       console.log('inside authFactory signup', form)
-      return $http.post('/api/signup', form)
+      return $http.post('/api/signup/regUser', form)
+    }
+
+    function registerProfileDetails (name, age, height, weight, gender, interest, gym) {
+      if (gender === 'male') {
+        gender = 0
+      } else {
+        gender = 1
+      }
+
+      var form = {
+        username: name,
+        age: age,
+        height: height,
+        weight: weight,
+        gender: gender,
+        interest: interest,
+        gym: gym
+      }
+      console.log('inside authFactory profile register', form)
+      return $http.post('/api/signup/regProfile', form)
     }
 
     function signIn (username, password) {
@@ -20,7 +40,8 @@ angular.module('factories', [])
     }
     return {
       userData: userData,
-      signUp: signUp,
+      registerUserDetails: registerUserDetails,
+      registerProfileDetails: registerProfileDetails,
       signIn: signIn
     }
   })
