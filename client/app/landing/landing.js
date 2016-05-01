@@ -8,11 +8,9 @@ angular.module('myApp.landing', [])
       $state.go('signin')
     }
 
-    $scope.signup = function () {
-      $state.go('signup')
-    }
 
-    $scope.open = function () {
+
+    $scope.signup = function () {
 
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
