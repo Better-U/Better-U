@@ -9,7 +9,6 @@ var Auth = require('../helpers/auth')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-var saltRounds = 10
 router.post('/regUser', function (req, res) {
   // req.body.username and req.body.password hold info
 
