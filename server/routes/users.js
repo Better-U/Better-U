@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 router.post('/profile', function (req, res) {
   console.log('profile post received')
   console.log('req.body =', req.body)
-  res.send(req.body.age, req.body.gender, req.body.height, req.body.weight, req.body.goalWeight)
+  res.send(req.body.bodyFat, req.body.activityLvl, req.body.interest)
 })
 
 module.exports = router
