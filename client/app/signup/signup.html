@@ -40,18 +40,23 @@
 
       <div class="form-group" ng-if="next">
         <label for="interestSignup">Interests:</label><br>
-        <input id="interestSignup" type="text" name='interest' ng-model='user.interest' placeholder="Interests" class="form-control">
+        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="cardio"> Cardio<br>
+        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="strength"> Strength<br>
+        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="both"> Both<br>
       </div>
 
       <div class="form-group" ng-if="next">
         <label for="gymSignup">Gym:</label><br>
-        <input id="gymSignup" type="text" placeholder="Gym" name='gym' ng-model='user.gym' class="form-control">
+        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="la"> LA Fitness<br>
+        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="24hour"> 24 Hour Fitness<br>
+        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="ufc"> UFC Gym<br>
+
       </div>
 
       <div>
         <button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
-        <button class="btn btn-warning" type="submit" ng-if="next" ng-click="submit()">Submit</button>
+        <button class="btn btn-primary" type="submit" ng-if="next" ng-click="submit()">Submit</button>
       </div>
 
   </form>
