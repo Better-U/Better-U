@@ -1,7 +1,7 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
     var userData
-    
+
     function signUp (username, password) {
       var form = {
         username: username,
@@ -36,5 +36,22 @@ angular.module('factories', [])
     }
     return {
       submitProfile: submitProfile
+    }
+  })
+
+  .factory('cardioFactory', function ($http) {
+    function submitCardio (date, category, type, distance, duration) {
+      var cardioForm = {
+        date: date,
+        category: category,
+        type: type,
+        distance: distance,
+        duration: duration
+      }
+      console.log('this is cardioForm: ', cardioForm)
+      return $http.post('/api/fitness/cardio', cardioForm)
+    }
+    return {
+      submitCardio: submitCardio
     }
   })

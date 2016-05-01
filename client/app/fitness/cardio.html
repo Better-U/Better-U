@@ -1,11 +1,15 @@
-<div ng-controller="CardioCtrl">
+<div class="container">
+  <h1>Cardio Input</h1>
 	<form>
     <div>
-    Date: <input type="date" placeholder="date"><br>
-    Category:
-      <input type="radio" name="category" value="cardio"> Cardio
-      <input type="radio" name="category" value="strength"> Strength<br>
-    Types: <select name="type">
+      Date: <input type="date" ng-model="date" placeholder="date"><br>
+
+      Category:
+      <input type="radio" ng-model="category" value="cardio"> Cardio
+      <input type="radio" ng-model="category" value="strength"> Strength<br>
+
+      Types:
+      <select name="type" ng-model="type">
       <option value="running">Running</option>
       <option value="cycling">Cycling</option>
       <option value="swimming">Swimming</option>
@@ -13,7 +17,12 @@
       <option value="jumpingrope">Jumping Rope</option>
       <option value="steppers">Steppers</option>
       <option value="ellipticals">Ellipticals</option>
-		<button>Submit</button>
+      </select><br>
+
+      Distance: <input type="text" name="distance" ng-model="distance" placeholder="miles"><br>
+
+      Duration: <input type="text" name="duration" ng-model="duration" placeholder="minutes"><br>
+		<button type='submit' ng-click="submitCardio()">Submit</button>
 	</form>
   </div>
 </div>
