@@ -1,13 +1,8 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
     var userData
-<<<<<<< 08c60d22542f31a2649fe895468adf3875618956
-    
-    function registerUserDetails (username, password) {
-=======
 
-    function signUp (username, password) {
->>>>>>> [Feat] Implement cardio form
+    function registerUserDetails (username, password) {
       var form = {
         username: username,
         password: password
