@@ -43,7 +43,7 @@
       <th>Reps</th>
       <th>Sets</th>
     </tr>
-    <tr ng-repeat="str in strengthList | orderBy:'name' | filter:search">
+    <tr ng-repeat="str in strengthList | orderBy:'date'">
       <td>{{str.date}}</td>
       <td>{{str.activity}}</td>
       <td>{{str.weight}}</td>

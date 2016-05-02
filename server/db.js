@@ -84,7 +84,7 @@ knex.schema.createTableIfNotExists('nutrition_type', function (nutrition_t) {
 knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.increments('id').primary()
   cardio.integer('user_id').unsigned().references('id').inTable('user')
-  cardio.integer('distance')
+  cardio.decimal('distance')
   cardio.integer('duration')
   cardio.string('intensity')
   cardio.integer('type_id').unsigned().references('id').inTable('cardio_type')
