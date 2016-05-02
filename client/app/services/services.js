@@ -48,8 +48,9 @@ angular.module('factories', [])
     }
   })
   .factory('profileFactory', function ($http) {
-    function submitProfile (bodyFat, activityLvl, interest) {
+    function submitProfile (id, bodyFat, activityLvl, interest) {
       var profileForm = {
+        id: id,
         bodyFat: bodyFat,
         activityLvl: activityLvl,
         interest: interest

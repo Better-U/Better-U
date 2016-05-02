@@ -30,7 +30,7 @@ router.post('/regUser', function (req, res) {
 
 router.post('/regProfile', function (req, res) {
   // req.body.username and req.body.password hold info
-  var user;
+  var user
 
   User.findUser(req.body.username)
     .then(function (data) {
