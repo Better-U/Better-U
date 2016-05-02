@@ -82,7 +82,7 @@ angular.module('factories', [])
         intensity: intensity
       }
       console.log('this is cardioForm: ', cardioForm)
-      return $http.post('/api/fitness/cardio', cardioForm)
+      return $http.post('/api/fitness/cardioForm', cardioForm)
     }
     return {
       submitCardio: submitCardio

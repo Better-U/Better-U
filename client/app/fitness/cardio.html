@@ -23,7 +23,8 @@
       Convert <input type="text" name="meters" ng-model="meters" placeholder="meters"> meters to {{convertMiles(meters)}} miles<br>
 
       Duration: <input type="text" name="duration" ng-model="duration" placeholder="minutes"><br>
-      Pace: {{pace(duration, distance)}} mph<br>
+      Pace: {{pace(duration, distance)}} minutes per mile<br>
+      Calories Burned:
 		<button type='submit' ng-click="submitCardio()">Submit</button>
 	</form><br>
   Activity Log:<br>
@@ -33,7 +34,7 @@
       <th>Activity</th>
       <th>Distance (miles)</th>
       <th>Duration (minutes)</th>
-      <th>Pace (mph)</th>
+      <th>Pace (mpm)</th>
     </tr>
     <tr ng-repeat="cardio in cardioList | orderBy:'date' | filter:search">
       <td>{{cardio.date}}</td>
