@@ -14,7 +14,6 @@ auth.genToken = function(userDetails) {
   })
 }
 
-// middleware function for checking auth
 auth.ifAuthorized = function (req, res, next) {
   var token = req.headers['x-access-token']
   var verify
