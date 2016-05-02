@@ -25,7 +25,7 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.submitCardio = function () {
       console.log('cardio type ', $scope.type)
-      cardioFactory.submitCardio($scope.date, $scope.type, $scope.distance, $scope.duration)
+      cardioFactory.submitCardio($scope.date, $scope.type, $scope.distance, $scope.duration, $scope.pace, $scope.intensity)
         .then(function (data) {
           console.log('cardio data logged: ', data)
         })
