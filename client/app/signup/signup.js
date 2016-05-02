@@ -1,7 +1,8 @@
 angular.module('myApp.signup', ['factories'])
 
-  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance) {
-    $scope.alreadyExists;
+  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal) {
+    $scope.alreadyExists
+    $scope.animationsEnabled = true
     $scope.next = false
     $scope.profileButton = false
 
@@ -31,17 +32,14 @@ angular.module('myApp.signup', ['factories'])
 
     }
 
-    $scope.goSignin = function () {
-      $state.go('signin')
-    }
 
     $scope.ok = function () {
-      $uibModalInstance.close($scope.selected.item);
+      $uibModalInstance.close($scope.selected.item)
       // $state.go('registerProfile')
     }
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('cancel')
     }
 
     $scope.goNext = function () {
@@ -59,4 +57,26 @@ angular.module('myApp.signup', ['factories'])
           })
       }
     }
+
+    
+    $scope.signin = function () {
+      $uibModalInstance.dismiss('cancel')
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/signin/signin.html',
+        controller: 'SigninCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      })
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem
+      }, function () {
+        console.log('hi')
+      })
+    }
+
   })

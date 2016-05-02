@@ -1,9 +1,11 @@
-<div class="authContainer">
+<div class="signup">
 <h1>Signin</h1>
+  <div class="form-group">
   <form name='login_form' ng-submit='login()'>
     <input type='text' ng-model='user.name' placeholder='username'>
     <input type="password" ng-model='user.password' placeholder='password'>
     <button>login</button>
   </form>
+    </div>
     <button ng-click="goSignup()">Have an account? Sign in!</button>
 </div>

@@ -1,6 +1,6 @@
 angular.module('myApp.signin', ['factories'])
 
-  .controller('SigninCtrl', function ($scope, $state, authFactory) {
+  .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance) {
     
     $scope.alert = function () {
       console.log('logged')
