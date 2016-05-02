@@ -4,12 +4,9 @@
     <div>
       Date: <input type="date" ng-model="date" placeholder="date"><br>
 
-      Category:
-      <input type="radio" ng-model="category" value="cardio"> Cardio
-      <input type="radio" ng-model="category" value="strength"> Strength<br>
-
-      Types:
+      Activity:
       <select name="type" ng-model="type">
+      <option value="">---Please select---</option>
       <option value="running">Running</option>
       <option value="cycling">Cycling</option>
       <option value="swimming">Swimming</option>
@@ -19,10 +16,32 @@
       <option value="ellipticals">Ellipticals</option>
       </select><br>
 
+      Intensity: <input type="text" name="intensity" ng-model="intensity" placeholder="scale 1-5"><br>
+      Scale 1-5: 1 being least intense, 5 being most intense<br>
+
       Distance: <input type="text" name="distance" ng-model="distance" placeholder="miles"><br>
+      Convert <input type="text" name="meters" ng-model="meters" placeholder="meters"> meters to {{convertMiles(meters)}} miles<br>
 
       Duration: <input type="text" name="duration" ng-model="duration" placeholder="minutes"><br>
+      Pace: {{pace(duration, distance)}} mph<br>
 		<button type='submit' ng-click="submitCardio()">Submit</button>
-	</form>
+	</form><br>
+  Activity Log:<br>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Activity</th>
+      <th>Distance (miles)</th>
+      <th>Duration (minutes)</th>
+      <th>Pace (mph)</th>
+    </tr>
+    <tr ng-repeat="cardio in cardioList | orderBy:'date' | filter:search">
+      <td>{{cardio.date}}</td>
+      <td>{{cardio.type}}</td>
+      <td>{{cardio.distance}}</td>
+      <td>{{cardio.duration}}</td>
+      <td>{{cardio.pace}}</td>
+    </tr>
+  </table>
   </div>
 </div>
