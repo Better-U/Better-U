@@ -16,18 +16,37 @@ angular.module('myApp.landing', [])
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signup/signup.html',
         controller: 'SignupCtrl',
-        // size: size,
         resolve: {
           items: function () {
             return $scope.items;
           }
         }
-      });
+      })
 
       modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+        $scope.selected = selectedItem
       }, function () {
         console.log('hi')
-      });
-    };
+      })
+    }
+
+    $scope.signin = function () {
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/signin/signin.html',
+        controller: 'SigninCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      })
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem
+      }, function () {
+        console.log('hi')
+      })
+    }
+
   })
