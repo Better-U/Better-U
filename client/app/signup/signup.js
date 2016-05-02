@@ -26,6 +26,7 @@ angular.module('myApp.signup', ['factories'])
           $scope.token = data.data.token
           console.log($scope.token)
           window.localStorage.setItem('token', authFactory.userData.token)
+          console.log('')
           $state.go('dashboard')
         })
 

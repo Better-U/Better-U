@@ -63,13 +63,13 @@ angular.module('factories', [])
   })
 
   .factory('cardioFactory', function ($http) {
-    function submitCardio (date, category, type, distance, duration) {
+    function submitCardio (date, type, distance, duration, pace) {
       var cardioForm = {
         date: date,
-        category: category,
         type: type,
         distance: distance,
-        duration: duration
+        duration: duration,
+        pace: pace
       }
       console.log('this is cardioForm: ', cardioForm)
       return $http.post('/api/fitness/cardio', cardioForm)
