@@ -2,6 +2,7 @@
   <h2>Sign Up</h2>
   <span>Already have an account? </span><button ng-click="signin()">Sign In</button>
   <div>
+    <span ng-if="userExistError">Username already exists! Please login or select different username!</span>
     <form>
         <div class="form-group" ng-if="!next">
           <label for="usernameSignup">Username:</label><br>
