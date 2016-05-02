@@ -1,10 +1,55 @@
-<div>
-    <form>
-        <input type="date" placeholder="date">
-        <select name="exercise">
-            <option value="cardio">Cardio</option>
-            <option value="strength">Strength</option>
-        </select>
-        <button>Submit</button>
-    </form>
+<div class="container-fluid">
+  <h1>Strength & Fitness</h1>
+  <div>
+    <h3>Weight:<h3>
+      <input class="dropdown" type="number" min="0" ng-model="weight"></input>
+    <h3>Height:</h3>
+      <p1>Feet: </p1>
+      <input class="dropdown" type="number" min="2" max="8" ng-model="feet"></input>
+      <p1>Inches: </p1>
+      <input class="dropdown" type="number" min="0" max="11" ng-model="inches"></input>
+    <br/>
+    <p>Height in Inches: {{convert_height_in(feet, inches)}}</p>
+    <h1>Your BMI is {{bmi(height_in,weight)}}</h1>    
+    <h3>{{categorize(height_in, weight)}}</h3>
+  </div>
+  
+  <form>
+    <div class="form-group">
+    <input type="date" ng-model="str.date" placeholder="date">
+    <label>Activity</label>
+      <select ng-model="str.activity">
+        <option value="Bench">Bench</option>
+        <option value="Squat">Squat</option>
+        <option value="Deadlift">Deadlift</option>
+      </select>
+      <label>Weight</label>
+      <input type="number" class="dropdown" min="0" max="5000" ng-model="str.weight">
+      <label>Repetitions</label>
+      <input type="number" class="dropdown" min="0" max="500" ng-model="str.reps">
+      <label>Sets</label>
+      <input type="number" class="dropdown" min="0" max="500" ng-model="str.sets">
+      <button type="submit" ng-click="submitStrength()" class="btn btn-danger btn-lg">Submit!</button>
+    </div>
+
+</form>
+
+  <h1>Activity Log</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Activity</th>
+      <th>Weight</th>
+      <th>Reps</th>
+      <th>Sets</th>
+    </tr>
+    <tr ng-repeat="str in strengthList | orderBy:'name' | filter:search">
+      <td>{{str.date}}</td>
+      <td>{{str.activity}}</td>
+      <td>{{str.weight}}</td>
+      <td>{{str.reps}}</td>
+      <td>{{str.sets}}</td>
+    </tr>
+  </table>
+</div>
 </div>
