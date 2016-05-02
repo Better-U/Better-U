@@ -1,6 +1,7 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
-    var userData
+    var userData = null
+    var userToken = null
 
     function registerUserDetails (username, password) {
       var form = {
@@ -47,6 +48,7 @@ angular.module('factories', [])
 
     return {
       userData: userData,
+      userToken: userToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn
