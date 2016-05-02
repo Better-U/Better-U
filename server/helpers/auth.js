@@ -1,5 +1,5 @@
 require('dotenv').config()
-var jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken')
 
 var secret = process.env.TOKEN_SECRET
 
@@ -14,7 +14,6 @@ auth.genToken = function(userDetails) {
   })
 }
 
-// middleware function for checking auth
 auth.ifAuthorized = function (req, res, next) {
   var token = req.headers['x-access-token']
   var verify
