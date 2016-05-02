@@ -1,7 +1,8 @@
 angular.module('myApp.signup', ['factories'])
 
   .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal) {
-    $scope.alreadyExists
+    $scope.alreadyExists = null
+    $scope.userExistError = false
     $scope.animationsEnabled = true
     $scope.next = false
     $scope.profileButton = false
@@ -51,7 +52,7 @@ angular.module('myApp.signup', ['factories'])
             $scope.alreadyExists = data.data.exists
             if ($scope.alreadyExists) {
               console.log('inside here')
-              $state.reload('signin')
+              $scope.userExistError = true
             } else {
               $scope.next = true
               $scope.profileButton = true
