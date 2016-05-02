@@ -16,7 +16,7 @@
   
   <form>
     <div class="form-group">
-    <input type="date" ng-model="str.date" placeholder="date">
+    <input type="date" min="2014-01-01" max="2020-12-31"ng-model="str.date" placeholder="date">
     <label>Activity</label>
       <select ng-model="str.activity">
         <option value="Bench">Bench</option>
@@ -43,7 +43,7 @@
       <th>Reps</th>
       <th>Sets</th>
     </tr>
-    <tr ng-repeat="str in strengthList | orderBy:'date'">
+    <tr ng-repeat="str in strengthList track by str.date| orderBy:'date'">
       <td>{{str.date}}</td>
       <td>{{str.activity}}</td>
       <td>{{str.weight}}</td>

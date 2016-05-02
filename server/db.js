@@ -34,22 +34,15 @@ knex.schema.createTableIfNotExists('user', function (user) {
 knex.schema.createTableIfNotExists('strength_record', function (strength) {
   strength.increments('id').primary()
   strength.integer('user_id').unsigned().references('id').inTable('user')
-  strength.integer('type_id').unsigned().references('id').inTable('strength_type')
+  strength.string('type')
   strength.date('date')
   strength.integer('sets')
-  strength.string('intensity')
+  strength.integer('intensity')
   strength.integer('duration')
   strength.integer('weight')
   strength.integer('reps')
 }).then(function () {
   console.log('strength_record table created')
-})
-
-knex.schema.createTableIfNotExists('strength_type', function (strength_t) {
-  strength_t.increments('id').primary()
-  strength_t.string('type', 50)
-}).then(function () {
-  console.log('strength_type table created')
 })
 
 knex.schema.createTableIfNotExists('goals', function (goals) {
@@ -86,19 +79,12 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.integer('user_id').unsigned().references('id').inTable('user')
   cardio.decimal('distance')
   cardio.integer('duration')
-  cardio.string('intensity')
+  cardio.integer('intensity')
   cardio.decimal('pace')
-  cardio.integer('type_id').unsigned().references('id').inTable('cardio_type')
+  cardio.string('type')
   cardio.date('date')
 }).then(function () {
   console.log('cardio_record table created')
-})
-
-knex.schema.createTableIfNotExists('cardio_type', function (cardio_t) {
-  cardio_t.increments('id').primary()
-  cardio_t.string('type', 50)
-}).then(function () {
-  console.log('cardio_type table created')
 })
 
 module.exports = knex
