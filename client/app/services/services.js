@@ -2,9 +2,7 @@ angular.module('factories', [])
   .factory('authFactory', function ($http) {
     var userData
 
-
     function registerUserDetails (username, password) {
-
       var form = {
         username: username,
         password: password
@@ -40,13 +38,22 @@ angular.module('factories', [])
       }
       return $http.post('/api/signin', plugin)
     }
+
+    function parseJwt (token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      return JSON.parse($window.atob(base64));
+    }
+
     return {
       userData: userData,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn
     }
+
   })
+
   .factory('profileFactory', function ($http) {
     function submitProfile (id, bodyFat, activityLvl, interest) {
       var profileForm = {
