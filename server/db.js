@@ -87,6 +87,7 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.decimal('distance')
   cardio.integer('duration')
   cardio.string('intensity')
+  cardio.decimal('pace')
   cardio.integer('type_id').unsigned().references('id').inTable('cardio_type')
   cardio.date('date')
 }).then(function () {
