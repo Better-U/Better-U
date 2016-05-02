@@ -36,6 +36,8 @@ knex.schema.createTableIfNotExists('strength_record', function (strength) {
   strength.integer('user_id').unsigned().references('id').inTable('user')
   strength.integer('type_id').unsigned().references('id').inTable('strength_type')
   strength.date('date')
+  strength.integer('sets')
+  strength.string('intensity')
   strength.integer('duration')
   strength.integer('weight')
   strength.integer('reps')
@@ -84,6 +86,7 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.integer('user_id').unsigned().references('id').inTable('user')
   cardio.integer('distance')
   cardio.integer('duration')
+  cardio.string('intensity')
   cardio.integer('type_id').unsigned().references('id').inTable('cardio_type')
   cardio.date('date')
 }).then(function () {
