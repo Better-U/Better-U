@@ -1,6 +1,7 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
-    var userData
+    var userData = null
+    var userToken = null
 
     function registerUserDetails (username, password) {
       var form = {
@@ -47,6 +48,7 @@ angular.module('factories', [])
 
     return {
       userData: userData,
+      userToken: userToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn
@@ -81,7 +83,7 @@ angular.module('factories', [])
         intensity: intensity
       }
       console.log('this is cardioForm: ', cardioForm)
-      return $http.post('/api/fitness/cardio', cardioForm)
+      return $http.post('/api/fitness/cardioForm', cardioForm)
     }
     return {
       submitCardio: submitCardio
