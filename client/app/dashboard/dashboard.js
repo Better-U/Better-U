@@ -1,12 +1,12 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($scope, $state) {
+  .controller('DashboardCtrl', function ($scope, $state, authFactory) {
     $scope.signout = function () {
       console.log('before', window.localStorage.getItem('token'))
       window.localStorage.removeItem('token')
+      authFactory.userData = null
       console.log(window.localStorage.getItem('token'))
-      // delete $window.localStorage['jwtToken'];
-      // $rootScope.$broadcast('loggedOut');
+
       $state.go('landing')
     }
   })
