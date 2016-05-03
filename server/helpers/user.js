@@ -70,9 +70,13 @@ User.registerProfile = function (id, bodyFat, activitylvl, interest) {
     activitylvl: activitylvl,
     interest: interest
   }
-  console.log('id', id)
-console.log('User.registerProfile, profile details', profileDetails)
+  console.log('User.registerProfile, profile details', profileDetails)
   return db('user').where({id: id}).update(profileDetails)
+}
+
+User.getProfileInfo = function (id) {
+  console.log('id inside getprofileinfo', id)
+  return db('user').where({id: id}).select()
 }
 
 module.exports = User
