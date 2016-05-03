@@ -7,13 +7,13 @@
       Activity:
       <select name="type" ng-model="type">
       <option value="">---Please select---</option>
-      <option value="running">Running</option>
-      <option value="cycling">Cycling</option>
-      <option value="swimming">Swimming</option>
-      <option value="rowing">Rowing</option>
-      <option value="jumpingrope">Jumping Rope</option>
-      <option value="steppers">Steppers</option>
-      <option value="ellipticals">Ellipticals</option>
+      <option value="Running">Running</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Rowing">Rowing</option>
+      <option value="Jumping Rope">Jumping Rope</option>
+      <option value="Steppers">Steppers</option>
+      <option value="Ellipticals">Ellipticals</option>
       </select><br>
 
       Intensity: <input type="text" name="intensity" ng-model="intensity" placeholder="scale 1-5"><br>
@@ -36,8 +36,8 @@
       <th>Duration (minutes)</th>
       <th>Pace (mpm)</th>
     </tr>
-    <tr ng-repeat="cardio in cardioData | orderBy: 'cardio.id'">
-      <td>{{cardio.date}}</td>
+    <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
+      <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
       <td>{{cardio.type}}</td>
       <td>{{cardio.distance}}</td>
       <td>{{cardio.duration}}</td>
