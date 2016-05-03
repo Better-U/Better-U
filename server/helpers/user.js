@@ -28,9 +28,6 @@ User.comparePassword = function (username, password) {
   return new Promise (function (resolve, reject) {
       User.findPassword(username)
         .then(function (data) {
-          console.log('data: ', data)
-          console.log('password: ', password)
-          console.log('data password: ', data[0].password)
           bcrypt.compare(password, data[0].password, function (err, response) {
             if (err) {
               console.log(err)

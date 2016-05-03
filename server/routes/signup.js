@@ -15,18 +15,13 @@ router.post('/regUser', function (req, res) {
     .then(function (data) {
       if (data.length === 0) {
         User.hashPassword(req.body.username, req.body.password)
-          .then(function(data) {
-            console.log('data', data)
-            res.send('data')
+          .then(function (hash) {
+            console.log('this is the hash on signup', hash)
+            User.insertUserPw(req.body.username, hash)
+              .then(function () {
+                res.send('user added')
+              })
           })
-
-          // .then(function (hash) {
-          //   console.log('this is the hash on signup', hash)
-          //   User.insertUserPw(req.body.username, hash)
-          //     .then(function () {
-          //       res.send('user added')
-          //     })
-          // })
       } else {
         res.json({exists: true})
       }
