@@ -14,6 +14,7 @@ var challenge = require('./routes/challenge')
 var users = require('./routes/users')
 var signin = require('./routes/signin')
 var signup = require('./routes/signup')
+var social = require('./routes/social')
 
 app.use(cors())
 app.use(express.static('./client'))
@@ -27,6 +28,7 @@ app.use('/api/health/', health)
 app.use('/api/fitness/', fitness)
 app.use('/api/challenge/', challenge)
 app.use('/api/signup/', signup)
+app.use('/api/social/', social)
 
 
 var port = process.env.PORT || 8080
