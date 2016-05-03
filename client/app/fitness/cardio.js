@@ -1,11 +1,13 @@
 angular.module('myApp.cardio', ['factories'])
 
   .controller('CardioCtrl', function ($scope, cardioFactory, authFactory) {
-    console.log('this is username for cardio: ' ,authFactory.userData.username)
+    $scope.cardioData = null
 
     $scope.cardioList = function () {
       cardioFactory.getCardio(authFactory.userData.username).then(function (data) {
-        console.log('cardioList called')
+        console.log('this is data from cardio: ', data)
+        $scope.cardioData = data.data
+        console.log('$scope.cardioData: ', $scope.cardioData)
       })
     }
 
@@ -36,7 +38,9 @@ angular.module('myApp.cardio', ['factories'])
       var pace = $scope.pace($scope.duration, $scope.distance)
       cardioFactory.submitCardio(authFactory.userData.username, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
         .then(function (data) {
-          console.log('cardio data logged: ', data)
+          console.log('cardio data logged')
         })
     }
+
+    $scope.cardioList();
   })
