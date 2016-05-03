@@ -50,3 +50,4 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         controller: 'NutritionCtrl'
       })
   })
+
