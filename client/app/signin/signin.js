@@ -17,11 +17,9 @@ angular.module('myApp.signin', [])
             $scope.userDoesNotExist = true
           } else {
             $uibModalInstance.dismiss('cancel')
-            console.log(data.config.data)
-            authFactory.userData = data.config.data
-            authFactory.userToken = data.data.token
             $scope.token = data.data.token
-            window.localStorage.setItem('token', authFactory.userToken)
+            window.localStorage.setItem('token', data.data.token)
+            window.localStorage.setItem('username', data.config.data.username)
             $state.go('dashboard')
           }
 

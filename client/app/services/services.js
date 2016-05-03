@@ -1,7 +1,5 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http) {
-    var userData = null
-    var userToken = null
 
     function registerUserDetails (username, password) {
       var form = {
@@ -61,14 +59,14 @@ angular.module('factories', [])
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {
         console.error('No token found')
+        window.localStorage.removeItem('username')
+        window.localStorage.removeItem('token')
         return false
       }
     }
 
     return {
-      userData: userData,
       getToken: getToken,
-      userToken: userToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn,
