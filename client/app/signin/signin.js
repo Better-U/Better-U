@@ -1,4 +1,4 @@
-angular.module('myApp.signin', ['factories'])
+angular.module('myApp.signin', [])
 
   .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance) {
 
@@ -7,8 +7,10 @@ angular.module('myApp.signin', ['factories'])
     }
 
     $scope.login = function () {
+      console.log('login call:', $scope.user.name, $scope.user.password)
       authFactory.signIn($scope.user.name, $scope.user.password)
         .then(function (data) {
+          $uibModalInstance.dismiss('cancel')
           console.log('data', data)
           authFactory.userData = data.data
           $scope.token = data.data.token
