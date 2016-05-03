@@ -1,27 +1,23 @@
 angular.module('myApp.cardio', ['factories'])
 
   .controller('CardioCtrl', function ($scope, cardioFactory, authFactory) {
+    var user = window.localStorage.getItem('username')
+
     $scope.cardioData = null
 
     $scope.cardioList = function () {
-      cardioFactory.getCardio(authFactory.userData.username).then(function (data) {
-        console.log('this is data from cardio: ', data)
+      cardioFactory.getCardio(user).then(function (data) {
         $scope.cardioData = data.data
-        console.log('$scope.cardioData: ', $scope.cardioData)
       })
-    }
-
-    $scope.convertSeconds = function (minutes) {
-      var seconds = minutes * 60
-      return seconds
-      console.log('minutes converted to seconds: ', seconds)
     }
 
     $scope.pace = function (duration, distance) {
       if(duration === undefined || distance === undefined) {
         return 0
       } else {
-        return (($scope.convertSeconds(duration) / distance) / 60).toFixed(2)
+        var convertSeconds = duration * 60
+        var pace = ((convertSeconds / distance) / 60).toFixed(2)
+        return pace
       }
     }
 
@@ -36,7 +32,7 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.submitCardio = function () {
       var pace = $scope.pace($scope.duration, $scope.distance)
-      cardioFactory.submitCardio(authFactory.userData.username, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
+      cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
         .then(function (data) {
           console.log('cardio data logged')
         })
