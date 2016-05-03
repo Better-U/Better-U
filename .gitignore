@@ -2,6 +2,6 @@
 **/bower_components
 .idea
 *.env
-client/client/lib
+
 /bower.json
 .eslintrc
