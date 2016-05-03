@@ -16,13 +16,13 @@
       <option value="Ellipticals">Ellipticals</option>
       </select><br>
 
-      Intensity: <input type="text" name="intensity" ng-model="intensity" placeholder="scale 1-5"><br>
+      Intensity: <input class="dropdown" type="number" name="intensity" ng-model="intensity" placeholder="scale 1-5"><br>
       Scale 1-5: 1 being least intense, 5 being most intense<br>
 
-      Distance: <input type="text" name="distance" ng-model="distance" placeholder="miles"><br>
-      Convert <input type="text" name="meters" ng-model="meters" placeholder="meters"> meters to {{convertMiles(meters)}} miles<br>
+      Distance: <input class="dropdown" type="number" name="distance" ng-model="distance" placeholder="miles"><br>
+      Convert <input class="dropdown" type="number" name="meters" ng-model="meters" placeholder="meters"> meters to {{convertMiles(meters)}} miles<br>
 
-      Duration: <input type="text" name="duration" ng-model="duration" placeholder="minutes"><br>
+      Duration: <input class="dropdown" type="number" name="duration" ng-model="duration" placeholder="minutes"><br>
       Pace: {{pace(duration, distance)}} minutes per mile<br>
       Calories Burned: <br>
 		<button type='submit' ng-click="submitCardio()">Submit</button>

@@ -1,7 +1,8 @@
 angular.module('myApp.cardio', ['factories'])
 
-  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory) {
-    var user = window.localStorage.getItem('username')
+  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies) {
+    var user = $cookies.get('username')
+    console.log('this is username: ', $cookies.get('username'))
 
     $scope.cardioData = null
 
@@ -34,10 +35,15 @@ angular.module('myApp.cardio', ['factories'])
     $scope.submitCardio = function () {
       var pace = $scope.pace($scope.duration, $scope.distance)
       cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
-        .then(function (data) {
+        .then(function () {
           console.log('cardio data logged')
+          cardioFactory.getCardio(user).then(function (data) {
+            console.log('cardio data updated', data)
+            $scope.cardioData = data.data
+            $scope.cardioList()
+          })
         })
     }
 
-    $scope.cardioList();
+    $scope.cardioList()
   })
