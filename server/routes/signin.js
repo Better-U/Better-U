@@ -13,11 +13,10 @@ router.post('/', function (req, res) {
   console.log('request inside login', req.body.username)
   User.findUser(req.body.username)
     .then(function (data) {
-      console.log('find userid:', data)
-      user = { id: data[0].id, username: req.body.username }
       if (data.length === 0) {
         res.json({exists: false})
       } else {
+        user = { id: data[0].id, username: req.body.username }
         User.comparePassword(req.body.username, req.body.password)
           .then(function (exists) {
             console.log('user exists', exists)
@@ -28,12 +27,12 @@ router.post('/', function (req, res) {
                 token: Auth.genToken(user)
               })
             } else {
-              res.json({passwordMatch: false})
+              res.json({success: false})
             }
           })
       }
     })
 })
-// declare routes
+
 
 module.exports = router

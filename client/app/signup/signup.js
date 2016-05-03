@@ -60,7 +60,6 @@ angular.module('myApp.signup', ['factories'])
           })
       }
     }
-
     
     $scope.signin = function () {
       $uibModalInstance.dismiss('cancel')
