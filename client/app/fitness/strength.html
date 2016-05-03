@@ -16,24 +16,26 @@
   
   <form>
     <div class="form-group">
-    <input type="date" min="2014-01-01" max="2020-12-31"ng-model="str.date" placeholder="date">
+    <input type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date"><br />
     <label>Activity</label>
-      <select ng-model="str.activity">
-        <option value="Bench">Bench</option>
+      <select ng-model="str.type">
+        <option value="Bench" selected="selected">Bench</option>
         <option value="Squat">Squat</option>
         <option value="Deadlift">Deadlift</option>
-      </select>
-      <label>Weight</label>
-      <input type="number" class="dropdown" min="0" max="5000" ng-model="str.weight">
+      </select><br />
+      <label>Weight (lbs)</label>
+      <input type="number" class="dropdown" min="45" max="5000" ng-model="str.weight"><br />
       <label>Repetitions</label>
-      <input type="number" class="dropdown" min="0" max="500" ng-model="str.reps">
+      <input type="number" class="dropdown" min="0" max="200" ng-model="str.reps"><br />
       <label>Sets</label>
-      <input type="number" class="dropdown" min="0" max="500" ng-model="str.sets">
+      <input type="number" class="dropdown" min="0" max="500" ng-model="str.sets"><br />
+      <label>Intensity (1-5)</label>
+      <input type="number" class="dropdown" min="1" max="5" ng-model="str.intensity"><br />
+      <label>Duration (minutes)</label>
+      <input type="number" class="dropdown" min="0" max="300" ng-model="str.duration">
       <button type="submit" ng-click="submitStrength()" class="btn btn-danger btn-lg">Submit!</button>
     </div>
-
 </form>
-
   <h1>Activity Log</h1>
   <table class="table table-striped">
     <tr>
@@ -42,13 +44,19 @@
       <th>Weight</th>
       <th>Reps</th>
       <th>Sets</th>
+      <th>One rep max</th>
+      <th>Intensity</th>
+      <th>Duration</th>
     </tr>
-    <tr ng-repeat="str in strengthList track by str.date| orderBy:'date'">
-      <td>{{str.date}}</td>
-      <td>{{str.activity}}</td>
+    <tr ng-repeat="str in strengthList | orderBy:'date':true">
+      <td>{{str.date | date: "MM-dd-yyyy"}}</td>
+      <td>{{str.type}}</td>
       <td>{{str.weight}}</td>
       <td>{{str.reps}}</td>
       <td>{{str.sets}}</td>
+      <td>{{onerepmax(str.weight, str.reps)}}</td>
+      <td>{{str.intensity}}</td>
+      <td>{{str.duration}}</td>
     </tr>
   </table>
 </div>

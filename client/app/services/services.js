@@ -41,9 +41,9 @@ angular.module('factories', [])
     function parseJwt (token) {
       console.log(token)
       var base64Url = token.split('.')[1]
-      console.log(base64Url);
-      var base64 = base64Url.replace('-', '+').replace('_', '/');
-      return JSON.parse(window.atob(base64));
+      console.log(base64Url)
+      var base64 = base64Url.replace('-', '+').replace('_', '/')
+      return JSON.parse(window.atob(base64))
     }
 
     function getToken () {
@@ -106,7 +106,30 @@ angular.module('factories', [])
       getProfile: getProfile
     }
   })
-
+  .factory('strengthFactory', function ($http) {
+    function submitStrength (username, date, type, sets, intensity, duration, weight, reps) {
+      var strengthForm = {
+        username: username,
+        date: date,
+        type: type,
+        sets: sets,
+        intensity: intensity,
+        duration: duration,
+        weight: weight,
+        reps: reps
+      }
+      console.log('StrengthFactory Submission', strengthForm)
+      return $http.post('/api/fitness/strengthForm', strengthForm)
+    }
+    function getStrength (username) {
+       console.log('getStrength line 126')
+      return $http.post('/api/fitness/getStrength', {username: username})
+    }
+    return {
+      submitStrength: submitStrength,
+      getStrength: getStrength
+    }
+  })
   .factory('cardioFactory', function ($http) {
     function submitCardio (username, date, type, distance, duration, pace, intensity) {
       var cardioForm = {

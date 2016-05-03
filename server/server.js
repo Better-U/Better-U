@@ -5,6 +5,7 @@ var bodyParser = require('body-parser')
 var path = require('path')
 var dotenv = require('dotenv')
 var db = require('./db.js')
+
 dotenv.config()
 
 var health = require('./routes/health')
@@ -26,6 +27,7 @@ app.use('/api/health/', health)
 app.use('/api/fitness/', fitness)
 app.use('/api/challenge/', challenge)
 app.use('/api/signup/', signup)
+
 
 var port = process.env.PORT || 8080
 
