@@ -3,7 +3,6 @@
 .idea
 *.env
 **/lib
-client/client/lib
-**/lib
+client/lib
 /bower.json
 .eslintrc
