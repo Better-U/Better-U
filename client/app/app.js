@@ -17,7 +17,8 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('profile', {
         url: '/profile',
         templateUrl: '/app/profile/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        authenticate: true
       })
       .state('landing', {
         url: '/landing',
@@ -27,27 +28,67 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: '/app/dashboard/dashboard.html',
-        controller: 'DashboardCtrl'
+        controller: 'DashboardCtrl',
+        authenticate: true
       })
       .state('cardio', {
         url: '/cardio',
         templateUrl: '/app/fitness/cardio.html',
-        controller: 'CardioCtrl'
+        controller: 'CardioCtrl',
+        authenticate: true
       })
       .state('strength', {
         url: '/strength',
         templateUrl: '/app/fitness/strength.html',
-        controller: 'StrengthCtrl'
+        controller: 'StrengthCtrl',
+        authenticate: true
       })
       .state('registerProfile', {
         url: '/registerProfile',
         templateUrl: '/app/signup/registerProfile.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        authenticate: true
       })
       .state('nutrition', {
         url: '/nutrition',
         templateUrl: '/app/nutrition/nutrition.html',
-        controller: 'NutritionCtrl'
+        controller: 'NutritionCtrl',
+        authenticate: true
       })
   })
+
+.config(function ($httpProvider) {
+
+  $httpProvider.interceptors.push(function ($timeout, $q) {
+
+    return {
+      responseError: function (rejection) {
+        if (rejection.status !== 401) {
+          return rejection;
+        }
+
+        var deferred = $q.defer();
+
+        return deferred.promise;
+      }
+    };
+  });
+
+})
+
+  .run(function ($rootScope, $state, authFactory) {
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+      var requireLogin = toState.authenticate
+      if (requireLogin && authFactory.getToken() === null) {
+        event.preventDefault()
+        $state.go('landing')
+      }
+      else if (requireLogin && !authFactory.isAuth()) {
+        event.preventDefault();
+        $state.go('landing')
+      }
+
+    })
+  })
+
 
