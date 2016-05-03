@@ -43,7 +43,22 @@ angular.module('factories', [])
     function parseJwt (token) {
       var base64Url = token.split('.')[1];
       var base64 = base64Url.replace('-', '+').replace('_', '/');
-      return JSON.parse($window.atob(base64));
+      return JSON.parse(window.atob(base64));
+    }
+
+    function getToken () {
+      return window.localStorage.getItem('token')
+    }
+
+    function isAuth () {
+      var token = getToken()
+      if (token) {
+        var params = parseJwt(token)
+        return Math.round(new Date().getTime() / 1000) <= params.exp
+      } else {
+        console.error('No token found')
+        return false
+      }
     }
 
     return {
@@ -51,7 +66,8 @@ angular.module('factories', [])
       userToken: userToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
-      signIn: signIn
+      signIn: signIn,
+      isAuth: isAuth
     }
 
   })
@@ -73,8 +89,9 @@ angular.module('factories', [])
   })
 
   .factory('cardioFactory', function ($http) {
-    function submitCardio (date, type, distance, duration, pace, intensity) {
+    function submitCardio (username, date, type, distance, duration, pace, intensity) {
       var cardioForm = {
+        username: username,
         date: date,
         type: type,
         distance: distance,
@@ -85,7 +102,14 @@ angular.module('factories', [])
       console.log('this is cardioForm: ', cardioForm)
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
+
+    function getCardio (username) {
+      var username = {username:  username}
+      return $http.get('/api/fitness/getCardio', username)
+    }
+
     return {
-      submitCardio: submitCardio
+      submitCardio: submitCardio,
+      getCardio: getCardio
     }
   })
