@@ -60,18 +60,17 @@ knex.schema.createTableIfNotExists('nutrition_record', function (nutrition) {
   nutrition.increments('id').primary()
   nutrition.integer('user_id').unsigned().references('id').inTable('user')
   nutrition.string('name', 50)
-  nutrition.integer('type_id').unsigned().references('id').inTable('nutrition_type')
+  nutrition.string('time', 50)
+  nutrition.integer('serving')
+  nutrition.integer('cal')
+  nutrition.integer('carbs')
+  nutrition.integer('fat')
+  nutrition.integer('fiber')
+  nutrition.integer('sodium')
+  nutrition.integer('protein')
   nutrition.integer('water')
 }).then(function () {
   console.log('nutrition_records table created')
-})
-
-knex.schema.createTableIfNotExists('nutrition_type', function (nutrition_t) {
-  nutrition_t.increments('id').primary()
-  nutrition_t.string('type', 50)
-  nutrition_t.integer('calories')
-}).then(function () {
-  console.log('nutrition_type table created')
 })
 
 knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
