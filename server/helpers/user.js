@@ -1,44 +1,50 @@
 var db = require('../db')
-
 var bcrypt = require('bcrypt')
-var User = {}
 var saltRounds = 10
+var User = {}
+
 User.findUser = function (username) {
+  console.log('findUser:', username)
   return db('user').where({username: username}).select('id')
 }
 
 User.hashPassword = function (password) {
-  return new Promise(function (resolve) {
-    if (resolve) {
+  return new Promise(function (resolve, reject) {
       bcrypt.hash(password, saltRounds, function (err, hash) {
         if (err) {
-          throw err
+          reject(err)
         }
+        console.log('hash', hash)
         resolve(hash)
       })
-    }
-  })
-}
-User.findPassword = function (username) {
-  return db('user').where({username: username}).select('password')
-}
-User.comparePassword = function (username, password) {
-  return new Promise(function (resolve) {
-    if (resolve) {
-      User.findPassword(username)
-        .then(function (data) {
-          bcrypt.compare(password, data[0].password, function (err, res) {
-            if (err) {
-              throw err
-            }
-            resolve(res)
-          })
-        })
-    }
   })
 }
 
+User.findPassword = function (username) {
+  return db('user').select('password').where({username: username})
+}
+
+User.comparePassword = function (username, password) {
+  return new Promise (function (resolve, reject) {
+      User.findPassword(username)
+        .then(function (data) {
+          console.log('data: ', data)
+          console.log('password: ', password)
+          console.log('data password: ', data[0].password)
+          bcrypt.compare(password, data[0].password, function (err, response) {
+            if (err) {
+              console.log(err)
+              reject(err)
+            } else {
+              resolve(response)
+            }
+        })
+      })
+    }
+  )}
+
 User.insertUserPw = function (username, password) {
+  console.log('password inside insertPW', password)
   var signUpObj = {
     username: username,
     password: password

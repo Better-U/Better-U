@@ -21,7 +21,7 @@ app.use(bodyParser.json({limit: '25mb', extended: true}))
 app.use('/scripts', express.static(path.join(__dirname, '/../node_modules')))
 
 app.use('/api/users/', users)
-app.use('/api/signin', signin)
+app.use('/api/signin/', signin)
 app.use('/api/health/', health)
 app.use('/api/fitness/', fitness)
 app.use('/api/challenge/', challenge)

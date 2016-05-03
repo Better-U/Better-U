@@ -10,21 +10,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 router.post('/', function (req, res) {
   var user;
-  console.log('inside post', req.body);
-  // req.body.username, req.body.password
+  console.log('request inside login', req.body.username)
   User.findUser(req.body.username)
     .then(function (data) {
-      
-      user = {
-        id: data[0].id,
-        username: req.body.username
-      }
-      
+      console.log('find userid:', data)
+      user = { id: data[0].id, username: req.body.username }
       if (data.length === 0) {
-        res.send('make an account!')
+        res.json({exists: false})
       } else {
         User.comparePassword(req.body.username, req.body.password)
           .then(function (exists) {
+            console.log('user exists', exists)
             if (exists) {
               res.json({
                 success: true,
@@ -32,7 +28,7 @@ router.post('/', function (req, res) {
                 token: Auth.genToken(user)
               })
             } else {
-              res.send('YOU DONT EXIST')
+              res.json({passwordMatch: false})
             }
           })
       }
