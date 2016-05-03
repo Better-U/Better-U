@@ -1,4 +1,5 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate'])
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'ngCookies'])
+
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -58,18 +59,20 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
   })
 
 .config(function ($httpProvider) {
-
-  $httpProvider.interceptors.push(function ($timeout, $q) {
+  $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
 
     return {
-      responseError: function (rejection) {
-        if (rejection.status !== 401) {
-          return rejection;
+      request: function (config) {
+        config.headers['Token'] = $cookies.get('token')
+        return config
+      },
+      responseError: function(rejection) {
+        console.log(rejection)
+        if (rejection.status === 401) {
+          $injector.get('$state').transitionTo('landing');
+          return $q.reject(rejection);
         }
 
-        var deferred = $q.defer();
-
-        return deferred.promise;
       }
     };
   });

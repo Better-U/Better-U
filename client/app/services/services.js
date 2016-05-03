@@ -41,9 +41,9 @@ angular.module('factories', [])
     function parseJwt (token) {
       console.log(token)
       var base64Url = token.split('.')[1]
-      console.log(base64Url)
-      var base64 = base64Url.replace('-', '+').replace('_', '/')
-      return JSON.parse(window.atob(base64))
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      return JSON.parse(window.atob(base64));
+
     }
 
     function getToken () {
@@ -56,6 +56,7 @@ angular.module('factories', [])
       console.log('token: ', token)
       if (token) {
         var params = parseJwt(token)
+        console.log(params)
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {
         console.error('No token found')
@@ -65,8 +66,20 @@ angular.module('factories', [])
       }
     }
 
+    function attachToken() {
+      var token = getToken();
+      console.log('attack token', token)
+      var request = {};
+      if (token) {
+        request.headers = request.headers || {};
+        request.headers['x-access-token'] = token;
+      }
+      return token;
+    }
+
     return {
       getToken: getToken,
+      attachToken: attachToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn,

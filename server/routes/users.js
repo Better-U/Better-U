@@ -3,10 +3,13 @@ var router = express.Router()
 // var db = require('../db.js')
 var app = express()
 var bodyParser = require('body-parser')
+var Auth = require('../helpers/auth')
 var User = require('../helpers/user')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+router.use(Auth.ifAuthorized)
 
 router.post('/profile', function (req, res) {
   console.log('profile post received')
