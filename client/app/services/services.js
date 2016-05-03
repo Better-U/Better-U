@@ -8,7 +8,7 @@ angular.module('factories', [])
         username: username,
         password: password
       }
-      console.log('inside authFactory signup', form)
+      
       return $http.post('/api/signup/regUser', form)
     }
 
@@ -28,7 +28,7 @@ angular.module('factories', [])
         interest: interest,
         gym: gym
       }
-      console.log('inside authFactory profile register', form)
+      
       return $http.post('/api/signup/regProfile', form)
     }
 
