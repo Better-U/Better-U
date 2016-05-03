@@ -17,7 +17,7 @@ var knex = require('knex')({
 knex.schema.createTableIfNotExists('user', function (user) {
   user.increments('id').primary()
   user.string('username', 50)
-  user.string('password', 50)
+  user.string('password', 200)
   user.integer('age')
   user.integer('height')
   user.integer('weight')
