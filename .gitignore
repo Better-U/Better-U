@@ -4,5 +4,6 @@
 *.env
 **/lib
 client/client/lib
+**/lib
 /bower.json
 .eslintrc
