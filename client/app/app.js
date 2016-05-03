@@ -79,6 +79,7 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
   .run(function ($rootScope, $state, authFactory) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       var requireLogin = toState.authenticate
+      console.log('tostate: ', toState.url)
       if (requireLogin && authFactory.getToken() === null) {
         event.preventDefault()
         $state.go('landing')

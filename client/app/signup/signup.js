@@ -24,11 +24,10 @@ angular.module('myApp.signup', ['factories'])
       authFactory.registerProfileDetails($scope.user.name, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.interest, $scope.user.gym)
         .then(function (data) {
           console.log('after profile added to db', data)
-          authFactory.userData = data.config.data
-          authFactory.userToken = data.data.token
           $scope.token = data.data.token
           console.log($scope.token)
-          window.localStorage.setItem('token', authFactory.userToken)
+          window.localStorage.setItem('token', data.data.token)
+          window.localStorage.setItem('username', data.config.data.username)
           console.log('')
           $state.go('dashboard')
         })
