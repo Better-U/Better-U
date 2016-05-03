@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 
 var knex = require('knex')({
@@ -85,6 +86,7 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.date('date')
 }).then(function () {
   console.log('cardio_record table created')
+
 })
 
 module.exports = knex

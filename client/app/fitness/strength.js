@@ -1,21 +1,39 @@
-angular.module('myApp.strength', [])
-  .controller('StrengthCtrl', function ($scope) {
-
+angular.module('myApp.strength', ['factories'])
+  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory) {
+    // console.log('this is username: ',authFactory.userData.username)
     $scope.weight = 155
     $scope.feet = 5
     $scope.inches = 2
     $scope.height_in = 61
     $scope.bmi2
     $scope.bodyfat = 12
-    $scope.strengthList = [
-    {date: '01/02/2016', activity: 'Bench', weight: 155, reps: 10, sets: 3},
-    {date: '01/02/2016', activity: 'Squat', weight: 200, reps: 10, sets: 3},
-    {date: '01/02/2016', activity: 'Deadlift', weight: 125, reps: 10, sets: 3}
-    ]
+    $scope.strengthList = []
+
+    var user = window.localStorage.getItem('username')
+    $scope.getStrength = function () {
+      strengthFactory.getStrength(user)
+        .then(function (data) {
+          $scope.strengthList = data.data
+        })
+    }
+
+    $scope.getStrength()
 
     $scope.submitStrength = function () {
-      console.log($scope.str)
-      $scope.strengthList.push($scope.str)
+      strengthFactory.submitStrength(
+        user,
+        $scope.str.date,
+        $scope.str.type,
+        $scope.str.sets,
+        $scope.str.intensity,
+        $scope.str.duration,
+        $scope.str.weight,
+        $scope.str.reps
+      )
+        .then(function (data) {
+          $scope.str = {}
+          $scope.getStrength()
+        })
     }
 
     $scope.convert_height_in = function (feet, inches) {
@@ -24,7 +42,7 @@ angular.module('myApp.strength', [])
     }
 
     $scope.onerepmax = function (weight, reps) {
-      return (weight * (1 + (reps / 30))).toFixed(2)
+      return (weight * (1 + (reps / 30))).toFixed(1)
     }
 
     $scope.bmi = function (height_in, weight_lb) {
