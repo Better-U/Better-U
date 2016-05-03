@@ -4,8 +4,10 @@ var db = require('../db.js')
 var app = express()
 var bodyParser = require('body-parser')
 var User = require('../helpers/user')
+var Auth = require('../helpers/auth')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+router.use(Auth.ifAuthorized)
 
 router.post('/strengthForm', function (req, res) {
   var user = req.body.username
@@ -46,6 +48,7 @@ router.post('/getStrength', function (req, res) {
         })
     })
 })
+
 
 router.post('/cardioForm', function (req, res) {
   var user = req.body.username

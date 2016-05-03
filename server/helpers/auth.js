@@ -15,26 +15,29 @@ auth.genToken = function(userDetails) {
 }
 
 auth.ifAuthorized = function (req, res, next) {
-  var token = req.headers['x-access-token']
-  var verify
+  var token = req.headers.token
 
   if (token) {
-    jwt.verify(token, tokenSecret, function(err, decoded) {
+    jwt.verify(token, secret, function(err, decoded) {
       if (err) {
+        console.log('err')
         unauthorized(res);
       } else {
+        console.log('it worked!')
         next();
       }
     })
   } else {
+    console.log('unauthorized')
     unauthorized(res);
   }
 
   function unauthorized(res) {
-    res.json({
-      success: false,
-      message: 'Your account is unauthorized (token missing or invalid).'
-    })
+    // res.json({
+    //   success: false,
+    //   message: 'Your account is unauthorized (token missing or invalid).'
+    // })
+    res.sendStatus(401)
   }
 }
 

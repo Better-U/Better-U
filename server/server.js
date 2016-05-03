@@ -6,6 +6,14 @@ var path = require('path')
 var dotenv = require('dotenv')
 var db = require('./db.js')
 
+var server = require('http').createServer(app)
+var io = require('socket.io')(server)
+
+io.on('connection', function(socket){
+	console.log('socket conncetion!')
+	io.emit('pizza', {hello: "hello"})
+})
+
 dotenv.config()
 
 var health = require('./routes/health')

@@ -4,7 +4,9 @@ angular.module('myApp.profile', ['factories'])
     $scope.init = function () {
       console.log('inside getProfile')
       console.log('localstorage user id', $window.localStorage.userId)
-      profileFactory.getProfile($window.localStorage.userId)
+      // profileFactory.getProfile($window.localStorage.userId)
+      profileFactory.getProfile(7)
+
       .then(function (data) {
         console.log('data inside profileFactory.getProfile =', data.data[0])
         $scope.display = data.data[0]

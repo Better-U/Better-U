@@ -1,4 +1,4 @@
-angular.module('myApp.socialFactoryModule', [])
+angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
 .factory('socialFactory', function($http){
 
 	function updateZip(id, zipcode){
@@ -17,4 +17,8 @@ angular.module('myApp.socialFactoryModule', [])
 		updateZip: updateZip,
 		findPeople: findPeople
 	}
+})
+.factory('mySocket', function(socketFactory){
+	console.log(socketFactory)
+	return socketFactory()
 })

@@ -7,6 +7,7 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.cardioList = function () {
       cardioFactory.getCardio(user).then(function (data) {
+
         $scope.cardioData = data.data
       })
     }

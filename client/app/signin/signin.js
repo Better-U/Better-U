@@ -1,6 +1,6 @@
 angular.module('myApp.signin', [])
 
-  .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance, $uibModal) {
+  .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance, $uibModal, $cookies) {
     $scope.animationsEnabled = true
     $scope.userDoesNotExist = null
     $scope.goSignup = function () {
@@ -17,9 +17,8 @@ angular.module('myApp.signin', [])
             $scope.userDoesNotExist = true
           } else {
             $uibModalInstance.dismiss('cancel')
-            $scope.token = data.data.token
-            window.localStorage.setItem('token', data.data.token)
-            window.localStorage.setItem('username', data.config.data.username)
+            $cookies.put('token', data.data.token)
+            $cookies.put('username', data.config.data.username)
             $state.go('dashboard')
           }
 

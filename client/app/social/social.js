@@ -1,5 +1,5 @@
 angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule'])
-	.controller('socialCtrl', function($scope, socialFactory) {
+	.controller('socialCtrl', function($scope, socialFactory, mySocket) {
 		$scope.savedAddress
 		$scope.sendCity = function() {
 			socialFactory.updateZip(19, $scope.address)
@@ -10,7 +10,10 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
 				})
 
 		}
-
+		console.log(mySocket)
+		mySocket.on('pizza', function(data){
+			console.log('receiving pizza', data)
+		})
 		$scope.userList = [];
 		$scope.findPeople = function(zipcode){
 			socialFactory.findPeople(zipcode)
