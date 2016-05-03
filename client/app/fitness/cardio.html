@@ -36,7 +36,7 @@
       <th>Duration (minutes)</th>
       <th>Pace (mpm)</th>
     </tr>
-    <tr ng-repeat="cardio in cardioList | orderBy:'date' | filter:search">
+    <tr ng-repeat="cardio in cardioList[0] | orderBy:'date' | filter:search">
       <td>{{cardio.date}}</td>
       <td>{{cardio.type}}</td>
       <td>{{cardio.distance}}</td>

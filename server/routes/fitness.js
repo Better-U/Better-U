@@ -4,7 +4,6 @@ var db = require('../db.js')
 var app = express()
 var bodyParser = require('body-parser')
 var User = require('../helpers/user')
-var Auth = require('../helpers/auth')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -24,12 +23,27 @@ router.post('/cardioForm', function (req, res) {
       db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
     .then(function (success) {
       if(success) {
-        res.json({success: true})
+        res.status(201).json({success: true})
       } else {
-        res.json({success: false})
+        res.status(404).json({success: false})
       }
     })
   })
+})
+
+router.post('/getCardio', function (req, res) {
+  var user = req.body.username
+  User.findUser(user)
+    .then(function (data) {
+      db.select('date', 'type', 'distance', 'duration', 'pace').from('cardio_record').innerJoin('user', 'user.id', '=', 'cardio_record.user_id')
+        .then(function (success) {
+          if(success) {
+            res.status(201).send(success)
+          } else {
+            res.status(404).json({success: false})
+          }
+        })
+    })
 })
 
 module.exports = router
