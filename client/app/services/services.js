@@ -41,17 +41,21 @@ angular.module('factories', [])
     }
 
     function parseJwt (token) {
-      var base64Url = token.split('.')[1];
+      console.log(token)
+      var base64Url = token.split('.')[1]
+      console.log(base64Url);
       var base64 = base64Url.replace('-', '+').replace('_', '/');
       return JSON.parse(window.atob(base64));
     }
 
     function getToken () {
+      console.log('inside get token', window.localStorage.getItem('token'))
       return window.localStorage.getItem('token')
     }
 
     function isAuth () {
       var token = getToken()
+      console.log('token: ', token)
       if (token) {
         var params = parseJwt(token)
         return Math.round(new Date().getTime() / 1000) <= params.exp
@@ -63,6 +67,7 @@ angular.module('factories', [])
 
     return {
       userData: userData,
+      getToken: getToken,
       userToken: userToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
