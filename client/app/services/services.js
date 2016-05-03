@@ -88,8 +88,9 @@ angular.module('factories', [])
   })
 
   .factory('cardioFactory', function ($http) {
-    function submitCardio (date, type, distance, duration, pace, intensity) {
+    function submitCardio (username, date, type, distance, duration, pace, intensity) {
       var cardioForm = {
+        username: username,
         date: date,
         type: type,
         distance: distance,
@@ -100,7 +101,14 @@ angular.module('factories', [])
       console.log('this is cardioForm: ', cardioForm)
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
+
+    function getCardio (username) {
+      var username = {username:  username}
+      return $http.get('/api/fitness/getCardio', username)
+    }
+
     return {
-      submitCardio: submitCardio
+      submitCardio: submitCardio,
+      getCardio: getCardio
     }
   })

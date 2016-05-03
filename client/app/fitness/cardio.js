@@ -1,7 +1,7 @@
 angular.module('myApp.cardio', ['factories'])
 
   .controller('CardioCtrl', function ($scope, cardioFactory, authFactory) {
-    console.log('this is username: ' ,authFactory.userData.username)
+    // console.log('this is username for cardio: ' ,authFactory.userData.username)
 
     $scope.cardioList = [
     {date: '01/02/2016', type: 'Swimming', distance: 155, duration: 30, pace: 3},
@@ -11,8 +11,8 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.convertSeconds = function (minutes) {
       var seconds = minutes * 60
-      console.log('this is seconds: ', seconds)
       return seconds
+      console.log('minutes converted to seconds: ', seconds)
     }
 
     $scope.pace = function (duration, distance) {
@@ -34,7 +34,7 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.submitCardio = function () {
       var pace = $scope.pace($scope.duration, $scope.distance)
-      cardioFactory.submitCardio($scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
+      cardioFactory.submitCardio(authFactory.userData.username, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
         .then(function (data) {
           console.log('cardio data logged: ', data)
         })
