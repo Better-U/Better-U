@@ -8,7 +8,7 @@ angular.module('factories', [])
         username: username,
         password: password
       }
-      
+
       return $http.post('/api/signup/regUser', form)
     }
 
@@ -28,7 +28,7 @@ angular.module('factories', [])
         interest: interest,
         gym: gym
       }
-      
+
       return $http.post('/api/signup/regProfile', form)
     }
 
