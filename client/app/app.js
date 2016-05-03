@@ -1,4 +1,17 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'myApp.social'])
+angular.module('myApp', ['myApp.signin',
+                         'myApp.landing',
+                         'myApp.signup',
+                         'myApp.cardio',
+                         'myApp.profile',
+                         'myApp.strength',
+                         'ui.router',
+                         'factories',
+                         'myApp.dashboard',
+                         'myApp.modal',
+                         'ui.bootstrap',
+                         'ngAnimate',
+                         'myApp.social',
+                         'myApp.socialFactoryModule'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
