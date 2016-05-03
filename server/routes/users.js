@@ -12,7 +12,7 @@ router.post('/profile', function (req, res) {
   console.log('profile post received')
   console.log('req.body =', req.body)
   localStorageID = req.body.id
-  User.registerProfile(req.body.id, req.body.bodyFat, req.body.activityLvl, req.body.interest)
+  User.registerProfile(req.body.id, req.body.weight, req.body.bodyFat, req.body.activityLvl, req.body.interest, req.body.gym)
   .then(function () {
 	res.send('profile updated')
   })

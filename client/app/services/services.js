@@ -73,12 +73,14 @@ angular.module('factories', [])
   })
 
   .factory('profileFactory', function ($http) {
-    function submitProfile (id, bodyFat, activityLvl, interest) {
+    function submitProfile (id, weight, bodyFat, activityLvl, interest, gym) {
       var profileForm = {
         id: id,
+        weight: weight,
         bodyFat: bodyFat,
         activityLvl: activityLvl,
-        interest: interest
+        interest: interest,
+        gym: gym
       }
       console.log('inside profileFactory submitProfile', profileForm)
       return $http.post('/api/users/profile', profileForm)

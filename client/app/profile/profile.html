@@ -24,13 +24,13 @@
     </div>
 
     <div id='profile-weight'> Weight (lbs):
-     {{ display.weight }}
+    <input type='text' ng-model='prof.weight' placeholder="     {{ display.weight }}">
     <br>
     </div>
 
     <div id='profile-bodyfat'>
     Body Fat (%):
-     <input type='text' ng-model='prof.bodyFat' placeholder="     {{ display.bodyfat }}">
+     <input type='text' ng-model='prof.bodyFat' placeholder="     {{ display.bodyfat }}"> 
     <br>
     </div>
 
@@ -45,23 +45,20 @@
 
     <div id='profile-interest'>
     Fitness Interest:
-    <select name='Fitness Interest'  ng-model='prof.interest' style='width:140px'>
-      <option>Cardio</option>
-      <option>Strength</option>
-      <option>Both</option>
+    <select name='Fitness Interest' ng-model='prof.interest' style='width:140px'>
+      <option ng-selected='selectedItem == cardio'>Cardio</option>
+      <option ng-selected='selectedItem == strength'>Strength</option>
+      <option ng-selected='selectedItem == both'>Both</option>
     </select>
     <br>
     </div>
 
     <div id='profile-gym'>
-    Gym of Choice: 
-    {{ display.gym }}
-    <br>
-    </div>
-
-    <div id='profile-zip'>
-    Zip Code:
-    {{ display.zipcode }}
+    Gym of Choice:
+    <br> 
+     <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="la"> LA Fitness<br>
+     <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24hour"> 24 Hour Fitness<br>
+     <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="ufc"> UFC Gym<br>
     <br>
     </div>
 
