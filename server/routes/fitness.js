@@ -35,7 +35,7 @@ router.post('/getCardio', function (req, res) {
   var user = req.body.username
   User.findUser(user)
     .then(function (data) {
-      db.select('date', 'type', 'distance', 'duration', 'pace').from('cardio_record').innerJoin('user', 'user.id', '=', 'cardio_record.user_id')
+      db.select('*').from('cardio_record').where({'cardio_record.user_id': data[0].id})
         .then(function (success) {
           if(success) {
             res.status(201).send(success)

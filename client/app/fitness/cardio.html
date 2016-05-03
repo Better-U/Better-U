@@ -28,7 +28,7 @@
 		<button type='submit' ng-click="submitCardio()">Submit</button>
 	</form><br>
   Activity Log:<br>
-  <table class="table table-striped">
+  <table class="table table-striped" ng-controller="cardioList()">
     <tr>
       <th>Date</th>
       <th>Activity</th>
@@ -36,7 +36,7 @@
       <th>Duration (minutes)</th>
       <th>Pace (mpm)</th>
     </tr>
-    <tr ng-repeat="cardio in cardioList[0] | orderBy:'date' | filter:search">
+    <tr ng-repeat="cardio in cardioList track by cardio.id | orderBy:'date' | filter:search">
       <td>{{cardio.date}}</td>
       <td>{{cardio.type}}</td>
       <td>{{cardio.distance}}</td>
