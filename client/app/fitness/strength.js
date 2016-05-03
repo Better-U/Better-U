@@ -9,8 +9,9 @@ angular.module('myApp.strength', ['factories'])
     $scope.bodyfat = 12
     $scope.strengthList = []
 
+    var user = window.localStorage.getItem('username')
     $scope.getStrength = function () {
-      strengthFactory.getStrength(authFactory.userData.username)
+      strengthFactory.getStrength(user)
         .then(function (data) {
           $scope.strengthList = data.data
         })
@@ -20,7 +21,7 @@ angular.module('myApp.strength', ['factories'])
 
     $scope.submitStrength = function () {
       strengthFactory.submitStrength(
-        authFactory.userData.username,
+        user,
         $scope.str.date,
         $scope.str.type,
         $scope.str.sets,
