@@ -73,8 +73,9 @@ angular.module('factories', [])
   })
 
   .factory('profileFactory', function ($http) {
-    function submitProfile (bodyFat, activityLvl, interest) {
+    function submitProfile (id, bodyFat, activityLvl, interest) {
       var profileForm = {
+        id: id,
         bodyFat: bodyFat,
         activityLvl: activityLvl,
         interest: interest
@@ -82,8 +83,21 @@ angular.module('factories', [])
       console.log('inside profileFactory submitProfile', profileForm)
       return $http.post('/api/users/profile', profileForm)
     }
+
+    function getProfile (id) {
+      var params = {
+        id: id
+      }
+
+      var config = {
+        params: params
+      }
+      return $http.get('/api/users/profile', config)
+    }
+
     return {
-      submitProfile: submitProfile
+      submitProfile: submitProfile,
+      getProfile: getProfile
     }
   })
 

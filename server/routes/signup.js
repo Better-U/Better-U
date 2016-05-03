@@ -29,6 +29,7 @@ router.post('/regUser', function (req, res) {
 })
 
 router.post('/regProfile', function (req, res) {
+
   var user;
 
   User.findUser(req.body.username)
@@ -48,6 +49,5 @@ router.post('/regProfile', function (req, res) {
         })
     })
 })
-
 
 module.exports = router

@@ -63,4 +63,20 @@ User.insertUserProfile = function (age, weight, height, gender, interest, gym, i
   return db('user').where({id: id}).update(profileObj)
 }
 
+User.registerProfile = function (id, bodyFat, activitylvl, interest) {
+  console.log('inside User helper.registerProfile id=', id)
+  var profileDetails = {
+    bodyfat: bodyFat,
+    activitylvl: activitylvl,
+    interest: interest
+  }
+  console.log('User.registerProfile, profile details', profileDetails)
+  return db('user').where({id: id}).update(profileDetails)
+}
+
+User.getProfileInfo = function (id) {
+  console.log('id inside getprofileinfo', id)
+  return db('user').where({id: id}).select()
+}
+
 module.exports = User
