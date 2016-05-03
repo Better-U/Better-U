@@ -75,7 +75,8 @@ angular.module('factories', [])
 
   })
 
-  .factory('profileFactory', function ($http) {
+  .factory('profileFactory', function ($http, authFactory) {
+    console.log('profile factory authfactory.userdata', authFactory.userData)
     function submitProfile (id, weight, bodyFat, activityLvl, interest, gym) {
       var profileForm = {
         id: id,
@@ -153,4 +154,8 @@ angular.module('factories', [])
       submitCardio: submitCardio,
       getCardio: getCardio
     }
+  })
+
+  .factory('nutritionFactory', function($http) {
+  
   })

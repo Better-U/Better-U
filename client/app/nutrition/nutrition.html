@@ -7,4 +7,41 @@
 
 </div>
 
-<h3>Enter Nutritional Information</h3>
+<h3>Food Log</h3>
+<form name='inputNutrition' method='post' style='width:700px'>
+  What did you eat? 
+  <br>
+  <input type='text' name='foodInput' id='foodInput' size="35" maxlength='80'>
+  <br>
+  Serving Size:
+  <input type='text' name='foodServing' id='foodServing' size='20'maxlength='30'>
+  <br>
+  Calories:
+  <input type='text' name='foodCal' id='foodCal' maxlength='5'size='10'>
+  Fat (g):
+  <input type='text' name='foodFat' id='foodFat' maxlength='3' size='10'>
+  Fiber (g):
+  <input type='text' name='foodFiber' id='foodFiber' maxlength='3' size='10'>
+  Carbohydrates (g):
+  <input type='text' name='foodCarb' id='foodCarb' maxlength='3' size='10'>
+  <br>
+  Sodium (mg):
+  <input type='text' name='foodSalt' id='foodSalt' maxlength='5' size='10'>
+  Protein (g):
+  <input type='text' name='foodProtein' id='foodProtein' maxlength='3' size='10'>
+
+  Water (cups):
+  <input type='text' name='water' id='water' maxlength="2" size='10'>
+
+  When?
+  <select name='Fitness Interest' ng-model='prof.interest' style='width:140px'> 
+    <option>Breakfast</option>
+    <option>Morning Snack</option>
+    <option>Lunch</option>
+    <option>Afternoon Snack</option>
+    <option>Dinner</option>
+    <option>Evening Snack</option>
+  </select>
+  <br>
+  <input type='submit' value='Log Food' ng-click='submitFoodLog()'/>
+</form>
