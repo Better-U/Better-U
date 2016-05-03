@@ -3,11 +3,7 @@ angular.module('myApp.cardio', ['factories'])
   .controller('CardioCtrl', function ($scope, cardioFactory, authFactory) {
     // console.log('this is username for cardio: ' ,authFactory.userData.username)
 
-    $scope.cardioList = [
-    {date: '01/02/2016', type: 'Swimming', distance: 155, duration: 30, pace: 3},
-    {date: '01/02/2016', type: 'Running', distance: 200, duration: 40, pace: 3},
-    {date: '01/02/2016', type: 'Walking', distance: 125, duration: 50, pace: 3}
-    ]
+    $scope.cardioList = cardioFactory.getCardio(authFactory.userData.username)
 
     $scope.convertSeconds = function (minutes) {
       var seconds = minutes * 60
