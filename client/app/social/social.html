@@ -1,0 +1,13 @@
+<div>
+	<div>Your current city: {{savedAddress}}</div>
+	<form ng-submit="sendCity()">
+		<label for="userAddress">Enter City or Zip Code</label>
+		<input id="userAddress" ng-model="address" />
+		<button type="submit">Send City or Zip</button>
+	</form>
+
+	<button ng-click="findPeople(savedAddress)">find people!</button>
+	  <div ng-repeat = "user in userList">
+	    <button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
+	  </div>
+</div>
