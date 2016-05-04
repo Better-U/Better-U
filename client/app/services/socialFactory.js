@@ -1,8 +1,8 @@
 angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
   .factory('socialFactory', function ($http) {
-    function updateZip (id, zipcode) {
+    function updateZip (username, zipcode) {
       var zipHolder = {
-        id: id,
+        username: username,
         zipcode: zipcode
       }
       return $http.post('/api/social/updateZip', zipHolder)
@@ -17,7 +17,7 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
     }
   })
   .factory('socket', function ($rootScope) {
-    var socket = io.connect();
+    var socket = io.connect('/pee');
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {  
