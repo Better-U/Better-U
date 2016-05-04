@@ -1,12 +1,13 @@
 <div class="signup">
 <h1>Signin</h1>
+  <span>Don't have an account? </span><button ng-click="signup()">Sign Up</button><br>
   <div class="form-group">
-    <div ng-if="userDoesNotExist">Username does not exist!</div>
+    <div ng-if="userDoesNotExist">Username/Password incorrect!</div>
   <form name='login_form' ng-submit='signin()'>
     <input type='text' ng-model='user.name' placeholder='username'>
     <input type="password" ng-model='user.password' placeholder='password'>
     <input type="submit">
   </form>
     </div>
-    <button ng-click="signup()">Have an account? Sign in!</button>
+    <!--<button ng-click="signup()">Have an account? Sign in!</button>-->
 </div>
