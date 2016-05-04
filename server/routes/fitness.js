@@ -85,6 +85,7 @@ router.post('/getCardio', function (req, res) {
             res.status(404).json({success: false})
           }
         })
+
     })
 })
 
