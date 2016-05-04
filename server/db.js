@@ -61,6 +61,7 @@ knex.schema.createTableIfNotExists('nutrition_record', function (nutrition) {
   nutrition.increments('id').primary()
   nutrition.integer('user_id').unsigned().references('id').inTable('user')
   nutrition.string('name', 50)
+  nutrition.date('date')
   nutrition.string('time', 50)
   nutrition.integer('serving')
   nutrition.integer('cal')

@@ -63,8 +63,7 @@ User.insertUserProfile = function (age, weight, height, gender, interest, gym, i
   return db('user').where({id: id}).update(profileObj)
 }
 
-User.registerProfile = function (id, weight, bodyFat, activitylvl, interest, gym) {
-  console.log('inside User helper.registerProfile id=', id)
+User.registerProfile = function (username, weight, bodyFat, activitylvl, interest, gym) {
   var profileDetails = {
     weight: weight,
     bodyfat: bodyFat,
@@ -73,12 +72,31 @@ User.registerProfile = function (id, weight, bodyFat, activitylvl, interest, gym
     gym: gym
   }
   console.log('User.registerProfile, profile details', profileDetails)
-  return db('user').where({id: id}).update(profileDetails)
+  return db('user').where({username: username}).update(profileDetails)
 }
 
-User.getProfileInfo = function (id) {
-  console.log('id inside getprofileinfo', id)
-  return db('user').where({id: id}).select()
+User.getProfileInfo = function (username) {
+  console.log('username inside getprofileinfo', username)
+  return db('user').where({username: username}).select()
+}
+
+User.postFoodLog = function (id, name, date, time, serving, cal, carbs, fat, fiber, sodium, protein, water) {
+  console.log('inside postFoodLog')
+  var foodLog = {
+    user_id: id,
+    name: name,
+    date: date,
+    time: time,
+    serving: serving,
+    cal: cal,
+    carbs: carbs,
+    fat: fat,
+    fiber: fiber,
+    sodium: sodium,
+    protein: protein,
+    water: water
+  }
+  return db('nutrition_record').insert(foodLog)
 }
 
 module.exports = User
