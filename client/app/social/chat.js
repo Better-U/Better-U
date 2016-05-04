@@ -6,7 +6,10 @@ angular.module('myApp.chatModule', ['myApp.socialFactoryModule'])
 socket.on('init', function (data) {
     console.log(data)
   });
-
+  
+  socket.on('hi', function(Data){
+    console.log(Data, "hi received");
+  })
   socket.on('send:message', function (message) {
     $scope.messages.push(message);
     console.log("message received", message)

@@ -54,8 +54,14 @@ console.log('socket connection!')
   // });
 })
 
+var nsp = io.of('/pee')
+nsp.on('connection',function(socket){
+  console.log('hello')
+  nsp.emit("hi", "sup")
+})
+
 router.post('/updateZip', function (req, res) {
-  helpers.updateAddress(req.body.id, req.body.zipcode)
+  helpers.updateAddress(req.body.username, req.body.zipcode)
     .then(function () {
       res.send('you have changed the zipcode')
     })
