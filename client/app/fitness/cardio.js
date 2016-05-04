@@ -7,13 +7,12 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.cardioList = function () {
       cardioFactory.getCardio(user).then(function (data) {
-
         $scope.cardioData = data.data
       })
     }
 
     $scope.pace = function (duration, distance) {
-      if(duration === undefined || distance === undefined) {
+      if (duration === undefined || distance === undefined) {
         return 0
       } else {
         var convertSeconds = duration * 60
@@ -23,7 +22,7 @@ angular.module('myApp.cardio', ['factories'])
     }
 
     $scope.convertMiles = function (meters) {
-      if(meters > 0) {
+      if (meters > 0) {
         var convert = meters * 0.000621371
         return convert.toFixed(2)
       } else {

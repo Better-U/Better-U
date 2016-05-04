@@ -30,6 +30,4 @@ angular.module('myApp.profile', ['factories'])
         return 'Female'
       }
     }
-
-
   })

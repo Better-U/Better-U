@@ -28,13 +28,11 @@ angular.module('myApp.signup', ['factories'])
           $cookies.put('username', data.config.data.username)
           $state.go('dashboard')
         })
-
     }
-
 
     $scope.ok = function () {
       $uibModalInstance.close($scope.selected.item)
-      // $state.go('registerProfile')
+    // $state.go('registerProfile')
     }
 
     $scope.cancel = function () {
@@ -56,7 +54,7 @@ angular.module('myApp.signup', ['factories'])
           })
       }
     }
-    
+
     $scope.signin = function () {
       $uibModalInstance.dismiss('cancel')
       var modalInstance = $uibModal.open({
@@ -65,7 +63,7 @@ angular.module('myApp.signup', ['factories'])
         controller: 'SigninCtrl',
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope.items
           }
         }
       })
@@ -76,5 +74,4 @@ angular.module('myApp.signup', ['factories'])
         console.log('hi')
       })
     }
-
   })

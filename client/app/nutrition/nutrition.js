@@ -8,5 +8,4 @@ angular.module('myApp.nutrition', ['factories'])
         console.log('data inside submitFoodLog', data)
       })
     }
-
- })
+  })

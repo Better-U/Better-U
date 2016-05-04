@@ -6,10 +6,10 @@ angular.module('myApp.modal', [])
     }
 
     $scope.ok = function () {
-      $uibModalInstance.close($scope.selected.item);
+      $uibModalInstance.close($scope.selected.item)
     }
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      $uibModalInstance.dismiss('cancel')
     }
   })
