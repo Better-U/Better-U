@@ -4,6 +4,7 @@ angular.module('myApp.goals', [])
   $scope.cardioSelected = false
   $scope.strengthSelected = false
   $scope.nutritionSelected = false
+  $scope.added = false
   
   $scope.selectGoal = function(type) {
     if (type === "cardio") {
@@ -14,7 +15,7 @@ angular.module('myApp.goals', [])
       $scope.cardioSelected = false
       $scope.strengthSelected = true
       $scope.nutritionSelected = false
-    } else {
+    } else if (type === "nutrition") {
       $scope.cardioSelected = false
       $scope.strengthSelected = false
       $scope.nutritionSelected = true
@@ -22,7 +23,9 @@ angular.module('myApp.goals', [])
   }
 
   $scope.submitCardio = function (date, intensity, category, value, measurement) {
+    console.log('inside submit cARDio')
     var username = $cookies.get('username')
+    console.log('inside submit cardio username', username)
     GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
@@ -35,7 +38,8 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
-        $state.go('dashboard')
+        $scope.added = true
+        console.log($scope.added)
       })
   }
 
