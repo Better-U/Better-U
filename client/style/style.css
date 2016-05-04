@@ -41,3 +41,12 @@ fieldset {
 }
 
 body { padding-top: 70px; }
+
+md-select {
+    width: 175px;
+}
+
+md-option {
+    width: 80%;
+    padding: 0px;
+}

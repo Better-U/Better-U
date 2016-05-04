@@ -1,12 +1,10 @@
 angular.module('factories', [])
   .factory('authFactory', function ($http, $cookies) {
-
     function registerUserDetails (username, password) {
       var form = {
         username: username,
         password: password
       }
-
       return $http.post('/api/signup/regUser', form)
     }
 
@@ -41,55 +39,47 @@ angular.module('factories', [])
     function parseJwt (token) {
       console.log(token)
       var base64Url = token.split('.')[1]
-      var base64 = base64Url.replace('-', '+').replace('_', '/');
-      return JSON.parse(window.atob(base64));
-
+      var base64 = base64Url.replace('-', '+').replace('_', '/')
+      return JSON.parse(window.atob(base64))
     }
 
     function getToken () {
-      console.log('inside get token', window.localStorage.getItem('token'))
       return $cookies.get('token')
     }
 
     function isAuth () {
       var token = getToken()
-      console.log('token: ', token)
       if (token) {
         var params = parseJwt(token)
-        console.log(params)
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {
         console.error('No token found')
-        window.localStorage.removeItem('username')
-        window.localStorage.removeItem('token')
         return false
       }
     }
 
-    function attachToken() {
-      var token = getToken();
-      console.log('attack token', token)
-      var request = {};
-      if (token) {
-        request.headers = request.headers || {};
-        request.headers['x-access-token'] = token;
-      }
-      return token;
-    }
+    // function attachToken() {
+    //   var token = getToken()
+    //   var request = {}
+    //   if (token) {
+    //     request.headers = request.headers || {}
+    //     request.headers['x-access-token'] = token
+    //   }
+    //   return token;
+    // }
 
     return {
       getToken: getToken,
-      attachToken: attachToken,
+      // attachToken: attachToken,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn,
       isAuth: isAuth
     }
-
   })
 
-  .factory('profileFactory', function ($http, authFactory) {
-    function submitProfile (username, weight, bodyFat, activityLvl, interest, gym) {
+  .factory('profileFactory', function ($http) {
+    function submitProfile (id, weight, bodyFat, activityLvl, interest, gym) {
       var profileForm = {
         username: username,
         weight: weight,
@@ -133,7 +123,7 @@ angular.module('factories', [])
       return $http.post('/api/fitness/strengthForm', strengthForm)
     }
     function getStrength (username) {
-       console.log('getStrength line 126')
+      console.log('getStrength line 126')
       return $http.post('/api/fitness/getStrength', {username: username})
     }
     return {
@@ -152,12 +142,11 @@ angular.module('factories', [])
         pace: pace,
         intensity: intensity
       }
-      console.log('this is cardioForm: ', cardioForm)
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
 
     function getCardio (username) {
-      var username = {username:  username}
+      var username = {username: username}
       return $http.post('/api/fitness/getCardio', username)
     }
 

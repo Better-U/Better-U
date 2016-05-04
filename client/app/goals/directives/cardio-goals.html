@@ -1,0 +1,40 @@
+<div id="cardio">
+    <form>
+    <h2>Create Goals for Cardio Exercise</h2>
+    <label for="date">Complete By:</label>
+    <input id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date">
+
+    <!--<label for="intensity">Increase/Decrease:</label>-->
+    <select name="intensity" id="intensity">
+        <option value="none" selected disabled>Increase/Decrease</option>
+        <option value="Increase">Increase</option>
+        <option value="Decrease">Decrease</option>
+    </select>
+
+    <label for="category">Exercise Type:</label>
+    <select name="cardio" id="category">
+        <option value="none" selected disabled>Cardio Exercise</option>
+        <option value="Running">Running</option>
+        <option value="Cycling">Cycline</option>
+        <option value="Swimming">Swimming</option>
+        <option value="Rowing">Rowing</option>
+        <option value="Jumping Rope">Jumping Rope</option>
+        <option value="Steppers">Steppers</option>
+        <option value="Ellipticals">Ellipticals</option>
+    </select>
+
+
+    <label for="value">By:</label>
+    <input type="number" id="value">
+
+
+    <label for="measurement">Measurement:</label>
+    <select name="measurement" id="measurement">
+        <option value="none" selected disabled>Select Measurement</option>
+        <option value="Miles">Miles</option>
+        <option value="Laps">Laps</option>
+        <option value="Minutes">Minutes</option>
+        <option value="Hours">Hours</option>
+    </select>
+    </form>
+</div>
