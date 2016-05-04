@@ -2,18 +2,17 @@
     <form>
     <h2>Create Goals for Cardio Exercise</h2>
     <label for="date">Complete By:</label>
-    <input id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date">
+    <input id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="cardio.date" placeholder="date">
 
-    <!--<label for="intensity">Increase/Decrease:</label>-->
-    <select name="intensity" id="intensity">
-        <option value="none" selected disabled>Increase/Decrease</option>
+    <select name="intensity" id="intensity" ng-model='cardio.intensity'>
+        <option value="" selected disabled>Increase/Decrease</option>
         <option value="Increase">Increase</option>
         <option value="Decrease">Decrease</option>
     </select>
 
     <label for="category">Exercise Type:</label>
-    <select name="cardio" id="category">
-        <option value="none" selected disabled>Cardio Exercise</option>
+    <select name="cardio" id="category" ng-model='cardio.category'>
+        <option value="" selected disabled>Cardio Exercise</option>
         <option value="Running">Running</option>
         <option value="Cycling">Cycline</option>
         <option value="Swimming">Swimming</option>
@@ -23,18 +22,18 @@
         <option value="Ellipticals">Ellipticals</option>
     </select>
 
-
     <label for="value">By:</label>
-    <input type="number" id="value">
-
+    <input type="number" id="value" ng-model='cardio.value'>
 
     <label for="measurement">Measurement:</label>
-    <select name="measurement" id="measurement">
-        <option value="none" selected disabled>Select Measurement</option>
+    <select name="measurement" id="measurement" ng-model='cardio.measurement'>
+        <option value="" selected disabled>Select Measurement</option>
         <option value="Miles">Miles</option>
         <option value="Laps">Laps</option>
         <option value="Minutes">Minutes</option>
         <option value="Hours">Hours</option>
     </select>
+
+        <button type="submit" ng-click="submitCardio(cardio.date, cardio.intensity, cardio.category, cardio.value, cardio.measurement)">Submit</button>
     </form>
 </div>

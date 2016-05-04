@@ -179,3 +179,39 @@ angular.module('factories', [])
       submitFoodLog: submitFoodLog
     }
   })
+
+  .factory('GoalsFactory', function ($http) {
+
+    function cardioLog (type, data, intensity, category, value, measurement, username) {
+      var plugin = {
+        type: type,
+        date: data,
+        intensity: intensity,
+        category: category,
+        value: value,
+        measurement: measurement,
+        username: username
+      }
+
+      return $http.post('/api/goals/cardio', plugin)
+    }
+
+    function strengthLog (type, data, intensity, category, value, measurement, username) {
+      var plugin = {
+        type: type,
+        date: data,
+        intensity: intensity,
+        category: category,
+        value: value,
+        measurement: measurement,
+        username: username
+      }
+
+      return $http.post('/api/goals/strength', plugin)
+    }
+    
+    return {
+      cardioLog: cardioLog,
+      strengthLog: strengthLog
+    }
+  })

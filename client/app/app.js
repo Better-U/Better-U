@@ -93,7 +93,7 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
     })
   })
 
-  .run(function ($rootScope, $state, authFactory) {
+  .run(function ($rootScope, $state, authFactory, $cookies) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       var requireLogin = toState.authenticate
       console.log('tostate: ', toState.url)
@@ -102,7 +102,9 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         $state.go('landing')
       }
       else if (requireLogin && !authFactory.isAuth()) {
-        event.preventDefault()
+        $cookies.remove('token')
+        $cookies.remove('username')
+        event.preventDefault();
         $state.go('landing')
       }
     })

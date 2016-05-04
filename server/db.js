@@ -49,9 +49,11 @@ knex.schema.createTableIfNotExists('goals', function (goals) {
   goals.increments('id').primary()
   goals.integer('user_id').unsigned().references('id').inTable('user')
   goals.string('type', 50)
-  goals.string('inc_dec', 50)
-  goals.integer('range')
+  goals.string('intensity', 50)
+  goals.string('category', 50)
+  goals.integer('value')
   goals.date('date')
+  goals.string('measurement', 50)
 }).then(function () {
   console.log('goals table created')
 })
