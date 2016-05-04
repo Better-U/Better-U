@@ -49,11 +49,9 @@ knex.schema.createTableIfNotExists('goals', function (goals) {
   goals.increments('id').primary()
   goals.integer('user_id').unsigned().references('id').inTable('user')
   goals.string('type', 50)
-  goals.string('intensity', 50)
-  goals.string('category', 50)
-  goals.integer('value')
+  goals.string('inc_dec', 50)
+  goals.integer('range')
   goals.date('date')
-  goals.string('measurement', 50)
 }).then(function () {
   console.log('goals table created')
 })
@@ -87,6 +85,20 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.date('date')
 }).then(function () {
   console.log('cardio_record table created')
+})
+
+knex.schema.createTableIfNotExists('chatRooms', function(room){
+  room.increments('id').primary()
+  room.json('message')
+}).then(function(){
+  console.log('chatRooms table created')
+})
+
+knex.schema.createTableIfNotExists('userRooms', function(room){
+  room.integer('roomID').unsigned().references('id').inTable('chatRooms')
+  room.integer('userID').unsigned().references('id').inTable('user')
+}).then(function(){
+  console.log('userRooms Created')
 })
 
 module.exports = knex
