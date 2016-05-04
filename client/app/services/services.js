@@ -89,10 +89,9 @@ angular.module('factories', [])
   })
 
   .factory('profileFactory', function ($http, authFactory) {
-    console.log('profile factory authfactory.userdata', authFactory.userData)
-    function submitProfile (id, weight, bodyFat, activityLvl, interest, gym) {
+    function submitProfile (username, weight, bodyFat, activityLvl, interest, gym) {
       var profileForm = {
-        id: id,
+        username: username,
         weight: weight,
         bodyFat: bodyFat,
         activityLvl: activityLvl,
@@ -103,11 +102,10 @@ angular.module('factories', [])
       return $http.post('/api/users/profile', profileForm)
     }
 
-    function getProfile (id) {
+    function getProfile (username) {
       var params = {
-        id: id
+        username: username
       }
-
       var config = {
         params: params
       }
@@ -169,6 +167,26 @@ angular.module('factories', [])
     }
   })
 
-  .factory('nutritionFactory', function($http) {
-  
+  .factory('nutritionFactory', function ($http) {
+    function submitFoodLog (username, name, date, time, serving, cal, carbs, fat, fiber, sodium, protein, water) {
+      var foodLog = {
+        username: username,
+        name: name,
+        date: date,
+        time: time,
+        serving: serving,
+        cal: cal,
+        carbs: carbs,
+        fat: fat,
+        fiber: fiber,
+        sodium: sodium,
+        protein: protein,
+        water: water
+      }
+      console.log('foodLog =', foodLog)
+      return $http.post('/api/health/nutrition', foodLog)
+    }
+    return {
+      submitFoodLog: submitFoodLog
+    }
   })
