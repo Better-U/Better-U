@@ -1,4 +1,4 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'ngCookies', 'myApp.social', 'myApp.socialFactoryModule', 'myApp.goals', 'ngMaterial'])
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'ngCookies', 'myApp.social', 'myApp.socialFactoryModule', 'myApp.goals', 'ngMaterial', 'myApp.chatModule'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -67,28 +67,31 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         controller: 'GoalsCtrl',
         authenticate: true
       })
+      .state('chatRoom', {
+        url: '/chatRoom',
+        templateUrl: '/app/social/chat.html',
+        controller: 'chatCtrl',
+        authenticate: true
+      })
   })
 
-.config(function ($httpProvider) {
-  $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
-
-    return {
-      request: function (config) {
-        config.headers['Token'] = $cookies.get('token')
-        return config
-      },
-      responseError: function(rejection) {
-        console.log(rejection)
-        if (rejection.status === 401) {
-          $injector.get('$state').transitionTo('landing');
-          return $q.reject(rejection);
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
+      return {
+        request: function (config) {
+          config.headers['Token'] = $cookies.get('token')
+          return config
+        },
+        responseError: function (rejection) {
+          console.log(rejection)
+          if (rejection.status === 401) {
+            $injector.get('$state').transitionTo('landing')
+            return $q.reject(rejection)
+          }
         }
-
       }
-    };
-  });
-
-})
+    })
+  })
 
   .run(function ($rootScope, $state, authFactory) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
@@ -99,11 +102,8 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         $state.go('landing')
       }
       else if (requireLogin && !authFactory.isAuth()) {
-        event.preventDefault();
+        event.preventDefault()
         $state.go('landing')
       }
-
     })
   })
-
-

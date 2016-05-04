@@ -1,11 +1,8 @@
 // Karma configuration
 // Generated on Thu Apr 28 2016 18:53:50 GMT-0700 (PDT)
 
-
-
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -26,7 +23,7 @@ module.exports = function(config) {
     exclude: [
       'karma.conf.js'
     ],
-    
+
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
@@ -37,10 +34,8 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
 
-
     // web server port
     port: 9876,
-
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -63,7 +58,7 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
-    plugins : [
+    plugins: [
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-phantomjs-launcher'

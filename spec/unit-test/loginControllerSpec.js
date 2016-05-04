@@ -4,8 +4,7 @@ describe('LoginCtrl', function () {
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
   beforeEach(module('myApp'))
-  beforeEach(inject(function($injector) {
-
+  beforeEach(inject(function ($injector) {
     // mock out our dependencies
     $rootScope = $injector.get('$rootScope')
     $httpBackend = $injector.get('$httpBackend')
@@ -18,7 +17,7 @@ describe('LoginCtrl', function () {
     }
   }))
 
-  it('it should have an object used for storage', function() {
+  it('it should have an object used for storage', function () {
     createController()
     expect($scope.data).to.be.an('object')
   })

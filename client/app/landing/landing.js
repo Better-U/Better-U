@@ -8,17 +8,14 @@ angular.module('myApp.landing', [])
       $state.go('signin')
     }
 
-
-
     $scope.signup = function () {
-
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signup/signup.html',
         controller: 'SignupCtrl',
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope.items
           }
         }
       })
@@ -37,7 +34,7 @@ angular.module('myApp.landing', [])
         controller: 'SigninCtrl',
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope.items
           }
         }
       })
@@ -48,5 +45,4 @@ angular.module('myApp.landing', [])
         console.log('hi')
       })
     }
-
   })

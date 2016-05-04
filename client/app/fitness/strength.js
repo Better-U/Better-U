@@ -66,11 +66,11 @@ angular.module('myApp.strength', ['factories'])
         category = 'Time to exercise and eat right'
       }
       else if (bmi2 > 18.5 && bmi2 < 24.99) {
-        category = 'Looking good! Let\'s stay that way'
+        category = "Looking good! Let's stay that way"
       }
       else if (bmi2 < 18.5) {
         category = 'Bulk up!'
-      };
+      }
       return category
     }
   })
