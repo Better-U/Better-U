@@ -10,7 +10,19 @@
     <title>Fitness</title>
 </head>
 <body>
-
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="landing">Better Ü</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="dashboard">Dashboard</a></li>
+        <li><a ui-sref="profile">Profile</a></li>
+        <li><a ui-sref="cardio">Cardio</a></li>
+        <li><a ui-sref="strength">Strength</a></li>
+        <li><a ui-sref="nutrition">Nutrition</a></li>
+        <li><a ui-sref="social">Social</a></li>
+    </ul>
+</nav>
 <div ui-view></div>
 
 <script src="./lib/socket.io-client/socket.io.js"></script>
