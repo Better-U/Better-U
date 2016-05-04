@@ -8,12 +8,12 @@
      {{ display.username }}
     <br>
     </div>
-    
+
     <div id='profile-age'>Age:
      {{ display.age }}
     <br>
     </div>
-  
+
    <div id='profile-gender'>Gender:
      {{ getGender(display.gender) }}
     <br>
@@ -30,16 +30,16 @@
 
     <div id='profile-bodyfat'>
     Body Fat (%):
-     <input type='text' ng-model='prof.bodyFat' placeholder="     {{ display.bodyfat }}"> 
+     <input type='text' ng-model='prof.bodyFat' placeholder="     {{ display.bodyfat }}">
     <br>
     </div>
 
     Activity Level:
     <div id='profile-activity'>
       <input type='radio' name='prof.activity' ng-model='prof.activity' value='sedentary'>  Sedentary (little to no exercise)<br>
-      <input type='radio' name='prof.activity' ng-model='prof.activity' value='light'>     Lightly Active (light exercise; 1-3x/wk)<br>
-      <input type='radio' name='prof.activity' ng-model='prof.activity' value='moderate'> Moderately Active (moderate exercise; 3-5x/wk)<br>
-      <input type='radio' name='prof.activity' ng-model='prof.activity' value='very'> Very Active (hard exercise; 6-7x/wk)<br>
+      <input type='radio' name='prof.activity' ng-model='prof.activity' value='light'>     Lightly Active (light exercise; 1-3 days/wk)<br>
+      <input type='radio' name='prof.activity' ng-model='prof.activity' value='moderate'> Moderately Active (moderate exercise; 3-5 days/wk)<br>
+      <input type='radio' name='prof.activity' ng-model='prof.activity' value='active'> Very Active (hard exercise; 6-7 days/wk)<br>
     </div>
     <br>
 
@@ -55,7 +55,7 @@
 
     <div id='profile-gym'>
     Gym of Choice:
-    <br> 
+    <br>
      <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="la"> LA Fitness<br>
      <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24hour"> 24 Hour Fitness<br>
      <input id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="ufc"> UFC Gym<br>

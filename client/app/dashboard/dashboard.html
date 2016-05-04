@@ -4,6 +4,10 @@
     <button ng-click="test()">Test</button>
 
     <div>
+        <h3>Calorie Burn: {{calorieBurn}}</h3><br>
+        based on the Harris Benedict Method
+    </div>
+    <div>
         <h3>Your Goals</h3>
         <div ng-repeat="goals in goalsData | orderBy:'-date'">
             <span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span>

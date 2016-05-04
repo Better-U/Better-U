@@ -1,13 +1,30 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($scope, $state, GoalsFactory, $cookies) {
+  .controller('DashboardCtrl', function ($scope, $state, GoalsFactory, $cookies, profileFactory) {
+    var user = $cookies.get('username')
+    console.log('this is profile data: ', profileFactory.getProfile(user))
+
     $scope.goalsData = null
+    $scope.display = null
 
     $scope.signout = function () {
       $cookies.remove('token')
       $cookies.remove('username')
       $state.go('landing')
     }
+
+    $scope.getDashboardProfile = function () {
+      profileFactory.getProfile(user)
+        .then(function (data) {
+          $scope.display = data.data
+          console.log('this is getProfile data: ', data.data)
+        })
+    }
+    $scope.getDashboardProfile()
+
+    // $scope.calorieBurn = function (gender, age, weight, height, activity) {
+
+    // }
 
     $scope.removeLog = function (id) {
       console.log(id)
@@ -17,7 +34,7 @@ angular.module('myApp.dashboard', [])
           $state.reload()
         })
     }
-    
+
     $scope.getGoals = function () {
       var username = $cookies.get('username')
       GoalsFactory.getLog(username)
@@ -38,7 +55,7 @@ angular.module('myApp.dashboard', [])
     $scope.goalOverdue = function (input) {
       return new Date() - new Date(input) > 0
     }
-    
+
     $scope.getGoals()
 
   })

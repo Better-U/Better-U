@@ -79,7 +79,7 @@ angular.module('factories', [])
   })
 
   .factory('profileFactory', function ($http) {
-    function submitProfile (id, weight, bodyFat, activityLvl, interest, gym) {
+    function submitProfile (username, weight, bodyFat, activityLvl, interest, gym) {
       var profileForm = {
         username: username,
         weight: weight,
@@ -197,7 +197,7 @@ angular.module('factories', [])
 
       return $http.post('/api/goals/', plugin)
     }
-    
+
     function getLog (username) {
       console.log('inside getlog', username)
       var params = {
@@ -206,7 +206,7 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-      
+
       return $http.get('/api/goals/', config)
     }
 
@@ -219,7 +219,7 @@ angular.module('factories', [])
       }
       return $http.delete('/api/goals/', config)
     }
-    
+
     return {
       postLog: postLog,
       getLog: getLog,

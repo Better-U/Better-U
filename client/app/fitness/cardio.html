@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Cardio Input</h1>
 	<form>
-    <div>
+    <div class="form-group">
       Date: <input type="date" ng-model="date" placeholder="date"><br>
 
       Activity:
       <select name="type" ng-model="type">
-      <option value="">---Please select---</option>
+      <option value="" selected disabled>---Please select---</option>
       <option value="Running">Running</option>
       <option value="Cycling">Cycling</option>
       <option value="Swimming">Swimming</option>
@@ -24,7 +24,6 @@
 
       Duration: <input class="dropdown" type="number" name="duration" ng-model="duration" placeholder="minutes"><br>
       Pace: {{pace(duration, distance)}} minutes per mile<br>
-      Calories Burned: <br>
 		<button type='submit' ng-click="submitCardio()">Submit</button>
 	</form><br>
   Activity Log:<br>
