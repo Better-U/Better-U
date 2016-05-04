@@ -18,4 +18,8 @@ Goals.getLog = function (userid) {
   return db('goals').select('*').where({user_id: userid})
 }
 
+Goals.deleteLog = function (id) {
+  return db('goals').where({id: id}).del()
+}
+
 module.exports = Goals

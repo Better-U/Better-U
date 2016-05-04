@@ -60,3 +60,8 @@ md-option {
 .overdue {
     color: red;
 }
+
+.inlineGoal {
+    display: inline-block;
+    font-size: 15.5px;
+}

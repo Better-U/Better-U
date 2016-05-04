@@ -1,6 +1,6 @@
 angular.module('myApp.goals', [])
 
-.controller('GoalsCtrl', function($scope, GoalsFactory, $cookies) {
+.controller('GoalsCtrl', function($scope, GoalsFactory, $cookies, $state) {
   $scope.cardioSelected = false
   $scope.strengthSelected = false
   $scope.nutritionSelected = false
@@ -26,6 +26,7 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
+        $state.go('dashboard')
       })
   }
 
@@ -34,6 +35,7 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
+        $state.go('dashboard')
       })
   }
 
@@ -42,8 +44,10 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('nutrition', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
+        $state.go('dashboard')
       })
   }
+
 
 })
 

@@ -208,9 +208,19 @@ angular.module('factories', [])
       return $http.get('/api/goals/', config)
     }
 
+    function removeLog (id) {
+      var params = {
+        id: id
+      }
+      var config = {
+        params: params
+      }
+      return $http.delete('/api/goals/', config)
+    }
     
     return {
       postLog: postLog,
-      getLog: getLog
+      getLog: getLog,
+      removeLog: removeLog
     }
   })
