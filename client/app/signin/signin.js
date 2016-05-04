@@ -28,7 +28,6 @@ angular.module('myApp.signin', [])
             $cookies.put('username', data.config.data.username)
             $state.go('dashboard')
           }
-
         })
       }
     }
@@ -41,7 +40,7 @@ angular.module('myApp.signin', [])
         controller: 'SignupCtrl',
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope.items
           }
         }
       })

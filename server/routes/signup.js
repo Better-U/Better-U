@@ -10,7 +10,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 router.post('/regUser', function (req, res) {
-
   User.findUser(req.body.username)
     .then(function (data) {
       if (data.length === 0) {
@@ -29,8 +28,7 @@ router.post('/regUser', function (req, res) {
 })
 
 router.post('/regProfile', function (req, res) {
-
-  var user;
+  var user
 
   User.findUser(req.body.username)
     .then(function (data) {

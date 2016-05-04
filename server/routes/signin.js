@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 router.post('/', function (req, res) {
-  var user;
+  var user
   console.log('request inside login', req.body.username)
   User.findUser(req.body.username)
     .then(function (data) {
@@ -33,6 +33,5 @@ router.post('/', function (req, res) {
       }
     })
 })
-
 
 module.exports = router

@@ -17,7 +17,7 @@ auth.ifAuthorized = function (req, res, next) {
   var token = req.headers.token
 
   if (token) {
-    jwt.verify(token, secret, function(err, decoded) {
+    jwt.verify(token, secret, function (err, decoded) {
       if (err) {
         console.log('err')
         unauthorized(res)

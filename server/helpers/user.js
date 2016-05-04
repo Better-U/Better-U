@@ -10,13 +10,13 @@ User.findUser = function (username) {
 
 User.hashPassword = function (password) {
   return new Promise(function (resolve, reject) {
-      bcrypt.hash(password, saltRounds, function (err, hash) {
-        if (err) {
-          reject(err)
-        }
-        console.log('hash', hash)
-        resolve(hash)
-      })
+    bcrypt.hash(password, saltRounds, function (err, hash) {
+      if (err) {
+        reject(err)
+      }
+      console.log('hash', hash)
+      resolve(hash)
+    })
   })
 }
 
@@ -25,19 +25,19 @@ User.findPassword = function (username) {
 }
 
 User.comparePassword = function (username, password) {
-  return new Promise (function (resolve, reject) {
-      User.findPassword(username)
-        .then(function (data) {
-          bcrypt.compare(password, data[0].password, function (err, response) {
-            if (err) {
-              console.log(err)
-              reject(err)
-            } else {
-              resolve(response)
-            }
+  return new Promise(function (resolve, reject) {
+    User.findPassword(username)
+      .then(function (data) {
+        bcrypt.compare(password, data[0].password, function (err, response) {
+          if (err) {
+            console.log(err)
+            reject(err)
+          } else {
+            resolve(response)
+          }
         })
       })
-    }
+  }
   )}
 
 User.insertUserPw = function (username, password) {

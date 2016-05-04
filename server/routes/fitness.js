@@ -24,13 +24,13 @@ router.post('/strengthForm', function (req, res) {
         reps: req.body.reps
       }]
       db.insert(strengthForm).into('strength_record').select('user_id', 'date', 'type', 'sets', 'intensity', 'duration', 'weight', 'reps')
-      .then(function (success) {
-        if (success) {
-          res.status(201).json({success: true})
-        } else {
-          res.status(404).json({success: false})
-        }
-      })
+        .then(function (success) {
+          if (success) {
+            res.status(201).json({success: true})
+          } else {
+            res.status(404).json({success: false})
+          }
+        })
     })
 })
 
@@ -49,7 +49,6 @@ router.post('/getStrength', function (req, res) {
     })
 })
 
-
 router.post('/cardioForm', function (req, res) {
   var user = req.body.username
   User.findUser(user)
@@ -64,13 +63,13 @@ router.post('/cardioForm', function (req, res) {
         intensity: req.body.intensity
       }]
       db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
-      .then(function (success) {
-        if (success) {
-          res.status(201).json({success: true})
-        } else {
-          res.status(404).json({success: false})
-        }
-      })
+        .then(function (success) {
+          if (success) {
+            res.status(201).json({success: true})
+          } else {
+            res.status(404).json({success: false})
+          }
+        })
     })
 })
 

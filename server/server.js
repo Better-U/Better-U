@@ -1,18 +1,12 @@
-var express = require('express')
-var app = express()
+var common = require('./common.js')
+var express = common.express
+var app = common.app
+var server = common.server
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var path = require('path')
 var dotenv = require('dotenv')
 var db = require('./db.js')
-
-var server = require('http').createServer(app)
-var io = require('socket.io')(server)
-
-io.on('connection', function(socket){
-	console.log('socket conncetion!')
-	io.emit('pizza', {hello: "hello"})
-})
 
 dotenv.config()
 
@@ -38,7 +32,6 @@ app.use('/api/goals/', goals)
 app.use('/api/signup/', signup)
 app.use('/api/social/', social)
 
-
 var port = process.env.PORT || 8080
 
-app.listen(port, console.log('Magic happens on port', port))
+server.listen(port, console.log('Magic happens on port', port))
