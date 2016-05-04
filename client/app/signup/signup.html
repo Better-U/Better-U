@@ -1,4 +1,5 @@
 <div class="signup">
+  <div ng-if="!next">
   <h2>Sign Up</h2>
   <span>Already have an account? </span><button ng-click="signin()">Sign In</button>
   <div>
@@ -14,8 +15,12 @@
       </div>
     </form>
     </div>
+    <button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
+  </div>
 
-  <div>
+  <div ng-if="next">
+    <h2>Tell us more!</h2>
     <form>
       <div class="form-group" ng-if="next">
         <label for="ageSignup">Age:</label><br>
@@ -57,8 +62,8 @@
       </div>
 
       <div>
-        <button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
+        <!--<button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>-->
+        <!--<button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>-->
         <button class="btn btn-primary" type="submit" ng-if="next" ng-click="submit()">Submit</button>
       </div>
 

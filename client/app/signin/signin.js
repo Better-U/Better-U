@@ -2,13 +2,20 @@ angular.module('myApp.signin', [])
 
   .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance, $uibModal, $cookies) {
     $scope.animationsEnabled = true
+    $scope.noInput = false
     $scope.userDoesNotExist = null
     $scope.goSignup = function () {
       $state.go('signup')
     }
 
+    $scope.user = {
+      name: null,
+      password: null
+    }
     $scope.signin = function () {
-      console.log('login call:', $scope.user.name, $scope.user.password)
+      if ($scope.user.name === null || $scope.user.password === null) {
+        $scope.noInput = true
+      } else {
       authFactory.signIn($scope.user.name, $scope.user.password)
         .then(function (data) {
           console.log(data.data.success)
@@ -23,6 +30,7 @@ angular.module('myApp.signin', [])
           }
 
         })
+      }
     }
 
     $scope.signup = function () {

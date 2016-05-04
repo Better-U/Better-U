@@ -1,3 +1,29 @@
 <div>
     <h1>Goals</h1>
+        <div>
+            <label for="goals">Select a Goal:</label>
+            <select name="goals" id="goals" ng-model='goal.type'>
+                <option value="" selected disabled>Goal Type</option>
+                <option value="cardio">Cardio</option>
+                <option value="strength">Strength</option>
+                <option value="nutrition">Nutrition</option>
+            </select>
+            <button ng-click="selectGoal(goal.type)">Submit</button>
+        </div>
+
+        <!-- IF CARDIO SELECTED -->
+        <div ng-if="cardioSelected">
+            <cardio-goals></cardio-goals>
+        </div>
+
+        <!-- IF STRENGTH SELECTED -->
+        <div ng-if="strengthSelected">
+            <strength-goals></strength-goals>
+        </div>
+
+        <!-- IF HEALTH SELECTED -->
+        <div ng-if="nutritionSelected">
+            <nutrition-goals></nutrition-goals>
+        </div>
+
 </div>

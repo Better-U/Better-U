@@ -4,14 +4,13 @@ var jwt = require('jsonwebtoken')
 var secret = process.env.TOKEN_SECRET
 
 var auth = {}
+
 auth.Decode = function(token) {
   return jwt.decode(token)
 }
 
 auth.genToken = function(userDetails) {
-  return jwt.sign({id: userDetails.id, username: userDetails.username}, secret, {
-    expiresIn: 50000
-  })
+  return jwt.sign({id: userDetails.id, username: userDetails.username}, secret, { expiresIn: 50000 })
 }
 
 auth.ifAuthorized = function (req, res, next) {
@@ -21,22 +20,17 @@ auth.ifAuthorized = function (req, res, next) {
     jwt.verify(token, secret, function(err, decoded) {
       if (err) {
         console.log('err')
-        unauthorized(res);
+        unauthorized(res)
       } else {
         console.log('it worked!')
-        next();
+        next()
       }
     })
   } else {
     console.log('unauthorized')
-    unauthorized(res);
+    unauthorized(res)
   }
-
   function unauthorized(res) {
-    // res.json({
-    //   success: false,
-    //   message: 'Your account is unauthorized (token missing or invalid).'
-    // })
     res.sendStatus(401)
   }
 }

@@ -1,0 +1,33 @@
+<div id="nutrition">
+    <form>
+    <h2>Create Goals for Nutrition</h2>
+    <label for="date">Complete By:</label>
+    <input id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date">
+
+    <!--<label for="intensity">Increase/Decrease:</label>-->
+    <select name="intensity" id="intensity">
+        <option value="none" selected disabled>Increase/Decrease</option>
+        <option value="Increase">Increase</option>
+        <option value="Decrease">Decrease</option>
+    </select>
+
+    <label for="category">Health/Nutrition Goal:</label>
+    <select name="nutrition" id="category">
+        <option value="none" selected disabled>Nutrition Goal</option>
+        <option value="Weight">Weight</option>
+        <option value="Body Fat">Body Fat</option>
+    </select>
+
+
+    <label for="value">By:</label>
+    <input type="number" id="value">
+
+
+    <label for="measurement">Measurement:</label>
+    <select name="measurement" id="measurement">
+        <option value="none" selected disabled>Select Measurement</option>
+        <option value="Miles">Pounds</option>
+        <option value="Laps">Inches</option>
+    </select>
+    </form>
+</div>
