@@ -23,7 +23,7 @@ angular.module('myApp.goals', [])
 
   $scope.submitCardio = function (date, intensity, category, value, measurement) {
     var username = $cookies.get('username')
-    GoalsFactory.cardioLog('cardio', date, intensity, category, value, measurement, username)
+    GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
       })
@@ -31,7 +31,7 @@ angular.module('myApp.goals', [])
 
   $scope.submitStrength = function (date, intensity, category, value, measurement) {
     var username = $cookies.get('username')
-    GoalsFactory.strengthLog('strength', date, intensity, category, value, measurement, username)
+    GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
       })
@@ -39,7 +39,7 @@ angular.module('myApp.goals', [])
 
   $scope.submitNutrition = function (date, intensity, category, value, measurement) {
     var username = $cookies.get('username')
-    GoalsFactory.strengthLog('nutrition', date, intensity, category, value, measurement, username)
+    GoalsFactory.postLog('nutrition', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
       })
