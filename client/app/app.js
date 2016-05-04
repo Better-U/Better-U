@@ -58,7 +58,6 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('social', {
         url: '/social',
         templateUrl: '/app/social/social.html',
-<<<<<<< e78b6d1530074cfcb386c808384c374a1b8569de
         controller: 'socialCtrl',
         authenticate: true
       })
@@ -67,15 +66,12 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
         templateUrl: '/app/goals/goals.html',
         controller: 'GoalsCtrl',
         authenticate: true
-=======
-        controller: 'socialCtrl'
-
->>>>>>> [Feat] Basic Chat
       })
       .state('chatRoom', {
         url: '/chatRoom',
         templateUrl: '/app/social/chat.html',
-        controller: 'chatCtrl'
+        controller: 'chatCtrl',
+        authenticate: true
       })
   })
 
