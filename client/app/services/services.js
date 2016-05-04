@@ -1,5 +1,5 @@
 angular.module('factories', [])
-  .factory('authFactory', function ($http) {
+  .factory('authFactory', function ($http, $cookies) {
 
     function registerUserDetails (username, password) {
       var form = {
@@ -48,7 +48,7 @@ angular.module('factories', [])
 
     function getToken () {
       console.log('inside get token', window.localStorage.getItem('token'))
-      return window.localStorage.getItem('token')
+      return $cookies.get('token')
     }
 
     function isAuth () {

@@ -1,6 +1,6 @@
 angular.module('myApp.signup', ['factories'])
 
-  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal) {
+  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal, $cookies) {
     $scope.alreadyExists = null
     $scope.userExistError = false
     $scope.animationsEnabled = true
@@ -20,6 +20,7 @@ angular.module('myApp.signup', ['factories'])
 
     $scope.submit = function () {
       console.log('inside submit')
+      console.log('user gym other', $scope.user.gym)
       $uibModalInstance.dismiss('cancel')
       authFactory.registerProfileDetails($scope.user.name, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.interest, $scope.user.gym)
         .then(function (data) {

@@ -10,18 +10,21 @@
     <title>Fitness</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="landing">Better Ü</a>
+        <a class="navbar-brand" ui-sref="landing">BetterÜ</a>
     </div>
+    <div class="container">
     <ul class="nav navbar-nav">
         <li><a ui-sref="dashboard">Dashboard</a></li>
         <li><a ui-sref="profile">Profile</a></li>
         <li><a ui-sref="cardio">Cardio</a></li>
         <li><a ui-sref="strength">Strength</a></li>
         <li><a ui-sref="nutrition">Nutrition</a></li>
+        <li><a ui-sref="goals">Goals</a></li>
         <li><a ui-sref="social">Social</a></li>
     </ul>
+    </div>
 </nav>
 <div ui-view></div>
 
@@ -41,6 +44,7 @@
 <script src="/app/dashboard/dashboard.js"></script>
 <script src="/app/nutrition/nutrition.js"></script>
 <script src="/app/modal/modal.js"></script>
+<script src="/app/goals/goals.js"></script>
 <script src="/app/app.js"></script>
 
 </body>

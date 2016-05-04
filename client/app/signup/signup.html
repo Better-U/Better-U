@@ -48,9 +48,11 @@
 
       <div class="form-group" ng-if="next">
         <label for="gymSignup">Gym:</label><br>
+        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="none"> No Gym Membership<br>
         <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="la"> LA Fitness<br>
         <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="24hour"> 24 Hour Fitness<br>
         <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="ufc"> UFC Gym<br>
+        <input id="gymSignup" type="radio" name="gym" > Other <input type="text" name="other_reason" ng-model="user.gym"/>
 
       </div>
 
