@@ -1,5 +1,5 @@
 angular.module('myApp.strength', ['factories'])
-  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory) {
+  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory) {
     // console.log('this is username: ',authFactory.userData.username)
     $scope.weight = 155
     $scope.feet = 5
@@ -9,10 +9,13 @@ angular.module('myApp.strength', ['factories'])
     $scope.bodyfat = 12
     $scope.strengthList = []
 
-    var user = window.localStorage.getItem('username')
+    profileFactory.getProfile()
+
+    var user = $cookies.get('username')
     $scope.getStrength = function () {
       strengthFactory.getStrength(user)
         .then(function (data) {
+          console.log(data)
           $scope.strengthList = data.data
         })
     }

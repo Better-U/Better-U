@@ -58,8 +58,7 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('social', {
         url: '/social',
         templateUrl: '/app/social/social.html',
-        controller: 'socialCtrl',
-
+        controller: 'socialCtrl'
       })
   })
 
