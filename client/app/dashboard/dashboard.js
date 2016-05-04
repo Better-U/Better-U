@@ -9,10 +9,17 @@ angular.module('myApp.dashboard', [])
       $state.go('landing')
     }
 
-
+    $scope.removeLog = function (id) {
+      console.log(id)
+      GoalsFactory.removeLog(id)
+        .then(function(data) {
+          console.log('successful delete', data)
+          $state.reload()
+        })
+    }
+    
     $scope.getGoals = function () {
       var username = $cookies.get('username')
-      console.log('username from getting goals', username)
       GoalsFactory.getLog(username)
         .then(function(data) {
           $scope.goalsData = data.data.data
@@ -29,7 +36,6 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.goalOverdue = function (input) {
-      console.log('input from overdue', input)
       return new Date() - new Date(input) > 0
     }
     

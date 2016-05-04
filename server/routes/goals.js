@@ -40,6 +40,16 @@ router.post('/', function(req, res) {
     })
 })
 
+router.delete('/', function(req, res) {
+  console.log('req.query', req.query)
+  Goals.deleteLog(req.query.id)
+    .then(function(data) {
+      res.json({
+        success: true,
+        data: data
+      })
+    })
+})
 
 
 module.exports = router
