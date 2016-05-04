@@ -1,4 +1,4 @@
-angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'ngCookies', 'myApp.social', 'myApp.socialFactoryModule'])
+angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp.cardio', 'myApp.profile', 'myApp.nutrition', 'myApp.strength', 'ui.router', 'factories', 'myApp.dashboard', 'myApp.modal', 'ui.bootstrap', 'ngAnimate', 'ngCookies', 'myApp.social', 'myApp.socialFactoryModule', 'myApp.goals'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -58,7 +58,14 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
       .state('social', {
         url: '/social',
         templateUrl: '/app/social/social.html',
-        controller: 'socialCtrl'
+        controller: 'socialCtrl',
+        authenticate: true
+      })
+      .state('goals', {
+        url: '/goals',
+        templateUrl: '/app/goals/goals.html',
+        controller: 'GoalsCtrl',
+        authenticate: true
       })
   })
 
