@@ -15,7 +15,6 @@ router.post('/regUser', function (req, res) {
       if (data.length === 0) {
         User.hashPassword(req.body.username, req.body.password)
           .then(function (hash) {
-            console.log('this is the hash on signup', hash)
             User.insertUserPw(req.body.username, hash)
               .then(function () {
                 res.send('user added')
@@ -32,7 +31,6 @@ router.post('/regProfile', function (req, res) {
 
   User.findUser(req.body.username)
     .then(function (data) {
-      console.log('data', data)
       user = {
         id: data[0].id,
         username: req.body.username

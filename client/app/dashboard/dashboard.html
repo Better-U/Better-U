@@ -6,8 +6,11 @@
     <div>
         <h3>Your Goals</h3>
         <div ng-repeat="goals in goalsData | orderBy:'-date'">
-         <label ng-class="{'overdue': goalOverdue('{{goals.date}}')}"><input type="checkbox" > By {{dateConverter(goals.date)}}, I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}</label>
+            <span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span>
+            <p class="inlineGoal" ng-class="{'overdue': goalOverdue('{{goals.date}}')}">
+                By <strong>{{dateConverter(goals.date)}}:</strong> I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
+            </p>
         </div>
-
     </div>
+
 </div>

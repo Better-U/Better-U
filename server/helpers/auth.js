@@ -22,7 +22,7 @@ auth.ifAuthorized = function (req, res, next) {
         console.log('err')
         unauthorized(res)
       } else {
-        console.log('it worked!')
+        console.log('authorized')
         next()
       }
     })

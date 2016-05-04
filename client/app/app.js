@@ -83,7 +83,6 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
           return config
         },
         responseError: function (rejection) {
-          console.log(rejection)
           if (rejection.status === 401) {
             $injector.get('$state').transitionTo('landing')
             return $q.reject(rejection)
@@ -96,7 +95,6 @@ angular.module('myApp', ['myApp.signin', 'myApp.landing', 'myApp.signup', 'myApp
   .run(function ($rootScope, $state, authFactory, $cookies) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       var requireLogin = toState.authenticate
-      console.log('tostate: ', toState.url)
       if (requireLogin && authFactory.getToken() === null) {
         event.preventDefault()
         $state.go('landing')
