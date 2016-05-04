@@ -182,7 +182,7 @@ angular.module('factories', [])
 
   .factory('GoalsFactory', function ($http) {
 
-    function cardioLog (type, data, intensity, category, value, measurement, username) {
+    function postLog (type, data, intensity, category, value, measurement, username) {
       var plugin = {
         type: type,
         date: data,
@@ -193,25 +193,24 @@ angular.module('factories', [])
         username: username
       }
 
-      return $http.post('/api/goals/cardio', plugin)
-    }
-
-    function strengthLog (type, data, intensity, category, value, measurement, username) {
-      var plugin = {
-        type: type,
-        date: data,
-        intensity: intensity,
-        category: category,
-        value: value,
-        measurement: measurement,
-        username: username
-      }
-
-      return $http.post('/api/goals/strength', plugin)
+      return $http.post('/api/goals/', plugin)
     }
     
+    function getLog (username) {
+      console.log('inside getlog', username)
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      
+      return $http.get('/api/goals/', config)
+    }
+
+    
     return {
-      cardioLog: cardioLog,
-      strengthLog: strengthLog
+      postLog: postLog,
+      getLog: getLog
     }
   })

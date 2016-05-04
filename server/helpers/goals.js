@@ -14,4 +14,8 @@ Goals.postLog = function (type, date, intensity, category, value, measurement, i
   return db('goals').insert(goalObj)
 }
 
+Goals.getLog = function (userid) {
+  return db('goals').select('*').where({user_id: userid})
+}
+
 module.exports = Goals
