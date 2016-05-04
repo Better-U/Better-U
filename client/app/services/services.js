@@ -193,6 +193,8 @@ angular.module('factories', [])
         username: username
       }
 
+      console.log('inside postlog service', plugin)
+
       return $http.post('/api/goals/', plugin)
     }
     
