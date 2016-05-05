@@ -1,6 +1,12 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($scope, $state, GoalsFactory, $cookies, profileFactory) {
+  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory) {
+    $rootScope.hideit = false
+    $rootScope.landing = false
+    $rootScope.signout = function () {
+      $scope.signout()
+    }
+    
     var user = $cookies.get('username')
 
     $scope.goalsData = null
