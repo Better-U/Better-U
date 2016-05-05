@@ -1,7 +1,5 @@
 angular.module('myApp.strength', ['factories'])
   .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory) {
-    // console.log('this is username: ',authFactory.userData.username)
-    $scope.strengthList = []
     $scope.user = $cookies.get('username')
 
     $scope.getStrengthProfile = function () {
@@ -9,14 +7,50 @@ angular.module('myApp.strength', ['factories'])
         .then(function (data) {
           $scope.display = data.data[0]
         })
-        .then(
-          strengthFactory.getStrength($scope.user)
-            .then(function (data) {
-              $scope.strengthList = data.data
-            })
-        )
+        .then(function () {
+          fetchLog()
+        })
+        .then(function () {
+          renderGraphs()
+        })
     }
+
     $scope.getStrengthProfile()
+
+    const fetchLog = function () {
+      strengthFactory.getStrength($scope.user)
+        .then(function (data) {
+          $scope.strengthList = data.data
+          console.log($scope.strengthList)
+        })
+    }
+
+    const calc_duration = function (arr) {
+      var duration = []
+      for (var i = 0; i < arr.length; i++) {
+        duration.push(arr[i].duration)
+        console.log(duration)
+      }
+      return duration
+    }
+
+    const renderGraphs = function () {
+      var options = {
+        width: 1000,
+        height: 400
+      }
+
+      new Chartist.Line('#chart1', {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        series: [[2, 56, 23, 65, 40, 25, 30]]
+      }, options)
+
+    // Initialize a Line chart in the container with the ID chart2
+      new Chartist.Bar('#chart2', {
+        labels: ['Bench', 'Squat', 'Deadlift', 'Shoulder Press', 'Lat Pulldown', 'Dumbbells', 'Clean & Jerk', 'Snatch'],
+        series: [ [ 1, 2, 2, 3, 1, 20, 2, 1 ] ]
+      }, options)
+    }
 
     $scope.submitStrength = function () {
       strengthFactory.submitStrength(
@@ -31,7 +65,7 @@ angular.module('myApp.strength', ['factories'])
       )
         .then(function (data) {
           $scope.str = {}
-          $scope.getStrengthProfile()
+          fetchLog()
         })
     }
 
@@ -45,31 +79,4 @@ angular.module('myApp.strength', ['factories'])
     $scope.onerepmax = function (weight, reps) {
       return (weight * (1 + (reps / 30))).toFixed(1)
     }
-
-    $scope.bmi = function (height_in, weight_lb) {
-      if (weight_lb > 0 && height_in > 0) {
-        var bmi_result = (weight_lb / (height_in * height_in)) * 703.06957964
-      }
-      return bmi_result.toFixed(2)
-    }
-
-    $scope.categorize = function (height, weight) {
-      var bmi2 = $scope.bmi(height, weight)
-      var category
-      if (bmi2 >= 30) {
-        category = 'You got work to do!'
-      }
-      else if (bmi2 >= 25 && bmi2 < 29.99) {
-        category = 'Time to exercise and eat right'
-      }
-      else if (bmi2 >= 18.5 && bmi2 < 24.99) {
-        category = 'Looking good! Lets stay that way'
-      }
-      else if (bmi2 < 18.5) {
-        category = 'Bulk up!'
-      }
-      return category
-    }
-
-
   })
