@@ -5,6 +5,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var User = require('../helpers/user')
 var Auth = require('../helpers/auth')
+var Goals = require('../helpers/goals')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 router.use(Auth.ifAuthorized)
@@ -62,14 +63,45 @@ router.post('/cardioForm', function (req, res) {
         pace: req.body.pace,
         intensity: req.body.intensity
       }]
-      db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
-        .then(function (success) {
-          if (success) {
-            res.status(201).json({success: true})
-          } else {
-            res.status(404).json({success: false})
+      Goals.findLog(data[0].id, req.body.type)
+        .then(function(data) {
+          console.log(data)
+          var currentVal = data[0].currentValue
+          if (data[0].measurement === 'Miles') {
+            if (data[0].currentValue === null) {
+              currentVal = 0
+            }
+            currentVal += req.body.distance
+            db('goals').where({id: data[0].id}).update({currentValue: currentVal})
+              .then(function(data) {
+                db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
+                  .then(function (success) {
+                    if (success) {
+                      res.status(201).json({success: true})
+                    } else {
+                      res.status(404).json({success: false})
+                    }
+                  })
+              })
+          } else if (data[0].measurement === 'Minutes') {
+              if (data[0].currentValue === null) {
+                currentVal = 0
+              }
+              currentVal += req.body.distance
+              db('goals').where({id: data[0].id}).update({currentValue: currentVal})
+                .then(function(data) {
+                  db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
+                    .then(function (success) {
+                      if (success) {
+                        res.status(201).json({success: true})
+                      } else {
+                        res.status(404).json({success: false})
+                      }
+                    })
+                })
           }
         })
+
     })
 })
 

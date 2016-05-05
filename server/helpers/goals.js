@@ -22,4 +22,8 @@ Goals.deleteLog = function (id) {
   return db('goals').where({id: id}).del()
 }
 
+Goals.findLog = function (userid, type) {
+  return db('goals').select('*').where({user_id: userid, category: type})
+}
+
 module.exports = Goals

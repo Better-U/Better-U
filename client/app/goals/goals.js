@@ -1,5 +1,5 @@
 angular.module('myApp.goals', [])
-
+  
 .controller('GoalsCtrl', function($scope, GoalsFactory, $cookies, $state) {
   $scope.cardioSelected = false
   $scope.strengthSelected = false
@@ -53,7 +53,7 @@ angular.module('myApp.goals', [])
       })
   }
 
-
+    
 })
 
 .directive('cardioGoals', function() {

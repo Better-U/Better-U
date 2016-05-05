@@ -85,6 +85,10 @@ angular.module('myApp.dashboard', [])
 
       return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
     }
+    
+    $scope.goalPercentage = function (current, max) {
+      return current/max * 100
+    }
 
     $scope.goalOverdue = function (input) {
       return new Date() - new Date(input) > 0

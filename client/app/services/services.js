@@ -182,6 +182,7 @@ angular.module('factories', [])
 
   .factory('GoalsFactory', function ($http) {
 
+
     function postLog (type, data, intensity, category, value, measurement, username) {
       var plugin = {
         type: type,
@@ -192,7 +193,7 @@ angular.module('factories', [])
         measurement: measurement,
         username: username
       }
-
+      
       console.log('inside postlog service', plugin)
 
       return $http.post('/api/goals/', plugin)
