@@ -100,7 +100,7 @@ knex.schema.createTableIfNotExists('chatRooms', function (room) {
 
 knex.schema.createTableIfNotExists('userRooms', function (room) {
   room.integer('roomID').unsigned().references('id').inTable('chatRooms')
-  room.integer('userID1').unsigned().references('id').inTable('user')
+  room.integer('userID').unsigned().references('id').inTable('user')
 }).then(function () {
   console.log('userRooms Created')
 })

@@ -4,12 +4,11 @@ angular.module('myApp.chatModule', ['myApp.socialFactoryModule'])
     $scope.messages = []
     $scope.name = $cookies.get('username')
 
-      socket.emit('joinRoom', {room: currentRoom})
-      socket.on('init', function(){
-      })
-    socket.on('hi', function (Data) {
-      console.log(Data, 'hi received')
+    socket.emit('joinRoom', {username1: 'arm', username2: 'eric'})
+    socket.on('message', function (data) {
+      console.log('message received hopefully from room 10', message)
     })
+    socket.on('init', function () {})
     socket.on('send:message', function (message) {
       $scope.messages.push(message)
       console.log('message received', message)
@@ -19,16 +18,6 @@ angular.module('myApp.chatModule', ['myApp.socialFactoryModule'])
       changeName(data.oldName, data.newName)
     })
 
-    socket.on('user:join', function (data) {
-      $scope.messages.push({
-        user: 'chatroom',
-        text: 'User ' + data.name + ' has joined.'
-      })
-      $scope.users.push(data.name)
-    })
-    socket.on('roomMessage', function(data){
-      console.log(data)
-    })
     // add a message to the conversation when a user disconnects or leaves the room
 
     $scope.sendMessage = function () {

@@ -191,7 +191,7 @@ angular.module('factories', [])
         measurement: measurement,
         username: username
       }
-      
+
       console.log('inside postlog service', plugin)
 
       return $http.post('/api/goals/', plugin)

@@ -29,7 +29,7 @@ angular.module('myApp.dashboard', [])
     $scope.userBMI = function (height, weight) {
       var bmiHeight = Number(height)
       var bmiWeight = Number(weight)
-      if (weight> 0 && height > 0) {
+      if (weight > 0 && height > 0) {
         var BMI = ((weight / (height * height)) * 703.06957964).toFixed(2)
       }
       return BMI
@@ -133,7 +133,7 @@ angular.module('myApp.dashboard', [])
       console.log(new Date() - new Date(input) < 0)
       return new Date() - new Date(input) > 0
     }
-    
+
     $scope.achieved = function (value, max) {
       return value === max
     }

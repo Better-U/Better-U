@@ -47,7 +47,6 @@ router.delete('/', function (req, res) {
         success: true,
         data: data
       })
-
     })
 })
 

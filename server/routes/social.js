@@ -15,23 +15,16 @@ io.on('connection', function (socket) {
   socket.emit('init', {
     name: 'Eric'
   })
-  socket.on('joinRoom', function(data){
-    var room = data.room.toString();
-    socket.join(room)
-    socket.to(room).emit('roomMessage', {hello: "hello everyone"})
-  })
-  // notify other clients that a new user has joined
-  // socket.broadcast.emit('user:join', {
-  //   name: name
-  // })
 
-  // // broadcast a user's message to other users
+  socket.on('joinRoom', function (data) {
+    socket.join('' + 10)
+    console.log('room is joined')
+    helpers.checkRoomNumber(data.username1, data.username2)
+    io.to(''+ 10).emit('message', {hello: "hello everyone"})
+  })
+
   socket.on('send:message', function (data) {
     socket.broadcast.emit('send:message', data)
-  })
-
-  socket.on('theMessage', function(data){
-    console.log(data);
   })
   // validate a user's name change, and broadcast it on success
   socket.on('change:name', function (data, fn) {
@@ -52,6 +45,7 @@ io.on('connection', function (socket) {
     }
   })
 })
+
 // clean up when a user leaves, and broadcast it to other users
 //   socket.on('disconnect', function () {
 //     socket.broadcast.emit('user:left', {

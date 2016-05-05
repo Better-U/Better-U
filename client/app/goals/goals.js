@@ -1,37 +1,10 @@
 angular.module('myApp.goals', [])
-  
-.controller('GoalsCtrl', function($scope, GoalsFactory, $cookies, $state) {
-  $scope.cardioSelected = false
-  $scope.strengthSelected = false
-  $scope.nutritionSelected = false
-  $scope.added = false
-  
-  $scope.selectGoal = function(type) {
-    if (type === "cardio") {
-      $scope.cardioSelected = true
-      $scope.strengthSelected = false
-      $scope.nutritionSelected = false
-    } else if (type === "strength") {
-      $scope.cardioSelected = false
-      $scope.strengthSelected = true
-      $scope.nutritionSelected = false
-    } else if (type === "nutrition") {
-      $scope.cardioSelected = false
-      $scope.strengthSelected = false
-      $scope.nutritionSelected = true
-    }
-  }
 
-  $scope.submitCardio = function (date, intensity, category, value, measurement) {
-    console.log('inside submit cARDio')
-    var username = $cookies.get('username')
-    console.log('inside submit cardio username', username)
-    GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
-      .then(function(data) {
-        swal("Cardio Goal Saved!", "Navigate to the Dashboard to see your logs!", "success")
-        $state.reload()
-      })
-  }
+  .controller('GoalsCtrl', function ($scope, GoalsFactory, $cookies, $state) {
+    $scope.cardioSelected = false
+    $scope.strengthSelected = false
+    $scope.nutritionSelected = false
+    $scope.added = false
 
     $scope.selectGoal = function (type) {
       if (type === 'cardio') {
@@ -60,32 +33,33 @@ angular.module('myApp.goals', [])
         })
     }
 
-<<<<<<< 50147e61cad7fc7915ac3c8c7709ca83050e49ab
-    
-})
-=======
-    $scope.submitStrength = function (date, intensity, category, value, measurement) {
-      var username = $cookies.get('username')
-      GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
-        .then(function (data) {
-          console.log('data submitted to database', data)
-          swal('Strength Goal Saved!', 'Navigate to the Dashboard to see your logs!', 'success')
-          $state.reload()
-        })
+    $scope.selectGoal = function (type) {
+      if (type === 'cardio') {
+        $scope.cardioSelected = true
+        $scope.strengthSelected = false
+        $scope.nutritionSelected = false
+      } else if (type === 'strength') {
+        $scope.cardioSelected = false
+        $scope.strengthSelected = true
+        $scope.nutritionSelected = false
+      } else if (type === 'nutrition') {
+        $scope.cardioSelected = false
+        $scope.strengthSelected = false
+        $scope.nutritionSelected = true
+      }
     }
 
-    $scope.submitNutrition = function (date, intensity, category, value, measurement) {
+    $scope.submitCardio = function (date, intensity, category, value, measurement) {
+      console.log('inside submit cARDio')
       var username = $cookies.get('username')
-      GoalsFactory.postLog('nutrition', date, intensity, category, value, measurement, username)
+      console.log('inside submit cardio username', username)
+      GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
         .then(function (data) {
-          console.log('data submitted to database', data)
-          swal('Nutrition Goal Saved!', 'Navigate to the Dashboard to see your logs!', 'success')
+          swal('Cardio Goal Saved!', 'Navigate to the Dashboard to see your logs!', 'success')
           $state.reload()
         })
     }
   })
->>>>>>> [PullRebasing]
-
   .directive('cardioGoals', function () {
     return {
       templateUrl: 'app/goals/directives/cardio-goals.html',
