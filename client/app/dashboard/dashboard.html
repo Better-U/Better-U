@@ -16,7 +16,7 @@
             <p class="inlineGoal" ng-class="{'overdue': goalOverdue('{{goals.date}}')}">
                 By <strong>{{dateConverter(goals.date)}}:</strong> I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
             </p>
-            <uib-progressbar max="max" value="dynamic"><span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span></uib-progressbar>
+            <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
         </div>
     </div>
 
