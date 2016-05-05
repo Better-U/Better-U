@@ -1,20 +1,20 @@
-angular.module('myApp', ['myApp.signin', 
-  'myApp.landing', 
-  'myApp.signup', 
-  'myApp.cardio', 
-  'myApp.profile', 
-  'myApp.nutrition', 
-  'myApp.strength', 
-  'ui.router', 
-  'factories', 
-  'myApp.dashboard', 
-  'myApp.modal', 
-  'ui.bootstrap', 
-  'ngAnimate', 
-  'ngCookies', 
-  'myApp.social', 
-  'myApp.socialFactoryModule', 
-  'myApp.goals', 
+angular.module('myApp', ['myApp.signin',
+  'myApp.landing',
+  'myApp.signup',
+  'myApp.cardio',
+  'myApp.profile',
+  'myApp.nutrition',
+  'myApp.strength',
+  'ui.router',
+  'factories',
+  'myApp.dashboard',
+  'myApp.modal',
+  'ui.bootstrap',
+  'ngAnimate',
+  'ngCookies',
+  'myApp.social',
+  'myApp.socialFactoryModule',
+  'myApp.goals',
   'myApp.chatModule'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -85,6 +85,7 @@ angular.module('myApp', ['myApp.signin',
         authenticate: true
       })
       .state('chatRoom', {
+        params: null,
         url: '/chatRoom',
         templateUrl: '/app/social/chat.html',
         controller: 'chatCtrl',
@@ -119,7 +120,7 @@ angular.module('myApp', ['myApp.signin',
       else if (requireLogin && !authFactory.isAuth()) {
         $cookies.remove('token')
         $cookies.remove('username')
-        event.preventDefault();
+        event.preventDefault()
         $state.go('landing')
       }
     })

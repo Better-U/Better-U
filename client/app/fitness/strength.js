@@ -24,7 +24,6 @@ angular.module('myApp.strength', ['factories'])
           console.log($scope.strengthList)
         })
     }
-
     const calc_duration = function (arr) {
       var duration = []
       for (var i = 0; i < arr.length; i++) {
@@ -45,7 +44,7 @@ angular.module('myApp.strength', ['factories'])
         series: [[2, 56, 23, 65, 40, 25, 30]]
       }, options)
 
-    // Initialize a Line chart in the container with the ID chart2
+      // Initialize a Line chart in the container with the ID chart2
       new Chartist.Bar('#chart2', {
         labels: ['Bench', 'Squat', 'Deadlift', 'Shoulder Press', 'Lat Pulldown', 'Dumbbells', 'Clean & Jerk', 'Snatch'],
         series: [ [ 1, 2, 2, 3, 1, 20, 2, 1 ] ]
@@ -72,7 +71,7 @@ angular.module('myApp.strength', ['factories'])
     $scope.convert_feet = function (inches) {
       var feet = Math.floor(inches / 12)
       var inch = inches - feet * 12
-      var tall = feet + '\'' + inch
+      var tall = feet + "'" + inch
       return tall
     }
 

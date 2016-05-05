@@ -64,10 +64,10 @@ router.post('/cardioForm', function (req, res) {
         intensity: req.body.intensity
       }]
       db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
-        .then(function(info) {
+        .then(function (info) {
           console.log('cardioform', cardioForm[0])
           Goals.findLog(cardioForm[0].user_id, cardioForm[0].type)
-            .then(function(data) {
+            .then(function (data) {
               for (var i = 0; i < data.length; i++) {
                 var currentVal = data[i].currentValue
                 if (data[i].measurement === 'Miles') {
@@ -76,7 +76,7 @@ router.post('/cardioForm', function (req, res) {
                   }
                   currentVal += Number(cardioForm[0].distance)
                   Goals.updateValue(data[i].id, currentVal)
-                    .then(function(data) {
+                    .then(function (data) {
                       res.json({
                         success: true,
                         data: data
@@ -88,18 +88,18 @@ router.post('/cardioForm', function (req, res) {
                   }
                   currentVal += cardioForm[0].duration
                   Goals.updateValue(data[i].id, currentVal)
-                    .then(function(data) {
+                    .then(function (data) {
                       res.json({
                         success: true,
                         data: data
                       })
                     })
-                 }
-               }
+                }
+              }
             })
-         })
-       })
+        })
     })
+})
 
 router.post('/getCardio', function (req, res) {
   var user = req.body.username

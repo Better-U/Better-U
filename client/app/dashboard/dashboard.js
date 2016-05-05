@@ -6,7 +6,7 @@ angular.module('myApp.dashboard', [])
     $rootScope.signout = function () {
       $scope.signout()
     }
-    
+
     var user = $cookies.get('username')
 
     $scope.goalsData = null
@@ -29,7 +29,7 @@ angular.module('myApp.dashboard', [])
     $scope.userBMI = function (height, weight) {
       var bmiHeight = Number(height)
       var bmiWeight = Number(weight)
-      if (weight> 0 && height > 0) {
+      if (weight > 0 && height > 0) {
         var BMI = ((weight / (height * height)) * 703.06957964).toFixed(2)
       }
       return BMI
@@ -100,7 +100,7 @@ angular.module('myApp.dashboard', [])
     $scope.removeLog = function (id) {
       console.log(id)
       GoalsFactory.removeLog(id)
-        .then(function(data) {
+        .then(function (data) {
           console.log('successful delete', data)
           // swal("Goal successfully removed!")
           $state.reload()
@@ -110,7 +110,7 @@ angular.module('myApp.dashboard', [])
     $scope.getGoals = function () {
       var username = $cookies.get('username')
       GoalsFactory.getLog(username)
-        .then(function(data) {
+        .then(function (data) {
           $scope.goalsData = data.data.data
           console.log($scope.goalsData)
         })
@@ -125,7 +125,7 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.goalPercentage = function (current, max) {
-      return Math.floor(current/max * 100)
+      return Math.floor(current / max * 100)
     }
 
     $scope.goalOverdue = function (input) {
@@ -133,11 +133,10 @@ angular.module('myApp.dashboard', [])
       console.log(new Date() - new Date(input) < 0)
       return new Date() - new Date(input) > 0
     }
-    
+
     $scope.achieved = function (value, max) {
       return value === max
     }
 
     $scope.getGoals()
-
   })

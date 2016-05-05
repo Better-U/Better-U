@@ -13,9 +13,9 @@ router.use(Auth.ifAuthorized)
 
 router.get('/', function (req, res) {
   User.findUser(req.query.username)
-    .then(function(id) {
+    .then(function (id) {
       Goals.getLog(id[0].id)
-        .then(function(data) {
+        .then(function (data) {
           res.json({
             success: true,
             data: data
@@ -24,13 +24,13 @@ router.get('/', function (req, res) {
     })
 })
 
-router.post('/', function(req, res) {
+router.post('/', function (req, res) {
   console.log(req.body)
   User.findUser(req.body.username)
-    .then(function(id) {
+    .then(function (id) {
       console.log('id', id)
       Goals.postLog(req.body.type, req.body.date, req.body.intensity, req.body.category, req.body.value, req.body.measurement, id[0].id)
-        .then(function(data) {
+        .then(function (data) {
           res.json({
             success: true,
             data: data
@@ -39,15 +39,14 @@ router.post('/', function(req, res) {
     })
 })
 
-router.delete('/', function(req, res) {
+router.delete('/', function (req, res) {
   console.log('req.query', req.query)
   Goals.deleteLog(req.query.id)
-    .then(function(data) {
+    .then(function (data) {
       res.json({
         success: true,
         data: data
       })
-
     })
 })
 
