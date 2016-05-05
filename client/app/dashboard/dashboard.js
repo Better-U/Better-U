@@ -59,6 +59,7 @@ angular.module('myApp.dashboard', [])
       GoalsFactory.removeLog(id)
         .then(function(data) {
           console.log('successful delete', data)
+          // swal("Goal successfully removed!")
           $state.reload()
         })
     }
