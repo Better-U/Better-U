@@ -119,7 +119,7 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.goalPercentage = function (current, max) {
-      return current/max * 100
+      return Math.floor(current/max * 100)
     }
 
     $scope.goalOverdue = function (input) {
