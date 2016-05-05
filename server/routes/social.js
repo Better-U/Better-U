@@ -17,12 +17,20 @@ io.on('connection', function (socket) {
   })
 
   socket.on('joinRoom', function (data) {
-    socket.join('' + 10)
     console.log('room is joined')
     helpers.checkRoomNumber(data.username1, data.username2)
-    io.to(''+ 10).emit('message', {hello: "hello everyone"})
+      .then(function (number) {
+        socket.join('' + number)
+        socket.emit('roomNumber', {roomNumber: number})
+      })
   })
 
+  socket.on('listChats', function(username){
+    helpers.listChats(username)
+      .then(function(data){
+        socket.emit('listChats', data)
+      })
+  })
   socket.on('send:message', function (data) {
     socket.broadcast.emit('send:message', data)
   })

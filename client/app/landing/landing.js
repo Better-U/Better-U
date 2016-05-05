@@ -8,7 +8,7 @@ angular.module('myApp.landing', [])
     }
 
     $scope.animationsEnabled = true
-    
+
     $scope.signup = function () {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,

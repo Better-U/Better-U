@@ -6,7 +6,7 @@ angular.module('myApp.dashboard', [])
     $rootScope.signout = function () {
       $scope.signout()
     }
-    
+
     var user = $cookies.get('username')
 
     $scope.goalsData = null
@@ -125,7 +125,7 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.goalPercentage = function (current, max) {
-      return Math.floor(current/max * 100)
+      return Math.floor(current / max * 100)
     }
 
     $scope.goalOverdue = function (input) {

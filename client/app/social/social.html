@@ -11,6 +11,13 @@
 	    <button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
 	  </div>
 </div>
+<br>
+<br>
+<div ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div>
+<div ng-repeat="chat in chatList">
+<button ng-click="joinRoom(chat.username)">Join {{chat.username}}!</button>
+</div>
+<button ng-click='press()'>RANDOM BUTTON</button>
 <div>
     <ul ng-repeat="message in messages" id="messages" >
     	<li>{{message.username}}: {{message.message}}</li>

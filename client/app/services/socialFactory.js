@@ -12,7 +12,7 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
       return $http.post('/api/social/findPeople', {zipcode: zipcode})
     }
     function newChat (username1, username2) {
-      console.log("newchatFacotyr being called")
+      console.log('newchatFacotyr being called')
       return new Promise(function (resolve) {
         $http.post('/api/social/newChat', {username1: username1, username2: username2})
           .then(function (data) {

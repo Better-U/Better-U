@@ -4,7 +4,7 @@ angular.module('myApp.chatModule', ['myApp.socialFactoryModule'])
     $scope.messages = []
     $scope.name = $cookies.get('username')
 
-    socket.emit('joinRoom', {username1: 'arm', username2: 'eric'})
+    socket.emit('joinRoom', {username1: 'arm', username2: 'pikachu123'})
     socket.on('message', function (data) {
       console.log('message received hopefully from room 10', message)
     })
