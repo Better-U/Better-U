@@ -2,13 +2,13 @@
     <h1>Goals</h1>
         <div>
             <label for="goals">Select a Goal:</label>
-            <select name="goals" id="goals" ng-model='goal.type'>
+            <select name="goals" id="goals" ng-model='goal.type' class="goalsDropdown">
                 <option value="" selected disabled>Goal Type</option>
                 <option value="cardio">Cardio</option>
                 <option value="strength">Strength</option>
                 <option value="nutrition">Nutrition</option>
             </select>
-            <button ng-click="selectGoal(goal.type)">Submit</button>
+            <button ng-click="selectGoal(goal.type)" class="btn btn-default">Submit</button>
         </div>
 
         <!-- IF CARDIO SELECTED -->
