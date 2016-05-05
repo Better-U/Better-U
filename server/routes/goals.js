@@ -12,19 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 router.use(Auth.ifAuthorized)
 
-<<<<<<< Updated upstream
 router.get('/', function (req, res) {
   User.findUser(req.query.username)
     .then(function(id) {
       Goals.getLog(id[0].id)
-=======
-router.post('/cardio', function(req, res) {
-  console.log(req.body)
-  User.findUser(req.body.username)
-    .then(function(id) {
-      console.log('id', id)
-      Goals.postLog(req.body.type, req.body.date, req.body.intensity, req.body.category, req.body.value, req.body.measurement, id[0].id)
->>>>>>> Stashed changes
         .then(function(data) {
           res.json({
             success: true,
