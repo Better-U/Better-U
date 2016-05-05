@@ -8,29 +8,20 @@ Social.getUsersInZip = function (zipcode) {
   return db('user').where({zipcode: zipcode}).select('username')
 }
 
-Social.makeChatRoom = function(username1, username2){
-	return new Promise(function(resolve){
-		db('user').where({username: username1}).orWhere({username: username2}).select('id')
-	  .then(function(data1){
-	  	console.log(data1, "data1")
-	  	db('userRooms').where({userID: data1[0].id}).orWhere({userID: data1[1].id}).select('roomID')
-	  	  .then(function(rooms){
-	  	  	if (rooms.length === 0){
-				db('chatRooms').insert({message: JSON.stringify([])})
-				  .then(function(data2){
-				  	  db('userRooms').insert({roomID: data2[0], userID: data1[0].id}, {roomID: data2[0], userID: data1[1].id})
-				  	    .then(function(){
-				  	    	resolve(data2[0])
-				  	    })
-				  })
-	  	  		
-	  	  	} else {
-	  	  		resolve(false)
-	  	  	}
-	  	  })
+Social.makeChatRoom = function (username1, username2) {
+  return new Promise(function (resolve) {
+    db('user').where({username: username1}).orWhere({username: username2}).select('id')
+      .then(function (data1) {
+        console.log(data1, 'data1')
+              db('chatRooms').insert({message: JSON.stringify([])})
+                .then(function (data2) {
+                  db('userRooms').insert({roomID: data2[0], userID: data1[0].id}, {roomID: data2[0], userID: data1[1].id})
+                    .then(function () {
+                      resolve(data2[0])
+                    })
+                })
+          })
+      })
+  }
 
-	})
-	})
-
-}
 module.exports = Social

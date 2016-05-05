@@ -16,19 +16,19 @@ angular.module('myApp.signin', [])
       if ($scope.user.name === null || $scope.user.password === null) {
         $scope.noInput = true
       } else {
-      authFactory.signIn($scope.user.name, $scope.user.password)
-        .then(function (data) {
-          console.log(data.data.success)
-          if (!data.data.success) {
-            $state.reload()
-            $scope.userDoesNotExist = true
-          } else {
-            $uibModalInstance.dismiss('cancel')
-            $cookies.put('token', data.data.token)
-            $cookies.put('username', data.config.data.username)
-            $state.go('dashboard')
-          }
-        })
+        authFactory.signIn($scope.user.name, $scope.user.password)
+          .then(function (data) {
+            console.log(data.data.success)
+            if (!data.data.success) {
+              $state.reload()
+              $scope.userDoesNotExist = true
+            } else {
+              $uibModalInstance.dismiss('cancel')
+              $cookies.put('token', data.data.token)
+              $cookies.put('username', data.config.data.username)
+              $state.go('dashboard')
+            }
+          })
       }
     }
 

@@ -65,7 +65,7 @@ angular.module('factories', [])
     //     request.headers = request.headers || {}
     //     request.headers['x-access-token'] = token
     //   }
-    //   return token;
+    //   return token
     // }
 
     return {
@@ -181,8 +181,6 @@ angular.module('factories', [])
   })
 
   .factory('GoalsFactory', function ($http) {
-
-
     function postLog (type, data, intensity, category, value, measurement, username) {
       var plugin = {
         type: type,

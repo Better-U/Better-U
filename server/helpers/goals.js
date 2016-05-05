@@ -31,3 +31,4 @@ Goals.updateValue = function (id, currentValue) {
 }
 
 module.exports = Goals
+

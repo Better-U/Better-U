@@ -1,5 +1,5 @@
 angular.module('myApp.cardio', ['factories'])
-.controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies) {
+  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies) {
     var user = $cookies.get('username')
     console.log('this is username: ', $cookies.get('username'))
 

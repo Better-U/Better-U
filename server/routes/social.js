@@ -8,51 +8,58 @@ var bodyParser = require('body-parser')
 var io = require('../common.js').io
 
 io.on('connection', function (socket) {
-  var newRoomNumber;
-  // var name = userNames.getGuestName();
-console.log('socket connection!')
+  var newRoomNumber
+  // var name = userNames.getGuestName()
+  console.log('socket connection!')
   // send the new user their name and a list of users
   socket.emit('init', {
-    name: "Eric"
-  });
-
+    name: 'Eric'
+  })
+  socket.on('joinRoom', function(data){
+    var room = data.room.toString();
+    socket.join(room)
+    socket.to(room).emit('roomMessage', {hello: "hello everyone"})
+  })
   // notify other clients that a new user has joined
   // socket.broadcast.emit('user:join', {
   //   name: name
-  // });
-  
+  // })
+
   // // broadcast a user's message to other users
   socket.on('send:message', function (data) {
     socket.broadcast.emit('send:message', data)
-  });
+  })
 
+  socket.on('theMessage', function(data){
+    console.log(data);
+  })
   // validate a user's name change, and broadcast it on success
   socket.on('change:name', function (data, fn) {
     if (userNames.claim(data.name)) {
-      var oldName = name;
-      userNames.free(oldName);
+      var oldName = name
+      userNames.free(oldName)
 
-      name = data.name;
+      name = data.name
 
       socket.broadcast.emit('change:name', {
         oldName: oldName,
         newName: name
-      });
+      })
 
-      fn(true);
+      fn(true)
     } else {
-      fn(false);
+      fn(false)
     }
-  });
-
-  // clean up when a user leaves, and broadcast it to other users
-  socket.on('disconnect', function () {
-    socket.broadcast.emit('user:left', {
-      name: name
-    });
-    userNames.free(name);
-  });
+  })
 })
+// clean up when a user leaves, and broadcast it to other users
+//   socket.on('disconnect', function () {
+//     socket.broadcast.emit('user:left', {
+//       name: name
+//     })
+//     userNames.free(name)
+//   })
+// })
 
 // var nsp = io.of('/pee')
 // nsp.on('connection',function(socket){
@@ -68,18 +75,19 @@ console.log('socket connection!')
 //   })
 // })
 
-router.post('/newChat', function(req, res){
-  console.log("new chat API request received")
+router.post('/newChat', function (req, res) {
+  console.log('new chat API request received')
   helpers.makeChatRoom(req.body.username1, req.body.username2)
-    .then(function(roomNumber){
+    .then(function (roomNumber) {
       console.log(roomNumber)
-      if (roomNumber){
+      if (roomNumber) {
         newRoomNumber = roomNumber
+        res.send({roomNumber: newRoomNumber})
+
         socket.join('' + newRoomNumber)
-      res.send(roomNumber)
-    } else {
-      res.send("You already have a chat with this user")
-    }
+      } else {
+        res.send('You already have a chat with this user')
+      }
     })
 })
 router.post('/updateZip', function (req, res) {
@@ -95,4 +103,5 @@ router.post('/findPeople', function (req, res) {
       res.send(data)
     })
 })
+
 module.exports = router

@@ -4,15 +4,15 @@ angular.module('myApp.profile', ['factories'])
     $scope.init = function () {
       console.log('inside getProfile')
       profileFactory.getProfile($cookies.get('username'))
-      .then(function (data) {
-        console.log('data inside profileFactory.getProfile =', data.data[0])
-        $scope.display = data.data[0]
-        $scope.prof = {activity: data.data[0].activitylvl,
-                       gym: data.data[0].gym
-                      }
-        console.log('scope interest', $scope.display.interest)
-        $scope.prof.interest = $scope.display.interest
-      })
+        .then(function (data) {
+          console.log('data inside profileFactory.getProfile =', data.data[0])
+          $scope.display = data.data[0]
+          $scope.prof = {activity: data.data[0].activitylvl,
+            gym: data.data[0].gym
+          }
+          console.log('scope interest', $scope.display.interest)
+          $scope.prof.interest = $scope.display.interest
+        })
     }
     $scope.submitProfile = function () {
       console.log('submitted')

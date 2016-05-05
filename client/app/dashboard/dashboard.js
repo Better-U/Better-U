@@ -100,7 +100,7 @@ angular.module('myApp.dashboard', [])
     $scope.removeLog = function (id) {
       console.log(id)
       GoalsFactory.removeLog(id)
-        .then(function(data) {
+        .then(function (data) {
           console.log('successful delete', data)
           // swal("Goal successfully removed!")
           $state.reload()
@@ -110,7 +110,7 @@ angular.module('myApp.dashboard', [])
     $scope.getGoals = function () {
       var username = $cookies.get('username')
       GoalsFactory.getLog(username)
-        .then(function(data) {
+        .then(function (data) {
           $scope.goalsData = data.data.data
           console.log($scope.goalsData)
         })
@@ -139,5 +139,4 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.getGoals()
-
   })

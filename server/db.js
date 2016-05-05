@@ -91,17 +91,17 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   console.log('cardio_record table created')
 })
 
-knex.schema.createTableIfNotExists('chatRooms', function(room){
+knex.schema.createTableIfNotExists('chatRooms', function (room) {
   room.increments('id').primary()
   room.json('message')
-}).then(function(){
+}).then(function () {
   console.log('chatRooms table created')
 })
 
-knex.schema.createTableIfNotExists('userRooms', function(room){
+knex.schema.createTableIfNotExists('userRooms', function (room) {
   room.integer('roomID').unsigned().references('id').inTable('chatRooms')
-  room.integer('userID').unsigned().references('id').inTable('user')
-}).then(function(){
+  room.integer('userID1').unsigned().references('id').inTable('user')
+}).then(function () {
   console.log('userRooms Created')
 })
 

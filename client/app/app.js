@@ -85,6 +85,7 @@ angular.module('myApp', ['myApp.signin',
         authenticate: true
       })
       .state('chatRoom', {
+        params: null,
         url: '/chatRoom',
         templateUrl: '/app/social/chat.html',
         controller: 'chatCtrl',
@@ -119,7 +120,7 @@ angular.module('myApp', ['myApp.signin',
       else if (requireLogin && !authFactory.isAuth()) {
         $cookies.remove('token')
         $cookies.remove('username')
-        event.preventDefault();
+        event.preventDefault()
         $state.go('landing')
       }
     })

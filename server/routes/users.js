@@ -15,19 +15,19 @@ router.post('/profile', function (req, res) {
   console.log('profile post received')
   console.log('req.body =', req.body)
   User.registerProfile(req.body.username, req.body.weight, req.body.bodyFat, req.body.activityLvl, req.body.interest, req.body.gym)
-  .then(function () {
-	res.send('profile updated')
-  })
+    .then(function () {
+      res.send('profile updated')
+    })
 })
 
 router.get('/profile', function (req, res) {
   console.log('inside get profile')
   console.log('req.query.id =', req.query.username)
   User.getProfileInfo(req.query.username)
-  .then(function (results) {
-    console.log('results after User.getProfile', results)
-    res.send(results)
-  })
+    .then(function (results) {
+      console.log('results after User.getProfile', results)
+      res.send(results)
+    })
 })
 
 module.exports = router

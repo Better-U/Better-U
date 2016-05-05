@@ -72,7 +72,7 @@ angular.module('myApp.strength', ['factories'])
     $scope.convert_feet = function (inches) {
       var feet = Math.floor(inches / 12)
       var inch = inches - feet * 12
-      var tall = feet + '\'' + inch
+      var tall = feet + "'" + inch
       return tall
     }
 
