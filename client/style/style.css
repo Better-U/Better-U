@@ -65,3 +65,7 @@ md-option {
     display: inline-block;
     font-size: 15.5px;
 }
+
+.achieved {
+    color: green;
+}
