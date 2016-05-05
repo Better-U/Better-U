@@ -123,7 +123,13 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.goalOverdue = function (input) {
+      console.log(new Date(input))
+      console.log(new Date() - new Date(input) < 0)
       return new Date() - new Date(input) > 0
+    }
+    
+    $scope.achieved = function (value, max) {
+      return value === max
     }
 
     $scope.getGoals()

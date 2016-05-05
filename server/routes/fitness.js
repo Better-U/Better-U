@@ -63,47 +63,43 @@ router.post('/cardioForm', function (req, res) {
         pace: req.body.pace,
         intensity: req.body.intensity
       }]
-      Goals.findLog(data[0].id, req.body.type)
-        .then(function(data) {
-          console.log(data)
-          var currentVal = data[0].currentValue
-          if (data[0].measurement === 'Miles') {
-            if (data[0].currentValue === null) {
-              currentVal = 0
-            }
-            currentVal += req.body.distance
-            db('goals').where({id: data[0].id}).update({currentValue: currentVal})
-              .then(function(data) {
-                db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
-                  .then(function (success) {
-                    if (success) {
-                      res.status(201).json({success: true})
-                    } else {
-                      res.status(404).json({success: false})
-                    }
-                  })
-              })
-          } else if (data[0].measurement === 'Minutes') {
-              if (data[0].currentValue === null) {
-                currentVal = 0
-              }
-              currentVal += req.body.distance
-              db('goals').where({id: data[0].id}).update({currentValue: currentVal})
-                .then(function(data) {
-                  db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
-                    .then(function (success) {
-                      if (success) {
-                        res.status(201).json({success: true})
-                      } else {
-                        res.status(404).json({success: false})
-                      }
+      db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
+        .then(function(info) {
+          console.log('cardioform', cardioForm[0])
+          Goals.findLog(cardioForm[0].user_id, cardioForm[0].type)
+            .then(function(data) {
+              for (var i = 0; i < data.length; i++) {
+                var currentVal = data[i].currentValue
+                if (data[i].measurement === 'Miles') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += Number(cardioForm[0].distance)
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function(data) {
+                      res.json({
+                        success: true,
+                        data: data
+                      })
                     })
-                })
-          }
-        })
-
+                } else if (data[i].measurement === 'Minutes') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += cardioForm[0].duration
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function(data) {
+                      res.json({
+                        success: true,
+                        data: data
+                      })
+                    })
+                 }
+               }
+            })
+         })
+       })
     })
-})
 
 router.post('/getCardio', function (req, res) {
   var user = req.body.username

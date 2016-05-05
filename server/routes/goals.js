@@ -9,7 +9,6 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
 router.use(Auth.ifAuthorized)
 
 router.get('/', function (req, res) {
@@ -24,7 +23,6 @@ router.get('/', function (req, res) {
         })
     })
 })
-
 
 router.post('/', function(req, res) {
   console.log(req.body)
@@ -41,7 +39,6 @@ router.post('/', function(req, res) {
     })
 })
 
-
 router.delete('/', function(req, res) {
   console.log('req.query', req.query)
   Goals.deleteLog(req.query.id)
@@ -53,6 +50,5 @@ router.delete('/', function(req, res) {
 
     })
 })
-
 
 module.exports = router

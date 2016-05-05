@@ -26,4 +26,8 @@ Goals.findLog = function (userid, type) {
   return db('goals').select('*').where({user_id: userid, category: type})
 }
 
+Goals.updateValue = function (id, currentValue) {
+  return db('goals').where({id: id}).update({currentValue: currentValue})
+}
+
 module.exports = Goals

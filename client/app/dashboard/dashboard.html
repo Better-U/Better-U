@@ -15,7 +15,7 @@
         <h3>Your Goals</h3>
         <div ng-repeat="goals in goalsData | orderBy:'-date'">
             <span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span>
-            <p class="inlineGoal" ng-class="{'overdue': goalOverdue('{{goals.date}}')}">
+            <p class="inlineGoal" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
                 By <strong>{{dateConverter(goals.date)}}:</strong> I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
             </p>
             <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
