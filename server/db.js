@@ -53,6 +53,7 @@ knex.schema.createTableIfNotExists('goals', function (goals) {
   goals.string('category', 50)
   goals.string('measurement', 50)
   goals.integer('value')
+  goals.integer('currentValue')
   goals.date('date')
 }).then(function () {
   console.log('goals table created')

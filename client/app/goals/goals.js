@@ -28,8 +28,8 @@ angular.module('myApp.goals', [])
     console.log('inside submit cardio username', username)
     GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
       .then(function(data) {
-        console.log('data submitted to database', data)
-        $state.go('dashboard')
+        swal("Cardio Goal Saved!", "Navigate to the Dashboard to see your logs!", "success")
+        $state.reload()
       })
   }
 
@@ -38,8 +38,8 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
-        $scope.added = true
-        console.log($scope.added)
+        swal("Strength Goal Saved!", "Navigate to the Dashboard to see your logs!", "success")
+        $state.reload()
       })
   }
 
@@ -48,7 +48,8 @@ angular.module('myApp.goals', [])
     GoalsFactory.postLog('nutrition', date, intensity, category, value, measurement, username)
       .then(function(data) {
         console.log('data submitted to database', data)
-        $state.go('dashboard')
+        swal("Nutrition Goal Saved!", "Navigate to the Dashboard to see your logs!", "success")
+        $state.reload()
       })
   }
 

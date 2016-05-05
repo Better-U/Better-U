@@ -24,6 +24,7 @@
     "angular-socket-io": "^0.7.0",
     "socket.io-client": "^1.4.6",
     "ngSocket": "^0.2.1",
-    "chartist": "^0.9.7"
+    "chartist": "^0.9.7",
+    "sweetalert": "^1.1.3"
   }
 }
