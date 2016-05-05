@@ -1,65 +1,111 @@
 <div class="container">
   <div>
-  <h1>Hello {{display.username}}!</h1>
-  <h3>Height: {{convert_feet(display.height)}}</h3>
-  <h3>Weight: {{display.weight}}</h3>
-  <h1>Your BMI is {{bmi(display.height,display.weight)}}</h1>
-  <h3>{{categorize(display.height, display.weight)}}</h3>
-  <form>
-    <div class="form-group">
-      <input type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date"><br>
-      <label>Activity</label>
-        <select ng-model="str.type">
-          <option value="Bench" selected="selected">Bench</option>
-          <option value="Squat">Squat</option>
-          <option value="Dumbbell Curls">Biceps Everyday</option>
-          <option value="Lat Pulldowns">Lat Pulldowns</option>
-          <option value="Shoulder Press">Shoulder Press</option>
-          <option value="Clean & Jerk">Clean & Jerk</option>
-          <option value="Snatch">Snatch</option>
-        </select><br>
-      <label>Weight (lbs)</label>
-      <input type="number" class="dropdown" min="45" max="5000" ng-model="str.weight"><br>
-      <label>Repetitions</label>
-      <input type="number" class="dropdown" min="0" max="200" ng-model="str.reps"><br>
-      <label>Sets</label>
-      <input type="number" class="dropdown" min="0" max="500" ng-model="str.sets"><br>
-      <label>Intensity (1-5)</label>
-      <input type="number" class="dropdown" min="1" max="5" ng-model="str.intensity"><br>
-      <label>Duration (minutes)</label>
-      <input type="number" class="dropdown" min="0" max="300" ng-model="str.duration">
-      <button type="submit" ng-click="submitStrength()" class="btn btn-danger btn-lg">Submit!</button>
+    <!-- User Information Display -->
+    <div ng-if="display.username">
+      <h1>Hello {{display.username}}!</h1>
+      <h3>Height: {{convert_feet(display.height)}}</h3>
+      <h3>Weight: {{display.weight}}</h3>
     </div>
-  </form>
+    
 
-  <h1>Activity Log</h1>
-<!--   <div class="ct-chart ct-golden-section" id="chart1"></div>
-  <div class="ct-chart ct-golden-section" id="chart2"></div> -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Activity</th>
-        <th>Weight</th>
-        <th>Reps</th>
-        <th>Sets</th>
-        <th>One rep max</th>
-        <th>Intensity</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="str in strengthList | orderBy:'date':true">
-        <td>{{str.date | date: "MM-dd-yyyy"}}</td>
-        <td>{{str.type}}</td>
-        <td>{{str.weight}}</td>
-        <td>{{str.reps}}</td>
-        <td>{{str.sets}}</td>
-        <td>{{onerepmax(str.weight, str.reps)}}</td>
-        <td>{{str.intensity}}</td>
-        <td>{{str.duration}}</td>
-      </tr>
-    </tbody>  
-  </table>
+
+   <div class="btn-group">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+       <span data-bind="label">Select One</span>&nbsp;<span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu" role="menu">
+       <li><a href="#">Item 1</a></li>
+       <li><a href="#">Another item</a></li>
+       <li><a href="#">This is a longer item that will not fit properly</a></li>
+     </ul>
+   </div>
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+  </div>
+  
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+    </ul>
+  </div>
+    <!-- Input Form -->
+    <div>
+      <form>
+        <div class="form-group">
+          <input type="date" min="2014-01-01" max="2020-12-31" ng-model="str.date" placeholder="date"><br>
+          <label>Activity</label>
+          <select ng-model="str.type">
+            <option value = "" disabled>---Please select---</option>
+            <option value="Bench">Bench</option>
+            <option value="Squat">Squat</option>
+            <option value="Dumbbell Curls">Biceps Everyday</option>
+            <option value="Lat Pulldowns">Lat Pulldowns</option>
+            <option value="Shoulder Press">Shoulder Press</option>
+            <option value="Clean & Jerk">Clean & Jerk</option>
+            <option value="Snatch">Snatch</option>
+          </select><br>
+          <label>Weight (lbs)</label>
+          <input type="number" class="dropdown" min="45" max="5000" ng-model="str.weight"><br>
+          <label>Repetitions</label>
+          <input type="number" class="dropdown" min="0" max="200" ng-model="str.reps"><br>
+          <label>Sets</label>
+          <input type="number" class="dropdown" min="0" max="500" ng-model="str.sets"><br>
+          <label>Intensity (1-5)</label>
+          <input type="number" class="dropdown" min="1" max="5" ng-model="str.intensity"><br>
+          <label>Duration (minutes)</label>
+          <input type="number" class="dropdown" min="0" max="300" ng-model="str.duration">
+          <button type="submit" ng-click="submitStrength()" class="btn btn-danger btn-lg">Submit!</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Charts & Graphs -->
+    <div class="ct-chart" id="chart1"></div>
+    <div class="ct-chart" id="chart2"></div>
+    
+    <!-- Activity Table Logs -->
+    <div>
+      <h1>Activity Log</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Activity</th>
+            <th>Weight</th>
+            <th>Reps</th>
+            <th>Sets</th>
+            <th>One rep max</th>
+            <th>Intensity</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody ng-if="strengthList">
+          <tr ng-repeat="str in strengthList | orderBy:'date':true">
+            <td>{{str.date | date: "MM-dd-yyyy"}}</td>
+            <td>{{str.type}}</td>
+            <td>{{str.weight}}</td>
+            <td>{{str.reps}}</td>
+            <td>{{str.sets}}</td>
+            <td>{{onerepmax(str.weight, str.reps)}}</td>
+            <td>{{str.intensity}}</td>
+            <td>{{str.duration}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
