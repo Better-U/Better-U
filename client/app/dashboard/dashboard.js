@@ -40,7 +40,6 @@ angular.module('myApp.dashboard', [])
         }
       } else if (gender == 1) {
         var femaleBMR = 655.1 + (4.35 * numWeight) + (4.7 * numHeight) - (4.7 * numAge)
-        console.log('this is femaleBMR: ', femaleBMR)
         if (activity === 'sendentary') {
           total = (femaleBMR * 1.2).toFixed(2)
         } else if (activity === 'light') {
@@ -52,6 +51,12 @@ angular.module('myApp.dashboard', [])
         }
       }
       return total
+    }
+
+    $scope.userBMR = function (gender, age, weight, height) {
+      var uAge = Number(age)
+      var uWeight = Number(weight)
+      var uRight = Number()
     }
 
     $scope.removeLog = function (id) {
