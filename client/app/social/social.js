@@ -3,7 +3,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.savedAddress
     $scope.user = $cookies.get('username')
     $scope.sendCity = function () {
-      socialFactory.updateZip($scope.user, $scope.address)
+      socialFactory.updateZip($scope.user,	 $scope.address)
         .then(function () {
           $scope.savedAddress = $scope.address
           console.log('zipcode successfully updated')
@@ -23,6 +23,10 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
 
     $scope.chatWithUser = function (username) {
       console.log(username)
+      socialFactory.newChat($scope.user, username)
+        .then(function(data){
+        	console.log(data)
+        })
       $state.go('chatRoom')
     }
   })

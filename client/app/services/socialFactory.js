@@ -10,10 +10,13 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
     function findPeople (zipcode) {
       return $http.post('/api/social/findPeople', {zipcode: zipcode})
     }
-
+    function newChat(username1, username2){
+      return $http.post('/api/social/newChat', {username1: username1, username2: username2})
+    }
     return {
       updateZip: updateZip,
-      findPeople: findPeople
+      findPeople: findPeople,
+      newChat: newChat
     }
   })
   .factory('socket', function ($rootScope) {

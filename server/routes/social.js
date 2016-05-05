@@ -8,58 +8,80 @@ var bodyParser = require('body-parser')
 var io = require('../common.js').io
 
 io.on('connection', function (socket) {
+  var newRoomNumber;
   // var name = userNames.getGuestName();
 console.log('socket connection!')
   // send the new user their name and a list of users
   socket.emit('init', {
-    name: "Eric",
-    users: "pizza"
+    name: "Eric"
   });
 
   // notify other clients that a new user has joined
   // socket.broadcast.emit('user:join', {
   //   name: name
   // });
-
+  
   // // broadcast a user's message to other users
   socket.on('send:message', function (data) {
     socket.broadcast.emit('send:message', data)
   });
 
-  // // validate a user's name change, and broadcast it on success
-  // socket.on('change:name', function (data, fn) {
-  //   if (userNames.claim(data.name)) {
-  //     var oldName = name;
-  //     userNames.free(oldName);
+  // validate a user's name change, and broadcast it on success
+  socket.on('change:name', function (data, fn) {
+    if (userNames.claim(data.name)) {
+      var oldName = name;
+      userNames.free(oldName);
 
-  //     name = data.name;
+      name = data.name;
 
-  //     socket.broadcast.emit('change:name', {
-  //       oldName: oldName,
-  //       newName: name
-  //     });
+      socket.broadcast.emit('change:name', {
+        oldName: oldName,
+        newName: name
+      });
 
-  //     fn(true);
-  //   } else {
-  //     fn(false);
-  //   }
-  // });
+      fn(true);
+    } else {
+      fn(false);
+    }
+  });
 
-  // // clean up when a user leaves, and broadcast it to other users
-  // socket.on('disconnect', function () {
-  //   socket.broadcast.emit('user:left', {
-  //     name: name
-  //   });
-  //   userNames.free(name);
-  // });
+  // clean up when a user leaves, and broadcast it to other users
+  socket.on('disconnect', function () {
+    socket.broadcast.emit('user:left', {
+      name: name
+    });
+    userNames.free(name);
+  });
 })
 
-var nsp = io.of('/pee')
-nsp.on('connection',function(socket){
-  console.log('hello')
-  nsp.emit("hi", "sup")
-})
+// var nsp = io.of('/pee')
+// nsp.on('connection',function(socket){
+//   console.log('hello')
+//   nsp.emit("hi", "sup")
+// socket.on('message', function(){
+//     console.log("herro message")
+//     helpers.makeChatRoom("janeiffer", "eric")
+//       .then(function(data){
+//         console.log(data)
+//       })
 
+//   })
+// })
+
+router.post('/newChat', function(req, res){
+  console.log("new chat API request received")
+  helpers.makeChatRoom(req.body.username1, req.body.username2)
+    .then(function(roomNumber){
+      console.log(roomNumber)
+      if (roomNumber){
+        newRoomNumber = roomNumber
+        socket.join('' + newRoomNumber)
+      res.send(roomNumber)
+    } else {
+      res.send("You already have a chat with this user")
+    }
+    })
+})
 router.post('/updateZip', function (req, res) {
   helpers.updateAddress(req.body.username, req.body.zipcode)
     .then(function () {
