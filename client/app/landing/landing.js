@@ -1,13 +1,14 @@
 angular.module('myApp.landing', [])
-  .controller('LandingCtrl', function ($scope, $state, $uibModal) {
-    $scope.items = [1, 2, 3]
-
-    $scope.animationsEnabled = true
-
-    $scope.signin = function () {
-      $state.go('signin')
+  .controller('LandingCtrl', function ($rootScope, $scope, $state, $uibModal, $cookies) {
+    $rootScope.hideit = true
+    $rootScope.landing = true
+    $rootScope.loggedIn = $cookies.get('token')
+    $rootScope.signin = function () {
+      $scope.signin()
     }
 
+    $scope.animationsEnabled = true
+    
     $scope.signup = function () {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
