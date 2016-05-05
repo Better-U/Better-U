@@ -1,3 +1,8 @@
+#searchResults {
+  height: 330px;
+  border: 1px solid black;
+  overflow: auto;
+}
 fieldset {
   width: relative;
 }
