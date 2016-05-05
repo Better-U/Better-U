@@ -24,7 +24,6 @@ angular.module('myApp.strength', ['factories'])
           console.log($scope.strengthList)
         })
     }
-
     const calc_duration = function (arr) {
       var duration = []
       for (var i = 0; i < arr.length; i++) {
