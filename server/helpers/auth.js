@@ -9,15 +9,16 @@ auth.Decode = function (token) {
   return jwt.decode(token)
 }
 
-auth.genToken = function (userDetails) {
-  return jwt.sign({id: userDetails.id, username: userDetails.username}, secret, { expiresIn: 50000 })
+
+auth.genToken = function(userDetails) {
+  return jwt.sign({id: userDetails.id, username: userDetails.username}, secret, { expiresIn: 60000 })
 }
 
 auth.ifAuthorized = function (req, res, next) {
   var token = req.headers.token
 
   if (token) {
-    jwt.verify(token, secret, function (err, decoded) {
+    jwt.verify(token, secret, function (err) {
       if (err) {
         console.log('err')
         unauthorized(res)

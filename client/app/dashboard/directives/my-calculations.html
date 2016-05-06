@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-4">
+            <span class="calcHeader">
+                Body Mass Index (BMI)
+            </span>
+        <br>
+            <span class="calcNumber">
+                {{userBMI(dash.height, dash.weight)}}
+            </span>
+        <br>
+            <span class="calcNotice">
+               {{categorize(dash.height, dash.weight)}}
+            </span>
+    </div>
+
+    <div class="col-md-4">
+            <span class="calcHeader">
+                Basal Metabolic Rate (BMR)
+            </span>
+        <br>
+            <span class="calcNumber">
+                {{userBMR(dash.gender, dash.age, dash.weight, dash.height)}}
+            </span>
+    </div>
+    <div class="col-md-4">
+            <span class="calcHeader">
+                Calorie Burn
+            </span>
+        <br>
+            <span class="calcNumber">
+                {{calorieBurn(dash.gender, dash.age, dash.weight, dash.height, dash.activitylvl)}}
+            </span>
+            <span class="calcNotice">
+                Based on the Harris Benedict Method
+            </span>
+    </div>
+</div>

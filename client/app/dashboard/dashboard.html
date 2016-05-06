@@ -1,25 +1,18 @@
 <div>
-    <h1>Dashboard</h1>
-    <button ng-click="signout()">Log Out</button>
-    <button ng-click="test()">Test</button>
-
-    <div class="row">
-        <div class="col-md-4"><h3>BMI: {{userBMI(dash.height, dash.weight)}}</h3>
-        {{categorize(dash.height, dash.weight)}}</div>
-        <div class="col-md-4"><h3>BMR: {{userBMR(dash.gender, dash.age, dash.weight, dash.height)}}</h3></div>
-        <div class="col-md-4"><h3>Calorie Burn: {{calorieBurn(dash.gender, dash.age, dash.weight, dash.height, dash.activitylvl)}}</h3>
-        based on the Harris Benedict Method <br></div>
-        <h3></h3>
+    <div class="welcome">
+        <span>Hello {{username}}!</span>
     </div>
+
     <div>
-        <h3>Your Goals</h3>
-        <div ng-repeat="goals in goalsData | orderBy:'-date'">
-            <span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span>
-            <p class="inlineGoal" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
-                By <strong>{{dateConverter(goals.date)}}:</strong> I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
-            </p>
-            <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
-        </div>
+        <my-calculations></my-calculations>
+    </div>
+
+    <div>
+        <my-goals></my-goals>
+    </div>
+
+    <div>
+        <nutrition-graphs></nutrition-graphs>
     </div>
 
 </div>

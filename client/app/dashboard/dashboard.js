@@ -1,6 +1,7 @@
 angular.module('myApp.dashboard', [])
 
   .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory) {
+    $scope.username = $cookies.get('username')
     $rootScope.hideit = false
     $rootScope.landing = false
     $rootScope.signout = function () {
@@ -138,5 +139,46 @@ angular.module('myApp.dashboard', [])
       return value === max
     }
 
+    var data = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      series: [
+        [5, 2, 4, 2, 7]
+      ]
+    };
+
+// In the global name space Chartist we call the Bar function to initialize a bar chart. As a first parameter we pass in a selector where we would like to get our chart created and as a second parameter we pass our data object.
+    $scope.createChart = function () {
+      // new Chartist.Line('.ct-chart', data)
+
+      new Chartist.Bar('#ct1', data);
+      new Chartist.Pie('#ct2', {
+        series: [80, 10, 30, 40]
+      }, {
+        chartPadding: 30,
+        labelOffset: 50,
+        labelDirection: 'explode'
+      });
+    }
+    $scope.createChart()
     $scope.getGoals()
+  })
+
+  .directive('myGoals', function () {
+  return {
+    templateUrl: 'app/dashboard/directives/my-goals.html',
+    controller: 'DashboardCtrl'
+  }
+})
+  .directive('nutritionGraphs', function () {
+  return {
+    templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
+    controller: 'DashboardCtrl'
+  }
+})
+
+  .directive('myCalculations', function () {
+    return {
+      templateUrl: 'app/dashboard/directives/my-calculations.html',
+      controller: 'DashboardCtrl'
+    }
   })

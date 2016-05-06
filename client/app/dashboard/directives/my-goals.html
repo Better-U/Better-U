@@ -1,0 +1,18 @@
+<div class="dashboardHeader goalsTable">
+    <h2>Your Goals</h2>
+    <span ng-if="goalsData.length === 0">You do not have any goals at this moment.</span>
+    <table>
+        <tbody>
+        <tr ng-repeat="goals in goalsData | orderBy:'date'">
+            <td class="goalsDelete"><span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span></td>
+            <td>
+                <p class="inlineGoal" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
+                    By <strong>{{dateConverter(goals.date)}}:</strong> I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
+                </p>
+                <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

@@ -6,6 +6,7 @@ angular.module('myApp.signup', ['factories'])
     $scope.animationsEnabled = true
     $scope.next = false
     $scope.profileButton = false
+    $scope.noUserDetail = false
 
     $scope.user = {
       name: null,
@@ -19,21 +20,22 @@ angular.module('myApp.signup', ['factories'])
     }
 
     $scope.submit = function () {
-      console.log('inside submit')
-      console.log('user gym other', $scope.user.gym)
-      $uibModalInstance.dismiss('cancel')
-      authFactory.registerProfileDetails($scope.user.name, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.interest, $scope.user.gym)
-        .then(function (data) {
-          $cookies.put('token', data.data.token)
-          $cookies.put('username', data.config.data.username)
-          $state.go('dashboard')
-        })
+      console.log('userdetails submitted', $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender)
+      if (!$scope.user.age || !$scope.user.height || !$scope.user.weight || !$scope.user.gender) {
+        console.log('Form not complete')
+      } else {
+        $uibModalInstance.dismiss('cancel')
+        authFactory.registerProfileDetails($scope.user.name, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.interest, $scope.user.gym)
+          .then(function (data) {
+            $cookies.put('token', data.data.token)
+            $cookies.put('username', data.config.data.username)
+            $state.go('dashboard')
+          })
+
+      }
+
     }
 
-    $scope.ok = function () {
-      $uibModalInstance.close($scope.selected.item)
-    // $state.go('registerProfile')
-    }
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel')
@@ -46,12 +48,15 @@ angular.module('myApp.signup', ['factories'])
             $scope.alreadyExists = data.data.exists
             if ($scope.alreadyExists) {
               console.log('inside here')
+              $scope.noUserDetail = false
               $scope.userExistError = true
             } else {
               $scope.next = true
               $scope.profileButton = true
             }
           })
+      } else {
+        $scope.noUserDetail = true
       }
     }
 
@@ -60,18 +65,7 @@ angular.module('myApp.signup', ['factories'])
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signin/signin.html',
-        controller: 'SigninCtrl',
-        resolve: {
-          items: function () {
-            return $scope.items
-          }
-        }
-      })
-
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem
-      }, function () {
-        console.log('hi')
+        controller: 'SigninCtrl'
       })
     }
   })
