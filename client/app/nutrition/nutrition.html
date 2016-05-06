@@ -56,4 +56,34 @@
       <input type='submit' value='Log Food' ng-click='submitFoodLog()'/>
     </form>
 
+   Food Log:
+    <table class="table table-striped">
+      <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Time</th>
+        <th>Serving</th>
+        <th>Calories</th>
+        <th>Carbs (g)</th>
+        <th>Fat (g)</th>
+        <th>Fiber (g)</th>
+        <th>Sodium (mg)</th>
+        <th>Protein (g)</th>
+        <th>Water (cups)</th>
+      </tr>
+      <tr ng-repeat="food in foodData | orderBy:'date':true">
+        <td>{{food.date | date: "MM-dd-yyyy"}}</td>
+        <td>{{food.name}}</td>
+        <td>{{food.time}}</td>
+        <td>{{food.serving}}</td>
+        <td>{{food.cal}}</td>
+        <td>{{food.carbs}}</td>
+        <td>{{food.fat}}</td>
+        <td>{{food.fiber}}</td>
+        <td>{{food.sodium}}</td>
+        <td>{{food.protein}}</td>
+        <td>{{food.water}}</td>
+      </tr>
+    </table>
+
 </div>

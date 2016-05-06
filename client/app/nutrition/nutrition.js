@@ -1,12 +1,15 @@
 angular.module('myApp.nutrition', ['factories'])
 
-  .controller('NutritionCtrl', function ($http, $scope, nutritionFactory, $cookies) {
+  .controller('NutritionCtrl', function ($state, $http, $scope, nutritionFactory, $cookies) {
+    var user = $cookies.get('username')
     $scope.food = {query: '', results: []}
+    $scope.foodData = null
     $scope.submitFoodLog = function () {
       console.log('inside foodlog')
       nutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.log.date, $scope.log.time, $scope.log.serving, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
         .then(function (data) {
           console.log('data inside submitFoodLog', data)
+          $state.reload()
         })
     }
 
@@ -34,4 +37,14 @@ angular.module('myApp.nutrition', ['factories'])
                      }
       })
     }
+
+    $scope.getFoodLog = function (user) {
+      nutritionFactory.getFoodLog(user)
+      .then(function (data) {
+        console.log('data is', data)
+        $scope.foodData = data.data
+      })
+    }
+
+    $scope.getFoodLog(user)
   })
