@@ -6,7 +6,6 @@ angular.module('myApp.strength', ['factories'])
     }
 
     $scope.today()
-
     $scope.format = 'dd-MMMM-yyyy'
 
     $scope.open1 = function () {
@@ -44,6 +43,11 @@ angular.module('myApp.strength', ['factories'])
       strengthFactory.getStrength($scope.user)
         .then(function (data) {
           $scope.strengthList = data.data
+
+          // reset $scope array values
+          $scope.c1_data = {labels: [], series: [[]]}
+          $scope.c2_data = {labels: [], series: []}
+
           c1_duration_date(data.data)
           c2_activity_type(data.data)
         })
@@ -52,33 +56,33 @@ angular.module('myApp.strength', ['factories'])
         })
     }
 
-    const day_of_week = function (num) {
-      var day
-      switch (num) {
-        case 0:
-          day = 'Sunday'
-          break
-        case 1:
-          day = 'Monday'
-          break
-        case 2:
-          day = 'Tuesday'
-          break
-        case 3:
-          day = 'Wednesday'
-          break
-        case 4:
-          day = 'Thursday'
-          break
-        case 5:
-          day = 'Friday'
-          break
-        case 6:
-          day = 'Saturday'
-          break
-      }
-      return day
-    }
+    // const day_of_week = function (num) {
+    //   var day
+    //   switch (num) {
+    //     case 0:
+    //       day = 'Sunday'
+    //       break
+    //     case 1:
+    //       day = 'Monday'
+    //       break
+    //     case 2:
+    //       day = 'Tuesday'
+    //       break
+    //     case 3:
+    //       day = 'Wednesday'
+    //       break
+    //     case 4:
+    //       day = 'Thursday'
+    //       break
+    //     case 5:
+    //       day = 'Friday'
+    //       break
+    //     case 6:
+    //       day = 'Saturday'
+    //       break
+    //   }
+    //   return day
+    // }
 
     // Chart Graph 1 - X: Date Y: Duration at Gym
     const c1_duration_date = function (arr) {
@@ -89,14 +93,19 @@ angular.module('myApp.strength', ['factories'])
       for (var i = 0; i < arr.length; i++) {
         dateshort = arr[i].date
         var x = new Date(dateshort).getDay()
-        c1_obj[day_of_week(x)] = arr[i].duration
+        if (c1_obj[x] !== undefined) {
+          c1_obj[x] = c1_obj[x] + arr[i].duration
+        }
+        else {
+          c1_obj[x] = arr[i].duration
+        }
       }
-      console.log(c1_obj)
       // Setting the label and series to scope c1_data
       for (var k in c1_obj) {
-        $scope.c1_data.labels.push(k)
+        // $scope.c1_data.labels.push(k)
         $scope.c1_data.series[0].push(c1_obj[k])
       }
+      $scope.c1_data.labels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     }
 
     // Pie Chart 2 - Type of activities for entire data set
@@ -159,7 +168,7 @@ angular.module('myApp.strength', ['factories'])
     $scope.submitStrength = function () {
       strengthFactory.submitStrength(
         $scope.user,
-        $scope.dt,
+        $scope.str.date,
         $scope.str.type,
         $scope.str.sets,
         $scope.str.intensity,
