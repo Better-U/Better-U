@@ -7,40 +7,6 @@
       <h3>Weight: {{display.weight}}</h3>
     </div>
     
-
-
-   <div class="btn-group">
-     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-       <span data-bind="label">Select One</span>&nbsp;<span class="caret"></span>
-     </button>
-     <ul class="dropdown-menu" role="menu">
-       <li><a href="#">Item 1</a></li>
-       <li><a href="#">Another item</a></li>
-       <li><a href="#">This is a longer item that will not fit properly</a></li>
-     </ul>
-   </div>
-
-  <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-    </ul>
-  </div>
-  
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-      <li role="presentation" class="divider"></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-    </ul>
-  </div>
     <!-- Input Form -->
     <div>
       <form>
@@ -73,9 +39,13 @@
     </div>
 
     <!-- Charts & Graphs -->
-    <div class="ct-chart" id="chart1"></div>
-    <div class="ct-chart" id="chart2"></div>
-    
+    <div>
+      <Label>Workout Duration:</Label>
+      <div class="ct-chart" id="chart1"></div>
+      <Label>Activity Types:</Label>
+      <div class="ct-chart ct-slice-pie" id="chart2"></div>
+    </div>
+
     <!-- Activity Table Logs -->
     <div>
       <h1>Activity Log</h1>
