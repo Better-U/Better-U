@@ -1,16 +1,17 @@
 <div class="container" ng-controller='NutritionCtrl'>
   <h2>Search Food</h2>
-    <form name='searchNutrition' method='post' ng-submit='searchFoodDB(food.query)'>
-      <input type='search' name='query' placeholder='Search the database' ng-model='food.query' ng-change='searchFoodDB(food.query)'>
+    <form name='searchNutrition' method='post'>
+      <input type='text' name='query' placeholder='Search the database'  ng-model='asyncSelected' data-provide="typeahead" uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-loading='loadingResults'>
+      <i ng-show='loadingResults'></i>
       <input type='submit'>
     </form>
 
-    <h3>Results</h3>
+<!--     <h3>Results</h3>
     <div id='searchResults'>
-      <div ng-model='food.results' ng-repeat='(index,item) in food.results track by $index'>
+      <div  ng-repeat='(index,item) in food.results track by $index'>
         <a ng-click='getNutrition(item._id)'>{{item.fields.brand_name}}  {{item.fields.item_name}} / {{item.fields.nf_calories + ' calories'}}</a>
       </div>
-    </div>
+    </div> -->
 
 
   <h3>Food Log</h3>

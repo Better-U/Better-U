@@ -187,6 +187,7 @@ angular.module('factories', [])
 
     function searchFoodDB (query) {
       console.log('inside factory searchFoodDB')
+      console.log('query =', query)
       if (query !== '') {
         return $http.get('https://api.nutritionix.com/v1_1/search/' + query + '?results=0%3A50&fields=item_name,brand_name,nf_calories&appId=' + appID + '&appKey=' + appKey)
       }

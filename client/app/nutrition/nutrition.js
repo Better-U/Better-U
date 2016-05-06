@@ -10,11 +10,12 @@ angular.module('myApp.nutrition', ['factories'])
         })
     }
 
-    $scope.searchFoodDB = function () {
-      nutritionFactory.searchFoodDB($scope.food.query)
+    $scope.searchFoodDB = function (query) {
+      nutritionFactory.searchFoodDB(query)
       .then(function (data) {
         $scope.food.results = data.data.hits
         console.log('$scope.food.results =', $scope.food.results)
+        return $scope.food.results
       })
     }
 
