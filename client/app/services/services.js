@@ -37,7 +37,6 @@ angular.module('factories', [])
     }
 
     function parseJwt (token) {
-      console.log(token)
       var base64Url = token.split('.')[1]
       var base64 = base64Url.replace('-', '+').replace('_', '/')
       return JSON.parse(window.atob(base64))
@@ -51,6 +50,9 @@ angular.module('factories', [])
       var token = getToken()
       if (token) {
         var params = parseJwt(token)
+        console.log('exp ', params.exp)
+        console.log('time now?', Math.round(new Date().getTime()/1000))
+        console.log('token validated: ', Math.round(new Date().getTime() / 1000) <= params.exp)
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {
         console.error('No token found')

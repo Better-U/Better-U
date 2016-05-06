@@ -1,39 +1,64 @@
 <div id="strength">
-    <form>
-    <h2>Create Goals for Strength Exercise</h2>
-    <label for="date">Complete By:</label>
-    <input id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="strength.date" placeholder="date">
+    <div class="strengthHeader">
+        <h2>Strength Exercise Goal</h2>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="date" class="col-sm-4 control-label">Complete By:</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="strength.date" placeholder="date" required>
+            </div>
+        </div>
 
-    <select name="intensity" id="intensity" ng-model='strength.intensity'>
-        <option value="" selected disabled>Increase/Decrease</option>
-        <option value="Increase">Increase</option>
-        <option value="Decrease">Decrease</option>
-    </select>
+        <div class="form-group">
+            <label for="intensity" class="col-sm-4 control-label">Change:</label>
+            <div class="col-sm-4">
+                <select name="intensity" id="intensity" ng-model='strength.intensity'>
+                    <option value="" selected disabled>Increase/Decrease</option>
+                    <option value="Increase">Increase</option>
+                    <option value="Decrease">Decrease</option>
+                </select>
+            </div>
+        </div>
 
-    <label for="category">Exercise Type:</label>
-    <select name="strength" id="category" ng-model='strength.category'>
-        <option value="" selected disabled>Strength Exercise</option>
-        <option value="Benching">Benching</option>
-        <option value="Squatting">Squatting</option>
-        <option value="Deadlifting">Deadlifting</option>
-    </select>
+        <div class="form-group">
+            <label for="category" class="col-sm-4 control-label">Exercise Type:</label>
+            <div class="col-sm-4">
+                <select name="strength" id="category" ng-model='strength.category'>
+                    <option value="" selected disabled>Strength Exercise</option>
+                    <option value="Benching">Benching</option>
+                    <option value="Squatting">Squatting</option>
+                    <option value="Deadlifting">Deadlifting</option>
+                </select>
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label for="value" class="col-sm-4 control-label">By:</label>
+            <div class="col-sm-4">
+                <input type="number" id="value" ng-model='strength.value' class="form-control">
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label for="measurement" class="col-sm-4 control-label">Measurement:</label>
+            <div class="col-sm-4">
+                <select name="measurement" id="measurement" ng-model='strength.measurement'>
+                    <option value="" selected disabled>Select Measurement</option>
+                    <option value="Weights">Weights</option>
+                    <option value="Reps">Reps</option>
+                    <option value="Sets">Sets</option>
+                    <option value="Duration">Hours</option>
+                </select>
+            </div>
+        </div>
 
-    <label for="value">By:</label>
-    <input type="number" id="value" ng-model='strength.value' class="form-control">
-
-
-    <label for="measurement">Measurement:</label>
-    <select name="measurement" id="measurement" ng-model='strength.measurement'>
-        <option value="" selected disabled>Select Measurement</option>
-        <option value="Weights">Weights</option>
-        <option value="Reps">Reps</option>
-        <option value="Sets">Sets</option>
-        <option value="Duration">Hours</option>
-    </select>
-
-        <button type="submit" ng-click="submitStrength(strength.date, strength.intensity, strength.category, strength.value, strength.measurement)">Submit</button>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-4">
+                <button type="submit" ng-click="submitStrength(strength.date, strength.intensity, strength.category, strength.value, strength.measurement)" class="btn btn-default">Create Goal!</button>
+            </div>
+        </div>
 
     </form>
+
 </div>

@@ -114,3 +114,118 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
         line-height:35px;
     }
 }
+
+.ct-line.ct-threshold-above, .ct-point.ct-threshold-above, .ct-bar.ct-threshold-above {
+    stroke: #f05b4f;
+}
+
+.ct-line.ct-threshold-below, .ct-point.ct-threshold-below, .ct-bar.ct-threshold-below {
+    stroke: #59922b;
+}
+
+.ct-area.ct-threshold-above {
+    fill: #f05b4f;
+}
+
+.ct-area.ct-threshold-below {
+    fill: #59922b;
+}
+
+.ct-chart {
+    width: 500px;
+    height: 300px;
+    display: inline-block;
+}
+
+.ct-bar {
+    stroke-width: 30px;
+}
+
+.goalType {
+    width: 275px;
+    /*padding: 5px;*/
+    margin: auto;
+}
+
+.goalHeader {
+    width: 425px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.cardioHeader {
+    width: 313px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.nutritionHeader {
+    width: 225px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.strengthHeader {
+    width: 340px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.container-fluid {
+    border-bottom: 3px solid #cef;
+}
+
+.navbar {
+    border-bottom: 2px solid #cef;
+}
+
+.goalsTable tr {
+    padding: 5px;
+}
+
+.goalsTable {
+    margin: auto;
+    width: 600px;
+    padding: 10px;
+    text-align: center;
+}
+
+div > h2 > span {
+    text-align: center;
+}
+
+
+.goalsDelete {
+    vertical-align: center;
+    width: 50px;
+}
+
+div .row{
+    text-align: center;
+}
+
+.calcHeader {
+    font-size: 20px;
+    line-height: 90%;
+}
+
+.calcNumber {
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.calcNotice {
+    font-size: 15px;
+}
+
+.welcome {
+    text-align: center;
+    margin: 5px;
+    padding: 10px;
+    font-size: 65px;
+    font-weight: 400;
+}
