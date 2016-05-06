@@ -16,7 +16,9 @@ angular.module('myApp.cardio', ['factories'])
     $scope.cardioList = function () {
       cardioFactory.getCardio(user).then(function (data) {
         $scope.cardioData = data.data
-      })
+                  if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+            $scope.$apply()
+          }      })
     }
 
     $scope.cardioList()

@@ -4,6 +4,9 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.roomNumber
     $scope.user = $cookies.get('username')
     $scope.chatList
+    $scope.random = function(){
+      alert("Hello there")
+    }
     $scope.sendCity = function () {
       socialFactory.updateZip($scope.user, $scope.address)
         .then(function () {
