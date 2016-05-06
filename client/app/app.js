@@ -2,6 +2,7 @@ angular.module('myApp', ['myApp.signin',
   'myApp.landing',
   'myApp.signup',
   'myApp.cardio',
+  'myApp.cardioModal',
   'myApp.profile',
   'myApp.nutrition',
   'myApp.strength',
@@ -52,6 +53,12 @@ angular.module('myApp', ['myApp.signin',
         url: '/cardio',
         templateUrl: '/app/fitness/cardio.html',
         controller: 'CardioCtrl',
+        authenticate: true
+      })
+      .state('cardioModal', {
+        url: '/cardioModal',
+        templateUrl: '/app/fitness/cardioModal.html',
+        controller: 'CardioModalCtrl',
         authenticate: true
       })
       .state('strength', {
