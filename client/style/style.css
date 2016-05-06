@@ -38,6 +38,11 @@ fieldset {
   right: 0;
 }
 
+.cardioForm {
+    margin: 50px;
+    padding: 5px;
+}
+
 
 /*.authContainer {*/
 	/*width: 300px;*/
