@@ -6,10 +6,15 @@ angular.module('myApp.strength', ['factories'])
     }
 
     $scope.today()
+
     $scope.format = 'dd-MMMM-yyyy'
 
     $scope.open1 = function () {
       $scope.popup1.opened = true
+    }
+
+    $scope.clear = function () {
+      $scope.dt = null
     }
 
     $scope.popup1 = {
@@ -18,7 +23,7 @@ angular.module('myApp.strength', ['factories'])
 
     $scope.user = $cookies.get('username')
     $scope.strengthList
-    $scope.c1_data = {labels: [], series: []}
+    $scope.c1_data = {labels: [], series: [[]]}
     $scope.c2_data = {labels: [], series: []}
 
     // Getting profile information and then calling fetchLog
@@ -47,23 +52,51 @@ angular.module('myApp.strength', ['factories'])
         })
     }
 
+    const day_of_week = function (num) {
+      var day
+      switch (num) {
+        case 0:
+          day = 'Sunday'
+          break
+        case 1:
+          day = 'Monday'
+          break
+        case 2:
+          day = 'Tuesday'
+          break
+        case 3:
+          day = 'Wednesday'
+          break
+        case 4:
+          day = 'Thursday'
+          break
+        case 5:
+          day = 'Friday'
+          break
+        case 6:
+          day = 'Saturday'
+          break
+      }
+      return day
+    }
+
     // Chart Graph 1 - X: Date Y: Duration at Gym
     const c1_duration_date = function (arr) {
       var c1_obj = {}
       var dateshort
-      console.log(arr)
+
       // Creating object of [day of week:duration]
       for (var i = 0; i < arr.length; i++) {
-        dateshort = arr[i].date.substring(0, 10)
-        c1_obj[dateshort] = arr[i].duration
+        dateshort = arr[i].date
+        var x = new Date(dateshort).getDay()
+        c1_obj[day_of_week(x)] = arr[i].duration
       }
       console.log(c1_obj)
       // Setting the label and series to scope c1_data
       for (var k in c1_obj) {
         $scope.c1_data.labels.push(k)
-        $scope.c1_data.series.push(c1_obj[k])
+        $scope.c1_data.series[0].push(c1_obj[k])
       }
-      console.log($scope.c1_data)
     }
 
     // Pie Chart 2 - Type of activities for entire data set
@@ -96,10 +129,10 @@ angular.module('myApp.strength', ['factories'])
     // Rendering the graphs
     const renderGraphs = function () {
       var options = {
-        width: 1000,
-        height: 400,
+        width: 500,
+        height: 250,
         labelInterpolationFnc: function (value) {
-          return value[0]
+          return value
         }
       }
 
@@ -119,8 +152,8 @@ angular.module('myApp.strength', ['factories'])
       ]
       console.log($scope.c1_data)
       console.log($scope.c2_data)
-      new Chartist.Line('#chart1', $scope.c1_data, options)
-      new Chartist.Pie('#chart2', $scope.c2_data, options, responsiveOptions)
+      new Chartist.Bar('#chart1', $scope.c1_data)
+      new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
     }
     // Submit Button
     $scope.submitStrength = function () {
@@ -139,6 +172,7 @@ angular.module('myApp.strength', ['factories'])
           fetchLog()
         })
     }
+
     // Converting inches to feet and inches
     $scope.convert_feet = function (inches) {
       var feet = Math.floor(inches / 12)
@@ -146,7 +180,7 @@ angular.module('myApp.strength', ['factories'])
       var tall = feet + "'" + inch
       return tall
     }
-    // Calculating one rep maximum 90%
+    // Calculating 90% one rep maximum
     $scope.onerepmax = function (weight, reps) {
       return (weight * (1 + (reps / 30))).toFixed(1)
     }
