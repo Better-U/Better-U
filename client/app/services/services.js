@@ -184,8 +184,24 @@ angular.module('factories', [])
       console.log('foodLog =', foodLog)
       return $http.post('/api/health/nutrition', foodLog)
     }
+
+    function searchFoodDB (query) {
+      console.log('inside factory searchFoodDB')
+      console.log('query =', query)
+      if (query !== '') {
+        return $http.get('https://api.nutritionix.com/v1_1/search/' + query + '?results=0%3A50&fields=item_name,brand_name,nf_calories&appId=' + appID + '&appKey=' + appKey)
+      }
+    }
+
+    function getNutrition (id) {
+      console.log('inside getNutrition: id =', id)
+      return $http.get('https://api.nutritionix.com/v1/item/' + id + '?&appId=' + appID + '&appKey=' + appKey)
+    }
+
     return {
-      submitFoodLog: submitFoodLog
+      submitFoodLog: submitFoodLog,
+      searchFoodDB: searchFoodDB,
+      getNutrition: getNutrition
     }
   })
 

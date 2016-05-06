@@ -1,7 +1,7 @@
 <div class="container" ng-controller='ProfileCtrl' data-ng-init="init()">
 <h1>Profile</h1>
 <div id='profile-page'>
-  <form name='profile-setup' method='post'>
+  <form name='profile-setup' method='post' ng-submit='submitProfile()'>
   <fieldset>
   <legend>Profile</legend>
     <div id='profile-name'>  Name:
