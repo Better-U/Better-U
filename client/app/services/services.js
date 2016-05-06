@@ -148,8 +148,15 @@ angular.module('factories', [])
     }
 
     function getCardio (username) {
-      var username = {username: username}
-      return $http.post('/api/fitness/getCardio', username)
+      var params = {
+        username: username
+      }
+
+      var config = {
+        params: params
+      }
+      
+      return $http.get('/api/fitness/getCardio', config)
     }
 
     return {

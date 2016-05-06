@@ -1,5 +1,5 @@
 angular.module('myApp.cardio', ['factories'])
-  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies) {
+  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies, $state) {
     var user = $cookies.get('username')
     console.log('this is username: ', $cookies.get('username'))
 
@@ -34,12 +34,7 @@ angular.module('myApp.cardio', ['factories'])
       var pace = $scope.pace($scope.duration, $scope.distance)
       cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
         .then(function () {
-          console.log('cardio data logged')
-          cardioFactory.getCardio(user).then(function (data) {
-            console.log('cardio data updated', data)
-            $scope.cardioData = data.data
-            $scope.cardioList()
-          })
+          $state.reload()
         })
     }
 
