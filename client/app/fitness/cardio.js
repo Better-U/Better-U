@@ -1,7 +1,15 @@
 angular.module('myApp.cardio', ['factories'])
-  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies, $state) {
+  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies, $state, $uibModal) {
     var user = $cookies.get('username')
-    console.log('this is username: ', $cookies.get('username'))
+    $scope.animationsEnabled = true
+
+    $scope.inputCardio = function () {
+      $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/fitness/cardioModal.html',
+        controller: 'CardioModalCtrl'
+      })
+    }
 
     $scope.cardioData = null
 
@@ -9,33 +17,6 @@ angular.module('myApp.cardio', ['factories'])
       cardioFactory.getCardio(user).then(function (data) {
         $scope.cardioData = data.data
       })
-    }
-
-    $scope.pace = function (duration, distance) {
-      if (duration === undefined || distance === undefined) {
-        return 0
-      } else {
-        var convertSeconds = duration * 60
-        var pace = ((convertSeconds / distance) / 60).toFixed(2)
-        return pace
-      }
-    }
-
-    $scope.convertMiles = function (meters) {
-      if (meters > 0) {
-        var convert = meters * 0.000621371
-        return convert.toFixed(2)
-      } else {
-        return 0
-      }
-    }
-
-    $scope.submitCardio = function () {
-      var pace = $scope.pace($scope.duration, $scope.distance)
-      cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
-        .then(function () {
-          $state.reload()
-        })
     }
 
     $scope.cardioList()

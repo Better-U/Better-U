@@ -1,0 +1,30 @@
+<div class="cardioForm">
+    <h1>Cardio Input</h1>
+      <form>
+        <div class="form-group">
+          *Date: <input type="date" ng-model="date" placeholder="date" required><br><br>
+
+          *Activity:
+          <select name="type" ng-model="type" required>
+          <option value="" selected disabled>---Please select---</option>
+          <option value="Running">Running</option>
+          <option value="Cycling">Cycling</option>
+          <option value="Swimming">Swimming</option>
+          <option value="Rowing">Rowing</option>
+          <option value="Jumping Rope">Jumping Rope</option>
+          <option value="Steppers">Steppers</option>
+          <option value="Ellipticals">Ellipticals</option>
+          </select><br><br>
+
+          Intensity: <input class="dropdown" type="number" min="1" max="5" name="intensity" ng-model="intensity"><br>
+          Scale 1-5: 1 being least intense, 5 being most intense<br><br>
+
+          *Distance: <input class="dropdown" type="number" min="1" max="9000" name="distance" ng-model="distance" required> miles<br><br>
+          Convert <input class="dropdown" type="number" min="1" max="9000" name="meters" ng-model="meters"> meters to {{convertMiles(meters)}} miles<br><br>
+
+          *Duration: <input class="dropdown" type="number" min="1" max="9000" name="duration" ng-model="duration" required> minutes<br><br>
+          Pace: {{pace(duration, distance)}} minutes per mile<br><br>
+          * = required <br><br>
+        <button button class="btn btn-primary" ng-click="submitCardio()">Submit</button>
+    </form>
+</div>
