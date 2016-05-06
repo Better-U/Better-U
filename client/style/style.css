@@ -194,6 +194,10 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
     text-align: center;
 }
 
+div h2 {
+    text-align: center;
+}
+
 div > h2 > span {
     text-align: center;
 }

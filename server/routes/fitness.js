@@ -4,6 +4,8 @@ var db = require('../db.js')
 var app = express()
 var bodyParser = require('body-parser')
 var User = require('../helpers/user')
+var Strength = require('../helpers/strength')
+var Cardio = require('../helpers/cardio')
 var Auth = require('../helpers/auth')
 var Goals = require('../helpers/goals')
 app.use(bodyParser.json())
@@ -24,7 +26,7 @@ router.post('/strengthForm', function (req, res) {
         weight: req.body.weight,
         reps: req.body.reps
       }]
-      db.insert(strengthForm).into('strength_record').select('user_id', 'date', 'type', 'sets', 'intensity', 'duration', 'weight', 'reps')
+      Strength.postForm(strengthForm)
         .then(function (success) {
           if (success) {
             res.status(201).json({success: true})
@@ -39,7 +41,7 @@ router.post('/getStrength', function (req, res) {
   var user = req.body.username
   User.findUser(user)
     .then(function (data) {
-      db.select('*').from('strength_record').where({'strength_record.user_id': data[0].id})
+      Strength.getRecords(data[0].id)
         .then(function (success) {
           if (success) {
             res.status(201).send(success)
@@ -77,10 +79,7 @@ router.post('/cardioForm', function (req, res) {
                   currentVal += Number(cardioForm[0].distance)
                   Goals.updateValue(data[i].id, currentVal)
                     .then(function (data) {
-                      res.json({
-                        success: true,
-                        data: data
-                      })
+                      console.log(data)
                     })
                 } else if (data[i].measurement === 'Minutes') {
                   if (data[i].currentValue === null) {
@@ -89,23 +88,22 @@ router.post('/cardioForm', function (req, res) {
                   currentVal += cardioForm[0].duration
                   Goals.updateValue(data[i].id, currentVal)
                     .then(function (data) {
-                      res.json({
-                        success: true,
-                        data: data
-                      })
+                      console.log(data)
                     })
                 }
               }
             })
+          res.json({success: true, data: data})
         })
     })
 })
 
-router.post('/getCardio', function (req, res) {
-  var user = req.body.username
+router.get('/getCardio', function (req, res) {
+  var user = req.query.username
   User.findUser(user)
     .then(function (data) {
-      db.select('*').from('cardio_record').where({'cardio_record.user_id': data[0].id})
+      console.log(data)
+      Cardio.getRecords(data[0].id)
         .then(function (success) {
           if (success) {
             res.status(201).send(success)
