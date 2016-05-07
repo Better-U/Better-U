@@ -186,11 +186,11 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .container-fluid {
-    border-bottom: 3px solid #cef;
+    border-bottom: 8px solid #aaa;
 }
 
 .navbar {
-    border-bottom: 2px solid #cef;
+    border-bottom: 6px solid #aaa;
 }
 
 .goalsTable tr {
@@ -242,4 +242,22 @@ div .row{
     padding: 10px;
     font-size: 65px;
     font-weight: 400;
+}
+
+body {
+    background-color: #d4d4d4;
+}
+
+tr .goalsData {
+    width: 500px;
+}
+
+td .indivialGoal {
+    font-size: 18px;
+    /*letter-spacing: 0.5px;*/
+}
+
+td .goalDueDate {
+    font-size: 12px;
+    /*letter-spacing: 0.5px;*/
 }

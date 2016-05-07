@@ -1,12 +1,15 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory) {
+  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory) {
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
     $rootScope.landing = false
+    $scope.waterIntake = null
     $rootScope.signout = function () {
       $scope.signout()
     }
+    $scope.nutritionData = null
+
 
     var user = $cookies.get('username')
 
@@ -99,7 +102,6 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.removeLog = function (id) {
-      console.log(id)
       GoalsFactory.removeLog(id)
         .then(function (data) {
           console.log('successful delete', data)
@@ -125,13 +127,17 @@ angular.module('myApp.dashboard', [])
       return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
     }
 
+    $scope.shortDateConverter = function (dateStr) {
+      var date = new Date(dateStr)
+
+      return (date.getMonth() + 1) + '/' + (date.getDate()) + '/' + (date.getFullYear())
+    }
+
     $scope.goalPercentage = function (current, max) {
       return Math.floor(current / max * 100)
     }
 
     $scope.goalOverdue = function (input) {
-      console.log(new Date(input))
-      console.log(new Date() - new Date(input) < 0)
       return new Date() - new Date(input) > 0
     }
 
@@ -139,28 +145,145 @@ angular.module('myApp.dashboard', [])
       return value === max
     }
 
-    var data = {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-      series: [
-        [5, 2, 4, 2, 7]
-      ]
-    };
 
-// In the global name space Chartist we call the Bar function to initialize a bar chart. As a first parameter we pass in a selector where we would like to get our chart created and as a second parameter we pass our data object.
+    $scope.getPastSevenDays = function () {
+      var today = new Date()
+      var results = [$scope.shortDateConverter(today)]
+      for (var i = 0; i < 6; i++) {
+        formattedDate = today.setDate(today.getDate() - 1)
+        results.unshift($scope.shortDateConverter(formattedDate))
+      }
+
+      console.log('results: ', results)
+      return results
+    }
+
+    $scope.getWater = function (data) {
+      var pastDays = $scope.getPastSevenDays()
+      var results = []
+      var sum = 0
+      for (var i = 0; i < pastDays.length; i++) {
+        sum = 0
+        for (var j = 0; j < data.length; j++) {
+          if ($scope.shortDateConverter(data[j].date) === pastDays[i]) {
+            sum += Number(data[j].water)
+          }
+        }
+        results.push(sum)
+      }
+
+      $scope.waterIntake = results
+      return $scope.waterIntake
+    }
+
+
+    $scope.todaysPieData = function () {
+      $scope.todayNutritionPie = {
+        today: null,
+        fat: 0,
+        carbs: 0,
+        protein: 0
+      }
+
+      var today = new Date()
+      if($scope.todayNutritionPie.today === null) {
+        console.log('today is null')
+        $scope.todayNutritionPie.today = new Date()
+      } else if ($scope.todayNutritionPie.today.getDate() !== today.getDate() &&
+                  $scope.todayNutritionPie.today.getMonth() !== today.getMonth() &&
+                    $scope.todayNutritionPie.today.getFullYear() !== today.getFullYear() &&
+                      $scope.todayNutritionPie.today !== null) {
+        $scope.todayNutritionPie.today = new Date()
+        $scope.todayNutritionPie.fat = 0
+        $scope.todayNutritionPie.carbs = 0
+        $scope.todayNutritionPie.protein = 0
+      }
+      console.log('nutritiondata', $scope.nutritionData)
+      for (var i = 0; i < $scope.nutritionData.length; i++) {
+        var logDate = new Date($scope.nutritionData[i].date)
+        if (logDate.getMonth() === today.getMonth() &&
+              logDate.getDate() === today.getDate() &&
+                logDate.getFullYear() === today.getFullYear()) {
+          $scope.todayNutritionPie.fat += Number($scope.nutritionData[i].fat)
+          $scope.todayNutritionPie.carbs += Number($scope.nutritionData[i].carbs)
+          $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
+          console.log('carbs: ', $scope.todayNutritionPie.carbs)
+        }
+      }
+      console.log('today data:', $scope.todayNutritionPie)
+      return $scope.todayNutritionPie
+    }
+
     $scope.createChart = function () {
-      // new Chartist.Line('.ct-chart', data)
+      $scope.waterData = {
+        labels: $scope.getPastSevenDays(),
+        series: [
+          $scope.waterIntake
+        ]
+      }
 
-      new Chartist.Bar('#ct1', data);
+      $scope.calorieData = {
+        labels: $scope.getPastSevenDays(),
+        
+      }
+
+
+
+      var pieData = $scope.todaysPieData()
+      console.log(pieData)
+
+      new Chartist.Bar('#ct1', $scope.waterData);
       new Chartist.Pie('#ct2', {
-        series: [80, 10, 30, 40]
+        labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
+        series: [{
+          value: pieData.fat,
+          name: 'Fat (g)',
+          // label: 'Fat',
+          // className: 'my-custom-class-one',
+          meta: 'Fat'
+        }, {
+          value: pieData.carbs,
+          name: 'Carbohydrates (g)',
+          // className: 'my-custom-class-two',
+          meta: 'Meta Two'
+        }, {
+          value: pieData.protein,
+          name: 'Protein (g)',
+          // className: 'my-custom-class-three',
+          meta: 'Meta Three'
+        }]
+      });
+
+      new Chartist.Line('#ct3', {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        series: [
+          [12, 9, 7, 8, 5],
+          [2, 1, 3.5, 7, 3],
+          [1, 3, 4, 5, 6]
+        ]
       }, {
-        chartPadding: 30,
-        labelOffset: 50,
-        labelDirection: 'explode'
+        fullWidth: true,
+        chartPadding: {
+          right: 40
+        }
       });
     }
-    $scope.createChart()
+
+    $scope.nutritionLogs = function () {
+      nutritionFactory.getNutritionLogs($scope.username)
+        .then(function(data) {
+          console.log('nutrition logs: ', data.data.data)
+          $scope.nutritionData = data.data.data
+          $scope.getWater($scope.nutritionData)
+          $scope.createChart()
+        })
+    }
+
+    $scope.nutritionLogs()
+    // $scope.createChart()
+    $scope.getPastSevenDays()
     $scope.getGoals()
+
   })
 
   .directive('myGoals', function () {

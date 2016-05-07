@@ -28,11 +28,51 @@ router.post('/strengthForm', function (req, res) {
       }]
       Strength.postForm(strengthForm)
         .then(function (success) {
-          if (success) {
-            res.status(201).json({success: true})
-          } else {
-            res.status(404).json({success: false})
-          }
+          Goals.findLog(strengthForm[0].user_id, strengthForm[0].type)
+            .then(function (data) {
+              console.log(data)
+              for (var i = 0; i < data.length; i++) {
+                var currentVal = data[i].currentValue
+                if (data[i].measurement === 'Sets') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += Number(strengthForm[0].sets)
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function (data) {
+                      console.log(data)
+                    })
+                } else if (data[i].measurement === 'Minutes') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += strengthForm[0].duration
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function (data) {
+                      console.log(data)
+                    })
+                } else if (data[i].measurement === 'Pounds') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += strengthForm[0].weight
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function (data) {
+                      console.log(data)
+                    })
+                } else if (data[i].measurement === 'Reps') {
+                  if (data[i].currentValue === null) {
+                    currentVal = 0
+                  }
+                  currentVal += strengthForm[0].reps
+                  Goals.updateValue(data[i].id, currentVal)
+                    .then(function (data) {
+                      console.log(data)
+                    })
+                }
+              }
+            })
+          res.json({success: true, data: data})
         })
     })
 })
