@@ -56,22 +56,10 @@ angular.module('myApp', ['myApp.signin',
         controller: 'CardioCtrl',
         authenticate: true
       })
-      .state('cardioModal', {
-        url: '/cardioModal',
-        templateUrl: '/app/fitness/cardioModal.html',
-        controller: 'CardioModalCtrl',
-        authenticate: true
-      })
       .state('strength', {
         url: '/strength',
         templateUrl: '/app/fitness/strength.html',
         controller: 'StrengthCtrl',
-        authenticate: true
-      })
-      .state('strengthModal', {
-        url: '/strengthModal',
-        templateUrl: '/app/fitness/strengthModal.html',
-        controller: 'StrengthModalCtrl',
         authenticate: true
       })
       .state('registerProfile', {
@@ -96,12 +84,6 @@ angular.module('myApp', ['myApp.signin',
         url: '/social',
         templateUrl: '/app/social/social.html',
         controller: 'socialCtrl',
-        authenticate: true
-      })
-      .state('goals', {
-        url: '/goals',
-        templateUrl: '/app/goals/goals.html',
-        controller: 'GoalsCtrl',
         authenticate: true
       })
       .state('chatRoom', {

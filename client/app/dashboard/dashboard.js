@@ -1,6 +1,7 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory) {
+  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory, $uibModal) {
+    $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
     $rootScope.landing = false
@@ -108,6 +109,15 @@ angular.module('myApp.dashboard', [])
           // swal("Goal successfully removed!")
           $state.reload()
         })
+    }
+
+    $scope.inputGoal = function () {
+      $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/dashboard/dashGoalModal.html',
+        // templateUrl: '/app/goals/goals.html',
+        controller: 'GoalsCtrl'
+      })
     }
 
     $scope.getGoals = function () {

@@ -1,6 +1,7 @@
 <div class="dashboardHeader goalsTable">
     <h2>Your Goals</h2>
-    <span ng-if="goalsData.length === 0">Goals have been logged yet.</span>
+    <button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button><br><br>
+    <span ng-if="goalsData.length === 0">No goals have been logged yet.</span>
     <table>
         <tbody>
         <tr ng-repeat="goals in goalsData | orderBy:'date'">
