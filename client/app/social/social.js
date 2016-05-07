@@ -1,24 +1,35 @@
 angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule'])
-  .controller('socialCtrl', function ($scope, socialFactory, $state, $cookies, socket) {
+  .controller('socialCtrl', function ($scope, socialFactory, $state, $cookies, socket, maps) {
     $scope.savedAddress
     $scope.roomNumber
     $scope.user = $cookies.get('username')
     $scope.chatList
     $scope.messages = []
-    $scope.random = function(){
-      alert("Hello there")
+    $scope.searchPage = false;
+    $scope.gPlace
+    $scope.searching = function(){
+      console.log('searching is called')
+      $scope.searchPage = false
+      maps.geocode('90401')
+        .then(function(data){
+          console.log(data)
+        })
     }
     $scope.sendCity = function () {
+      if($scope.address === ''){
+        return
+      }
       socialFactory.updateZip($scope.user, $scope.address)
         .then(function () {
           $scope.savedAddress = $scope.address
           console.log('zipcode successfully updated')
+          $scope.findPeople($scope.address)
           $scope.address = ''
         })
     }
     $scope.userList = []
     $scope.findPeople = function (zipcode) {
-      socialFactory.findPeople(zipcode)
+      socialFactory.findPeople($scope.user, zipcode)
         .then(function (data) {
           $scope.userList = data.data
           if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
@@ -29,6 +40,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
 
     $scope.chatWithUser = function (username) {
       console.log(username)
+      $scope.searchPage = true
       socialFactory.newChat($scope.user, username)
         .then(function (data) {
           socket.emit('joinRoom', {username1: $scope.user, username2: username})
@@ -36,6 +48,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     }
 
     $scope.joinRoom = function (username) {
+       $scope.searchPage = true
       socket.emit('joinRoom', {username1: $scope.user, username2: username})
       $scope.messages = [];
     }
@@ -82,3 +95,33 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
       $scope.message = ''
     }
   })
+.directive('chat', function(){
+  return {
+    templateUrl: 'app/social/directives/chat.html',
+    controller: 'socialCtrl'
+  }
+})
+.directive('search', function(){
+  return {
+    templateUrl: 'app/social/directives/search.html',
+    controller: 'socialCtrl'
+  }
+})
+.directive('googleplace', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, model) {
+            var options = {
+                types: [],
+                componentRestrictions: {}
+            };
+            scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+            google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+                scope.$apply(function() {
+                    model.$setViewValue(element.val());                
+                });
+            });
+        }
+    };
+});

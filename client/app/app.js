@@ -16,8 +16,7 @@ angular.module('myApp', ['myApp.signin',
   'ngCookies',
   'myApp.social',
   'myApp.socialFactoryModule',
-  'myApp.goals',
-  'myApp.chatModule'])
+  'myApp.goals'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
