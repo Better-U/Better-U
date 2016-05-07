@@ -1,0 +1,13 @@
+<div class="col-lg-12">
+  <div >Your current city: {{savedAddress}}</div>
+	<form ng-submit="sendCity()">
+	  <label for="userAddress">Enter City or Zip Code</label>
+	  <input id="userAddress" ng-model="address" googleplace/>
+	  <div>{{address}}</div>
+	  <button type="submit">Send City or Zip</button>
+	</form>
+
+  <span ng-repeat = "user in userList">
+	<button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
+  </span>
+</div>

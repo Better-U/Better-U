@@ -8,8 +8,8 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
       }
       return $http.post('/api/social/updateZip', zipHolder)
     }
-    function findPeople (zipcode) {
-      return $http.post('/api/social/findPeople', {zipcode: zipcode})
+    function findPeople (username, zipcode) {
+      return $http.post('/api/social/findPeople', {username:username, zipcode: zipcode})
     }
     function newChat (username1, username2) {
       console.log('newchatFacotyr being called')
@@ -55,3 +55,20 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
       }
     }
   })
+  .factory('maps', ['$q', function ($q) {
+var geocoder = new google.maps.Geocoder();
+return {
+    geocode: function (address) {
+        var deferred = $q.defer();
+
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            deferred.resolve(results);
+        // Should also reject if AJAX errors.
+        });
+
+        return deferred.promise;
+    }
+  };
+}]);

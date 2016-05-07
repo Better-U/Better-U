@@ -93,14 +93,14 @@ router.post('/newChat', function (req, res) {
     })
 })
 router.post('/updateZip', function (req, res) {
-  helpers.updateAddress(req.body.username, req.body.zipcode)
+  helpers.updateAddress(req.body.username, req.body.city)
     .then(function () {
-      res.send('you have changed the zipcode')
+      res.send('you have changed the city')
     })
 })
 
 router.post('/findPeople', function (req, res) {
-  helpers.getUsersInZip(req.body.zipcode)
+  helpers.getUsersInZip(req.body.username, req.body.city)
     .then(function (data) {
       res.send(data)
     })
