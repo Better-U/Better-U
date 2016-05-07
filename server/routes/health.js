@@ -1,7 +1,8 @@
 var express = require('express')
 var router = express.Router()
-// var db = require('../db.js')
+var db = require('../db.js')
 var Auth = require('../helpers/auth')
+var Health = require('../helpers/health')
 
 router.use(Auth.ifAuthorized)
 
@@ -21,5 +22,30 @@ router.post('/nutrition', function (req, res) {
         })
     })
 })
+
+router.get('/nutrition', function (req, res) {
+  console.log('inside get nutrition logs', req.query)
+  User.findUser(req.query.username)
+    .then(function(data) {
+      console.log('data: ', data)
+      Health.getLogs(data[0].id)
+        .then(function(data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
+    })
+})
+//
+// router.get('/fatSum', function(req, res) {
+//   console.log(req.query.date)
+//   // db('nutrition_record').sum('fat').where({date: req.query.date})
+//     db('nutrition_record').select('date').where({fat: 17})
+//     .then(function(data) {
+//     console.log('this is data for sum', data)
+//   })
+//
+// })
 
 module.exports = router
