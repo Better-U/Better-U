@@ -5,7 +5,7 @@
   <div>
     <span ng-if="userExistError">Username already exists! Please login or select different username!</span>
     <span ng-if="noUserDetail">Please enter a valid username and password!</span>
-    <form>
+    <form ng-submit="goNext()">
         <div class="form-group" ng-if="!next">
           <label for="usernameSignup">Username:</label><br>
           <input id="usernameSignup" type='text' name='username' ng-model='user.name' placeholder='Username' class="form-control" required>
@@ -14,60 +14,61 @@
         <label for="passwordSignup">Password:</label><br>
       <input id="passwordSignup" type='password' name='password' ng-model='user.password' placeholder='Password' class="form-control" required>
       </div>
+    <input class="btn btn-primary" type="submit">
+    <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
     </form>
     </div>
-    <button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
+    <!--<button class="btn btn-primary" type="submit" ng-click="goNext()" ng-if="!profileButton">Next</button>-->
   </div>
 
-  <div ng-if="next">
-    <h2>Tell us more!</h2>
-    <form>
-      <div class="form-group" ng-if="next">
-        <label for="ageSignup">Age:</label><br>
-        <input id="ageSignup" type='number' name='age' ng-model='user.age' placeholder='Age' class="form-control" required>
-      </div>
+  <!--<div ng-if="next">-->
+    <!--<h2>Tell us more!</h2>-->
+    <!--<form>-->
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="ageSignup">Age:</label><br>-->
+        <!--<input id="ageSignup" type='number' name='age' ng-model='user.age' placeholder='Age' class="form-control" required>-->
+      <!--</div>-->
 
-      <div class="form-group" ng-if="next">
-        <label for="heightSignup">Height in Inches:</label><br>
-        <input id="heightSignup" type="number" name='height' ng-model='user.height' placeholder="Height" class="form-control" required>
-      </div>
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="heightSignup">Height in Inches:</label><br>-->
+        <!--<input id="heightSignup" type="number" name='height' ng-model='user.height' placeholder="Height" class="form-control" required>-->
+      <!--</div>-->
 
-      <div class="form-group" ng-if="next">
-        <label for="weightSignup">Weight in Pounds:</label><br>
-        <input id="weightSignup" type="number" name='weight' ng-model='user.weight' placeholder="Weight" class="form-control" required>
-      </div>
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="weightSignup">Weight in Pounds:</label><br>-->
+        <!--<input id="weightSignup" type="number" name='weight' ng-model='user.weight' placeholder="Weight" class="form-control" required>-->
+      <!--</div>-->
 
 
-      <div class="form-group" ng-if="next">
-        <label for="genderSignup">Gender:</label><br>
-        <input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="male"> Male<br>
-        <input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="female"> Female<br>
-      </div>
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="genderSignup">Gender:</label><br>-->
+        <!--<input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="male"> Male<br>-->
+        <!--<input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="female"> Female<br>-->
+      <!--</div>-->
 
-      <div class="form-group" ng-if="next">
-        <label for="interestSignup">Interests:</label><br>
-        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="cardio"> Cardio<br>
-        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="strength"> Strength<br>
-        <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="both"> Both<br>
-      </div>
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="interestSignup">Interests:</label><br>-->
+        <!--<input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="cardio"> Cardio<br>-->
+        <!--<input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="strength"> Strength<br>-->
+        <!--<input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="both"> Both<br>-->
+      <!--</div>-->
 
-      <div class="form-group" ng-if="next">
-        <label for="gymSignup">Gym:</label><br>
-        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="none"> No Gym Membership<br>
-        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="la"> LA Fitness<br>
-        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="24hour"> 24 Hour Fitness<br>
-        <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="ufc"> UFC Gym<br>
-        <input id="gymSignup" type="radio" name="gym" > Other <input type="text" name="other_reason" ng-model="user.gym"/>
+      <!--<div class="form-group" ng-if="next">-->
+        <!--<label for="gymSignup">Gym:</label><br>-->
+        <!--<input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="none"> No Gym Membership<br>-->
+        <!--<input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="la"> LA Fitness<br>-->
+        <!--<input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="24hour"> 24 Hour Fitness<br>-->
+        <!--<input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="ufc"> UFC Gym<br>-->
+        <!--<input id="gymSignup" type="radio" name="gym" > Other <input type="text" name="other_reason" ng-model="user.gym"/>-->
 
-      </div>
+      <!--</div>-->
 
-      <div>
-        <button class="btn btn-primary" type="submit" ng-if="next" ng-click="submit()">Submit</button>
-      </div>
+      <!--<div>-->
+        <!--<button class="btn btn-primary" type="submit" ng-if="next" ng-click="submit()">Submit</button>-->
+      <!--</div>-->
 
-  </form>
-  </div>
+  <!--</form>-->
+  <!--</div>-->
 
 
 </div>
