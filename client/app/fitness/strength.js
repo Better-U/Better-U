@@ -1,5 +1,15 @@
 angular.module('myApp.strength', ['factories'])
-  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory) {
+  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory, $state, $uibModal) {
+    $scope.animationsEnabled = true
+
+    $scope.inputStrength = function () {
+      $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/fitness/strengthModal.html',
+        controller: 'StrengthModalCtrl'
+      })
+    }
+
     // Date Stuff
     $scope.today = function () {
       $scope.dt = new Date()
@@ -34,6 +44,11 @@ angular.module('myApp.strength', ['factories'])
         .then(function () {
           fetchLog()
         })
+    }
+
+    // Calculating 90% one rep maximum
+    $scope.onerepmax = function (weight, reps) {
+      return (weight * (1 + (reps / 30))).toFixed(1)
     }
 
     $scope.getStrengthProfile()
@@ -163,34 +178,5 @@ angular.module('myApp.strength', ['factories'])
       console.log($scope.c2_data)
       new Chartist.Bar('#chart1', $scope.c1_data)
       new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
-    }
-    // Submit Button
-    $scope.submitStrength = function () {
-      strengthFactory.submitStrength(
-        $scope.user,
-        $scope.str.date,
-        $scope.str.type,
-        $scope.str.sets,
-        $scope.str.intensity,
-        $scope.str.duration,
-        $scope.str.weight,
-        $scope.str.reps
-      )
-        .then(function (data) {
-          $scope.str = {}
-          fetchLog()
-        })
-    }
-
-    // Converting inches to feet and inches
-    $scope.convert_feet = function (inches) {
-      var feet = Math.floor(inches / 12)
-      var inch = inches - feet * 12
-      var tall = feet + "'" + inch
-      return tall
-    }
-    // Calculating 90% one rep maximum
-    $scope.onerepmax = function (weight, reps) {
-      return (weight * (1 + (reps / 30))).toFixed(1)
     }
   })

@@ -197,6 +197,17 @@ angular.module('factories', [])
       console.log('inside getNutrition: id =', id)
       return $http.get('https://api.nutritionix.com/v1/item/' + id + '?&appId=' + appID + '&appKey=' + appKey)
     }
+    
+    function getNutritionLogs (username) {
+      var params = {
+        username: username
+      }
+      
+      var config = {
+        params: params
+      }
+      return $http.get('/api/health/nutrition', config)
+    }
 
     function getFoodLog (username) {
       var params = {
@@ -214,7 +225,7 @@ angular.module('factories', [])
       submitFoodLog: submitFoodLog,
       searchFoodDB: searchFoodDB,
       getNutrition: getNutrition,
-      getFoodLog: getFoodLog
+      getNutritionLogs: getNutritionLogs
     }
   })
 
