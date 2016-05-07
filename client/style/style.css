@@ -1,12 +1,16 @@
 #searchResults {
-  height: 330px;
+  height: 300px;
   width: 560px;
   border: 1px solid black;
   overflow: auto;
 }
 
-#nutriModal {
-    width: 1200px;
+.app-modal-window .modal-dialog {
+  width: 800px;
+}
+
+#nutritionContainer {
+  margin-left: 30px;
 }
 
 #profBtn {

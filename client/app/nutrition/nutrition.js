@@ -15,7 +15,8 @@ angular.module('myApp.nutrition', ['factories'])
       $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'app/nutrition/nutritionModal.html',
-        controller: 'NutritionModalCtrl'
+        controller: 'NutritionModalCtrl',
+        windowClass: 'app-modal-window'
       })
     }
 

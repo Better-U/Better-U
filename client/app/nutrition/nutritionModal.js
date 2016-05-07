@@ -1,13 +1,20 @@
 angular.module('myApp.nutritionModal', ['factories'])
   .controller('NutritionModalCtrl', function ($scope, $state, $http, authFactory, nutritionFactory, $cookies, $uibModal) {
-    
     $scope.food = {query: ''}
     $scope.results = []
     $scope.submitFoodLog = function () {
-      nutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.log.date, $scope.log.time, $scope.log.serving, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
+      if (!$scope.log.date || !$scope.log.time) {
+        console.log('Error: Missing fields.')
+      } else {
+        nutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.log.date, $scope.log.time, $scope.log.serving, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
         .then(function (data) {
+          swal('Nutritional Facts Saved!', 'Click OK to input another item.', 'success')
+          $scope.log = {}
+          $scope.asyncSelected = ''
+          $scope.results = []
           $state.reload()
         })
+      }
     }
 
     $scope.searchFoodDB = function (query) {

@@ -1,6 +1,6 @@
 angular.module('myApp.profile', ['factories'])
 
-  .controller('ProfileCtrl', function ($scope, $window, authFactory, profileFactory, $cookies) {
+  .controller('ProfileCtrl', function ($state, $scope, $window, authFactory, profileFactory, $cookies) {
     $scope.init = function () {
       profileFactory.getProfile($cookies.get('username'))
         .then(function (data) {
@@ -19,6 +19,7 @@ angular.module('myApp.profile', ['factories'])
           swal('Profile Saved!', 'Click OK to continue.', 'success')
           console.log('profile data inside profile.js =', data)
         })
+      $state.reload()
     }
 
     $scope.getGender = function (integer) {
