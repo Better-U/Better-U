@@ -35,7 +35,7 @@ router.post('/regProfile', function (req, res) {
         id: data[0].id,
         username: req.body.username
       }
-      User.insertUserProfile(req.body.age, req.body.weight, req.body.height, req.body.gender, req.body.interest, req.body.gym, data[0].id)
+      User.insertUserProfile(req.body.age, req.body.weight, req.body.height, req.body.gender, req.body.activity, req.body.interest, req.body.gym, data[0].id)
         .then(function (data) {
           res.json({
             success: true,

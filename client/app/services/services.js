@@ -8,7 +8,7 @@ angular.module('factories', [])
       return $http.post('/api/signup/regUser', form)
     }
 
-    function registerProfileDetails (name, age, height, weight, gender, interest, gym) {
+    function registerProfileDetails (name, age, height, weight, gender, activity, interest, gym) {
       if (gender === 'male') {
         gender = 0
       } else {
@@ -21,6 +21,7 @@ angular.module('factories', [])
         height: height,
         weight: weight,
         gender: gender,
+        activity: activity,
         interest: interest,
         gym: gym
       }

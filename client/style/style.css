@@ -199,6 +199,10 @@ div h2 {
     text-align: center;
 }
 
+span {
+    text-align: center;
+}
+
 div > h2 > span {
     text-align: center;
 }

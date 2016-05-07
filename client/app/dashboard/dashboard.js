@@ -6,6 +6,7 @@ angular.module('myApp.dashboard', [])
     $rootScope.hideit = false
     $rootScope.landing = false
     $scope.waterIntake = null
+    $scope.calorieIntake = null
     $rootScope.signout = function () {
       $scope.signout()
     }
@@ -65,7 +66,8 @@ angular.module('myApp.dashboard', [])
       var total
       if (gender == 0) {
         var maleBMR = 66.5 + (6.23 * numWeight) + (12.7 * numHeight) - (6.8 * numAge)
-        if (activity === 'sendentary') {
+        if (activity === 'sedentary') {
+
           total = (maleBMR * 1.2).toFixed()
         } else if (activity === 'light') {
           total = (maleBMR * 1.375).toFixed()
@@ -76,7 +78,7 @@ angular.module('myApp.dashboard', [])
         }
       } else if (gender == 1) {
         var femaleBMR = 655.1 + (4.35 * numWeight) + (4.7 * numHeight) - (4.7 * numAge)
-        if (activity === 'sendentary') {
+        if (activity === 'sedentary') {
           total = (femaleBMR * 1.2).toFixed()
         } else if (activity === 'light') {
           total = (femaleBMR * 1.375).toFixed()
@@ -86,6 +88,7 @@ angular.module('myApp.dashboard', [])
           total = (femaleBMR * 1.725).toFixed()
         }
       }
+      console.log('total: ', total)
       return total
     }
 
@@ -186,6 +189,24 @@ angular.module('myApp.dashboard', [])
       return $scope.waterIntake
     }
 
+    $scope.getCalories = function (data) {
+      var pastDays = $scope.getPastSevenDays()
+      var results = []
+      var sum = 0
+      for (var i = 0; i < pastDays.length; i++) {
+        sum = 0
+        for (var j = 0; j < data.length; j++) {
+          if ($scope.shortDateConverter(data[j].date) === pastDays[i]) {
+            sum += Number(data[j].cal)
+          }
+        }
+        results.push(sum)
+      }
+
+      $scope.calorieIntake = results
+      return $scope.calorieIntake
+    }
+
 
     $scope.todaysPieData = function () {
       $scope.todayNutritionPie = {
@@ -234,6 +255,9 @@ angular.module('myApp.dashboard', [])
 
       $scope.calorieData = {
         labels: $scope.getPastSevenDays(),
+        series: [
+          $scope.calorieIntake
+        ]
 
       }
 
@@ -264,19 +288,7 @@ angular.module('myApp.dashboard', [])
         }]
       });
 
-      new Chartist.Line('#ct3', {
-        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        series: [
-          [12, 9, 7, 8, 5],
-          [2, 1, 3.5, 7, 3],
-          [1, 3, 4, 5, 6]
-        ]
-      }, {
-        fullWidth: true,
-        chartPadding: {
-          right: 40
-        }
-      });
+      new Chartist.Line('#ct3', $scope.calorieData);
     }
 
     $scope.nutritionLogs = function () {
@@ -285,6 +297,7 @@ angular.module('myApp.dashboard', [])
           console.log('nutrition logs: ', data.data.data)
           $scope.nutritionData = data.data.data
           $scope.getWater($scope.nutritionData)
+          $scope.getCalories($scope.nutritionData)
           $scope.createChart()
         })
     }
