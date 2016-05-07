@@ -26,8 +26,8 @@ knex.schema.createTableIfNotExists('user', function (user) {
   user.string('activitylvl', 50)
   user.string('interest', 50)
   user.string('gym', 50)
-  user.integer('zipcode')
   user.integer('totalpts')
+  user.string('city', 50)
 }).then(function () {
   console.log('user table created')
 })
