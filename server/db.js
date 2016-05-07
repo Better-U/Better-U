@@ -27,6 +27,7 @@ knex.schema.createTableIfNotExists('user', function (user) {
   user.string('interest', 50)
   user.string('gym', 50)
   user.integer('zipcode')
+  user.integer('totalpts')
 }).then(function () {
   console.log('user table created')
 })
@@ -55,9 +56,18 @@ knex.schema.createTableIfNotExists('goals', function (goals) {
   goals.integer('value')
   goals.integer('currentValue')
   goals.date('date')
-  goals.string('measurement', 50)
+  goals.integer('points')
 }).then(function () {
   console.log('goals table created')
+})
+
+knex.schema.createTableIfNotExists('bets', function (bets) {
+  bets.increments('id').primary()
+  bets.integer('user_id').unsigned().references('id').inTable('user')
+  bets.integer('bettor_id').unsigned().references('id').inTable('user')
+  bets.integer('goals_id').unsigned().references('id').inTable('goals')
+}).then(function () {
+  console.log('bets table created')
 })
 
 knex.schema.createTableIfNotExists('nutrition_record', function (nutrition) {
