@@ -9,11 +9,11 @@ function getIDs (username1, username2) {
   return db('user').whereIn('username', [username1, username2]).select('id')
 }
 
-Social.updateAddress = function (username, zipcode) {
-  return db('user').where({username: username}).update({zipcode: zipcode})
+Social.updateAddress = function (username, city) {
+  return db('user').where({username: username}).update({city: city})
 }
-Social.getUsersInZip = function (zipcode) {
-  return db('user').where({zipcode: zipcode}).select('username')
+Social.getUsersInZip = function (username, city) {
+  return db('user').whereNot({username: username}).andWhere({city: city}).select('username')
 }
 
 Social.makeChatRoom = function (username1, username2) {
