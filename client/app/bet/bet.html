@@ -1,0 +1,58 @@
+<div class="container">
+  <div>
+    <h3>Search a username to bet on</h3>
+  </div>
+  <!-- Search for users -->
+  <form>
+    <input type="text" ng-model="searchbetuser" placeholder="username" required>
+    <button button class="btn btn-primary" ng-click="submitSearch()">Search</button>
+  </form>
+
+  <!-- Display users -->
+  <div>
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Category</th>
+	        <th>Intensity</th>
+	        <th>Measurement</th>
+	        <th>Value</th>
+	        <th>Due Date</th>
+	        <th>Points</th>
+	      </tr>
+	    </thead>
+	    <tbody ng-if="withGoalsList">
+	      <tr ng-repeat="user in withGoalsList">
+	        <td>{{user.category}}</td>
+	        <td>{{user.intensity}}</td>
+	        <td>{{user.measurement}}</td>
+	        <td>{{user.value}}</td>
+	        <td>{{user.date| date : format : timezone}}</td>
+	        <td><button class="btn btn-primary" ng-click="placeBet({{user.id}})">Bet {{searchbetuser}} {{user.points}} points</button></td>
+	      </tr>
+	    </tbody>
+	  </table>
+  </div>
+
+  <!-- List users with most points-->
+  <h2> BetterU Point Holders!</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody ng-if="topPointsList">
+      <tr ng-repeat="top in topPointsList| orderBy:'Points':true">
+        <td>{{top.username}}</td>
+        <td>{{top.totalpts}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Place Bets -->
+  
+  <!-- Display search results -->
+
+</div>

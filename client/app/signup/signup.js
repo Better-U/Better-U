@@ -38,7 +38,6 @@ angular.module('myApp.signup', [])
 
     }
 
-
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel')
     }
