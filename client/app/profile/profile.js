@@ -16,6 +16,7 @@ angular.module('myApp.profile', ['factories'])
       console.log('submitted')
       profileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
         .then(function (data) {
+          swal('Profile Saved!', 'Click OK to continue.', 'success')
           console.log('profile data inside profile.js =', data)
         })
     }

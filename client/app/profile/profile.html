@@ -59,6 +59,7 @@
       <div id='profile-interest'>
       <label class="col-sm-2 control-label">Fitness Interest:</label>
       <select name='Fitness Interest' class="form-control" ng-model='prof.interest' style='width:140px'>
+        <option value="" selected disabled>Select Interest</option>
         <option class='form=control-static' ng-selected='selectedItem == cardio'>Cardio</option>
         <option class='form=control-static' ng-selected='selectedItem == strength'>Strength</option>
         <option class='form=control-static' ng-selected='selectedItem == both'>Both</option>

@@ -1,7 +1,12 @@
 #searchResults {
   height: 330px;
+  width: 560px;
   border: 1px solid black;
   overflow: auto;
+}
+
+#nutriModal {
+    width: 1200px;
 }
 
 #profBtn {
