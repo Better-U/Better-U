@@ -224,7 +224,7 @@ angular.module('myApp.dashboard', [])
 
       $scope.calorieData = {
         labels: $scope.getPastSevenDays(),
-        
+
       }
 
 
