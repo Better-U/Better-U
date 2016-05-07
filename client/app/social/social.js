@@ -4,6 +4,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.roomNumber
     $scope.user = $cookies.get('username')
     $scope.chatList
+    $scope.messages = []
     $scope.random = function(){
       alert("Hello there")
     }
@@ -36,13 +37,17 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
 
     $scope.joinRoom = function (username) {
       socket.emit('joinRoom', {username1: $scope.user, username2: username})
+      $scope.messages = [];
     }
     socket.on('roomNumber', function (data) {
       $scope.roomNumber = data.roomNumber
+      console.log($scope.roomNumber, "room again")
     })
-
+    socket.on('chatHistory', function(messages){
+      console.log(messages)
+      $scope.messages = JSON.parse(messages.messages[0].message)
+    })
     var currentRoom = socialFactory.giveRoom()
-    $scope.messages = []
     $scope.name = $cookies.get('username')
 
 
@@ -57,9 +62,6 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     socket.on('send:message', function (message) {
       $scope.messages.push(message)
       console.log('message received', message)
-    })
-    socket.on('message', function (data) {
-      console.log('message received hopefully from room 10', data)
     })
     // add a message to the conversation when a user disconnects or leaves the room
     $scope.sendMessage = function () {
