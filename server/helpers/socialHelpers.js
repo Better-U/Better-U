@@ -17,24 +17,19 @@ Social.getUsersInZip = function (zipcode) {
 }
 
 Social.makeChatRoom = function (username1, username2) {
-  console.log('makechatroom being called')
   return new Promise(function (resolve) {
       Social.checkRoomNumber(username1, username2)
         .then(function(data){
-          console.log("THIS IS DATAINSIDE MAKECHATROOM", data)
           if(typeof data === 'number'){
             resolve(false)
-            console.log('false')
             return
           } else {
 
       getIDs(username1, username2).then(function(data1){
         db('chatRooms').insert({message: JSON.stringify([])})
           .then(function (data2) {
-            console.log(data2, 'data2')
             db('userRooms').insert([{roomID: data2[0], userID: data1[0].id}, {roomID: data2[0], userID: data1[1].id}])
               .then(function () {
-                console.log('everything inserted')
                 resolve(data2[0])
               })
           })
@@ -45,18 +40,15 @@ Social.makeChatRoom = function (username1, username2) {
 }
 
 Social.listChats = function(username){
-  console.log("listChats CALLED", username)
  return new Promise(function(resolve){
   db('user').where(username).select('id')
     .then(function(data){
-      console.log(data, "userID")
       db('userRooms').where({userID: data[0].id}).select('roomID')
         .then(function(data1){
           var newRay = []
           for(var i = 0; i < data1.length; i++){
             newRay.push(data1[i].roomID)
           }
-          console.log(newRay, "list of room IDS for user")
           db('userRooms').whereIn('roomID', newRay).whereNot('userID', data[0].id).select('userID')
             .then(function(data2){
               var tempRay = []
@@ -67,7 +59,6 @@ Social.listChats = function(username){
                 .then(function(data){
                   resolve(data)
                 })
-            console.log("HOPEFULLY LIST OF USERIDS IN LISTCHATS", data)
             })
         })
     })
@@ -79,7 +70,6 @@ Social.checkRoomNumber = function (username1, username2) {
   return new Promise(function (resolve) {
     getIDs(username1, username2).then(function (data) {
       // data[0].id, data[1].id
-      console.log(data, "DATAINSIDECHECKROOMNUMEBR!!!@#!@")
       db('userRooms').whereIn('userID', [data[0].id, data[1].id]).orWhereIn('userID', [data[0].id, data[1].id])
         .then(function (data2) {
           for (var i = 0; i < data2.length; i++) {
@@ -95,10 +85,28 @@ Social.checkRoomNumber = function (username1, username2) {
           if(called === false){
             resolve([])
           }
-          console.log(data2, 'INSIDE CHECKROOMNUMBER', data[0].id, data[1].id)
         })
     })
   })
 }
 
+Social.saveMessage = function(room, message){
+  return new Promise(function(resolve){
+  db('chatRooms').where({id: room}).select('message')
+    .then(function(data){
+      console.log("messages inside database for room:", room, ":", data)
+      var allMessages = JSON.parse(data[0].message)
+      allMessages.push(message)
+      console.log(allMessages, "ALL MESSAGES AFTER PUSH")
+      db('chatRooms').where({id: room}).update({message: JSON.stringify(allMessages)})
+        .then(function(data){
+          resolve(data)
+        })
+    })
+  })
+}
+
+Social.getMessages = function(room){
+  return db('chatRooms').where({id: room}).select('message')
+}
 module.exports = Social
