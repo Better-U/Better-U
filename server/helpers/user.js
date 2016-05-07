@@ -49,13 +49,14 @@ User.insertUserPw = function (username, password) {
   return db('user').insert(signUpObj)
 }
 
-User.insertUserProfile = function (age, weight, height, gender, interest, gym, id) {
+User.insertUserProfile = function (age, weight, height, gender, activitylvl, interest, gym, id) {
   console.log('inside helper', id)
   var profileObj = {
     age: age,
     weight: weight,
     height: height,
     gender: gender,
+    activitylvl: activitylvl,
     interest: interest,
     gym: gym
   }
