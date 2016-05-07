@@ -33,19 +33,14 @@ angular.module('myApp.goals', [])
       if (!date || !intensity || !category || !value || !measurement) {
         console.log('Form not valid')
       } else {
-
+        $uibModalInstance.dismiss('cancel')
         GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, username)
           .then(function (data) {
             console.log('cardio goal submitted', data)
-
             $state.reload()
           })
       }
 
-    }
-
-    $scope.hello = function () {
-      console.log('hello')
     }
 
     $scope.submitStrength = function (date, intensity, category, value, measurement) {
@@ -53,10 +48,11 @@ angular.module('myApp.goals', [])
       if (!date || !intensity || !category || !value || !measurement) {
         console.log('Form not valid')
       } else {
+        $uibModalInstance.dismiss('cancel')
         GoalsFactory.postLog('strength', date, intensity, category, value, measurement, username)
           .then(function (data) {
             console.log('strength goal submitted', data)
-            // $state.reload()
+            $state.reload()
           })
       }
     }
@@ -66,10 +62,11 @@ angular.module('myApp.goals', [])
       if (!date || !intensity || !category || !value || !measurement) {
         console.log('Form not valid')
       } else {
+        $uibModalInstance.dismiss('cancel')
         GoalsFactory.postLog('nutrition', date, intensity, category, value, measurement, username)
           .then(function (data) {
             console.log('nutrition goal submitted', data)
-            // $state.reload()
+            $state.reload()
           })
       }
     }
