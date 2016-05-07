@@ -1,29 +1,57 @@
-<div>
-	<div>Your current city: {{savedAddress}}</div>
-	<form ng-submit="sendCity()">
-		<label for="userAddress">Enter City or Zip Code</label>
-		<input id="userAddress" ng-model="address" />
-		<button type="submit">Send City or Zip</button>
-	</form>
+ <div class="container">
+    <div id="wrapper">
 
-	<button ng-click="findPeople(savedAddress)">find people!</button>
-	  <div ng-repeat = "user in userList">
-	    <button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
-	  </div>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+<li ng-repeat="chat in chatList">
+<button class="text-danger" ng-click="joinRoom(chat.username)">Join {{chat.username}}!</button>
+</li>
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container">
+							<div >Your current city: {{savedAddress}}</div>
+							<form ng-submit="sendCity()">
+								<label for="userAddress">Enter City or Zip Code</label>
+								<input id="userAddress" ng-model="address" />
+								<button type="submit">Send City or Zip</button>
+							</form>
+							<button ng-click="findPeople(savedAddress)">find people!</button>
+							  <span ng-repeat = "user in userList">
+							    <button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
+							    </span>
+							  </div>
+							  <button ng-click='press()'>RANDOM BUTTON</button>
+								<div>
+								    <ul ng-repeat="messager in messages" id="messages" >
+								    	<li>{{messager.username}}: {{messager.message}}</li>
+								    </ul>
+								    <div id="typing"></div>
+								    <form id="messageForm" ng-submit="sendMessage()">
+								      <input id="m" autocomplete="off" ng-model="message" /><button id="sendMessage">Send</button>
+								    </form>
+								</div>
+								</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
 </div>
-<br>
-<br>
-<div ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div>
-<div ng-repeat="chat in chatList">
-<button ng-click="joinRoom(chat.username)">Join {{chat.username}}!</button>
-</div>
-<button ng-click='press()'>RANDOM BUTTON</button>
-<div>
-    <ul ng-repeat="message in messages" id="messages" >
-    	<li>{{message.username}}: {{message.message}}</li>
-    </ul>
-    <div id="typing"></div>
-    <form id="messageForm" ng-submit="sendMessage()">
-      <input id="m" autocomplete="off" ng-model="message" /><button id="sendMessage">Send</button>
-    </form>
-</div>
+<!-- <div class="col-md-3" ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div> -->

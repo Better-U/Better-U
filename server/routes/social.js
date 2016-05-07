@@ -17,42 +17,45 @@ io.on('connection', function (socket) {
   })
 
   socket.on('joinRoom', function (data) {
-    console.log('room is joined')
     helpers.checkRoomNumber(data.username1, data.username2)
       .then(function (number) {
+        console.log("joining room number", number)
         socket.join('' + number)
         socket.emit('roomNumber', {roomNumber: number})
+        helpers.getMessages(number)
+          .then(function(messageList){
+        socket.emit('chatHistory', {messages: messageList})
+            
+          })
       })
   })
-
+  socket.on('leaveRoom', function(data){
+    console.log("leaving Room", data)
+    socket.leave("" + data.roomNumber)
+  })
   socket.on('listChats', function(username){
     helpers.listChats(username)
       .then(function(data){
         socket.emit('listChats', data)
       })
   })
-  socket.on('send:message', function (data) {
-    socket.broadcast.emit('send:message', data)
+  socket.on('typing', function(userObj){
+    socket.to("" + userObj.roomNumber).broadcast.emit('typing', userObj)
+    
   })
-  // validate a user's name change, and broadcast it on success
-  socket.on('change:name', function (data, fn) {
-    if (userNames.claim(data.name)) {
-      var oldName = name
-      userNames.free(oldName)
-
-      name = data.name
-
-      socket.broadcast.emit('change:name', {
-        oldName: oldName,
-        newName: name
+  socket.on('send:message', function (data) {
+    console.log(data, "message sent")
+    var message = {username: data.username, message: data.message}
+    socket.to("" + data.roomNumber).emit('send:message', message)
+    helpers.saveMessage(data.roomNumber, message)
+      .then(function(data){
+        console.log(data, "MESSAGE SAVED")
       })
-
-      fn(true)
-    } else {
-      fn(false)
-    }
   })
 })
+
+  // validate a user's name change, and broadcast it on success
+
 
 // clean up when a user leaves, and broadcast it to other users
 //   socket.on('disconnect', function () {
@@ -78,14 +81,11 @@ io.on('connection', function (socket) {
 // })
 
 router.post('/newChat', function (req, res) {
-  console.log('new chat API request received')
   helpers.makeChatRoom(req.body.username1, req.body.username2)
     .then(function (roomNumber) {
-      console.log(roomNumber)
       if (roomNumber) {
         newRoomNumber = roomNumber
         res.send({roomNumber: newRoomNumber})
-
         socket.join('' + newRoomNumber)
       } else {
         res.send('You already have a chat with this user')
