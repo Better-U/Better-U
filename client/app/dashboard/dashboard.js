@@ -1,4 +1,4 @@
-angular.module('myApp.dashboard', [])
+tangular.module('myApp.dashboard', [])
 
   .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory) {
     $scope.username = $cookies.get('username')
@@ -224,7 +224,7 @@ angular.module('myApp.dashboard', [])
 
       $scope.calorieData = {
         labels: $scope.getPastSevenDays(),
-        
+
       }
 
 
