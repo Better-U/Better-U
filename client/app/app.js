@@ -5,6 +5,7 @@ angular.module('myApp', ['myApp.signin',
   'myApp.cardioModal',
   'myApp.profile',
   'myApp.nutrition',
+  'myApp.nutritionModal',
   'myApp.strength',
   'myApp.strengthModal',
   'ui.router',
@@ -84,6 +85,12 @@ angular.module('myApp', ['myApp.signin',
         url: '/nutrition',
         templateUrl: '/app/nutrition/nutrition.html',
         controller: 'NutritionCtrl',
+        authenticate: true
+      })
+      .state('nutritionModal', {
+        url: '/nutritionModal',
+        templateUrl: '/app/nutrition/nutritionModal.html',
+        controller: 'NutritionModalCtrl',
         authenticate: true
       })
       .state('social', {
