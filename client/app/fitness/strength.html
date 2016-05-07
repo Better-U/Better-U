@@ -1,55 +1,5 @@
 <div class="container">
   <div>
-    <!-- User Information Display -->
-    <div ng-if="display.username">
-      <h1>Hello {{display.username}}!</h1>
-      <h3>Height: {{convert_feet(display.height)}}</h3>
-      <h3>Weight: {{display.weight}}</h3>
-    </div>
-
-    <!-- Input Form -->
-    <div class="row">
-      <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="str.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
-    </div>
-
-    <div>
-      <form>
-        <div class="form-group">          
-          <label>Activity</label>
-          <select ng-model="str.type">
-            <option value = "" disabled>---Please select---</option>
-            <option value="Bench">Bench</option>
-            <option value="Squat">Squat</option>
-            <option value="Deadlift">Deadlift</option>
-            <option value="Benching">Bench</option>
-            <option value="Squatting">Squat</option>
-            <option value="Dumbbell Curls">Biceps Everyday</option>
-            <option value="Lateral Pulldowns">Lat Pulldowns</option>
-            <option value="Shoulder Press">Shoulder Press</option>
-            <option value="Clean & Jerk">Clean & Jerk</option>
-            <option value="Snatch">Snatch</option>
-          </select><br/><br/>
-          <label>Weight (lbs)</label>
-          <input type="number" class="form-control" min="5" max="5000" ng-model="str.weight">
-          <label>Repetitions</label>
-          <input type="number" class="form-control" min="0" max="200" ng-model="str.reps">
-          <label>Sets</label>
-          <input type="number" class="form-control" min="0" max="500" ng-model="str.sets">
-          <label>Intensity (1-5)</label>
-          <input type="number" class="form-control" min="1" max="5" ng-model="str.intensity">
-          <label>Duration (minutes)</label>
-          <input type="number" class="form-control" min="0" max="300" ng-model="str.duration"><br>
-          <button type="submit" ng-click="submitStrength()" class="btn btn-danger btn-lg">Submit!</button>
-        </div>
-      </form>
-    </div>
 
     <!-- Charts & Graphs -->
     <div>
