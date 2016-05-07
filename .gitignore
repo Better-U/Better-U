@@ -6,3 +6,4 @@
 client/lib
 /bower.json
 .eslintrc
+client/apiKey.js

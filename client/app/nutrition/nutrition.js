@@ -2,23 +2,24 @@ angular.module('myApp.nutrition', ['factories'])
 
   .controller('NutritionCtrl', function ($state, $http, $scope, nutritionFactory, $cookies) {
     var user = $cookies.get('username')
-    $scope.food = {query: '', results: []}
+    $scope.food = {query: ''}
+    $scope.results = []
     $scope.foodData = null
     $scope.submitFoodLog = function () {
-      console.log('inside foodlog')
       nutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.log.date, $scope.log.time, $scope.log.serving, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
         .then(function (data) {
-          console.log('data inside submitFoodLog', data)
           $state.reload()
         })
     }
 
     $scope.searchFoodDB = function (query) {
       nutritionFactory.searchFoodDB(query)
-      .then(function (data) {
-        $scope.food.results = data.data.hits
-        console.log('$scope.food.results =', $scope.food.results)
-        return $scope.food.results
+      .then(function success (data) {
+        $scope.results = data.data.hits
+        console.log('$scope.results =', $scope.results)
+        return $scope.results
+      }, function errorCallback (resp) {
+        console.log('Error:', resp)
       })
     }
 
@@ -41,7 +42,6 @@ angular.module('myApp.nutrition', ['factories'])
     $scope.getFoodLog = function (user) {
       nutritionFactory.getFoodLog(user)
       .then(function (data) {
-        console.log('data is', data)
         $scope.foodData = data.data
       })
     }

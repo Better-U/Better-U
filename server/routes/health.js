@@ -2,11 +2,8 @@ var express = require('express')
 var router = express.Router()
 var db = require('../db.js')
 var Auth = require('../helpers/auth')
-<<<<<<< HEAD
 var Nutrition = require('../helpers/nutrition')
-=======
 var Health = require('../helpers/health')
->>>>>>> af2323f4a07fea958bf8f474935f853e40f6254f
 
 router.use(Auth.ifAuthorized)
 
@@ -28,7 +25,6 @@ router.post('/nutrition', function (req, res) {
 })
 
 router.get('/nutrition', function (req, res) {
-<<<<<<< HEAD
   var user = req.query.username
   User.findUser(user)
   .then(function (data) {
@@ -43,20 +39,7 @@ router.get('/nutrition', function (req, res) {
     })
   })
 })
-=======
-  console.log('inside get nutrition logs', req.query)
-  User.findUser(req.query.username)
-    .then(function(data) {
-      console.log('data: ', data)
-      Health.getLogs(data[0].id)
-        .then(function(data) {
-          res.json({
-            success: true,
-            data: data
-          })
-        })
-    })
-})
+
 //
 // router.get('/fatSum', function(req, res) {
 //   console.log(req.query.date)
@@ -67,6 +50,5 @@ router.get('/nutrition', function (req, res) {
 //   })
 //
 // })
->>>>>>> af2323f4a07fea958bf8f474935f853e40f6254f
 
 module.exports = router

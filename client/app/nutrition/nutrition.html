@@ -1,14 +1,14 @@
 <div class="container" ng-controller='NutritionCtrl'>
   <h2>Search Food</h2>
     <form name='searchNutrition' method='post'>
-      <input type='text' name='query' placeholder='Search the database'  ng-model='asyncSelected' data-provide="typeahead" uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-loading='loadingResults'>
+      <input type='text' name='query' placeholder='Search the database'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-loading='loadingResults' typeahead-wait-ms="400">
       <i ng-show='loadingResults'></i>
       <input type='submit'>
     </form>
 
 <h3>Results</h3>
     <div id='searchResults'>
-      <div  ng-repeat='(index,item) in food.results track by $index'>
+      <div  ng-repeat='(index,item) in results track by $index'>
         <a ng-click='getNutrition(item._id)'>{{item.fields.brand_name}}  {{item.fields.item_name}} / {{item.fields.nf_calories + ' calories'}}</a>
       </div>
     </div>
@@ -21,7 +21,7 @@
       <input type='text' ng-model='log.name' name='foodInput' id='foodInput' size="35" maxlength='80' value='{{ log.name }}'>
       <br>
        Date:
-      <input type='date' ng-model='log.date' name='foodDate' id='foodDate' size='20' maxlength='30'>
+      <input type='date' ng-model='log.date' name='foodDate' id='foodDate' size='20' maxlength='30' required>
       <br>
       Serving Size:
       <input type='text' ng-model='log.serving' name='foodServing' id='foodServing' size='20' maxlength='30' value='{{ log.serving }}'>
@@ -44,7 +44,7 @@
       <input type='text' ng-model='log.water' name='water' id='water' maxlength="2" size='10'>
 
       When?
-      <select name='Time' ng-model='log.time' style='width:140px'> 
+      <select name='Time' ng-model='log.time' style='width:140px' required> 
         <option>Breakfast</option>
         <option>Morning Snack</option>
         <option>Lunch</option>
