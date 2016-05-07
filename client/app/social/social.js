@@ -7,6 +7,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.messages = []
     $scope.searchPage = false;
     $scope.gPlace
+    $scope.validAddress = true;
     $scope.searching = function(){
       console.log('searching is called')
       $scope.searchPage = false
@@ -16,20 +17,51 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
         })
     }
     $scope.sendCity = function () {
+      var geocoded;
       if($scope.address === ''){
         return
       }
-      socialFactory.updateZip($scope.user, $scope.address)
-        .then(function () {
-          $scope.savedAddress = $scope.address
-          console.log('zipcode successfully updated')
-          $scope.findPeople($scope.address)
-          $scope.address = ''
-        })
+
+      console.log(isNaN(+$scope.address), $scope.address, +$scope.address)
+      if(isNaN(+$scope.address.slice(0,5)) === false){
+        console.log("inside if number statement")
+        maps.geocode($scope.address.toString())
+          .then(function(data){
+            console.log(data[0].address_components[1])
+            geocoded = data[0].address_components[1].long_name
+          })
+      } else {
+        console.log("inside if statement")
+
+        maps.geocode($scope.address)
+          .then(function(data){
+            console.log(data[0].address_components[0])
+            geocoded = data[0].address_components[0].long_name
+            if(isNaN(+geocoded) === true) {
+              geocoded = false
+            }
+          })
+      }
+      console.log(geocoded)
+
+      if(!geocoded){
+        $scope.validAddress = false
+        return
+      }
+      console.log(geocoded)
+      $scope.validAddress = true
+
+      // socialFactory.updateZip($scope.user, geocoded)
+      //   .then(function () {
+      //     $scope.savedAddress = geocoded
+      //     console.log('zipcode successfully updated')
+      //     $scope.findPeople($scope.address)
+      //     $scope.address = ''
+      //   })
     }
     $scope.userList = []
-    $scope.findPeople = function (zipcode) {
-      socialFactory.findPeople($scope.user, zipcode)
+    $scope.findPeople = function (city) {
+      socialFactory.findPeople($scope.user, city)
         .then(function (data) {
           $scope.userList = data.data
           if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
@@ -107,21 +139,3 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     controller: 'socialCtrl'
   }
 })
-.directive('googleplace', function() {
-    return {
-        require: 'ngModel',
-        link: function(scope, element, attrs, model) {
-            var options = {
-                types: [],
-                componentRestrictions: {}
-            };
-            scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
-
-            google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
-                scope.$apply(function() {
-                    model.$setViewValue(element.val());                
-                });
-            });
-        }
-    };
-});

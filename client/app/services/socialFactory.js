@@ -1,15 +1,15 @@
 angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
   .factory('socialFactory', function ($http) {
     var roomNumber
-    function updateZip (username, zipcode) {
+    function updateZip (username, city) {
       var zipHolder = {
         username: username,
-        zipcode: zipcode
+        city: city
       }
       return $http.post('/api/social/updateZip', zipHolder)
     }
-    function findPeople (username, zipcode) {
-      return $http.post('/api/social/findPeople', {username:username, zipcode: zipcode})
+    function findPeople (username, city) {
+      return $http.post('/api/social/findPeople', {username:username, city: city})
     }
     function newChat (username1, username2) {
       console.log('newchatFacotyr being called')
