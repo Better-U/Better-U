@@ -6,6 +6,7 @@ angular.module('myApp', ['myApp.signin',
   'myApp.profile',
   'myApp.nutrition',
   'myApp.strength',
+  'myApp.strengthModal',
   'ui.router',
   'factories',
   'myApp.dashboard',
@@ -65,6 +66,12 @@ angular.module('myApp', ['myApp.signin',
         url: '/strength',
         templateUrl: '/app/fitness/strength.html',
         controller: 'StrengthCtrl',
+        authenticate: true
+      })
+      .state('strengthModal', {
+        url: '/strengthModal',
+        templateUrl: '/app/fitness/strengthModal.html',
+        controller: 'StrengthModalCtrl',
         authenticate: true
       })
       .state('registerProfile', {

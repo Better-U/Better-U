@@ -1,0 +1,33 @@
+ <div class="strengthForm">
+  <h1>Strength Input</h1>
+    <form>
+      <div class="form-group">
+        *Date: <input type="date" ng-model="str.date" placeholder="date" required><br><br>
+        *Activity:
+        <select ng-model="str.type">
+          <option value = "" disabled>---Please select---</option>
+          <option value="Bench">Bench</option>
+          <option value="Squat">Squat</option>
+          <option value="Deadlift">Deadlift</option>
+          <option value="Dumbbell Curls">Biceps Everyday</option>
+          <option value="Lat Pulldowns">Lat Pulldowns</option>
+          <option value="Shoulder Press">Shoulder Press</option>
+          <option value="Clean & Jerk">Clean & Jerk</option>
+          <option value="Snatch">Snatch</option>
+        </select><br/><br/>
+        *Weight:
+        <input type="number" min="5" max="5000" ng-model="str.weight"> lbs<br><br>
+        *Repetitions:
+        <input type="number" min="1" max="200" ng-model="str.reps"><br><br>
+        *Sets:
+        <input type="number" min="1" max="500" ng-model="str.sets"><br><br>
+        Intensity (1-5):
+        <input type="number" min="1" max="5" ng-model="str.intensity"><br>
+        Scale 1-5: 1 being least intense, 5 being most intense<br><br>
+        *Duration:
+        <input type="number" min="0" max="900" ng-model="str.duration"> minutes<br><br>
+        * = required <br><br>
+        <button ng-click="submitStrength()" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+</div>
