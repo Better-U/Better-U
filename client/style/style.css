@@ -1,30 +1,20 @@
 #searchResults {
-  height: 330px;
+  height: 300px;
+  width: 560px;
   border: 1px solid black;
   overflow: auto;
 }
-fieldset {
-  width: relative;
+
+.app-modal-window .modal-dialog {
+  width: 800px;
 }
 
-#profile-age {
-  margin: 4px;
+#nutritionContainer {
+  margin-left: 30px;
 }
 
-#profile-gender {
-  margin: 4px;
-}
-
-#profile-height {
-  margin: 4px;
-}
-
-#profile-weight {
-  margin: 4px;
-}
-
-#profile-goal-weight {
-  margin: 4px;
+#profBtn {
+  margin-left: 195px;
 }
 
 .jumbotron {

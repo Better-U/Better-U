@@ -291,7 +291,7 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.nutritionLogs = function () {
-      nutritionFactory.getNutritionLogs($scope.username)
+      nutritionFactory.getFoodLog($scope.username)
         .then(function(data) {
           console.log('nutrition logs: ', data.data.data)
           $scope.nutritionData = data.data.data
