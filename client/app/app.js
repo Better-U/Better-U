@@ -7,6 +7,7 @@ angular.module('myApp', ['myApp.signin',
   'myApp.nutrition',
   'myApp.strength',
   'myApp.strengthModal',
+  'myApp.bet',
   'ui.router',
   'factories',
   'myApp.dashboard',
@@ -84,6 +85,12 @@ angular.module('myApp', ['myApp.signin',
         url: '/chatRoom',
         templateUrl: '/app/social/chat.html',
         controller: 'chatCtrl',
+        authenticate: true
+      })
+      .state('bet', {
+        url: '/bet',
+        templateUrl: '/app/bet/bet.html',
+        controller: 'betCtrl',
         authenticate: true
       })
   })
