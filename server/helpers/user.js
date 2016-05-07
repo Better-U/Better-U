@@ -58,6 +58,7 @@ User.insertUserProfile = function (age, weight, height, gender, activitylvl, int
     gender: gender,
     activitylvl: activitylvl,
     interest: interest,
+    totalpts: 1000,
     gym: gym
   }
 

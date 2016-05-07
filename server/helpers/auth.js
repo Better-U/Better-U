@@ -9,7 +9,6 @@ auth.Decode = function (token) {
   return jwt.decode(token)
 }
 
-
 auth.genToken = function(userDetails) {
   return jwt.sign({id: userDetails.id, username: userDetails.username}, secret, { expiresIn: 60000 })
 }

@@ -158,7 +158,6 @@ angular.module('myApp.dashboard', [])
       return value === max
     }
 
-
     $scope.getPastSevenDays = function () {
       var today = new Date()
       var results = [$scope.shortDateConverter(today)]
