@@ -1,4 +1,4 @@
-tangular.module('myApp.dashboard', [])
+angular.module('myApp.dashboard', [])
 
   .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory) {
     $scope.username = $cookies.get('username')
