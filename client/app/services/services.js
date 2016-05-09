@@ -300,7 +300,6 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-      console.log('inside getAllPoints')
       return $http.get('/api/bet/getAllPoints', config)
     }
 
@@ -311,12 +310,34 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-      console.log('inside fetchBets: ', username)
       return $http.get('/api/bet/fetchBets', config)
+    }
+
+    function placedBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      console.log('inside placedBets: ', username)
+      return $http.get('api/bet/placedBets', config)
+    }
+
+    function addBets (u_id, g_id, username) {
+      var bet = {
+        goals_id: g_id,
+        user_id: u_id,
+        username: username
+      }
+      console.log('Inside addBets: ', bet)
+      return $http.post('api/bet/addBets', bet)
     }
 
     return {
       getAllPoints: getAllPoints,
-      fetchBets: fetchBets
+      fetchBets: fetchBets,
+      placedBets: placedBets,
+      addBets: addBets
     }
   })

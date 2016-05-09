@@ -28,6 +28,15 @@ bet.addBet = function (id, bet_id, goals_id) {
   return db.insert(betObj).into('bets')
 }
 
+bet.placedBets = function (id) {
+  var placedBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username FROM goals ' +
+  'INNER JOIN bets ON goals.id = bets.goals_id ' +
+  'INNER JOIN user ON user.id = bets.user_id ' +
+  'WHERE bets.bettor_id = ?'
+  console.log('this is placedBets: ', id)
+  return db.raw(placedBet, [id])
+}
+
 bet.deleteBet = function () {
   // 'DELETE FROM Friends WHERE Bets.user_id = ? AND Bets.bettor_id = ? AND Bets.goals_id = ?'
 }

@@ -13,25 +13,42 @@
     <table class="table table-striped" ng-if="withGoalsList">
       <thead>
         <tr>
-          <th>Goal</th>
+          <th>Goal {{searchbetuser}}</th>
           <th>Deadline</th>
           <th>Points</th>
           <th></th>
         </tr>
       </thead>
 	    <tbody>
-	      <tr ng-repeat="user in withGoalsList">
-	        <td class="col-sm-4">{{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}}</td>
-	        <td class="col-sm-3">{{user.date| date : format : timezone}}</td>
-          <td class="col-sm-3">{{user.points}} </td>
-          <td class="col-sm-3"><button class="btn btn-primary" ng-click="placeBet(user.id)"> Bet!</button></td>
+	      <tr ng-repeat="goal in withGoalsList">
+	        <td class="col-sm-4">{{goal.intensity}} {{goal.category}} by {{goal.value}} {{goal.measurement}}</td>
+	        <td class="col-sm-3">{{goal.date| date : format : timezone}}</td>
+          <td class="col-sm-3">{{goal.points}} </td>
+          <td class="col-sm-3"><button class="btn btn-primary" ng-click="addBets(goal.user_id, goal.id)"> Bet!</button></td>
 	      </tr>
 	    </tbody>
 	  </table>
   </div>
 
+  <div>
+    <h2>Bets you've placed</h2>
+    <table class="table table-striped" ng-if="betsPlacedList">
+      <thead>
+        <tr>
+          <th>Bets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in betsPlacedList">
+          <td class="col-sm-3">You've bet {{user.points}} points on {{user.username}} to {{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}} on {{user.date| date : format : timezone}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
   <h2>Your Goals Been Bet On</h2>
-  <table class="table table-striped">
+  <table class="table table-striped" ng-if="userBets">
     <thead>
       <tr>
         <th>Goal</th>
