@@ -11,6 +11,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 router.use(Auth.ifAuthorized)
 
+router.get('/getAllPoints', function (req, res) {
+  Bets.getAllPoints()
+    .then(function (data) {
+      console.log('get all points: ', data)
+      res.json({
+        success: true,
+        data: data
+      })
+    })
+})
+
 router.get('/FetchBet', function (req, res) {
   User.findUser(req.query.username)
     .then(function (id) {

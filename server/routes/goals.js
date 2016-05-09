@@ -29,7 +29,15 @@ router.post('/', function (req, res) {
   User.findUser(req.body.username)
     .then(function (id) {
       console.log('id', id)
-      Goals.postLog(req.body.type, req.body.date, req.body.intensity, req.body.category, req.body.value, req.body.measurement, id[0].id)
+      console.log('points', req.body.points)
+      Goals.postLog(req.body.type,
+        req.body.date,
+        req.body.intensity,
+        req.body.category,
+        req.body.value,
+        req.body.measurement,
+        id[0].id,
+        req.body.points)
         .then(function (data) {
           res.json({
             success: true,

@@ -1,11 +1,19 @@
 angular.module('myApp.bet', ['factories'])
-  .controller('betCtrl', function ($scope, authFactory, $cookies, GoalsFactory) {
+  .controller('betCtrl', function ($scope, authFactory, $cookies, GoalsFactory, BetsFactory) {
 
     var username = $cookies.get('username')
 
-    // Dummy Data - top points List
-    $scope.topPointsList = [{username: 'Pam', totalpts: 1240}, {username: 'Bob', totalpts: 3000}, {username: 'Jim', totalpts: 2340}]
-    
+    // Top Users Points
+    $scope.userPoints = null
+    $scope.topPointsList = function () {
+      BetsFactory.getAllPoints(username)
+      .then(function (data) {
+        console.log('this is data from getAllPoints: ', data.data.data[0])
+        $scope.userPoints = data.data.data[0]
+      })
+    }
+    $scope.topPointsList()
+
     $scope.submitSearch = function () {
       GoalsFactory.getLog($scope.searchbetuser)
         .then(function (data) {

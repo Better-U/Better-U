@@ -1,6 +1,11 @@
 var db = require('../db')
 var bet = {}
 
+bet.getAllPoints = function () {
+  console.log('inside bet helpers - get all points')
+  return db.raw('SELECT * FROM user ORDER BY totalpts DESC LIMIT 5')
+}
+
 bet.fetchBet = function (id, bet_id) {
   return db.select('*').from('bets').where({'user_id': id, bettor_id: bet_id})
 }

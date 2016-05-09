@@ -88,7 +88,6 @@ angular.module('myApp.dashboard', [])
           total = (femaleBMR * 1.725).toFixed()
         }
       }
-      console.log('total: ', total)
       return total
     }
 

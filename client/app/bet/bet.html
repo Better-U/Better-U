@@ -10,32 +10,28 @@
 
   <!-- Display users -->
   <div>
-	  <table class="table table-striped">
-	    <thead>
-	      <tr>
-	        <th>Category</th>
-	        <th>Intensity</th>
-	        <th>Measurement</th>
-	        <th>Value</th>
-	        <th>Due Date</th>
-	        <th>Points</th>
-	      </tr>
-	    </thead>
-	    <tbody ng-if="withGoalsList">
+    <table class="table table-striped" ng-if="withGoalsList">
+      <thead>
+        <tr>
+          <th>Goal</th>
+          <th>Deadline</th>
+          <th>Points</th>
+          <th></th>
+        </tr>
+      </thead>
+	    <tbody>
 	      <tr ng-repeat="user in withGoalsList">
-	        <td>{{user.category}}</td>
-	        <td>{{user.intensity}}</td>
-	        <td>{{user.measurement}}</td>
-	        <td>{{user.value}}</td>
-	        <td>{{user.date| date : format : timezone}}</td>
-	        <td><button class="btn btn-primary" ng-click="placeBet({{user.id}})">Bet {{searchbetuser}} {{user.points}} points</button></td>
+	        <td class="col-sm-4">{{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}}</td>
+	        <td class="col-sm-3">{{user.date| date : format : timezone}}</td>
+          <td class="col-sm-3">{{user.points}} </td>
+          <td class="col-sm-3"><button class="btn btn-primary" ng-click="placeBet(user.id)"> Bet!</button></td>
 	      </tr>
 	    </tbody>
 	  </table>
   </div>
 
   <!-- List users with most points-->
-  <h2> BetterU Point Holders!</h2>
+  <h2> BetterU Leaderboard</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -43,16 +39,16 @@
         <th>Points</th>
       </tr>
     </thead>
-    <tbody ng-if="topPointsList">
-      <tr ng-repeat="top in topPointsList| orderBy:'Points':true">
+    <tbody ng-if="userPoints">
+      <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
         <td>{{top.username}}</td>
         <td>{{top.totalpts}}</td>
       </tr>
     </tbody>
   </table>
-  
+
   <!-- Place Bets -->
-  
+
   <!-- Display search results -->
 
 </div>

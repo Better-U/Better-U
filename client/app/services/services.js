@@ -156,7 +156,7 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-      
+
       return $http.get('/api/fitness/getCardio', config)
     }
 
@@ -219,7 +219,7 @@ angular.module('factories', [])
   })
 
   .factory('GoalsFactory', function ($http) {
-    function postLog (type, data, intensity, category, value, measurement, username) {
+    function postLog (type, data, intensity, category, value, measurement, username, points) {
       var plugin = {
         type: type,
         date: data,
@@ -227,9 +227,10 @@ angular.module('factories', [])
         category: category,
         value: value,
         measurement: measurement,
-        username: username
+        username: username,
+        points: points
       }
-
+      console.log('this is points: ', plugin.points)
       console.log('inside postlog service', plugin)
 
       return $http.post('/api/goals/', plugin)
@@ -261,5 +262,22 @@ angular.module('factories', [])
       postLog: postLog,
       getLog: getLog,
       removeLog: removeLog
+    }
+  })
+
+  .factory('BetsFactory', function ($http) {
+    function getAllPoints (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      console.log('inside getAllPoints')
+      return $http.get('/api/bet/getAllPoints', config)
+    }
+
+    return {
+      getAllPoints: getAllPoints
     }
   })
