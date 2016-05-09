@@ -8,6 +8,16 @@ angular.module('factories', [])
       return $http.post('/api/signup/regUser', form)
     }
 
+    function getProfile (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      return $http.get('/api/signup/profile', config)
+    }
+
     function registerProfileDetails (name, age, height, weight, gender, activity, interest, gym) {
       if (gender === 'male') {
         gender = 0
@@ -74,6 +84,7 @@ angular.module('factories', [])
     return {
       getToken: getToken,
       // attachToken: attachToken,
+      getProfile: getProfile,
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn,
@@ -95,6 +106,15 @@ angular.module('factories', [])
       return $http.post('/api/users/profile', profileForm)
     }
 
+    function uploadPicture (username, url) {
+      var plugin = {
+        username: username,
+        url: url
+      }
+
+      return $http.post('/api/users/picture', plugin)
+    }
+
     function getProfile (username) {
       var params = {
         username: username
@@ -107,7 +127,8 @@ angular.module('factories', [])
 
     return {
       submitProfile: submitProfile,
-      getProfile: getProfile
+      getProfile: getProfile,
+      uploadPicture: uploadPicture
     }
   })
   .factory('strengthFactory', function ($http) {

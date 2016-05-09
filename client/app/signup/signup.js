@@ -1,6 +1,6 @@
 angular.module('myApp.signup', [])
 
-  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal, $cookies) {
+  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal, $cookies, $rootScope) {
     $scope.alreadyExists = null
     $scope.userExistError = false
     $scope.animationsEnabled = true
@@ -56,6 +56,7 @@ angular.module('myApp.signup', [])
               $scope.next = true
               $scope.profileButton = true
               $cookies.put('username', data.config.data.username)
+              // $rootScope.username = $cookies.get('username')
             }
           })
       } else {
@@ -77,7 +78,8 @@ angular.module('myApp.signup', [])
       $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signup/registerProfile.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        windowClass: 'register-profile-modal'
       })
     }
   })
