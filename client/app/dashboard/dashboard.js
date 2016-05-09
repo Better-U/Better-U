@@ -1,6 +1,6 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory, $uibModal) {
+  .controller('DashboardCtrl', function ($window, $rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory, $uibModal, filepickerService, authFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
@@ -11,9 +11,47 @@ angular.module('myApp.dashboard', [])
       $scope.signout()
     }
     $scope.nutritionData = null
-
-
+    $scope.files = []
+    
     var user = $cookies.get('username')
+
+    $scope.onSuccess = onSuccess;
+
+    function pickFile(){
+      filepickerService.pick(
+        {mimetype: 'image/*'},
+        onSuccess
+      );
+    };
+
+    function onSuccess(Blob){
+      $scope.files.push(Blob);
+      console.log(Blob)
+      $window.localStorage.setItem('files', JSON.stringify($scope.files));
+    };
+
+    $scope.upload = function(){
+      filepickerService.pick(
+        {
+          mimetype: 'image/*',
+          language: 'en',
+          services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+          openTo: 'IMAGE_SEARCH'
+        },
+        function(Blob){
+          console.log(JSON.stringify(Blob));
+          // $scope.superhero.picture = Blob;
+          profileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
+            .then(function(data) {
+              console.log('upload data: ', data)
+              // $scope.apply()
+              $state.reload()
+            })
+          // $scope.$apply();
+        }
+      );
+    };
+
 
     $scope.goalsData = null
     $scope.dash = null
@@ -21,15 +59,18 @@ angular.module('myApp.dashboard', [])
     $scope.signout = function () {
       $cookies.remove('token')
       $cookies.remove('username')
+      // $rootScope.username = null
       $state.go('landing')
     }
 
     $scope.getDashboardProfile = function () {
-      profileFactory.getProfile(user)
+      authFactory.getProfile(user)
         .then(function (data) {
+          console.log(data.data)
           $scope.dash = data.data[0]
         })
     }
+
     $scope.getDashboardProfile()
 
     $scope.userBMI = function (height, weight) {
@@ -74,7 +115,7 @@ angular.module('myApp.dashboard', [])
         } else if (activity === 'moderate') {
           total = (maleBMR * 1.55).toFixed()
         } else if (activity === 'active') {
-          total = (maleMBR * 1.725).toFixed()
+          total = (maleBMR * 1.725).toFixed()
         }
       } else if (gender == 1) {
         var femaleBMR = 655.1 + (4.35 * numWeight) + (4.7 * numHeight) - (4.7 * numAge)
@@ -127,6 +168,7 @@ angular.module('myApp.dashboard', [])
       var username = $cookies.get('username')
       GoalsFactory.getLog(username)
         .then(function (data) {
+          console.log('data goals: ', data)
           $scope.goalsData = data.data.data
           console.log($scope.goalsData)
         })
@@ -302,7 +344,6 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.nutritionLogs()
-    // $scope.createChart()
     $scope.getPastSevenDays()
     $scope.getGoals()
 

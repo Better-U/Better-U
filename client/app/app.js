@@ -18,7 +18,8 @@ angular.module('myApp', ['myApp.signin',
   'ngCookies',
   'myApp.social',
   'myApp.socialFactoryModule',
-  'myApp.goals'])
+  'myApp.goals',
+  'angular-filepicker'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -102,7 +103,8 @@ angular.module('myApp', ['myApp.signin',
       })
   })
 
-  .config(function ($httpProvider) {
+  .config(function ($httpProvider, filepickerProvider) {
+    filepickerProvider.setKey('A1AHZqBOeQWiZp6ExRISUz');
     // $httpProvider.defaults.headers.common['Access']
     // $httpProvider.defaults.useXDomain = true
     // $http.defaults.headers.common['Access-Control-Allow-Credentials'] = true

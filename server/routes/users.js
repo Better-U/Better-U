@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-// var db = require('../db.js')
+var db = require('../db.js')
 var app = express()
 var bodyParser = require('body-parser')
 var Auth = require('../helpers/auth')
@@ -17,6 +17,23 @@ router.post('/profile', function (req, res) {
   User.registerProfile(req.body.username, req.body.weight, req.body.bodyFat, req.body.activityLvl, req.body.interest, req.body.gym)
     .then(function () {
       res.send('profile updated')
+    })
+})
+
+router.post('/picture', function (req, res) {
+  console.log(JSON.parse(req.body.url).url)
+  var url = JSON.parse(req.body.url).url
+  console.log(url)
+  var username = req.body.username
+  User.findUser(username)
+    .then(function(data) {
+      db('user').where({id: data[0].id}).update({interest: url})
+        .then(function(data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
     })
 })
 
