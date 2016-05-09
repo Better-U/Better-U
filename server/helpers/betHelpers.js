@@ -19,7 +19,7 @@ bet.getUsername = function (id) {
   return db.select('username').from('user').where({'id': id})
 }
 
-bet.addBet = function (id, bet_id, goals_id) {
+bet.addBets = function (id, bet_id, goals_id) {
   var betObj = {
     user_id: id,
     bettor_id: bet_id,
