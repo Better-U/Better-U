@@ -14,10 +14,21 @@ angular.module('myApp.bet', ['factories'])
     }
     $scope.topPointsList()
 
+    $scope.withGoalsList = null
     $scope.submitSearch = function () {
       GoalsFactory.getLog($scope.searchbetuser)
         .then(function (data) {
           $scope.withGoalsList = data.data.data
         })
     }
+
+    $scope.userBets = null
+    $scope.fetchBets = function () {
+      BetsFactory.fetchBets(username)
+        .then(function (data) {
+          console.log('this is data from fetchBets: ', data.data.data[0])
+          $scope.userBets = data.data.data[0]
+        })
+    }
+    $scope.fetchBets()
   })

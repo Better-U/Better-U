@@ -283,7 +283,19 @@ angular.module('factories', [])
       return $http.get('/api/bet/getAllPoints', config)
     }
 
+    function fetchBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      console.log('inside fetchBets: ', username)
+      return $http.get('/api/bet/fetchBets', config)
+    }
+
     return {
-      getAllPoints: getAllPoints
+      getAllPoints: getAllPoints,
+      fetchBets: fetchBets
     }
   })

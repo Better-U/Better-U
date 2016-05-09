@@ -30,6 +30,24 @@
 	  </table>
   </div>
 
+  <h2>Your Goals Been Bet On</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Goal</th>
+        <th>Deadline</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody ng-if="userBets">
+      <tr ng-repeat="bet in userBets | orderBy:'totalpts':true">
+          <td class="col-sm-4">{{bet.intensity}} {{bet.category}} by {{bet.value}} {{bet.measurement}}</td>
+          <td class="col-sm-3">{{bet.date| date : format : timezone}}</td>
+          <td class="col-sm-3">{{bet.points}} </td>
+      </tr>
+    </tbody>
+  </table>
+
   <!-- List users with most points-->
   <h2> BetterU Leaderboard</h2>
   <table class="table table-striped">
@@ -41,8 +59,8 @@
     </thead>
     <tbody ng-if="userPoints">
       <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
-        <td>{{top.username}}</td>
-        <td>{{top.totalpts}}</td>
+        <td class="col-sm-3">{{top.username}}</td>
+        <td class="col-sm-3">{{top.totalpts}}</td>
       </tr>
     </tbody>
   </table>

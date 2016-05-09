@@ -14,7 +14,6 @@ router.use(Auth.ifAuthorized)
 router.get('/getAllPoints', function (req, res) {
   Bets.getAllPoints()
     .then(function (data) {
-      console.log('get all points: ', data)
       res.json({
         success: true,
         data: data
@@ -22,11 +21,14 @@ router.get('/getAllPoints', function (req, res) {
     })
 })
 
-router.get('/FetchBet', function (req, res) {
+router.get('/fetchBets', function (req, res) {
+  console.log('this is fetchBets req.body: ', req.query.username)
   User.findUser(req.query.username)
     .then(function (id) {
-      Bets.fetchBet(id[0].id)
+      var user = id[0].id
+      Bets.fetchBets(user)
         .then(function (data) {
+          console.log('fetch user bets: ', data)
           res.json({
             success: true,
             data: data
@@ -36,8 +38,8 @@ router.get('/FetchBet', function (req, res) {
 })
 
 router.post('/betForm', function (req, res) {
-  console.log('Betting form post', req.body)
-  User.findUser(req.body.username)
+  console.log('Betting form post', req.query.username)
+  User.findUser(req.query.username)
     .then(function (id) {
       console.log('id', id)
       Bets.addBet(req.body.bettor_id, id[0].id, req.body.goals_id)
