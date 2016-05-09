@@ -7,9 +7,16 @@ bet.getAllPoints = function () {
 }
 
 bet.fetchBets = function (id) {
-  var fetchBet = 'SELECT * FROM goals INNER JOIN bets ON goals.id = bets.goals_id WHERE bets.user_id = ?'
+  var fetchBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username FROM goals ' +
+  'INNER JOIN bets ON goals.id = bets.goals_id ' +
+  'INNER JOIN user ON user.id = bets.bettor_id ' +
+  'WHERE bets.user_id = ?'
   console.log('this is fetchBets userID: ', id)
   return db.raw(fetchBet, [id])
+}
+
+bet.getUsername = function (id) {
+  return db.select('username').from('user').where({'id': id})
 }
 
 bet.addBet = function (id, bet_id, goals_id) {

@@ -37,6 +37,7 @@
         <th>Goal</th>
         <th>Deadline</th>
         <th>Points</th>
+        <th>Bettor</th>
       </tr>
     </thead>
     <tbody ng-if="userBets">
@@ -44,6 +45,7 @@
           <td class="col-sm-4">{{bet.intensity}} {{bet.category}} by {{bet.value}} {{bet.measurement}}</td>
           <td class="col-sm-3">{{bet.date| date : format : timezone}}</td>
           <td class="col-sm-3">{{bet.points}} </td>
+          <td class="col-sm-3">{{bet.username}}</td>
       </tr>
     </tbody>
   </table>
