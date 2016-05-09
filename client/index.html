@@ -13,6 +13,11 @@
     <!--<link rel="stylesheet" href="./lib/chartist/dist/chartist.min.css">-->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- FILESTACK -->
+    <script type="text/javascript" src="./lib/filepicker-js/filepicker.js"></script>
+    <script type="text/javascript" src="./lib/angular-filepicker/dist/angular_filepicker.js"></script>
+    <!--<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>-->
+    <!--<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>-->
     <title>BetterU - Fitness</title>
 </head>
 <body>
@@ -62,15 +67,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a ui-sref="dashboard">Dashboard</a></li>
-                <li><a ui-sref="profile">Profile</a></li>
                 <li><a ui-sref="cardio">Cardio</a></li>
                 <li><a ui-sref="strength">Strength</a></li>
-                <li><a ui-sref="nutrition">Nutrition</a></li>
-                <li><a ui-sref="goals">Add Goals</a></li>
+                <li><a ui-sref="nutrition">Food Log</a></li>
+                <!--<li><a ui-sref="goals">Add Goals</a></li>-->
                 <li><a ui-sref="social">Social</a></li>
                 <li><a ui-sref="bet">Bet</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="profile"><span class="glyphicon glyphicon-cog"></span> Edit Profile</a></li>
                 <li><a href="#" ng-click="signout()" >Sign Out</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -112,5 +117,7 @@
 <!-- Chartist -->
 <script src="./lib/chartist/dist/chartist.min.js"></script>
 <script src="./lib/chartist-plugin-threshold/dist/chartist-plugin-threshold.js"></script>
+
+
 </body>
 </html>

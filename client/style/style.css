@@ -260,3 +260,17 @@ td .goalDueDate {
     font-size: 12px;
     /*letter-spacing: 0.5px;*/
 }
+/*.app-modal-window .modal-dialog {*/
+    /*width: 500px;*/
+/*}*/
+.register-profile-modal .modal-dialog{
+    width: 600px;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}

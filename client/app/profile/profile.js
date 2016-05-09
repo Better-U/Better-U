@@ -1,6 +1,6 @@
 angular.module('myApp.profile', ['factories'])
 
-  .controller('ProfileCtrl', function ($state, $scope, $window, authFactory, profileFactory, $cookies) {
+  .controller('ProfileCtrl', function ($state, $scope, $window, authFactory, profileFactory, $cookies, filepickerService) {
     $scope.changesSaved = false
     $scope.init = function () {
       profileFactory.getProfile($cookies.get('username'))
@@ -30,4 +30,5 @@ angular.module('myApp.profile', ['factories'])
         return 'Female'
       }
     }
+
   })
