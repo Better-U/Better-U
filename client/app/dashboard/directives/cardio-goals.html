@@ -56,8 +56,15 @@
         </div>
 
         <div class="form-group">
+            <label for="value" class="col-sm-4 control-label">Bet Points:</label>
+            <div class="col-sm-4">
+                <input type="number" id="value" ng-model='cardio.points' class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button class="btn btn-primary" type="submit" ng-click="submitCardio(cardio.date, cardio.intensity, cardio.category, cardio.value, cardio.measurement)">Create Goal!</button>
+                <button class="btn btn-primary" type="submit" ng-click="submitCardio(cardio.date, cardio.intensity, cardio.category, cardio.value, cardio.measurement, cardio.points)">Create Goal!</button>
             </div>
         </div>
 

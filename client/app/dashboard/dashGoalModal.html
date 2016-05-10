@@ -8,7 +8,6 @@
                 <option value="" selected disabled>Category</option>
                 <option value="cardio">Cardio</option>
                 <option value="strength">Strength</option>
-                <option value="nutrition">Nutrition</option>
             </select>
             <button class="btn btn-primary" ng-click="selectGoal(goal.type)">Submit</button>
         </div>
@@ -21,11 +20,6 @@
         <!-- IF STRENGTH SELECTED -->
         <div ng-if="strengthSelected">
             <strength-goals></strength-goals>
-        </div>
-
-        <!-- IF HEALTH SELECTED -->
-        <div ng-if="nutritionSelected">
-            <nutrition-goals></nutrition-goals>
         </div>
 
 </div>

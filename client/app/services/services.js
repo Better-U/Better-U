@@ -177,7 +177,7 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-      
+
       return $http.get('/api/fitness/getCardio', config)
     }
 
@@ -246,7 +246,7 @@ angular.module('factories', [])
   })
 
   .factory('GoalsFactory', function ($http) {
-    function postLog (type, data, intensity, category, value, measurement, username) {
+    function postLog (type, data, intensity, category, value, measurement, username, points) {
       var plugin = {
         type: type,
         date: data,
@@ -254,9 +254,10 @@ angular.module('factories', [])
         category: category,
         value: value,
         measurement: measurement,
-        username: username
+        username: username,
+        points: points
       }
-
+      console.log('this is points: ', plugin.points)
       console.log('inside postlog service', plugin)
 
       return $http.post('/api/goals/', plugin)
@@ -288,5 +289,55 @@ angular.module('factories', [])
       postLog: postLog,
       getLog: getLog,
       removeLog: removeLog
+    }
+  })
+
+  .factory('BetsFactory', function ($http) {
+    function getAllPoints (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      return $http.get('/api/bet/getAllPoints', config)
+    }
+
+    function fetchBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      return $http.get('/api/bet/fetchBets', config)
+    }
+
+    function placedBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      console.log('inside placedBets: ', username)
+      return $http.get('api/bet/placedBets', config)
+    }
+
+    function addBets (u_id, g_id, username) {
+      var bet = {
+        goals_id: g_id,
+        user_id: u_id,
+        username: username
+      }
+      console.log('Inside addBets: ', bet)
+      return $http.post('api/bet/addBets', bet)
+    }
+
+    return {
+      getAllPoints: getAllPoints,
+      fetchBets: fetchBets,
+      placedBets: placedBets,
+      addBets: addBets
     }
   })

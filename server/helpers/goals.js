@@ -1,7 +1,8 @@
 var db = require('../db')
 var Goals = {}
 
-Goals.postLog = function (type, date, intensity, category, value, measurement, id) {
+Goals.postLog = function (type, date, intensity, category, value, measurement, id, points) {
+  console.log('this is points: ', points)
   var goalObj = {
     type: type,
     date: date,
@@ -9,7 +10,8 @@ Goals.postLog = function (type, date, intensity, category, value, measurement, i
     category: category,
     value: value,
     measurement: measurement,
-    user_id: id
+    user_id: id,
+    points: points
   }
   return db('goals').insert(goalObj)
 }
