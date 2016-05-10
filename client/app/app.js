@@ -104,19 +104,18 @@ angular.module('myApp', ['myApp.signin',
   })
 
   .config(function ($httpProvider, filepickerProvider) {
-    filepickerProvider.setKey('A1AHZqBOeQWiZp6ExRISUz');
-    // $httpProvider.defaults.headers.common['Access']
+    filepickerProvider.setKey('A1AHZqBOeQWiZp6ExRISUz')
+    $httpProvider.defaults.headers.common['Access']
     // $httpProvider.defaults.useXDomain = true
     // $http.defaults.headers.common['Access-Control-Allow-Credentials'] = true
-    // // $http.defaults.headers.common['Access-Control-Allow-Method'] = 'GET, POST, PUT, DELETE'
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Method'] = 'GET, POST, PUT, DELETE'
     // $http.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization'
 
     // delete $httpProvider.defaults.headers.common['X-Requested-With']
 
 
-
-
     $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
+
       return {
    //      request: function (config) {
    //        config.headers['Token'] = $cookies.get('token')
@@ -141,8 +140,8 @@ angular.module('myApp', ['myApp.signin',
         $state.go('landing')
       }
       else if (requireLogin && !authFactory.isAuth()) {
-        $cookies.remove('token')
         $cookies.remove('username')
+        $cookies.remove('token')
         event.preventDefault()
         $state.go('landing')
       }

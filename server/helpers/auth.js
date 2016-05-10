@@ -14,9 +14,11 @@ auth.genToken = function(userDetails) {
 }
 
 auth.ifAuthorized = function (req, res, next) {
+  console.log('auth req: ', req.headers.cookie)
   var cookie = req.headers.cookie
-  var regex = /token=(.+);/
+  var regex = /token=(.*)/
   var matches = cookie.match(regex)
+  console.log('matches: ', matches)
 
   var token = matches[1]
 
