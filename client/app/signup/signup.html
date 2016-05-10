@@ -1,7 +1,7 @@
 <div class="signup">
   <div ng-if="!next">
   <h2>Sign Up</h2>
-  <span>Already have an account? </span><button ng-click="signin()">Sign In</button>
+  <span>Already have an account? </span><button ng-click="signin()" class="btn btn-default">Sign In</button>
   <div>
     <span ng-if="userExistError">Username already exists! Please login or select different username!</span>
     <span ng-if="noUserDetail">Please enter a valid username and password!</span>

@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 router.post('/regUser', function (req, res) {
   User.findUser(req.body.username)
     .then(function (data) {
+      console.log('reg user data: ', data)
       if (data.length === 0) {
         User.hashPassword(req.body.username, req.body.password)
           .then(function (hash) {
@@ -31,6 +32,7 @@ router.post('/regProfile', function (req, res) {
 
   User.findUser(req.body.username)
     .then(function (data) {
+      console.log(data)
       user = {
         id: data[0].id,
         username: req.body.username
