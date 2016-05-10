@@ -176,6 +176,11 @@ angular.module('myApp.strength', ['factories'])
       ]
       console.log($scope.c1_data)
       console.log($scope.c2_data)
+
+      $(function () {
+          $("[data-toggle='tooltip']").tooltip()
+      })
+
       new Chartist.Bar('#chart1', $scope.c1_data)
       new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
     }
