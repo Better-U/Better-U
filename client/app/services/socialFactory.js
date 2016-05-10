@@ -25,10 +25,15 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
           })
       })
     }
+
+    function getFriends(username){
+      return $http.post('/api/social/friends', {username: username})
+    }
     function giveRoom () {
       return roomNumber
     }
     return {
+      getFriends: getFriends,
       updateZip: updateZip,
       findPeople: findPeople,
       newChat: newChat,

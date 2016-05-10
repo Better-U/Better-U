@@ -17,7 +17,7 @@ Social.updateAddress = function (username, city) {
   return db('user').where({username: username}).update({city: city})
 }
 Social.getUsersInZip = function (username, city) {
-  return db('user').whereNot({username: username}).andWhere({city: city}).select('username')
+  return db('user').whereNot({username: username}).andWhere({city: city}).select('username','interest', 'gym', 'city', 'image')
 }
 
 Social.makeChatRoom = function (username1, username2) {
@@ -45,8 +45,10 @@ Social.makeChatRoom = function (username1, username2) {
 
 Social.listChats = function(username){
  return new Promise(function(resolve){
-  db('user').where(username).select('id')
+
+  db('user').where({username: username}).select('id')
     .then(function(data){
+      console.log('inside listchats', data)
       db('userRooms').where({userID: data[0].id}).select('roomID')
         .then(function(data1){
           var newRay = []
