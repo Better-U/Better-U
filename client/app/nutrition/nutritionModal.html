@@ -1,26 +1,23 @@
 <div class="container" id="nutritionContainer" ng-controller='NutritionModalCtrl'>
-  <h3>Search Food</h3>
+  <h3>Search for Food</h3>
     <form name='searchNutrition' method='post'>
       <div class="col-sm-6">
-        <input class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-loading='loadingResults' typeahead-wait-ms="400">
-        <i ng-show='loadingResults'></i>
-      </div>
-      <input type='submit' class="btn btn-primary btn-sm">
+        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)'>
+        <!-- <input type='submit' id='logSubmit' class="btn btn-primary btn-sm"> -->
+        <div ng-if='asyncSelected.length > 0' id='searchResults'>
+          <div class="searchContainer" id='{{i}}' ng-repeat='(index,item) in results track by $index' ng-click='getNutrition(item._id)' ng-class='{red:hover}' class='font' ng-mouseenter="hover=true" ng-mouseleave="hover=false">
+          <span id='rowColor'>
+          <div id='brandName'> {{item.fields.brand_name}} </div>
+          <div id='itemName'> {{item.fields.item_name}} </div>
+          <div id='itemCal'> {{item.fields.nf_calories + ' cal'}} </div>
+          </span>
+          </div>
+        </div>
+        <br>
+     </div>
     </form>
 
-
-<h3>Results</h3>
-    <div id='searchResults'>
-      <div ng-repeat='(index,item) in results track by $index'>
-        <a ng-click='getNutrition(item._id)'>{{item.fields.brand_name}}  {{item.fields.item_name}} / {{item.fields.nf_calories + ' calories'}}</a>
-      </div>
-    </div>
-
-
-  <h3>Food Log</h3>
     <form class='form-inline' name='inputNutrition' method='post' style='width:700px'>
-
-
       <div class="form-group">
         <label for="foodName">What did you eat?</label>
         <input type="text" style="width:300px" class="form-control input-sm" id="foodInput" ng-model='log.name' value='{{ log.name }}'>
@@ -74,6 +71,7 @@
         <option>Evening Snack</option>
       </select>
       <br>
-      <input type='submit' class="btn btn-primary btn-sm" value='Log Food' ng-click='submitFoodLog()'/>
+      <input type='submit' class="btn btn-primary btn-sm" value='Log Nutritional Facts' ng-click='submitFoodLog()'/>
     </form>
+<img align='middle' id='nutritionix' src="https://d3jpl91pxevbkh.cloudfront.net/nutritionix/image/upload/v1363458498/attribution_jqfdgy.png" border="0">
 </div>

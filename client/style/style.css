@@ -1,8 +1,60 @@
 #searchResults {
   height: 300px;
-  width: 560px;
-  border: 1px solid black;
+  width: 438px;
   overflow: auto;
+  border-radius: 0 0 4px 4px;
+  background-color: rgba(170, 170, 170, 0.50);
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+}
+
+#searchBox {
+  width: 438px;
+  border-radius: 4px 4px 0 0;
+}
+
+.highlight {
+  background: #CCC;
+}
+
+#nutritionix {
+  margin-left: 280px;
+}
+
+.red {
+  background-color: gray;
+}
+
+#brandName {
+  width: 80px;
+  height: 15px;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 12px;
+  margin-left: 2px;
+  font-color: white;
+}
+
+#itemName {
+  width: 264px;
+  height: 15px;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 12px;
+  font-color: white;
+}
+
+#itemCal {
+  width: 80px;
+  height: 15px;
+  display: inline-block;
+  overflow: hidden;
+  text-align: right;
+  font-size: 12px;
+  font-color: white;
+}
+
+#rowColor:hover {
+  color: white;
 }
 
 .app-modal-window .modal-dialog {
