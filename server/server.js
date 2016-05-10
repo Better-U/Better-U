@@ -7,6 +7,8 @@ var bodyParser = require('body-parser')
 var path = require('path')
 var dotenv = require('dotenv')
 var db = require('./db.js')
+var cron = require('node-schedule')
+var Schedule = require('./helpers/schedule')
 
 dotenv.config()
 
@@ -33,6 +35,16 @@ app.use('/api/goals/', goals)
 app.use('/api/signup/', signup)
 app.use('/api/social/', social)
 app.use('/api/bet/', bet)
+
+var rule = new cron.RecurrenceRule()
+rule.second = 10
+cron.scheduleJob(rule, function () {
+  console.log('new schedule made!')
+  Schedule.updateUserPoints()
+    // .then(function () {
+    //   console.log('user points updated')
+    // })
+})
 
 var port = process.env.PORT || 8080
 
