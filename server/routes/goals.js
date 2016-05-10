@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// router.use(Auth.ifAuthorized)
+router.use(Auth.ifAuthorized)
 
 router.get('/', function (req, res) {
   User.findUser(req.query.username)

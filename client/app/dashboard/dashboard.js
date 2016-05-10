@@ -66,12 +66,14 @@ angular.module('myApp.dashboard', [])
     $scope.getDashboardProfile = function () {
       authFactory.getProfile(user)
         .then(function (data) {
-          console.log(data.data)
+          console.log('data', data.data)
           $scope.dash = data.data[0]
+          $scope.image = $scope.dash.image
+          console.log('image: ', $scope.image)
         })
     }
 
-    $scope.getDashboardProfile()
+
 
     $scope.userBMI = function (height, weight) {
       var bmiHeight = Number(height)
@@ -332,10 +334,10 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.nutritionLogs = function () {
+      console.log('inside nutrition logs: ', $scope.username)
       nutritionFactory.getFoodLog($scope.username)
         .then(function(data) {
-          console.log('nutrition logs: ', data.data.data)
-          $scope.nutritionData = data.data.data
+          $scope.nutritionData = data.data
           $scope.getWater($scope.nutritionData)
           $scope.getCalories($scope.nutritionData)
           $scope.createChart()
@@ -345,6 +347,7 @@ angular.module('myApp.dashboard', [])
     $scope.nutritionLogs()
     $scope.getPastSevenDays()
     $scope.getGoals()
+    $scope.getDashboardProfile()
 
   })
 

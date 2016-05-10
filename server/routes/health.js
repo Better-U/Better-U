@@ -40,15 +40,5 @@ router.get('/nutrition', function (req, res) {
   })
 })
 
-//
-// router.get('/fatSum', function(req, res) {
-//   console.log(req.query.date)
-//   // db('nutrition_record').sum('fat').where({date: req.query.date})
-//     db('nutrition_record').select('date').where({fat: 17})
-//     .then(function(data) {
-//     console.log('this is data for sum', data)
-//   })
-//
-// })
 
 module.exports = router
