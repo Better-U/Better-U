@@ -6,14 +6,14 @@
           <th>Date</th>
           <th>Item</th>
           <th>Time</th>
-          <th>Serving</th>
-          <th>Calories</th>
-          <th>Carbs (g)</th>
-          <th>Fat (g)</th>
-          <th>Fiber (g)</th>
-          <th>Sodium (mg)</th>
-          <th>Protein (g)</th>
-          <th>Water (cups)</th>
+          <th data-original-title='Amount of a food or drink that is generally served.' data-container='body' data-toggle='tooltip'>Serving</th>
+          <th data-original-title='A calorie is the energy it takes to raise the temperature of 1 gram of water 1 degree Celsius. If you exceed the number of calories your body requires each day you will eventually gain weight. It takes an excess of 3500 calories to gain 1 lb. of fat.' data-container='body' data-toggle='tooltip'>Calories</th>
+          <th data-original-title='Carbs are present in varying amounts in most foods you eat such as fruits, vegetables, grains, beans, legumes, milk/milk products, & foods containing added sugar. Carbs are present in food in the form of starch, sugar and fiber.' data-container='body' data-toggle='tooltip'>Carbs (g)</th>
+          <th data-original-title='Total fat; the sum of saturated, monounsaturated & polyunsaturated fats. Intake of monounsaturated and polyunsaturated fats can help reduce blood cholesterol when substituted for saturated fats in the diet. The body uses fat as a fuel source, and fat is the major storage form of energy in the body.' data-container='body' data-toggle='tooltip'>Fat (g)</th>
+          <th data-original-title='' data-container='body' data-toggle='tooltip'>Fiber (g)</th>
+          <th data-original-title='' data-container='body' data-toggle='tooltip'>Sodium (mg)</th>
+          <th data-original-title='' data-container='body' data-toggle='tooltip'>Protein (g)</th>
+          <th data-original-title='' data-container='body' data-toggle='tooltip'>Water (cups)</th>
         </tr>
         <tr ng-repeat="food in foodData | orderBy:'date':true">
           <td>{{food.date | date: "MM-dd-yyyy"}}</td>

@@ -57,6 +57,11 @@
   color: white;
 }
 
+#calTH {
+  position: fixed;
+  position: absolute;
+}
+
 .app-modal-window .modal-dialog {
   width: 800px;
 }
