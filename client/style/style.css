@@ -326,3 +326,43 @@ td .goalDueDate {
     /* To center horizontally */
     margin: 0 auto;
 }
+
+/*.profileContainer {*/
+    /*display: flex*/
+/*}*/
+
+/*.profileForm {*/
+    /*float: left;*/
+    /*!*display: flex;*!*/
+    /*width: calc(100% - 600px);*/
+    /*background: lightgreen;*/
+
+/*}*/
+
+.profileImage {
+    position: relative;
+    border-radius: 100px;
+ }
+
+.profileImage div {
+    min-height: 10px;
+    margin: 20px 20px;
+    padding: 5px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 90%;
+    font-size: 16px;
+}
+
+.profileForm {
+    margin: 25px 0;
+    padding: 15px 5px;
+}
+
+.control-label {
+    width: 150px;
+}
+
+.profileHeader{
+    text-align: center;
+}
