@@ -1,0 +1,115 @@
+<div class="profileContainer container" ng-controller='ProfileCtrl' data-ng-init="init()">
+  <div id='profile-page'>
+      <div class="profileHeader">
+          <h1>Edit Profile</h1>
+      </div>
+
+
+
+
+    <div class="col-lg-5  col-md-6 col-xs-12 profileImage">
+        <div>
+          <div>
+              <img ng-src="{{image | fpConvert: {w:250} }}" alt="image placeholder" class="img-circle" ng-if="image">
+              <img src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 250px" ng-if="!image">
+          </div>
+            <p><strong>Name: </strong>{{display.username}}</p>
+            <p><strong>Age: </strong>{{display.age}}</p>
+            <p><strong>Gender: </strong>{{getGender(display.gender)}}</p>
+            <p><strong>Points: </strong>{{display.totalpts}}</p>
+            <div>
+                <button ng-click="upload()" class="btn btn-primary">Upload Photo</button>
+            </div>
+        </div>
+    </div>
+
+      <div class="col-lg-7 col-xs-12 profileForm">
+      <form class="form-horizontal" name='profile-setup' method='post' ng-submit='submitProfile()'>
+        <!--<div class="form-group">-->
+          <!--<label class="col-sm-2 control-label">Name</label>-->
+          <!--<div class="col-sm-10">-->
+            <!--<p class="form-control-static">{{display.username}}</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label class="col-sm-2 control-label">Age</label>-->
+          <!--<div class="col-sm-10">-->
+            <!--<p class="form-control-static">{{display.age}}</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label class="col-sm-2 control-label">Gender</label>-->
+          <!--<div class="col-sm-10">-->
+            <!--<p class="form-control-static">{{getGender(display.gender)}}</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Height (inches)</label>
+          <div class="col-sm-2">
+            <p class="form-control-static">{{display.height}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputWeight" class="col-sm-4 control-label">Weight (lbs)</label>
+          <div class="col-sm-2">
+            <p class="form-control-static">
+            <input type="weight" class="form-control" id="inputWeight" ng-model='prof.weight' placeholder="{{display.weight}}">
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputBodyFat" class="col-sm-4 control-label">Body Fat (%)</label>
+          <div class="col-sm-2">
+            <p class="form-control-static">
+            <input type="weight" class="form-control" id="inputBodyFat" ng-model='prof.bodyFat' placeholder="{{display.bodyfat}}">
+            </p>
+          </div>
+        </div>
+ 
+      <div class="form-group" id='profile-activity'>
+      <label class="col-sm-4 control-label">Activity Level:</label>
+          <div class="col-sm-7">
+
+        <input type='radio' name='prof.activity' ng-model='prof.activity' value='sedentary' class="form-control-static"> Sedentary (little to no exercise)<br>
+        <input type='radio' name='prof.activity' ng-model='prof.activity' value='light' class="form-control-static"> Lightly Active (light exercise; 1-3 days/wk)<br>
+          <input type='radio' name='prof.activity' ng-model='prof.activity' value='moderate' class="form-control-static"> Moderately Active (moderate exercise; 3-5 days/wk)<br>
+        <input type='radio' name='prof.activity' ng-model='prof.activity' value='active' class="form-control-static"> Very Active (hard exercise; 6-7 days/wk)
+          </div>
+      </div>
+
+      <div id='profile-interest' class="form-group">
+      <label class="col-sm-4 control-label">Fitness Interest:</label>
+          <div class="col-sm-7">
+          <select name='Fitness Interest' class="form-control" ng-model='prof.interest' style='width:140px'>
+            <option value="" selected disabled>Select Interest</option>
+            <option class='form=control-static' ng-selected='selectedItem == cardio'>Cardio</option>
+            <option class='form=control-static' ng-selected='selectedItem == strength'>Strength</option>
+            <option class='form=control-static' ng-selected='selectedItem == both'>Both</option>
+          </select>
+          </div>
+      <br>
+
+      </div>
+      <div id='profile-gym' class="form-group">
+      <label class="col-sm-4 control-label">Gym of Choice:</label>
+          <div class="col-sm-7">
+
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="la"> LA Fitness
+       <br>
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24hour"> 24 Hour Fitness
+       <br>
+       <label class="col-sm-2 control-label"></label>
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="ufc"> UFC Gym
+       <br>
+          </div>
+      </div>
+      <br>
+      <input id='profBtn' type='submit' class="btn btn-primary" value='Save Profile' ng-click='submitProfile()'/>
+    </form>
+   <div style='padding-left:140px' ng-if='changesSaved'>Your changes have been saved.</div> 
+    </div>
+  </div>
+
+</div>

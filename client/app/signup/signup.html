@@ -1,0 +1,23 @@
+<div class="signup">
+  <div ng-if="!next">
+  <h2>Sign Up</h2>
+  <span>Already have an account? </span><button ng-click="signin()" class="btn btn-default">Sign In</button>
+  <div>
+    <span ng-if="userExistError">Username already exists! Please login or select different username!</span>
+    <span ng-if="noUserDetail">Please enter a valid username and password!</span>
+    <form ng-submit="goNext()">
+        <div class="form-group" ng-if="!next">
+          <label for="usernameSignup">Username:</label><br>
+          <input id="usernameSignup" type='text' name='username' ng-model='user.name' placeholder='Username' class="form-control" required>
+        </div>
+      <div class="form-group" ng-if="!next">
+        <label for="passwordSignup">Password:</label><br>
+      <input id="passwordSignup" type='password' name='password' ng-model='user.password' placeholder='Password' class="form-control" required>
+      </div>
+    <input class="btn btn-primary" type="submit">
+    <button class="btn btn-warning" type="button" ng-click="cancel()"  ng-if="!next">Cancel</button>
+    </form>
+    </div>
+  </div>
+
+</div>

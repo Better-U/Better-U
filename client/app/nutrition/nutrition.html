@@ -1,0 +1,32 @@
+<div class="container" ng-controller='NutritionCtrl'>
+  <h1> Nutrition Cumulative Log </h1>
+    <button class="btn btn-primary" ng-click="inputNutrition()">Log Meals</button> <br><br>
+      <table class="table table-striped">
+        <tr>
+          <th>Date</th>
+          <th>Item</th>
+          <th>Time</th>
+          <th data-original-title='Amount of a food or drink that is generally served.' data-container='body' data-toggle='tooltip'>Serving</th>
+          <th data-original-title='A calorie is the energy it takes to raise the temperature of 1 gram of water 1 degree Celsius. If you exceed the number of calories your body requires each day you will eventually gain weight. It takes an excess of 3500 calories to gain 1 lb. of fat.' data-container='body' data-toggle='tooltip'>Calories</th>
+          <th data-original-title='Carbs are present in food in the form of starch, sugar and fiber. The recommended grams of carbs each day is 45-65% of your total calorie intake divided by 4.' data-container='body' data-toggle='tooltip'>Carbs (g)</th>
+          <th data-original-title='Sum of mono/poly/unsaturated & saturated fats. Fat is the major storage form of energy in the body & used as a fuel source. Avoid transfat & limit saturated fat to less than 10% of calories/day.' data-container='body' data-toggle='tooltip'>Fat (g)</th>
+          <th data-original-title='Naturally found in fruits, vegetables, whole grains and legumes. Fiber provides many benefits, such as helping to support the digestive system, maintain immunity, and promote overall well-being. Total dietary fiber intake should be 25-30 g/day.' data-container='body' data-toggle='tooltip'>Fiber (g)</th>
+          <th data-original-title='A nutrient needed by the body in small amounts to maintain a balance of body fluids & keep muscles & nerves running smoothly. The Dietary Guidelines for Americans recommends that adults & children ages 14 years(+) limit sodium intake to less than 2,300 mg/day.' data-container='body' data-toggle='tooltip'>Sodium (mg)</th>
+          <th data-original-title='Proteins contribute to key body functions like blood clotting, fluid balance, production of hormones and enzymes, vision, and cell repair. The recommended intake is 0.36g of protein per lb.' data-container='body' data-toggle='tooltip'>Protein (g)</th>
+          <th data-original-title='Water flushes toxins out of vital organs, carries nutrients to cells, & provides a moist environment for ear, nose and throat tissues. The Institute of Medicine determined an adequate intake (AI) for men is ~13 cups/day and ~9 cups/day for women.' data-container='body' data-toggle='tooltip'>Water (cups)</th>
+        </tr>
+        <tr ng-repeat="food in foodData | orderBy:'date':true">
+          <td>{{food.date | date: "MM-dd-yyyy"}}</td>
+          <td>{{food.name}}</td>
+          <td>{{food.time}}</td>
+          <td>{{food.serving}}</td>
+          <td>{{food.cal}}</td>
+          <td>{{food.carbs}}</td>
+          <td>{{food.fat}}</td>
+          <td>{{food.fiber}}</td>
+          <td>{{food.sodium}}</td>
+          <td>{{food.protein}}</td>
+          <td>{{food.water}}</td>
+        </tr>
+      </table>
+</div>

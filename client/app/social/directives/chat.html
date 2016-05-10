@@ -1,0 +1,20 @@
+<div class="col-log-12">
+<div>
+<button class="relative searchBuddy" ng-click="searching()">
+Search workout partners!
+</button>
+</div>
+<div class="entireChat">
+<div id="chattingWith">{{chattingWith}}</div>
+<div class="chat">
+  <ul  id="messages" >
+ 	<li class="eachMessage" ng-repeat="messager in messages">{{messager.username}}: {{messager.message}}</li>
+  </ul>
+  <div id="typing"></div>
+ 
+</div>
+</div>
+ <form id="messageForm" ng-submit="sendMessage()">
+    <input id="m" autocomplete="off" ng-model="message" /><button id="sendMessage">Send</button>
+  </form>
+</div>

@@ -1,0 +1,94 @@
+<div class="container">
+  <div>
+    <h3>Search a username to bet on</h3>
+  </div>
+  <!-- Search for users -->
+  <form>
+    <input type="text" ng-model="searchbetuser" placeholder="username" required>
+    <button button class="btn btn-primary" ng-click="submitSearch()">Search</button>
+  </form>
+
+  <!-- Display users -->
+  <div ng-if="withGoalsList">
+    <h2>{{displayUser}}'s goals</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Goal</th>
+          <th>Deadline</th>
+          <th>Points</th>
+          <th></th>
+        </tr>
+      </thead>
+	    <tbody>
+	      <tr ng-repeat="goal in withGoalsList">
+	        <td class="col-sm-4">{{goal.intensity}} {{goal.category}} by {{goal.value}} {{goal.measurement}}</td>
+	        <td class="col-sm-3">{{goal.date| date : format : timezone}}</td>
+          <td class="col-sm-3">{{goal.points}} </td>
+          <td class="col-sm-3"><button class="btn btn-primary" ng-click="addBets(goal.user_id, goal.id)"> Bet!</button></td>
+	      </tr>
+	    </tbody>
+	  </table>
+  </div>
+
+  <div ng-if="betsPlacedList.length > 0">
+    <h2>Bets you've placed</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Bets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in betsPlacedList">
+          <td class="col-sm-3">You've bet {{user.points}} points on {{user.username}} to {{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}} on {{user.date| date : format : timezone}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div ng-if="userBets.length > 0">
+    <h2>Your Goals Been Bet On</h2>
+    <table class="table table-striped" ng-if="userBets">
+      <thead>
+        <tr>
+          <th>Goal</th>
+          <th>Deadline</th>
+          <th>Points</th>
+          <th>Bettor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="bet in userBets | orderBy:'totalpts':true">
+            <td class="col-sm-4">{{bet.intensity}} {{bet.category}} by {{bet.value}} {{bet.measurement}}</td>
+            <td class="col-sm-3">{{bet.date| date : format : timezone}}</td>
+            <td class="col-sm-3">{{bet.points}} </td>
+            <td class="col-sm-3">{{bet.username}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- List users with most points-->
+  <div ng-if="userPoints">
+    <h2> BetterU Leaderboard</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody ng-if="userPoints">
+        <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
+          <td class="col-sm-3">{{top.username}}</td>
+          <td class="col-sm-3">{{top.totalpts}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Place Bets -->
+
+  <!-- Display search results -->
+
+</div>

@@ -1,0 +1,45 @@
+ <div class="container">
+ 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+
+    <div id="wrapper" ng-class="wrapperToggler">
+
+        <!-- Sidebar -->
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                <div class="sidebar-title">Chats:</div>
+                </li>
+                <li ng-repeat="chat in chatList">
+                  <a ng-click="joinRoom(chat.username)">
+                    <div>
+                     {{chat.username}}!
+                    </div>
+                  </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+        <a ng-click="displayChats()" class="visible-xs">
+        <div >
+        Show Your Chats
+        </div>
+        </a>
+            <div class="container-fluid relative">
+                <div ng-show="searchPage" class="row">
+                  <chat></chat>
+                </div>
+				<div ng-hide="searchPage" class="row">
+                  <search></search>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /#page-content-wrapper -->
+
+</div>
+<!-- <div class="col-md-3" ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div> -->

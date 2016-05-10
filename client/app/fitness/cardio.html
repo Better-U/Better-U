@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Cardio Weekly Progress</h1>
+  <button class="btn btn-primary" ng-click="inputCardio()">Log Daily Workout</button><br>
+  <br>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Activity</th>
+      <th>Distance (miles)</th>
+      <th>Duration (minutes)</th>
+      <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
+    </tr>
+    <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
+      <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
+      <td>{{cardio.type}}</td>
+      <td>{{cardio.distance}}</td>
+      <td>{{cardio.duration}}</td>
+      <td>{{cardio.pace}}</td>
+    </tr>
+  </table>
+  </div>
+</div>

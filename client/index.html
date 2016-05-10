@@ -1,0 +1,123 @@
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="./lib/chartist/dist/chartist.min.css">
+    <link rel="stylesheet" href="./lib/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="./style/simple-sidebar.css">
+    <!--<link rel="stylesheet" href="./lib/chartist/dist/chartist.min.css">-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- FILESTACK -->
+    <script type="text/javascript" src="./lib/filepicker-js/filepicker.js"></script>
+    <script type="text/javascript" src="./lib/angular-filepicker/dist/angular_filepicker.js"></script>
+    <!--<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>-->
+    <!--<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>-->
+    <title>BetterU - Fitness</title>
+</head>
+<body>
+
+<!-- LANDING NAVBAR -->
+<div class="mainNav">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-if="landing">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="landing">BetterU</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a ui-sref="dashboard">Dashboard</a></li>-->
+                <!--<li><a ui-sref="signin">Sign In</a></li>-->
+            <!--</ul>-->
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li><a href="#">Sign Out</a></li>-->
+                <li><a ui-sref="dashboard" ng-show="loggedIn">Dashboard</a></li>
+                <li><a href="#" ng-click="signin()" ng-hide="loggedIn">Sign In</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+</div>
+
+<!-- MAIN NAVBAR -->
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-hide="hideit">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="landing">BetterU</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="dashboard">Dashboard</a></li>
+                <li><a ui-sref="cardio">Cardio</a></li>
+                <li><a ui-sref="strength">Strength</a></li>
+                <li><a ui-sref="nutrition">Food Log</a></li>
+                <!--<li><a ui-sref="goals">Add Goals</a></li>-->
+                <li><a ui-sref="social">Social</a></li>
+                <li><a ui-sref="bet">Bet</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="profile"><span class="glyphicon glyphicon-cog"></span> Edit Profile</a></li>
+                <li><a href="#" ng-click="signout()" >Sign Out</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div ui-view></div>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="./lib/sweetalert/dist/sweetalert-dev.js"></script>
+<script src="./lib/socket.io-client/socket.io.js"></script>
+<script src="./lib/angular-socket-io/socket.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<script src="/app/services/socialFactory.js"></script>
+<script src="/app/services/services.js"></script>
+<script src="/app/social/social.js"></script>
+<script src="/app/landing/landing.js"></script>
+<script src="/app/signin/signin.js"></script>
+<script src="/app/signup/signup.js"></script>
+<script src="/app/profile/profile.js"></script>
+<script src="/app/fitness/cardio.js"></script>
+<script src="/app/fitness/cardioModal.js"></script>
+<script src="/app/fitness/strength.js"></script>
+<script src="/app/bet/bet.js"></script>
+<script src="/app/fitness/strengthModal.js"></script>
+<script src="/app/dashboard/dashboard.js"></script>
+<script src="/app/nutrition/nutrition.js"></script>
+<script src="/app/nutrition/nutritionModal.js"></script>
+<script src="/app/modal/modal.js"></script>
+<script src="/app/dashboard/dashGoalModal.js"></script>
+<!-- <script src="/app/goals/goals.js"></script> -->
+<script src="/app/apiKey.js"></script>
+<script src="/app/app.js"></script>
+
+<!-- Chartist -->
+<script src="./lib/chartist/dist/chartist.min.js"></script>
+<script src="./lib/chartist-plugin-threshold/dist/chartist-plugin-threshold.js"></script>
+
+
+</body>
+</html>
