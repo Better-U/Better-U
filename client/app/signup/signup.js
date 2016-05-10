@@ -48,7 +48,6 @@ angular.module('myApp.signup', [])
           .then(function (data) {
             console.log('data after next: ', data)
             $scope.alreadyExists = data.data.exists
-            $scope.registerProfile()
             if ($scope.alreadyExists) {
               $scope.noUserDetail = false
               $scope.userExistError = true
@@ -56,7 +55,7 @@ angular.module('myApp.signup', [])
               $scope.next = true
               $scope.profileButton = true
               $cookies.put('username', data.config.data.username)
-              // $rootScope.username = $cookies.get('username')
+              $scope.registerProfile()
             }
           })
       } else {
@@ -79,7 +78,8 @@ angular.module('myApp.signup', [])
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signup/registerProfile.html',
         controller: 'SignupCtrl',
-        windowClass: 'register-profile-modal'
+        // windowClass: 'register-profile-modal',
+        windowClass: 'app-modal-window'
       })
     }
   })
