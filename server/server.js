@@ -7,6 +7,8 @@ var bodyParser = require('body-parser')
 var path = require('path')
 var dotenv = require('dotenv')
 var db = require('./db.js')
+var cron = require('node-schedule')
+var Schedule = require('./helpers/schedule')
 
 dotenv.config()
 
@@ -33,6 +35,30 @@ app.use('/api/goals/', goals)
 app.use('/api/signup/', signup)
 app.use('/api/social/', social)
 app.use('/api/bet/', bet)
+
+var rule = new cron.RecurrenceRule()
+rule.second = 30
+cron.scheduleJob(rule, function () {
+  console.log('new schedule made!')
+  // Schedule.getGoalDates()
+  //   .then(function (data) {
+  //     var goalData = data[0]
+  //     var currentDate = new Date()
+  //     for (var i = 0; i < goalData.length; i++) {
+  //       var goalDate = goalData[i].date
+  //       console.log('this is the goal dates: ', goalData[i].date)
+  //       if (currentDate - goalDate > 0) {
+  //         console.log('inside currentdate - goalDate')
+  //         if (goalData[i].result = 1) {
+  //           // update the user.totalpts where user_id = _
+  //         }
+  //         if (goalData[i].result = 0) {
+  //           // update the user.totalpts where bettor_id = _
+  //         }
+  //       }
+  //     }
+  //   })
+})
 
 var port = process.env.PORT || 8080
 
