@@ -61,6 +61,9 @@ router.post('/addBets', function (req, res) {
       var bettor = id[0].id
       Bets.addBets(user, bettor, goals)
         .then(function () {
+          res.json({
+            success: true
+          })
           console.log('Bet Added in server!')
         })
     })
