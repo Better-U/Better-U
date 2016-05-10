@@ -104,7 +104,7 @@ angular.module('myApp', ['myApp.signin',
   })
 
   .config(function ($httpProvider, filepickerProvider) {
-    filepickerProvider.setKey('A1AHZqBOeQWiZp6ExRISUz')
+    filepickerProvider.setKey(fileStackAPI)
     $httpProvider.defaults.headers.common['Access']
     // $httpProvider.defaults.useXDomain = true
     // $http.defaults.headers.common['Access-Control-Allow-Credentials'] = true
