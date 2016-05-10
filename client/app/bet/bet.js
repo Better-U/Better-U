@@ -7,6 +7,7 @@ angular.module('myApp.bet', ['factories'])
     $scope.withGoalsList = null
     $scope.userBets = null
     $scope.betsPlacedList = null
+    $scope.displayUser = null
 
     $scope.topPointsList = function () {
       BetsFactory.getAllPoints(username)
@@ -30,6 +31,7 @@ angular.module('myApp.bet', ['factories'])
         .then(function (data) {
           $scope.withGoalsList = data.data.data
           console.log('This is line 23', data.data.data)
+          $scope.displayUser = $scope.searchbetuser
         })
     }
 
