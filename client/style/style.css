@@ -398,3 +398,13 @@ td .goalDueDate {
 .profileHeader{
     text-align: center;
 }
+
+.flexor {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.lilProfiles {
+  width: 150px;
+}

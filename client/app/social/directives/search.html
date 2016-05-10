@@ -7,7 +7,33 @@
 	  <button type="submit">Send City or Zip</button>
 	</form>
 
-  <span ng-repeat = "user in userList">
-	<button ng-click='chatWithUser(user.username)'>{{user.username}}</button>
-  </span>
+<div class="flexor">
+  <ul>
+    <li ng-repeat = "user in userList">
+      <ul>
+      <li>
+        {{user.username}}
+      </li>
+      <li>
+      	<img ng-if="!user.image" class="lilProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+      	<img ng-if="user.image" class="lilProfiles img-rounded" ng-src="{{user.image}}" />
+      </li>
+<!--       <li>
+        <div>Interests include:</div>
+        <ul>
+          <li ng-repeat="interesting in user.interest">
+            {{interesting}}
+          </li>
+        </ul>
+      </li>
+ -->      <li>
+ 	    {{user.gym}}
+      </li>
+      <li>
+      	<button ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
+      </li>
+      </ul> 
+    </li>
+  </ul>
+</div>
 </div>
