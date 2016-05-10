@@ -12,9 +12,6 @@ io.on('connection', function (socket) {
   // var name = userNames.getGuestName()
   console.log('socket connection!')
   // send the new user their name and a list of users
-  socket.emit('init', {
-    name: 'Eric'
-  })
 
   socket.on('joinRoom', function (data) {
     helpers.checkRoomNumber(data.username1, data.username2)
@@ -32,12 +29,6 @@ io.on('connection', function (socket) {
   socket.on('leaveRoom', function(data){
     console.log("leaving Room", data)
     socket.leave("" + data.roomNumber)
-  })
-  socket.on('listChats', function(username){
-    helpers.listChats(username)
-      .then(function(data){
-        socket.emit('listChats', data)
-      })
   })
   socket.on('typing', function(userObj){
     socket.to("" + userObj.roomNumber).broadcast.emit('typing', userObj)
@@ -80,6 +71,13 @@ io.on('connection', function (socket) {
 //   })
 // })
 
+router.post('/getCity', function(req, res){
+  helpers.getCity(req.body.username)
+    .then(function(city){
+      res.send(city[0].city)
+    })
+})
+
 router.post('/newChat', function (req, res) {
   helpers.makeChatRoom(req.body.username1, req.body.username2)
     .then(function (roomNumber) {
@@ -106,4 +104,12 @@ router.post('/findPeople', function (req, res) {
     })
 })
 
+router.post('/friends', function(req, res){
+    console.log(req.body.username, "call to api/social/friends")
+      helpers.listChats(req.body.username)
+      .then(function(data){
+        console.log(data)
+        res.send(data)
+      })
+})
 module.exports = router

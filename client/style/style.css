@@ -124,13 +124,25 @@ md-option {
     width: 80%;
     padding: 0px;
 }
-#messageForm { background: #fff; padding: 3px; position: fixed; bottom: 0; width: 60%; }
-#m { border: 1px #000 solid; padding: 10px; width: 80%; margin-right: .5%; }
+#chattingWith {
+    font-size: 30px;
+    text-align:center;
+}
+#messageForm { padding: 3px; position: absolute; left: 80px; width: 80%; }
+#m { background: #fff; border: 1px #000 solid; padding: 10px; width: 70%; margin-right: .5%; }
 #sendMessage { background: rgb(130, 224, 255); border: 1px #000 solid; padding: 10px; width: 20%;}
-#messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
-#messages li:nth-child(odd) { background: #eee; }
+#messages { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: auto;}
+#messages li { padding: 5px 10px; background:white; }
+#messages li:nth-child(odd) { background: #ddd; }
 
+.eachMessage {
+    text-align: left; 
+    word-wrap: break-word;
+}
+.eachMessage:hover {
+    background: black;
+    color: black;
+}
 .overdue {
     color: red;
 }
@@ -286,7 +298,15 @@ div .row{
 .calcNotice {
     font-size: 15px;
 }
-
+.entireChat {
+    background-color: white;
+}
+.chat {
+    top: 30px;
+    width: 100%;
+    height: 70%;
+    overflow: scroll;
+}
 .welcome {
     text-align: center;
     margin: 5px;
@@ -294,7 +314,18 @@ div .row{
     font-size: 65px;
     font-weight: 400;
 }
-
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.searchBuddy{
+    left: 40%;
+}
+.clearer{
+    clear: both;
+}
 body {
     background-color: #d4d4d4;
 }
@@ -311,6 +342,7 @@ td .indivialGoal {
 td .goalDueDate {
     font-size: 12px;
     /*letter-spacing: 0.5px;*/
+
 }
 /*.app-modal-window .modal-dialog {*/
     /*width: 500px;*/
@@ -365,4 +397,14 @@ td .goalDueDate {
 
 .profileHeader{
     text-align: center;
+}
+
+.flexor {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.lilProfiles {
+  width: 150px;
 }
