@@ -20,6 +20,7 @@ angular.module('myApp.bet', ['factories'])
       BetsFactory.addBets(u_id, g_id, username)
         .then(function () {
           console.log('Bet made line 22')
+          swal('Bet Made', 'Click OK to make another bet.', 'success')
           $scope.placedBets()
         })
     }
