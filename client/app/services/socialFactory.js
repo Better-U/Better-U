@@ -1,6 +1,9 @@
 angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
   .factory('socialFactory', function ($http) {
     var roomNumber
+    function getUserCity(username){
+      return $http.post('/api/social/getCity', {username: username})
+    }
     function updateZip (username, city) {
       var zipHolder = {
         username: username,
@@ -29,7 +32,8 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
       updateZip: updateZip,
       findPeople: findPeople,
       newChat: newChat,
-      giveRoom: giveRoom
+      giveRoom: giveRoom,
+      getUserCity: getUserCity
     }
   })
   .factory('socket', function ($rootScope) {

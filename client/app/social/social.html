@@ -2,17 +2,21 @@
  
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 
-    <div id="wrapper">
+    <div id="wrapper" ng-class="wrapperToggler">
 
         <!-- Sidebar -->
+
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <a ng-click="searching()"><li class="sidebar-brand">
-                  Search workout partners!
+                <li class="sidebar-brand">
+                <div>Chats:</div>
                 </li>
-                </a>
                 <li ng-repeat="chat in chatList">
-                <button class="text-danger" ng-click="joinRoom(chat.username)">Join {{chat.username}}!</button>
+                  <a ng-click="joinRoom(chat.username)">
+                    <div>
+                     {{chat.username}}!
+                    </div>
+                  </a>
                 </li>
             </ul>
         </div>
@@ -20,7 +24,12 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+        <a ng-click="displayChats()" class="visible-xs">
+        <div >
+        Show Your Chats
+        </div>
+        </a>
+            <div class="container-fluid relative">
                 <div ng-show="searchPage" class="row">
                   <chat></chat>
                 </div>

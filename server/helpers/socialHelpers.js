@@ -2,6 +2,7 @@ var db = require('../db.js')
 
 Social = {}
 
+
 function getUserID(username){
   return db('user').where({username: username}).select('id')
 }
@@ -9,6 +10,9 @@ function getIDs (username1, username2) {
   return db('user').whereIn('username', [username1, username2]).select('id')
 }
 
+Social.getCity = function(username){
+  return db('user').where({username: username}).select('city')
+}
 Social.updateAddress = function (username, city) {
   return db('user').where({username: username}).update({city: city})
 }

@@ -80,6 +80,13 @@ io.on('connection', function (socket) {
 //   })
 // })
 
+router.post('/getCity', function(req, res){
+  helpers.getCity(req.body.username)
+    .then(function(city){
+      res.send(city[0].city)
+    })
+})
+
 router.post('/newChat', function (req, res) {
   helpers.makeChatRoom(req.body.username1, req.body.username2)
     .then(function (roomNumber) {

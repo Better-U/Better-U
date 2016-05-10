@@ -8,6 +8,13 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.searchPage = false;
     $scope.gPlace
     $scope.validAddress = true;
+    $scope.chattingWith;
+    socialFactory.getUserCity($scope.user)
+      .then(function(data){
+        console.log(data)
+        $scope.savedAddress = data.data
+      })
+
     $scope.searching = function(){
       console.log('searching is called')
       $scope.searchPage = false
@@ -29,41 +36,48 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
           .then(function(data){
             console.log(data[0].address_components[1])
             geocoded = data[0].address_components[1].long_name
+        socialFactory.updateZip($scope.user, geocoded)
+        .then(function () {
+          $scope.savedAddress = geocoded
+          console.log('zipcode successfully updated', geocoded)
+          $scope.findPeople(geocoded)
+          $scope.address = ''
+          $scope.validAddress = true;
+        })
+
           })
       } else {
         console.log("inside if statement")
 
         maps.geocode($scope.address)
           .then(function(data){
-            console.log(data[0].address_components[0])
-            geocoded = data[0].address_components[0].long_name
-            if(isNaN(+geocoded) === true) {
-              geocoded = false
+            if(data.length < 1){
+              geocoded = false;
+              $scope.validAddress = false
+              return
             }
+            geocoded = data[0].address_components[0].long_name
+            $scope.validAddress = true
+            console.log(geocoded)
+        socialFactory.updateZip($scope.user, geocoded)
+        .then(function () {
+          $scope.savedAddress = geocoded
+          console.log('zipcode successfully updated')
+          $scope.findPeople(geocoded)
+          $scope.address = ''
+        })
+
           })
       }
-      console.log(geocoded)
+      
 
-      if(!geocoded){
-        $scope.validAddress = false
-        return
-      }
-      console.log(geocoded)
-      $scope.validAddress = true
-
-      // socialFactory.updateZip($scope.user, geocoded)
-      //   .then(function () {
-      //     $scope.savedAddress = geocoded
-      //     console.log('zipcode successfully updated')
-      //     $scope.findPeople($scope.address)
-      //     $scope.address = ''
-      //   })
     }
     $scope.userList = []
     $scope.findPeople = function (city) {
       socialFactory.findPeople($scope.user, city)
         .then(function (data) {
           $scope.userList = data.data
+          console.log(data.data)
           if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
             $scope.$apply()
           }
@@ -73,6 +87,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.chatWithUser = function (username) {
       console.log(username)
       $scope.searchPage = true
+      $scope.chattingWith = username
       socialFactory.newChat($scope.user, username)
         .then(function (data) {
           socket.emit('joinRoom', {username1: $scope.user, username2: username})
@@ -81,6 +96,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
 
     $scope.joinRoom = function (username) {
        $scope.searchPage = true
+       $scope.chattingWith = username
       socket.emit('joinRoom', {username1: $scope.user, username2: username})
       $scope.messages = [];
     }
@@ -94,7 +110,6 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     })
     var currentRoom = socialFactory.giveRoom()
     $scope.name = $cookies.get('username')
-
 
     socket.on('init', function () {
       console.log('init received')
@@ -126,6 +141,14 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
       // clear message box
       $scope.message = ''
     }
+
+    $scope.wrapperToggler = {toggled: false};
+      $scope.displayChats = function(){
+        console.log("displaying chats displayed/closed")
+        $scope.wrapperToggler.toggled = !$scope.wrapperToggler.toggled
+      }
+
+
   })
 .directive('chat', function(){
   return {
