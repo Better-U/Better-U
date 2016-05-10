@@ -43,4 +43,9 @@ angular.module('myApp.nutritionModal', ['factories'])
                      }
       })
     }
-  })
+
+    $scope.hoverFn = function () {
+      console.log('inside hoverFn')
+      // $scope.hoverColor =  {'background-color': '#' + $scope.}
+    }
+})
