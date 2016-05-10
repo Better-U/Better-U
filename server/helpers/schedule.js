@@ -6,28 +6,42 @@ schedule.getGoalDates = function () {
   var getGoal = 'SELECT g.date, g.points, b.user_id, b.bettor_id, b.result FROM goals g ' +
     'INNER JOIN bets b ON g.id = b.goals_id ' +
     'WHERE b.status = 1'
+  var updateWinner = 'UPDATE user SET totalpts = totalpts + ? WHERE id = ?'
+  var updateLoser = 'UPDATE user SET totalpts = totalpts - ? WHERE id = ?'
   db.raw(getGoal)
     .then(function (data) {
       var goalData = data[0]
       var currentDate = new Date()
       for (var i = 0; i < goalData.length; i++) {
         var goalDate = goalData[i].date
+        var userId = goalData[i].user_id
+        var goalPts = goalData[i].points
+        var bettorId = goalData[i].bettor_id
+        var result = goalData[i].result
         console.log('this is the goal dates: ', goalData[i].date)
         if (currentDate - goalDate > 0) {
           console.log('inside currentdate - goalDate')
-          if (goalData[i].result = 1) {
-            // update the user.totalpts where user_id = _
+          if (result = 1) {
+            db.raw(updateWinner, [goalPts, userId])
+              .then(function () {
+                db.raw(updateLoser, [goalPts, bettorId])
+                  .then(function () {
+                    console.log('user-winner successfully logged')
+                  })
+              })
           }
-          if (goalData[i].result = 0) {
-            // update the user.totalpts where bettor_id = _
+          if (result = 0) {
+            db.raw(updateWinner, [goalPts, bettorId])
+              .then(function () {
+                db.raw(updateLoser, [goalPts, userId])
+                  .then(function () {
+                    console.log('user-loser successfully logged')
+                  })
+              })
           }
         }
       }
     })
 }
-
-schedule.updateWinner = function () {}
-
-schedule.updateLoser
 
 module.exports = schedule
