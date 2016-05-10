@@ -9,11 +9,12 @@
   </form>
 
   <!-- Display users -->
-  <div>
-    <table class="table table-striped" ng-if="withGoalsList">
+  <div ng-if="withGoalsList">
+    <h2>{{displayUser}}'s goals</h2>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Goal {{searchbetuser}}</th>
+          <th>Goal</th>
           <th>Deadline</th>
           <th>Points</th>
           <th></th>
@@ -30,7 +31,7 @@
 	  </table>
   </div>
 
-  <div ng-if="betsPlacedList">
+  <div ng-if="betsPlacedList.length > 0">
     <h2>Bets you've placed</h2>
     <table class="table table-striped">
       <thead>
@@ -46,7 +47,7 @@
     </table>
   </div>
 
-  <div ng-if="userBets">
+  <div ng-if="userBets.length > 0">
     <h2>Your Goals Been Bet On</h2>
     <table class="table table-striped" ng-if="userBets">
       <thead>
