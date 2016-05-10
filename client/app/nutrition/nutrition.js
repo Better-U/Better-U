@@ -21,4 +21,8 @@ angular.module('myApp.nutrition', ['factories'])
     }
 
     $scope.getFoodLog(user)
+   // jQuery fixed tooltips
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip()
+    })
   })
