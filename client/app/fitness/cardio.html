@@ -8,7 +8,7 @@
       <th>Activity</th>
       <th>Distance (miles)</th>
       <th>Duration (minutes)</th>
-      <th>Pace (mpm)</th>
+      <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
     </tr>
     <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
       <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
