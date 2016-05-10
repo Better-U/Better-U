@@ -15,43 +15,6 @@ angular.module('myApp.dashboard', [])
     
     var user = $cookies.get('username')
 
-    $scope.onSuccess = onSuccess;
-
-    function pickFile(){
-      filepickerService.pick(
-        {mimetype: 'image/*'},
-        onSuccess
-      );
-    };
-
-    function onSuccess(Blob){
-      $scope.files.push(Blob);
-      console.log(Blob)
-      $window.localStorage.setItem('files', JSON.stringify($scope.files));
-    };
-
-    $scope.upload = function(){
-      filepickerService.pick(
-        {
-          mimetype: 'image/*',
-          language: 'en',
-          services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-          openTo: 'IMAGE_SEARCH'
-        },
-        function(Blob){
-          console.log(JSON.stringify(Blob));
-          // $scope.superhero.picture = Blob;
-          profileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
-            .then(function(data) {
-              console.log('upload data: ', data)
-              // $scope.apply()
-              $state.reload()
-            })
-          // $scope.$apply();
-        }
-      );
-    };
-
 
     $scope.goalsData = null
     $scope.dash = null
