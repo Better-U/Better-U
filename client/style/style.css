@@ -246,10 +246,6 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
     text-align: center;
 }
 
-.container-fluid {
-    border-bottom: 8px solid #aaa;
-}
-
 .navbar {
     border-bottom: 6px solid #aaa;
 }
@@ -408,23 +404,21 @@ td .goalDueDate {
 
 .flexor {
   position: relative;
-  left: -210px;
-  width: 1400px;
+  left: -150px;
+  width: calc(100% + 265px);
   height: 600px;
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  flex-flow:row wrap;
+  justify-content: space-around;
   align-items: stretch;
-  overflow: scroll;
-  touch-action: pan-left;
-  touch-action: pan-right;
+
 }
 .searchedUsername {
   font-size: 26px;
   font-family: 'Arvo', serif;
 }
 .lilProfiles {
-  width: 200px;
+  width: 230px;
 }
 .lilerProfiles {
   width: 25px;
@@ -450,6 +444,19 @@ td .goalDueDate {
 .noListStyles {
   list-style-type: none;
 }
-.cut-overflow{
-  overflow: hidden;
 
+.profileCard {
+  width:350px;
+  border: 2px black solid;
+  margin: 5px;
+}
+
+.positionUL {
+  overflow: hidden;
+  position: relative;
+  right: 25px;
+}
+#userAddress{
+  width: 50%;
+  display: inline;
+}
