@@ -37,7 +37,7 @@ app.use('/api/social/', social)
 app.use('/api/bet/', bet)
 
 var rule = new cron.RecurrenceRule()
-rule.minutes = 42
+rule.minute = 42
 cron.scheduleJob(rule, function () {
   console.log('new schedule made!')
   Schedule.updateUserPoints()
