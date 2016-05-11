@@ -32,7 +32,7 @@ angular.module('myApp.cardioModal', ['factories'])
         cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
           .then(function () {
             $state.reload()
-        })
+          })
       }
     }
   })

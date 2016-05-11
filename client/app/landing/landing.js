@@ -15,7 +15,6 @@ angular.module('myApp.landing', [])
         templateUrl: 'app/signup/signup.html',
         controller: 'SignupCtrl'
       })
-
     }
 
     $scope.signin = function () {

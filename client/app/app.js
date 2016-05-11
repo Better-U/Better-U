@@ -19,7 +19,8 @@ angular.module('myApp', ['myApp.signin',
   'myApp.social',
   'myApp.socialFactoryModule',
   'myApp.goals',
-  'angular-filepicker'])
+  'angular-filepicker',
+  'chatModule'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -113,15 +114,13 @@ angular.module('myApp', ['myApp.signin',
 
     // delete $httpProvider.defaults.headers.common['X-Requested-With']
 
-
     $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
-
       return {
-   //      request: function (config) {
-   //        config.headers['Token'] = $cookies.get('token')
-   //        config.headers.Authorization = "Bearer " + $cookies.get('token')
-   //        return config
-   //      },
+        //      request: function (config) {
+        //        config.headers['Token'] = $cookies.get('token')
+        //        config.headers.Authorization = "Bearer " + $cookies.get('token')
+        //        return config
+        //      },
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $injector.get('$state').transitionTo('landing')

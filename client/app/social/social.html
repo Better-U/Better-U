@@ -13,13 +13,16 @@
                 </li>
                 <li ng-repeat="chat in chatList">
                   <a ng-click="joinRoom(chat.username)">
-                    <div>
+                            <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+        <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
+
+                    <span class="cut-overflow">
                      {{chat.username}}!
-                    </div>
+                    </span>
                   </a>
                 </li>
             </ul>
-        </div>
+        </div>`
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -30,12 +33,8 @@
         </div>
         </a>
             <div class="container-fluid relative">
-                <div ng-show="searchPage" class="row">
-                  <chat></chat>
-                </div>
-				<div ng-hide="searchPage" class="row">
-                  <search></search>
-                </div>
+                  <chat ng-show="searchPage"></chat>
+                  <search ng-hide="searchPage"></search>
             </div>
         </div>
     </div>

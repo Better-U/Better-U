@@ -62,7 +62,7 @@ angular.module('factories', [])
       if (token) {
         var params = parseJwt(token)
         console.log('exp ', params.exp)
-        console.log('time now?', Math.round(new Date().getTime()/1000))
+        console.log('time now?', Math.round(new Date().getTime() / 1000))
         console.log('token validated: ', Math.round(new Date().getTime() / 1000) <= params.exp)
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {

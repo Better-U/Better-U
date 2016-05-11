@@ -12,9 +12,8 @@ angular.module('myApp.dashboard', [])
     }
     $scope.nutritionData = null
     $scope.files = []
-    
-    var user = $cookies.get('username')
 
+    var user = $cookies.get('username')
 
     $scope.goalsData = null
     $scope.dash = null
@@ -35,8 +34,6 @@ angular.module('myApp.dashboard', [])
           console.log('image: ', $scope.image)
         })
     }
-
-
 
     $scope.userBMI = function (height, weight) {
       var bmiHeight = Number(height)
@@ -73,7 +70,6 @@ angular.module('myApp.dashboard', [])
       if (gender == 0) {
         var maleBMR = 66.5 + (6.23 * numWeight) + (12.7 * numHeight) - (6.8 * numAge)
         if (activity === 'sedentary') {
-
           total = (maleBMR * 1.2).toFixed()
         } else if (activity === 'light') {
           total = (maleBMR * 1.375).toFixed()
@@ -212,7 +208,6 @@ angular.module('myApp.dashboard', [])
       return $scope.calorieIntake
     }
 
-
     $scope.todaysPieData = function () {
       $scope.todayNutritionPie = {
         today: null,
@@ -222,13 +217,13 @@ angular.module('myApp.dashboard', [])
       }
 
       var today = new Date()
-      if($scope.todayNutritionPie.today === null) {
+      if ($scope.todayNutritionPie.today === null) {
         console.log('today is null')
         $scope.todayNutritionPie.today = new Date()
       } else if ($scope.todayNutritionPie.today.getDate() !== today.getDate() &&
-                  $scope.todayNutritionPie.today.getMonth() !== today.getMonth() &&
-                    $scope.todayNutritionPie.today.getFullYear() !== today.getFullYear() &&
-                      $scope.todayNutritionPie.today !== null) {
+        $scope.todayNutritionPie.today.getMonth() !== today.getMonth() &&
+        $scope.todayNutritionPie.today.getFullYear() !== today.getFullYear() &&
+        $scope.todayNutritionPie.today !== null) {
         $scope.todayNutritionPie.today = new Date()
         $scope.todayNutritionPie.fat = 0
         $scope.todayNutritionPie.carbs = 0
@@ -238,8 +233,8 @@ angular.module('myApp.dashboard', [])
       for (var i = 0; i < $scope.nutritionData.length; i++) {
         var logDate = new Date($scope.nutritionData[i].date)
         if (logDate.getMonth() === today.getMonth() &&
-              logDate.getDate() === today.getDate() &&
-                logDate.getFullYear() === today.getFullYear()) {
+          logDate.getDate() === today.getDate() &&
+          logDate.getFullYear() === today.getFullYear()) {
           $scope.todayNutritionPie.fat += Number($scope.nutritionData[i].fat)
           $scope.todayNutritionPie.carbs += Number($scope.nutritionData[i].carbs)
           $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
@@ -266,12 +261,10 @@ angular.module('myApp.dashboard', [])
 
       }
 
-
-
       var pieData = $scope.todaysPieData()
       console.log(pieData)
 
-      new Chartist.Bar('#ct1', $scope.waterData);
+      new Chartist.Bar('#ct1', $scope.waterData)
       new Chartist.Pie('#ct2', {
         labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
         series: [{
@@ -291,15 +284,15 @@ angular.module('myApp.dashboard', [])
           // className: 'my-custom-class-three',
           meta: 'Meta Three'
         }]
-      });
+      })
 
-      new Chartist.Line('#ct3', $scope.calorieData);
+      new Chartist.Line('#ct3', $scope.calorieData)
     }
 
     $scope.nutritionLogs = function () {
       console.log('inside nutrition logs: ', $scope.username)
       nutritionFactory.getFoodLog($scope.username)
-        .then(function(data) {
+        .then(function (data) {
           $scope.nutritionData = data.data
           $scope.getWater($scope.nutritionData)
           $scope.getCalories($scope.nutritionData)
@@ -311,21 +304,20 @@ angular.module('myApp.dashboard', [])
     $scope.getPastSevenDays()
     $scope.getGoals()
     $scope.getDashboardProfile()
-
   })
 
   .directive('myGoals', function () {
-  return {
-    templateUrl: 'app/dashboard/directives/my-goals.html',
-    controller: 'DashboardCtrl'
-  }
-})
+    return {
+      templateUrl: 'app/dashboard/directives/my-goals.html',
+      controller: 'DashboardCtrl'
+    }
+  })
   .directive('nutritionGraphs', function () {
-  return {
-    templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
-    controller: 'DashboardCtrl'
-  }
-})
+    return {
+      templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
+      controller: 'DashboardCtrl'
+    }
+  })
 
   .directive('myCalculations', function () {
     return {

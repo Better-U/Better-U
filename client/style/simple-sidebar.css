@@ -7,6 +7,7 @@
 /* Toggle Styles */
 
 #wrapper {
+    width: 100%;
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;

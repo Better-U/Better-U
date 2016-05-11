@@ -8,9 +8,9 @@ bet.getAllPoints = function () {
 
 bet.fetchBets = function (id) {
   var fetchBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username FROM goals ' +
-  'INNER JOIN bets ON goals.id = bets.goals_id ' +
-  'INNER JOIN user ON user.id = bets.bettor_id ' +
-  'WHERE bets.user_id = ?'
+    'INNER JOIN bets ON goals.id = bets.goals_id ' +
+    'INNER JOIN user ON user.id = bets.bettor_id ' +
+    'WHERE bets.user_id = ?'
   console.log('this is fetchBets userID: ', id)
   return db.raw(fetchBet, [id])
 }
@@ -30,15 +30,11 @@ bet.addBets = function (id, bet_id, goals_id) {
 
 bet.placedBets = function (id) {
   var placedBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username FROM goals ' +
-  'INNER JOIN bets ON goals.id = bets.goals_id ' +
-  'INNER JOIN user ON user.id = bets.user_id ' +
-  'WHERE bets.bettor_id = ?'
+    'INNER JOIN bets ON goals.id = bets.goals_id ' +
+    'INNER JOIN user ON user.id = bets.user_id ' +
+    'WHERE bets.bettor_id = ?'
   console.log('this is placedBets: ', id)
   return db.raw(placedBet, [id])
-}
-
-bet.deleteBet = function () {
-  // 'DELETE FROM Friends WHERE Bets.user_id = ? AND Bets.bettor_id = ? AND Bets.goals_id = ?'
 }
 
 module.exports = bet
