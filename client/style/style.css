@@ -398,16 +398,34 @@ td .goalDueDate {
 .profileHeader{
     text-align: center;
 }
+.cool-font {
+  font-size: 49px;
+  font-family: 'Arvo', serif;
+}
 
 
 .flexor {
+  position: relative;
+  left: -210px;
+  width: 1400px;
+  height: 600px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: start;
   align-items: stretch;
+  overflow: scroll;
+  touch-action: pan-left;
+  touch-action: pan-right;
 }
-
+.searchedUsername {
+  font-size: 26px;
+  font-family: 'Arvo', serif;
+}
 .lilProfiles {
-  width: 150px;
+  width: 200px;
+}
+.lilerProfiles {
+  width: 25px;
 }
 
 .team > div{
@@ -426,4 +444,10 @@ td .goalDueDate {
 .section {
     padding-bottom: 20px;
 }
+
+.noListStyles {
+  list-style-type: none;
+}
+.cut-overflow{
+  overflow: hidden;
 

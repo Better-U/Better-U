@@ -16,10 +16,10 @@ angular.module('myApp.cardio', ['factories'])
     $scope.cardioList = function () {
       cardioFactory.getCardio(user).then(function (data) {
         $scope.cardioData = data.data
-         })
+      })
     }
     $(function () {
-        $("[data-toggle='tooltip']").tooltip()
+      $("[data-toggle='tooltip']").tooltip()
     })
 
     $scope.cardioList()

@@ -26,9 +26,9 @@ router.post('/picture', function (req, res) {
   console.log(url)
   var username = req.body.username
   User.findUser(username)
-    .then(function(data) {
+    .then(function (data) {
       db('user').where({id: data[0].id}).update({image: url})
-        .then(function(data) {
+        .then(function (data) {
           res.json({
             success: true,
             data: data

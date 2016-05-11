@@ -16,37 +16,35 @@ io.on('connection', function (socket) {
   socket.on('joinRoom', function (data) {
     helpers.checkRoomNumber(data.username1, data.username2)
       .then(function (number) {
-        console.log("joining room number", number)
+        console.log('joining room number', number)
         socket.join('' + number)
         socket.emit('roomNumber', {roomNumber: number})
         helpers.getMessages(number)
-          .then(function(messageList){
-        socket.emit('chatHistory', {messages: messageList})
-            
+          .then(function (messageList) {
+            socket.emit('chatHistory', {messages: messageList})
           })
       })
   })
-  socket.on('leaveRoom', function(data){
-    console.log("leaving Room", data)
-    socket.leave("" + data.roomNumber)
+  socket.on('leaveRoom', function (data) {
+    console.log('leaving Room', data)
+    socket.leave('' + data.roomNumber)
   })
-  socket.on('typing', function(userObj){
-    socket.to("" + userObj.roomNumber).broadcast.emit('typing', userObj)
-    
+  socket.on('typing', function (userObj) {
+    socket.to('' + userObj.roomNumber).broadcast.emit('typing', userObj)
   })
   socket.on('send:message', function (data) {
-    console.log(data, "message sent")
     var message = {username: data.username, message: data.message}
-    socket.to("" + data.roomNumber).emit('send:message', message)
+    console.log(data, 'message sent', message)
+    socket.to('' + data.roomNumber).emit('messenger', message)
+
     helpers.saveMessage(data.roomNumber, message)
-      .then(function(data){
-        console.log(data, "MESSAGE SAVED")
+      .then(function (data) {
+        console.log(data, 'MESSAGE SAVED')
       })
   })
 })
 
-  // validate a user's name change, and broadcast it on success
-
+// validate a user's name change, and broadcast it on success
 
 // clean up when a user leaves, and broadcast it to other users
 //   socket.on('disconnect', function () {
@@ -71,9 +69,9 @@ io.on('connection', function (socket) {
 //   })
 // })
 
-router.post('/getCity', function(req, res){
+router.post('/getCity', function (req, res) {
   helpers.getCity(req.body.username)
-    .then(function(city){
+    .then(function (city) {
       res.send(city[0].city)
     })
 })
@@ -104,12 +102,12 @@ router.post('/findPeople', function (req, res) {
     })
 })
 
-router.post('/friends', function(req, res){
-    console.log(req.body.username, "call to api/social/friends")
-      helpers.listChats(req.body.username)
-      .then(function(data){
-        console.log(data)
-        res.send(data)
-      })
+router.post('/friends', function (req, res) {
+  console.log(req.body.username, 'call to api/social/friends')
+  helpers.listChats(req.body.username)
+    .then(function (data) {
+      console.log(data)
+      res.send(data)
+    })
 })
 module.exports = router
