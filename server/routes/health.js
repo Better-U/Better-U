@@ -27,18 +27,17 @@ router.post('/nutrition', function (req, res) {
 router.get('/nutrition', function (req, res) {
   var user = req.query.username
   User.findUser(user)
-  .then(function (data) {
-    console.log('get Nutrition data =', data)
-    Nutrition.getRecord(data[0].id)
-    .then(function (success) {
-      if (success) {
-        res.status(201).send(success)
-      } else {
-        res.status(404).json({success: false})
-      }
+    .then(function (data) {
+      console.log('get Nutrition data =', data)
+      Nutrition.getRecord(data[0].id)
+        .then(function (success) {
+          if (success) {
+            res.status(201).send(success)
+          } else {
+            res.status(404).json({success: false})
+          }
+        })
     })
-  })
 })
-
 
 module.exports = router

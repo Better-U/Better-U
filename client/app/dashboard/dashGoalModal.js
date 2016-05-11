@@ -5,7 +5,7 @@ angular.module('myApp.goals', [])
     $scope.added = false
     $scope.disabled = false
 
-    $scope.selectGoal = function(type) {
+    $scope.selectGoal = function (type) {
       if (type === 'cardio') {
         $uibModalInstance.dismiss('cancel')
         $uibModal.open({
@@ -41,7 +41,6 @@ angular.module('myApp.goals', [])
             $state.reload()
           })
       }
-
     }
 
     $scope.submitStrength = function (date, intensity, category, value, measurement, points) {
@@ -57,7 +56,6 @@ angular.module('myApp.goals', [])
           })
       }
     }
-
   })
   .directive('cardioGoals', function () {
     return {

@@ -1,6 +1,5 @@
 angular.module('myApp.bet', ['factories'])
   .controller('betCtrl', function ($scope, authFactory, $cookies, GoalsFactory, BetsFactory) {
-
     var username = $cookies.get('username')
 
     $scope.userPoints = null
@@ -11,10 +10,10 @@ angular.module('myApp.bet', ['factories'])
 
     $scope.topPointsList = function () {
       BetsFactory.getAllPoints(username)
-      .then(function (data) {
-        console.log('this is data from getAllPoints: ', data.data.data[0])
-        $scope.userPoints = data.data.data[0]
-      })
+        .then(function (data) {
+          console.log('this is data from getAllPoints: ', data.data.data[0])
+          $scope.userPoints = data.data.data[0]
+        })
     }
 
     $scope.addBets = function (u_id, g_id) {

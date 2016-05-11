@@ -110,8 +110,7 @@ angular.module('myApp.strength', ['factories'])
         var x = new Date(dateshort).getDay()
         if (c1_obj[x] !== undefined) {
           c1_obj[x] = c1_obj[x] + arr[i].duration
-        }
-        else {
+        } else {
           c1_obj[x] = arr[i].duration
         }
       }
@@ -137,8 +136,7 @@ angular.module('myApp.strength', ['factories'])
       for (var j = 0; j < c2_arr.length; j++) {
         if (c2_obj[c2_arr[j]]) {
           c2_obj[c2_arr[j]]++
-        }
-        else {
+        } else {
           c2_obj[c2_arr[j]] = 1
         }
       }
@@ -178,7 +176,7 @@ angular.module('myApp.strength', ['factories'])
       console.log($scope.c2_data)
 
       $(function () {
-          $("[data-toggle='tooltip']").tooltip()
+        $("[data-toggle='tooltip']").tooltip()
       })
 
       new Chartist.Bar('#chart1', $scope.c1_data)

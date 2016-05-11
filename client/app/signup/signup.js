@@ -33,9 +33,7 @@ angular.module('myApp.signup', [])
             $cookies.put('token', data.data.token)
             $state.go('dashboard')
           })
-
       }
-
     }
 
     $scope.cancel = function () {
@@ -72,7 +70,7 @@ angular.module('myApp.signup', [])
       })
     }
 
-    $scope.registerProfile  = function () {
+    $scope.registerProfile = function () {
       $uibModalInstance.dismiss('cancel')
       $uibModal.open({
         animation: $scope.animationsEnabled,

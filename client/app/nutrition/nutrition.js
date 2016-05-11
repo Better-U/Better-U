@@ -6,9 +6,9 @@ angular.module('myApp.nutrition', ['factories'])
 
     $scope.getFoodLog = function (user) {
       nutritionFactory.getFoodLog(user)
-      .then(function (data) {
-        $scope.foodData = data.data
-      })
+        .then(function (data) {
+          $scope.foodData = data.data
+        })
     }
 
     $scope.inputNutrition = function () {
@@ -21,8 +21,8 @@ angular.module('myApp.nutrition', ['factories'])
     }
 
     $scope.getFoodLog(user)
-   // jQuery fixed tooltips
+    // jQuery fixed tooltips
     $(function () {
-        $("[data-toggle='tooltip']").tooltip()
+      $("[data-toggle='tooltip']").tooltip()
     })
   })

@@ -33,27 +33,26 @@ angular.module('myApp.profile', ['factories'])
       }
     }
 
-    $scope.upload = function(){
+    $scope.upload = function () {
       filepickerService.pick(
         {
           mimetype: 'image/*',
           language: 'en',
-          services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+          services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
           openTo: 'IMAGE_SEARCH'
         },
-        function(Blob){
-          console.log(JSON.stringify(Blob));
-          // $scope.superhero.picture = Blob;
+        function (Blob) {
+          console.log(JSON.stringify(Blob))
+          // $scope.superhero.picture = Blob
           profileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
-            .then(function(data) {
+            .then(function (data) {
               console.log('upload data: ', data)
               // $scope.apply()
               $scope.image = data
               $state.reload()
             })
-          // $state.reload()
+        // $state.reload()
         }
-      );
-    };
-
+      )
+    }
   })
