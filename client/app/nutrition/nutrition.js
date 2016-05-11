@@ -1,14 +1,21 @@
 angular.module('myApp.nutrition', ['factories'])
 
-  .controller('NutritionCtrl', function ($state, $http, $scope, nutritionFactory, $cookies, $uibModal) {
+  .controller('NutritionCtrl', function ($state, $http, $scope, NutritionFactory, $cookies, $uibModal) {
     var user = $cookies.get('username')
     $scope.foodData = null
 
     $scope.getFoodLog = function (user) {
+<<<<<<< HEAD
       nutritionFactory.getFoodLog(user)
         .then(function (data) {
           $scope.foodData = data.data
         })
+=======
+      NutritionFactory.getFoodLog(user)
+      .then(function (data) {
+        $scope.foodData = data.data
+      })
+>>>>>>> refactor/services
     }
 
     $scope.inputNutrition = function () {

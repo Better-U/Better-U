@@ -1,5 +1,5 @@
 angular.module('myApp.strength', ['factories'])
-  .controller('StrengthCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory, $state, $uibModal) {
+  .controller('StrengthCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal) {
     $scope.animationsEnabled = true
 
     $scope.inputStrength = function () {
@@ -37,7 +37,7 @@ angular.module('myApp.strength', ['factories'])
 
     // Getting profile information and then calling fetchLog
     $scope.getStrengthProfile = function () {
-      profileFactory.getProfile($scope.user)
+      ProfileFactory.getProfile($scope.user)
         .then(function (data) {
           $scope.display = data.data[0]
         })
@@ -55,7 +55,7 @@ angular.module('myApp.strength', ['factories'])
 
     // Fetching Activity log function
     const fetchLog = function () {
-      strengthFactory.getStrength($scope.user)
+      StrengthFactory.getStrength($scope.user)
         .then(function (data) {
           $scope.strengthList = data.data
 
