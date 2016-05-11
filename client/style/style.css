@@ -409,15 +409,16 @@ td .goalDueDate {
   height: 600px;
   display: flex;
   flex-flow:row wrap;
-  justify-content: start;
+  justify-content: space-around;
   align-items: stretch;
+
 }
 .searchedUsername {
   font-size: 26px;
   font-family: 'Arvo', serif;
 }
 .lilProfiles {
-  width: 200px;
+  width: 230px;
 }
 .lilerProfiles {
   width: 25px;
@@ -443,10 +444,19 @@ td .goalDueDate {
 .noListStyles {
   list-style-type: none;
 }
-.cut-overflow{
-  overflow: hidden;
 
 .profileCard {
-  width:220px;
-  background-color: green;
+  width:350px;
+  border: 2px black solid;
+  margin: 5px;
+}
+
+.positionUL {
+  overflow: hidden;
+  position: relative;
+  right: 25px;
+}
+#userAddress{
+  width: 50%;
+  display: inline;
 }
