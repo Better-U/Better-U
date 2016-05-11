@@ -29,7 +29,6 @@ knex.schema.createTableIfNotExists('user', function (user) {
   user.integer('totalpts')
   user.string('city', 50)
   user.string('image', 200)
-  // user.string('photo')
 }).then(function () {
   console.log('user table created')
 })
