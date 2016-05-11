@@ -5,17 +5,10 @@ angular.module('myApp.nutrition', ['factories'])
     $scope.foodData = null
 
     $scope.getFoodLog = function (user) {
-<<<<<<< HEAD
-      nutritionFactory.getFoodLog(user)
-        .then(function (data) {
-          $scope.foodData = data.data
-        })
-=======
       NutritionFactory.getFoodLog(user)
       .then(function (data) {
         $scope.foodData = data.data
       })
->>>>>>> refactor/services
     }
 
     $scope.inputNutrition = function () {
