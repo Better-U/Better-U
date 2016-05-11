@@ -1,5 +1,5 @@
 angular.module('myApp.cardio', ['factories'])
-  .controller('CardioCtrl', function ($scope, cardioFactory, authFactory, $cookies, $state, $uibModal) {
+  .controller('CardioCtrl', function ($scope, cardioFactory, AuthFactory, $cookies, $state, $uibModal) {
     var user = $cookies.get('username')
     $scope.animationsEnabled = true
 

@@ -1,6 +1,6 @@
 angular.module('myApp.signup', [])
 
-  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal, $cookies, $rootScope) {
+  .controller('SignupCtrl', function ($scope, AuthFactory, $state, $uibModalInstance, $uibModal, $cookies, $rootScope) {
     $scope.alreadyExists = null
     $scope.userExistError = false
     $scope.animationsEnabled = true
@@ -28,7 +28,7 @@ angular.module('myApp.signup', [])
         console.log('Form not complete')
       } else {
         $uibModalInstance.dismiss('cancel')
-        authFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
+        AuthFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
           .then(function (data) {
             $cookies.put('token', data.data.token)
             $state.go('dashboard')
@@ -44,7 +44,7 @@ angular.module('myApp.signup', [])
 
     $scope.goNext = function () {
       if ($scope.user.name && $scope.user.password) {
-        authFactory.registerUserDetails($scope.user.name, $scope.user.password)
+        AuthFactory.registerUserDetails($scope.user.name, $scope.user.password)
           .then(function (data) {
             console.log('data after next: ', data)
             $scope.alreadyExists = data.data.exists

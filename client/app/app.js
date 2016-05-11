@@ -19,7 +19,11 @@ angular.module('myApp', ['myApp.signin',
   'myApp.social',
   'myApp.socialFactoryModule',
   'myApp.goals',
-  'angular-filepicker'])
+  'angular-filepicker',
+  'app.AuthFactory',
+  'app.ProfileFactory',
+    'app.StrengthFactory',
+    'app.NutritionFactory'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -132,14 +136,14 @@ angular.module('myApp', ['myApp.signin',
     })
   })
 
-  .run(function ($rootScope, $state, authFactory, $cookies) {
+  .run(function ($rootScope, $state, AuthFactory, $cookies) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       var requireLogin = toState.authenticate
-      if (requireLogin && authFactory.getToken() === null) {
+      if (requireLogin && AuthFactory.getToken() === null) {
         event.preventDefault()
         $state.go('landing')
       }
-      else if (requireLogin && !authFactory.isAuth()) {
+      else if (requireLogin && !AuthFactory.isAuth()) {
         $cookies.remove('username')
         $cookies.remove('token')
         event.preventDefault()

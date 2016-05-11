@@ -1,6 +1,6 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($window, $rootScope, $scope, $state, GoalsFactory, $cookies, profileFactory, nutritionFactory, $uibModal, filepickerService, authFactory) {
+  .controller('DashboardCtrl', function ($window, $rootScope, $scope, $state, GoalsFactory, $cookies, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
@@ -12,8 +12,7 @@ angular.module('myApp.dashboard', [])
     }
     $scope.nutritionData = null
     $scope.files = []
-    
-    var user = $cookies.get('username')
+
 
 
     $scope.goalsData = null
@@ -22,12 +21,11 @@ angular.module('myApp.dashboard', [])
     $scope.signout = function () {
       $cookies.remove('token')
       $cookies.remove('username')
-      // $rootScope.username = null
       $state.go('landing')
     }
 
     $scope.getDashboardProfile = function () {
-      authFactory.getProfile(user)
+      AuthFactory.getProfile($scope.username)
         .then(function (data) {
           console.log('data', data.data)
           $scope.dash = data.data[0]
@@ -298,7 +296,7 @@ angular.module('myApp.dashboard', [])
 
     $scope.nutritionLogs = function () {
       console.log('inside nutrition logs: ', $scope.username)
-      nutritionFactory.getFoodLog($scope.username)
+      NutritionFactory.getFoodLog($scope.username)
         .then(function(data) {
           $scope.nutritionData = data.data
           $scope.getWater($scope.nutritionData)
@@ -307,10 +305,13 @@ angular.module('myApp.dashboard', [])
         })
     }
 
-    $scope.nutritionLogs()
-    $scope.getPastSevenDays()
-    $scope.getGoals()
-    $scope.getDashboardProfile()
+    $scope.init = function () {
+      $scope.nutritionLogs()
+      $scope.getGoals()
+      $scope.getDashboardProfile()
+    }
+
+    $scope.init()
 
   })
 
