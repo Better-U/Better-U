@@ -37,8 +37,4 @@ bet.placedBets = function (id) {
   return db.raw(placedBet, [id])
 }
 
-bet.deleteBet = function () {
-  // 'DELETE FROM Friends WHERE Bets.user_id = ? AND Bets.bettor_id = ? AND Bets.goals_id = ?'
-}
-
 module.exports = bet
