@@ -37,13 +37,10 @@ app.use('/api/social/', social)
 app.use('/api/bet/', bet)
 
 var rule = new cron.RecurrenceRule()
-rule.second = 10
+rule.minute = 42
 cron.scheduleJob(rule, function () {
   console.log('new schedule made!')
   Schedule.updateUserPoints()
-    // .then(function () {
-    //   console.log('user points updated')
-    // })
 })
 
 var port = process.env.PORT || 8080
