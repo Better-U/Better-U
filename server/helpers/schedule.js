@@ -20,12 +20,9 @@ schedule.updateUserPoints = function () {
         var bettorId = goalData[i].bettor_id
         var result = goalData[i].result
         var betId = goalData[i].id
-        console.log('this is bet id: ', betId)
-        // change it back to > 0 later
-        if ((currentDate - goalDate) < 0) {
+        if ((currentDate - goalDate) > 0) {
           console.log('this is result from goals table: ', result)
           if (result === 1) {
-            console.log('inside winner result')
             db.raw(getTotalPoints, [userId])
               .then(function (data) {
                 var winTotal = data[0][0].totalpts + goalPts
@@ -50,7 +47,6 @@ schedule.updateUserPoints = function () {
               })
           }
           else if (result === 0) {
-            console.log('inside loser result')
             db.raw(getTotalPoints, [bettorId])
               .then(function (data) {
                 var newTotal = data[0][0].totalpts + goalPts
