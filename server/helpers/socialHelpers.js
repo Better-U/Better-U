@@ -61,7 +61,7 @@ Social.listChats = function(username){
               for(var j = 0; j < data2.length; j++){
                 tempRay.push(data2[j].userID)
               }
-              db('user').whereIn('id', tempRay).select('username')
+              db('user').whereIn('id', tempRay).select('username', 'image')
                 .then(function(data){
                   resolve(data)
                 })

@@ -8,7 +8,7 @@ Search workout partners!
 <div id="chattingWith">{{chattingWith}}</div>
 <div class="chat">
   <ul  id="messages" >
- 	<li class="eachMessage" ng-repeat="messager in messages">{{messager.username}}: {{messager.message}}</li>
+ 	<li class="eachMessage" ng-repeat="messager in messages track by $index">{{messager.username}}: {{messager.message}}</li>
   </ul>
   <div id="typing"></div>
  

@@ -117,6 +117,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.name = $cookies.get('username')
     socket.on('send:message', function(message) {
       $scope.messages.push(message)
+      console.log($scope.messages)
     })
     // add a message to the conversation when a user disconnects or leaves the room
     $scope.sendMessage = function() {
