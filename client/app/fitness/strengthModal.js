@@ -1,5 +1,5 @@
 angular.module('myApp.strengthModal', ['factories'])
-  .controller('StrengthModalCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory, $state, $uibModal, $uibModalInstance) {
+  .controller('StrengthModalCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal, $uibModalInstance) {
     // Date Stuff
     $scope.today = function () {
       $scope.dt = new Date()
@@ -15,7 +15,7 @@ angular.module('myApp.strengthModal', ['factories'])
         $scope.noInput = true
       } else {
         $uibModalInstance.dismiss('cancel')
-        strengthFactory.submitStrength(
+        StrengthFactory.submitStrength(
           $scope.user,
           $scope.str.date,
           $scope.str.type,

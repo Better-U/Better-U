@@ -1,6 +1,6 @@
 angular.module('myApp.signin', [])
 
-  .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance, $uibModal, $cookies, $rootScope) {
+  .controller('SigninCtrl', function ($scope, $state, AuthFactory, $uibModalInstance, $uibModal, $cookies, $rootScope) {
     $scope.animationsEnabled = true
     $scope.noInput = false
     $scope.userDoesNotExist = null
@@ -16,7 +16,7 @@ angular.module('myApp.signin', [])
       if ($scope.user.name === null || $scope.user.password === null) {
         $scope.noInput = true
       } else {
-        authFactory.signIn($scope.user.name, $scope.user.password)
+        AuthFactory.signIn($scope.user.name, $scope.user.password)
           .then(function (data) {
             console.log(data.data.success)
             if (!data.data.success) {
