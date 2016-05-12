@@ -218,6 +218,7 @@ angular.module('myApp.dashboard', [])
       var lastSeven = []
       cardioFactory.getCardio($scope.username)
       .then(function (data) {
+        console.log("data inside getpastsevensessions", data)
         data.data.forEach(function (item) {
           dates.push(item.date)
         })
@@ -232,6 +233,7 @@ angular.module('myApp.dashboard', [])
           }
         }
       })
+      console.log(lastSeven, "lastSeven")
       return $scope.lastSevenSessions
     }
 
@@ -376,8 +378,6 @@ angular.module('myApp.dashboard', [])
 
           console.log($scope.cardioData, "CARDIODATA IN PASTSEVENSESSIONs")
         })
-      console.log('last session sesh', $scope.lastSevenSessions)
-
     
       $scope.waterData = {
         labels: $scope.getPastSevenDays(),
@@ -393,7 +393,10 @@ angular.module('myApp.dashboard', [])
         ]
 
       }
-
+      $scope.cardioData={
+        labels: null,
+        series: []
+      }
       // Chart for Cardio
       //   'getPaceData', $scope.lastSevenPace)
 
