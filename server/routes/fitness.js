@@ -99,6 +99,7 @@ router.post('/cardioForm', function (req, res) {
       var cardioForm = [{
         user_id: data[0].id,
         date: req.body.date,
+        time: req.body.time,
         type: req.body.type,
         distance: req.body.distance,
         duration: req.body.duration,
