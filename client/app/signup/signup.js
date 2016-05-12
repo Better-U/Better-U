@@ -20,6 +20,7 @@ angular.module('myApp.signup', [])
       gym: null
     }
 
+    
     $scope.submit = function () {
       console.log('user details: ', $scope.user)
       var username = $cookies.get('username')
