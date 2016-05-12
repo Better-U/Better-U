@@ -1,6 +1,5 @@
 angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule'])
   .controller('socialCtrl', function ($scope, socialFactory, $state, $cookies, socket, maps) {
-
     $scope.savedAddress
     $scope.roomNumber
     $scope.user = $cookies.get('username')
@@ -105,7 +104,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.name = $cookies.get('username')
 
     // add a message to the conversation when a user disconnects or leaves the room
- 
+
   })
   .directive('chat', function () {
     return {
