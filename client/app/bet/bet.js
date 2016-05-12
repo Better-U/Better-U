@@ -1,5 +1,5 @@
 angular.module('myApp.bet', ['factories'])
-  .controller('betCtrl', function ($scope, authFactory, $cookies, GoalsFactory, BetsFactory) {
+  .controller('betCtrl', function ($scope, AuthFactory, $cookies, GoalsFactory, BetsFactory) {
     var username = $cookies.get('username')
 
     $scope.userPoints = null
