@@ -97,6 +97,11 @@
     padding: 5px;
 }
 
+.leaderboard {
+  width: 80px;
+  height: 80px;
+}
+
 
 /*.authContainer {*/
 	/*width: 300px;*/
@@ -162,7 +167,7 @@ md-option {
 #messages li:nth-child(even) { background: #AAA; color: black ; }
 
 .eachMessage {
-    text-align: left; 
+    text-align: left;
     word-wrap: break-word;
     padding: 8px;
     font-size: 16px;

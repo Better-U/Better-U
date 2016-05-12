@@ -75,12 +75,14 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th></th>
           <th>Username</th>
           <th>Points</th>
         </tr>
       </thead>
       <tbody ng-if="userPoints">
         <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
+        <td class="col-sm-3"><img class="leaderboard img-rounded" ng-src="{{top.image}}"></td>
           <td class="col-sm-3">{{top.username}}</td>
           <td class="col-sm-3">{{top.totalpts}}</td>
         </tr>
