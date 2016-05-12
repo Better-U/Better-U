@@ -5,6 +5,22 @@ angular.module('myApp.strengthModal', ['factories'])
       $scope.dt = new Date()
     }
 
+    $scope.today()
+
+    $scope.format = 'dd-MMMM-yyyy'
+
+    $scope.open1 = function () {
+      $scope.popup1.opened = true
+    }
+
+    // $scope.clear = function () {
+    //   $scope.dt = null
+    // }
+
+    $scope.popup1 = {
+      opened: false
+    }
+
     $scope.user = $cookies.get('username')
     $scope.animationsEnabled = true
     $scope.noInput = false
