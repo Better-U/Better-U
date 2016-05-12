@@ -36,12 +36,12 @@ app.use('/api/signup/', signup)
 app.use('/api/social/', social)
 app.use('/api/bet/', bet)
 
-// var rule = new cron.RecurrenceRule()
-// rule.minute = 42
-// cron.scheduleJob(rule, function () {
-//   console.log('new schedule made!')
-//   Schedule.updateUserPoints()
-// })
+var rule = new cron.RecurrenceRule()
+rule.minute = 42
+cron.scheduleJob(rule, function () {
+  console.log('new schedule made!')
+  Schedule.updateUserPoints()
+})
 
 var port = process.env.PORT || 8080
 

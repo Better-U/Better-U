@@ -24,6 +24,7 @@
     "angular-ui-router": "^0.2.18",
     "bcrypt": "^0.8.6",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.3.5",
     "body-parser": "^1.15.0",
     "chartist-plugin-threshold": "0.0.2",
     "cors": "^2.7.1",
