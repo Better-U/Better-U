@@ -37,13 +37,21 @@ app.use('/api/social/', social)
 app.use('/api/bet/', bet)
 
 var rule = new cron.RecurrenceRule()
-rule.minute = 42
+rule.dayOfWeek = [0, 1, 2, 3, 4, 5, 6]
+rule.hour = 17
+rule.minute = 0
 cron.scheduleJob(rule, function () {
-  console.log('beginning scheduler')
+  console.log('beginning to update user results')
   Schedule.updateResults()
-    .then(function () {
-      Schedule.updateUserPoints()
-    })
+})
+
+var rule2 = new cron.RecurrenceRule()
+rule2.dayOfWeek = [0, 1, 2, 3, 4, 5, 6]
+rule2.hour = 17
+rule2.minute = 10
+cron.scheduleJob(rule2, function () {
+  console.log('beginning to update bet status')
+  Schedule.updateUserPoints()
 })
 
 var port = process.env.PORT || 8080
