@@ -36,7 +36,44 @@ schedule.updateResults = function () {
           var value = goals[counter].value
           var currentVal = goals[counter].currentVal
           var intensity = goals[counter].intensity
-          var result
+          if((current - gDate) > 0) {
+            if(intensity === "Increase") {
+              if(currentVal >= value) {
+                db.raw(updateWin, [gUserId])
+                  .then(function (data) {
+                    console.log('updated increase-user-winner result')
+                    counter++
+                    resolve()
+                  })
+              } else {
+                db.raw(updateLose, [gUserId])
+                  .then(function (data) {
+                    console.log('updated increase-user-loser result')
+                    counter++
+                    resolve()
+                  })
+              }
+            }
+            if(intensity === "Decrease") {
+              if(currentVal <= value) {
+                db.raw(updateWin, [gUserId])
+                  .then(function (data) {
+                    console.log('updated decrease-user-winner result')
+                    counter++
+                    resolve()
+                  })
+              } else {
+                db.raw(updateLose, [gUserId])
+                  .then(function (data) {
+                    console.log('updated decrease-user-loser result')
+                    counter++
+                    resolve()
+                  })
+              }
+            }
+          }
+        }).then(function (data) {
+          console.log('done with results', data)
         })
       })
     })
@@ -121,7 +158,7 @@ schedule.updateUserPoints = function () {
             }
           }
         }).then(function () {
-          console.log('done')
+          console.log('done with status')
         })
       })
     })
