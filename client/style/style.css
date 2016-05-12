@@ -126,22 +126,46 @@ md-option {
     width: 80%;
     padding: 0px;
 }
+.chatParent{
+  left: -25px;
+  bottom: -10px;
+  background-color: #E8E7DC;
+  border-radius: 10px;
+  height:calc(100% + 30px);
+  width: calc(100% + 50px);
+  box-shadow: 10px 10px 5px #0E1615
+}
+.entireChatParent{
+  border: 2px black solid;
+  border-radius: 10px;
+}
 #chattingWith {
     font-size: 50px;
     font-family: 'Arvo', serif;
     text-align:center;
-    background-color:grey;
+    background-color: #0E1615;
+    color: #E8E7DC;
+    width: 100%;
+
 }
-#messageForm { padding: 3px; position: absolute; left: 50px; width: 100%; }
-#m { background: #fff; border: 1px #000 solid; padding: 10px; width: 70%; margin-right: .5%; }
-#sendMessage { background: rgb(130, 224, 255); border: 1px #000 solid; padding: 10px; width: 28%;}
+
+.searchButton{
+  width: 230px;
+  position: relative;
+  right: 13px;
+}
+#messageForm { padding: 3px; width: 100%; }
+#m { border-radius: 10px; background: #FFF; border: 1px #0A100E solid; padding: 10px; width: 70%; margin-right: .5%; }
+#sendMessage { border-radius: 10px; color: #E8E7DC; background-color:#0A100E; border: 1px #000 solid; padding: 10px; width: 29%;}
 #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: auto;}
-#messages li { padding: 5px 10px; background:white; }
-#messages li:nth-child(odd) { background: #ddd; }
+#messages li { background:#E5E3D8; color: #2d343a; padding: 5px 10px; background:white; }
+#messages li:nth-child(even) { background: #AAA; color: black ; }
 
 .eachMessage {
     text-align: left; 
     word-wrap: break-word;
+    padding: 8px;
+    font-size: 16px;
 }
 .eachMessage:hover {
     background: black;
@@ -301,6 +325,8 @@ div .row{
 }
 .entireChat {
     background-color: white;
+    padding-right: 0;
+    padding-left: 0;
 }
 .chat {
     top: 30px;
@@ -520,6 +546,10 @@ div .calculations {
     box-shadow: 10px 10px 5px #0E1615;
 }
 
+.chatButtons {
+  margin-bottom: 5px;
+
+}
 
 .allGraphs {
     background-color: #E8E7DC;

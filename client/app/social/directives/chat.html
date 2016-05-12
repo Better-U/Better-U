@@ -1,20 +1,20 @@
-<div class="row">
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+<div class="chatParent absolute">
+</div>
+<div class="row chatButtons">
+<div class="col-lg-10 col-md-8 col-sm-8 col-xs-8">
 <button ng-click="displayChats()" class="btn btn-default visible-xs">Show  your chats</button>
 </div>
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-2">
+<div class="col-lg-2 col-md-3 col-sm-3 col-xs-2">
 
-<button class="btn btn-default" ng-click="searching()">
-Search workout partners!
-</button>
 </div>
 </div>
+
 <div class="row">
-<div class="entireChat col-lg-12">
+<div class="entireChat col-md-12 col-lg-12 entireChatParent">
 <div id="chattingWith">{{chattingWith}}</div>
-<div class="chat">
+<div class="chat" scroll-glue> 
   <ul  id="messages" >
- 	<li class="eachMessage" ng-repeat="messager in messages track by $index">{{messager.username}}: {{messager.message}}</li>
+ 	<li class="eachMessage" ng-repeat="messager in messages track by $index"><strong>{{messager.username}}:</strong> {{messager.message}}</li>
 
   </ul>
   <div id="typing"></div>
@@ -23,8 +23,8 @@ Search workout partners!
 </div>
 </div>
 <div class="row">
- <form id="messageForm" ng-submit="sendMessage()">
+ <form class="col-lg-12 col-md-12" id="messageForm" ng-submit="sendMessage()">
     <input id="m" autocomplete="off" ng-model="message" required /><button id="sendMessage">Send</button>
   </form>
-</div>
 
+</div>
