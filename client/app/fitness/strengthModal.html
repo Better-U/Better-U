@@ -31,3 +31,103 @@
       </div>
     </form>
 </div>
+<div class="portlet light bordered">
+  
+  <div class="portlet-title">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-9">
+        <h3>Strength Log</h3>
+      </div>
+    </div>
+  </div>
+  
+  <div class="portlet-body form">
+      <form class="form-horizontal" role="form">
+          <div class="form-body">
+              <div class="form-group">
+                <label class="col-md-3 control-label">Date</label>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="str.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Activity</label>
+                  <div class="col-md-6">
+                      <select multiple class="form-control" ng-model="str.type">
+                        <option value="Bench">Bench</option>
+                        <option value="Squat">Squat</option>
+                        <option value="Deadlift">Deadlift</option>
+                        <option value="Dumbbell Curls">Biceps Everyday</option>
+                        <option value="Lat Pulldowns">Lat Pulldowns</option>
+                        <option value="Shoulder Press">Shoulder Press</option>
+                        <option value="Clean & Jerk">Clean & Jerk</option>
+                        <option value="Snatch">Snatch</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Weight</label>
+                  <div class="col-md-9">
+                      <input type="number" min="1" max="600" class="form-control" placeholder="Pounds" ng-model="str.weight">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Reps</label>
+                  <div class="col-md-9">
+                      <input type="number" min="1" max="50" class="form-control" placeholder="Number of Reps" ng-model="str.reps">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Sets</label>
+                  <div class="col-md-9">
+                      <input type="number" min="1" max="100" class="form-control" placeholder="Number of Sets" ng-model="str.sets">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Duration</label>
+                  <div class="col-md-9">
+                      <input type="number" min="1" max="500" class="form-control" placeholder="Minutes" ng-model="str.duration">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-3 control-label">Intensity</label>
+                  <div class="col-md-9">
+                      <div class="mt-radio-list">
+                          <label class="mt-radio">
+                              <input type="radio" ng-model="str.intensity" value="1"> 1
+                              <span></span>
+                          </label>
+                          <label class="mt-radio">
+                              <input type="radio" ng-model="str.intensity" value="2"> 2
+                              <span></span>
+                          </label>
+                          <label class="mt-radio">
+                              <input type="radio" ng-model="str.intensity" value="3"> 3
+                              <span></span>
+                          </label>
+                          <label class="mt-radio">
+                              <input type="radio" ng-model="str.intensity"  value="4"> 4
+                              <span></span>
+                          </label>
+                          <label class="mt-radio">
+                              <input type="radio" ng-model="str.intensity" value="5" checked> 5
+                              <span></span>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-actions">
+              <div class="row">
+                  <div class="col-md-offset-3 col-md-9">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="button" class="btn default">Cancel</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
