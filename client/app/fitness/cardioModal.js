@@ -29,8 +29,13 @@ angular.module('myApp.cardioModal', ['factories'])
       } else {
         var pace = $scope.pace($scope.duration, $scope.distance)
         $uibModalInstance.dismiss('cancel')
-        cardioFactory.submitCardio(user, $scope.date, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
-          .then(function () {
+        console.log('$scope.time', $scope.time)
+        console.log('new Date($scope.time).getTime()', new Date($scope.time).getTime())
+        // var newTime = new Date($scope.time).getTime()
+        // var newTime = Date.parse($scope.time)
+        cardioFactory.submitCardio(user, $scope.date, $scope.time, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
+          .then(function (data) {
+            console.log('data from time', data)
             $state.reload()
           })
       }

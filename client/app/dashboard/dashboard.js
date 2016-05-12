@@ -7,6 +7,8 @@ angular.module('myApp.dashboard', [])
     $rootScope.landing = false
     $scope.waterIntake = null
     $scope.calorieIntake = null
+    $scope.lastSevenSessions = null
+    $scope.lastSevenPace = null
     $rootScope.signout = function () {
       $scope.signout()
     }
@@ -211,19 +213,53 @@ angular.module('myApp.dashboard', [])
     // Getting Cardio Data
     $scope.getPastSevenSessions = function () {
       var dates = []
+      var lastSeven = []
       cardioFactory.getCardio(user)
       .then(function (data) {
-        for (var i = 0; i < data.data.length; i++) {
-          console.log('data.data =', data.data)
-          dates.push(data.data.date)
+        data.data.forEach(function (item) {
+          dates.push(item.date)
+        })
+        dates.sort()
+        if (dates.length > 7) {
+          for (var i = dates.length - 7; i < dates.length; i++) {
+            lastSeven.push($scope.shortDateConverter(dates[i]))
+          }
+        } else {
+          for (var i = 0; i < dates.length; i++) {
+            lastSeven.push($scope.shortDateConverter(dates[i]))
+          }
         }
+        $scope.lastSevenSessions = lastSeven
       })
-      console.log('dates =', dates)
+      return $scope.lastSevenSessions
     }
 
 
-    $scope.getCardioData = function (data) {
-
+    $scope.getPaceData = function (data) {
+      var pace = []
+      var lastSevenPace = []
+      cardioFactory.getCardio(user)
+        .then(function (data) {
+          data.data.forEach(function (item) {
+            pace.push([$scope.shortDateConverter(item.date), item.pace])
+          })
+          pace.sort(function (a, b) {
+            return Date.parse(b[0]) - Date.parse(a[0])
+          })
+          console.log('pace =', pace)
+          if (pace.length > 7) {
+            for (var i = pace.length - 7; i < pace.length; i++) {
+              lastSevenPace.push(pace[i][1])
+            }
+          } else {
+            for (var i = 0; i < pace.length; i++) {
+              lastSevenPace.push(pace[i][1])
+            }
+          }
+          // console.log('lastSevenPace', lastSevenPace)
+          $scope.lastSevenPace = lastSevenPace
+        })
+      return $scope.lastSevenPace
     }
 
 
@@ -257,7 +293,7 @@ angular.module('myApp.dashboard', [])
           $scope.todayNutritionPie.fat += Number($scope.nutritionData[i].fat)
           $scope.todayNutritionPie.carbs += Number($scope.nutritionData[i].carbs)
           $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
-          console.log('carbs: ', $scope.todayNutritionPie.carbs)
+          // console.log('carbs: ', $scope.todayNutritionPie.carbs)
         }
       }
       // console.log('today data:', $scope.todayNutritionPie)
@@ -281,9 +317,13 @@ angular.module('myApp.dashboard', [])
       }
 
       // Chart for Cardio
+      console.log('lastsevensesh', $scope.getPastSevenSessions(),
+        'getPaceData', $scope.lastSevenPace)
+
+      $scope.lastSevenPace()
       $scope.cardioData = {
         labels: $scope.getPastSevenSessions(),
-        series: [100,200,300,400]
+        series: [$scope.lastSevenPace]
       }
 
 
@@ -313,12 +353,12 @@ angular.module('myApp.dashboard', [])
         }]
       })
 
-<<<<<<< Updated upstream
       new Chartist.Line('#ct3', $scope.calorieData)
+      new Chartist.Line('#ct4', $scope.cardioData, {low: 0, showArea: true})
     }
 
     $scope.nutritionLogs = function () {
-      console.log('inside nutrition logs: ', $scope.username)
+      // console.log('inside nutrition logs: ', $scope.username)
       NutritionFactory.getFoodLog($scope.username)
         .then(function(data) {
           $scope.nutritionData = data.data
@@ -329,9 +369,11 @@ angular.module('myApp.dashboard', [])
     }
     
     $scope.init = function () {
-      $scope.nutritionLogs()
+      $scope.getPaceData()
+      // $scope.nutritionLogs()
       $scope.getGoals()
       $scope.getDashboardProfile()
+      $scope.nutritionLogs()
     }
 
     $scope.init()

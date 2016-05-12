@@ -1,16 +1,18 @@
 angular.module('factories', [])
 
   .factory('cardioFactory', function ($http) {
-    function submitCardio (username, date, type, distance, duration, pace, intensity) {
+    function submitCardio (username, date, time, type, distance, duration, pace, intensity) {
       var cardioForm = {
         username: username,
         date: date,
+        time: time,
         type: type,
         distance: distance,
         duration: duration,
         pace: pace,
         intensity: intensity
       }
+      console.log('cardio Form inside cardio factory =', cardioForm)
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
 

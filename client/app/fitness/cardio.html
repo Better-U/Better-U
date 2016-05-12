@@ -5,6 +5,7 @@
   <table class="table table-striped">
     <tr>
       <th>Date</th>
+      <th>Time</th>
       <th>Activity</th>
       <th>Distance (miles)</th>
       <th>Duration (minutes)</th>
@@ -12,6 +13,7 @@
     </tr>
     <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
       <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
+      <td>{{cardio.time}}</td>
       <td>{{cardio.type}}</td>
       <td>{{cardio.distance}}</td>
       <td>{{cardio.duration}}</td>

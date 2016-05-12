@@ -4,6 +4,11 @@
         <div class="form-group">
           *Date: <input type="date" ng-model="date" placeholder="date" required><br><br>
 
+          <div class="form-group">
+            <label class="col-md-3 control-label">Time</label>
+            <input uib-timepicker ng-model='time' required>
+          </div>
+
           *Activity:
           <select name="type" ng-model="type" required>
           <option value="" selected disabled>---Please select---</option>
