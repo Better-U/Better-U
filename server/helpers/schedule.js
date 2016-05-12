@@ -1,8 +1,22 @@
 var db = require('../db')
+var Promise = require('bluebird')
 var schedule = {}
 
+var promiseWhile = function (condition, action) {
+  var resolver = Promise.defer()
+  var loop  = function () {
+    if (!condition()) return resolver.resolve()
+      return Promise.cast(action())
+        .then(loop)
+        .catch(resolver.reject)
+  }
+  process.nextTick(loop)
+  return resolver.promise
+}
+
 schedule.updateUserPoints = function () {
-  console.log('inside getGoalDates helper')
+  console.log('inside updateUserPoints helper')
+  var counter = 0
   var getGoal = 'SELECT g.date, g.points, b.user_id, b.bettor_id, b.result, b.id FROM goals g ' +
     'INNER JOIN bets b ON g.id = b.goals_id ' +
     'WHERE b.status = 1'
@@ -12,68 +26,78 @@ schedule.updateUserPoints = function () {
   db.raw(getGoal)
     .then(function (data) {
       var goalData = data[0]
-      var currentDate = new Date()
-      for (var i = 0; i < goalData.length; i++) {
-        var goalDate = goalData[i].date
-        var userId = goalData[i].user_id
-        var goalPts = goalData[i].points
-        var bettorId = goalData[i].bettor_id
-        var result = goalData[i].result
-        var betId = goalData[i].id
-        if ((currentDate - goalDate) > 0) {
-          console.log('this is result from goals table: ', result)
-          if (result === 1) {
+      console.log('this is goalData: ___', goalData)
+      promiseWhile(function () {
+        return counter < goalData.length
+      }, function () {
+        return new Promise(function (resolve, reject) {
+          console.log('inside updateUser promiseWhile')
+          var currentDate = new Date()
+          var goalDate = goalData[counter].date
+          var userId = goalData[counter].user_id
+          var goalPts = goalData[counter].points
+          var bettorId = goalData[counter].bettor_id
+          var result = goalData[counter].result
+          var betId = goalData[counter].id
+          if((currentDate - goalDate) > 0) {
+          console.log('this is result: ____ ', result)
+            if(result === 1) {
             db.raw(getTotalPoints, [userId])
               .then(function (data) {
                 var winTotal = data[0][0].totalpts + goalPts
                 console.log('this is winTotal: ', winTotal)
                 db.raw(updateUser, [winTotal, userId])
                   .then(function (data) {
-                    console.log('user-winner successfully logged')
+                    console.log('user-winner successfully logged: ', data)
                     db.raw(getTotalPoints, [bettorId])
                       .then(function (data) {
                         var loseTotal = data[0][0].totalpts - goalPts
                         console.log('this is loseTotl: ', loseTotal)
                         db.raw(updateUser, [loseTotal, bettorId])
                           .then(function (data) {
-                            console.log('bettor-loser successfully logged')
+                            console.log('bettor-loser successfully logged: ', data)
                             db.raw(updateStatus, [betId])
                               .then(function (data) {
-                                console.log('updated bets status -- win')
+                                console.log('updated bets status -- win: ', data)
+                                counter++
+                                resolve()
                               })
                           })
                       })
                   })
               })
+            }
+            else if (result === 0) {
+              db.raw(getTotalPoints, [bettorId])
+                .then(function (data) {
+                  var newTotal = data[0][0].totalpts + goalPts
+                  console.log('this is newTotal: ', newTotal)
+                  db.raw(updateUser, [newTotal, bettorId])
+                    .then(function (data) {
+                      console.log('bettor-winner successfully logged')
+                      db.raw(getTotalPoints, [userId])
+                        .then(function (data) {
+                          var total = data[0][0].totalpts - goalPts
+                          console.log('this is total: ', total)
+                          db.raw(updateUser, [total, userId])
+                            .then(function (data) {
+                              console.log('winner-loser successfully logged')
+                              db.raw(updateStatus, [betId])
+                                .then(function (data) {
+                                  console.log('updated bets status -- lose')
+                                  counter++
+                                  resolve()
+                                })
+                            })
+                        })
+                    })
+                })
+            }
           }
-          else if (result === 0) {
-            db.raw(getTotalPoints, [bettorId])
-              .then(function (data) {
-                var newTotal = data[0][0].totalpts + goalPts
-                console.log('this is newTotal: ', newTotal)
-                db.raw(updateUser, [newTotal, bettorId])
-                  .then(function (data) {
-                    console.log('bettor-winner successfully logged')
-                    db.raw(getTotalPoints, [userId])
-                      .then(function (data) {
-                        var total = data[0][0].totalpts - goalPts
-                        console.log('this is total: ', total)
-                        db.raw(updateUser, [total, userId])
-                          .then(function (data) {
-                            console.log('winner-loser successfully logged')
-                            db.raw(updateStatus, [betId])
-                              .then(function (data) {
-                                console.log('updated bets status -- lose')
-                              })
-                          })
-                      })
-                  })
-              })
-          }
-        }
-      }
-      console.log('user points updated')
-      return 'user points updated'
+        }).then(function () {
+          console.log('done')
+        })
+      })
     })
 }
 
