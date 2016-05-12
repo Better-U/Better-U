@@ -36,22 +36,19 @@ angular.module('myApp.profile', ['factories'])
     $scope.upload = function () {
       filepickerService.pick(
         {
+          cropRatio: 4/4,
           mimetype: 'image/*',
           language: 'en',
-          services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+          services: ['COMPUTER', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM', 'CONVERT'],
+          conversions: ['crop', 'rotate', 'filter'],
           openTo: 'IMAGE_SEARCH'
         },
         function(Blob){
-          console.log(JSON.stringify(Blob));
-          // $scope.superhero.picture = Blob;
           ProfileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
             .then(function(data) {
-              console.log('upload data: ', data)
-              // $scope.apply()
               $scope.image = data
               $state.reload()
             })
-        // $state.reload()
         }
       )
     }
