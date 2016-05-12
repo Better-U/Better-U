@@ -24,7 +24,8 @@ angular.module('myApp', ['myApp.signin',
   'app.AuthFactory',
   'app.ProfileFactory',
     'app.StrengthFactory',
-    'app.NutritionFactory'])
+    'app.NutritionFactory',
+    'luegg.directives'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')

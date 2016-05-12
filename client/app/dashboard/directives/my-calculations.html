@@ -1,5 +1,8 @@
-<div class="row">
-    <div class="col-md-4">
+<div class="calculations myProfile">
+    I am Me
+</div>
+<div class="calculations">
+        <div>
             <span class="calcHeader">
                 Body Mass Index (BMI)
             </span>
@@ -11,9 +14,10 @@
             <span class="calcNotice">
                {{categorize(dash.height, dash.weight)}}
             </span>
+        </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="calculations">
             <span class="calcHeader">
                 Basal Metabolic Rate (BMR)
             </span>
@@ -22,7 +26,7 @@
                 {{userBMR(dash.gender, dash.age, dash.weight, dash.height)}}
             </span>
     </div>
-    <div class="col-md-4">
+    <div class="calculations">
             <span class="calcHeader">
                 Calorie Burn
             </span>
@@ -35,4 +39,3 @@
                 Based on the Harris Benedict Method
             </span>
     </div>
-</div>

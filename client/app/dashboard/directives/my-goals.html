@@ -1,21 +1,23 @@
-<div class="dashboardHeader goalsTable">
+<div class="goalsTable goals">
     <h2>Your Goals</h2>
-    <button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button><br><br>
-    <span ng-if="goalsData.length === 0">No goals have been logged yet.</span>
-    <table>
-        <tbody>
-        <tr ng-repeat="goals in goalsData | orderBy:'date'">
-            <td class="goalsDelete"><span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span></td>
-            <td class="goalsData">
-                <p class="inlineGoal" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
-                    <span class="indivialGoal">I want to <strong>{{goals.intensity}} {{goals.category}}</strong> by <strong>{{goals.value}} {{goals.measurement}}</strong></span>
-                    <br>
-                    <span class="goalDueDate">By <strong>{{dateConverter(goals.date)}}</strong></span>
-                </p>
-                <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <section class="content">
+        <button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button><br><br>
+        <span ng-if="goalsData.length === 0">No goals have been logged yet.</span>
+        <table>
+            <tbody>
+            <tr ng-repeat="goals in goalsData | orderBy:'date'">
+                <td class="goalsDelete"><span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)"></span></td>
+                <td class="goalsData">
+                    <p class="inlineGoal" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
+                        <span class="indivialGoal">I want to <strong>{{goals.intensity}} {{goals.category}}</strong> by <strong>{{goals.value}} {{goals.measurement}}</strong></span>
+                        <br>
+                        <span class="goalDueDate">By <strong>{{dateConverter(goals.date)}}</strong></span>
+                    </p>
+                    <uib-progressbar max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
 </div>
 </div>

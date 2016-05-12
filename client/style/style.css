@@ -126,20 +126,46 @@ md-option {
     width: 80%;
     padding: 0px;
 }
-#chattingWith {
-    font-size: 30px;
-    text-align:center;
+.chatParent{
+  left: -25px;
+  bottom: -10px;
+  background-color: #E8E7DC;
+  border-radius: 10px;
+  height:calc(100% + 30px);
+  width: calc(100% + 50px);
+  box-shadow: 10px 10px 5px #0E1615
 }
-#messageForm { padding: 3px; position: absolute; left: 80px; width: 80%; }
-#m { background: #fff; border: 1px #000 solid; padding: 10px; width: 70%; margin-right: .5%; }
-#sendMessage { background: rgb(130, 224, 255); border: 1px #000 solid; padding: 10px; width: 20%;}
+.entireChatParent{
+  border: 2px black solid;
+  border-radius: 10px;
+}
+#chattingWith {
+    font-size: 50px;
+    font-family: 'Arvo', serif;
+    text-align:center;
+    background-color: #0E1615;
+    color: #E8E7DC;
+    width: 100%;
+
+}
+
+.searchButton{
+  width: 230px;
+  position: relative;
+  right: 13px;
+}
+#messageForm { padding: 3px; width: 100%; }
+#m { border-radius: 10px; background: #FFF; border: 1px #0A100E solid; padding: 10px; width: 70%; margin-right: .5%; }
+#sendMessage { border-radius: 10px; color: #E8E7DC; background-color:#0A100E; border: 1px #000 solid; padding: 10px; width: 29%;}
 #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: auto;}
-#messages li { padding: 5px 10px; background:white; }
-#messages li:nth-child(odd) { background: #ddd; }
+#messages li { background:#E5E3D8; color: #2d343a; padding: 5px 10px; background:white; }
+#messages li:nth-child(even) { background: #AAA; color: black ; }
 
 .eachMessage {
     text-align: left; 
     word-wrap: break-word;
+    padding: 8px;
+    font-size: 16px;
 }
 .eachMessage:hover {
     background: black;
@@ -247,7 +273,7 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .navbar {
-    border-bottom: 6px solid #aaa;
+    border-bottom: 6px solid #1C2329;
 }
 
 .goalsTable tr {
@@ -255,8 +281,9 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .goalsTable {
+    /*position: relative;*/
+    /*top: -30px;*/
     margin: auto;
-    width: 600px;
     padding: 10px;
     text-align: center;
 }
@@ -298,6 +325,8 @@ div .row{
 }
 .entireChat {
     background-color: white;
+    padding-right: 0;
+    padding-left: 0;
 }
 .chat {
     top: 30px;
@@ -319,13 +348,13 @@ div .row{
     position: absolute;
 }
 .searchBuddy{
-    left: 40%;
+    left: 30%;
 }
 .clearer{
     clear: both;
 }
 body {
-    background-color: #d4d4d4;
+    background-color: #1C2329;
 }
 
 tr .goalsData {
@@ -397,7 +426,7 @@ td .goalDueDate {
     text-align: center;
 }
 .cool-font {
-  font-size: 49px;
+  font-size: 50px;
   font-family: 'Arvo', serif;
 }
 
@@ -456,7 +485,79 @@ td .goalDueDate {
   position: relative;
   right: 25px;
 }
-#userAddress{
-  width: 50%;
-  display: inline;
+#userAddress {
+    width: 50%;
+    display: inline;
+}
+
+.cut-overflow {
+    overflow: hidden;
+}
+
+.navbar-inverse-override {
+    background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
+    background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
+    background-image: linear-gradient(to bottom,#0E1614 0,#0A100E 100%) !important
+}
+
+.landingFooter {
+    background-color: #1C2329
+}
+
+.navbar {
+ background-color: #000 !important
+}
+
+.dashboard {
+ background-color: #1C2329;
+    color: #000;
+}
+
+div .calculations {
+ background-color: #E8E7DC;
+    /*width: 300px;*/
+    position: relative;
+    top: 25px;
+    width: 192px;
+    height: 150px;
+    /*width: 100%;*/
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #0E1615
+}
+
+/*.row {*/
+    /*margin-left: -30px;*/
+/*}*/
+
+.calculations div {
+    margin: auto;
+}
+
+.goals {
+    background-color: #E8E7DC;
+    /*margin: 50px*/
+    /*height: 100%;*/
+    position: relative;
+    top: 15px;
+    overflow-scrolling: ;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #0E1615;
+}
+
+.chatButtons {
+  margin-bottom: 5px;
+
+}
+
+.allGraphs {
+    background-color: #E8E7DC;
+    /*width: 500px;*/
+    /*height: 5px;*/
+    /*margin: 5px;*/
+    position: relative;
+    top: 25px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px #0E1615
 }
