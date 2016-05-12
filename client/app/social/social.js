@@ -1,5 +1,7 @@
 angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule'])
   .controller('socialCtrl', function ($scope, socialFactory, $state, $cookies, socket, maps) {
+        $scope.name = $cookies.get('username')
+
     $scope.savedAddress
     $scope.roomNumber
     $scope.user = $cookies.get('username')
@@ -89,8 +91,18 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
             username1: $scope.user,
             username2: username
           })
+              socialFactory.getFriends($scope.user)
+      .then(function(data){
+        $scope.chatList = data.data
+        console.log($scope.chatList, "THISIS CHATLIST")
+        if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+            $scope.$apply()
+          }
+      })
+    
         })
-    }
+            console.log("about to get")
+}
 
     $scope.joinRoom = function (username) {
       $scope.searchPage = true
@@ -101,7 +113,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
       })
       $scope.messages = []
     }
-    $scope.name = $cookies.get('username')
+
 
     // add a message to the conversation when a user disconnects or leaves the room
 
