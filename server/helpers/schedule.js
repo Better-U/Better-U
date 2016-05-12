@@ -15,7 +15,6 @@ var promiseWhile = function (condition, action) {
 }
 
 schedule.updateResults = function () {
-  console.log('inside updateResults helper')
   var counter = 0
   var selectGoal = 'SELECT g.date, g.value, g.currentValue, g.intensity, b.user_id FROM goals g ' +
     'INNER JOIN bets b ON b.goals_id = g.id ' +
@@ -29,7 +28,6 @@ schedule.updateResults = function () {
         return counter < goals.length
       }, function () {
         return new Promise(function (resolve, reject) {
-          console.log('inside updateResults promiseWhile')
           var current = new Date()
           var gDate = goals[counter].date
           var gUserId = goals[counter].user_id
@@ -72,7 +70,7 @@ schedule.updateResults = function () {
               }
             }
           }
-        }).then(function (data) {
+        }).then(function () {
           console.log('done with results')
         })
       })
@@ -80,7 +78,6 @@ schedule.updateResults = function () {
 }
 
 schedule.updateUserPoints = function () {
-  console.log('inside updateUserPoints helper')
   var counter = 0
   var getGoal = 'SELECT g.date, g.points, b.user_id, b.bettor_id, b.result, b.id FROM goals g ' +
     'INNER JOIN bets b ON g.id = b.goals_id ' +
@@ -95,7 +92,6 @@ schedule.updateUserPoints = function () {
         return counter < goalData.length
       }, function () {
         return new Promise(function (resolve, reject) {
-          console.log('inside updateUserPoints promiseWhile')
           var currentDate = new Date()
           var goalDate = goalData[counter].date
           var userId = goalData[counter].user_id
@@ -108,14 +104,12 @@ schedule.updateUserPoints = function () {
             db.raw(getTotalPoints, [userId])
               .then(function (data) {
                 var winTotal = data[0][0].totalpts + goalPts
-                console.log('this is winTotal: ', winTotal)
                 db.raw(updateUser, [winTotal, userId])
                   .then(function (data) {
                     console.log('user-winner successfully logged')
                     db.raw(getTotalPoints, [bettorId])
                       .then(function (data) {
                         var loseTotal = data[0][0].totalpts - goalPts
-                        console.log('this is loserTotal: ', loseTotal)
                         db.raw(updateUser, [loseTotal, bettorId])
                           .then(function (data) {
                             console.log('bettor-loser successfully logged')
@@ -137,11 +131,9 @@ schedule.updateUserPoints = function () {
                   console.log('this is newTotal: ', newTotal)
                   db.raw(updateUser, [newTotal, bettorId])
                     .then(function (data) {
-                      console.log('bettor-winner successfully logged')
                       db.raw(getTotalPoints, [userId])
                         .then(function (data) {
                           var total = data[0][0].totalpts - goalPts
-                          console.log('this is total: ', total)
                           db.raw(updateUser, [total, userId])
                             .then(function (data) {
                               console.log('winner-loser successfully logged')
