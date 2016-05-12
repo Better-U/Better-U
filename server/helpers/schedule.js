@@ -14,6 +14,8 @@ var promiseWhile = function (condition, action) {
   return resolver.promise
 }
 
+// schedule.updateResults = function () {}
+
 schedule.updateUserPoints = function () {
   console.log('inside updateUserPoints helper')
   var counter = 0
@@ -26,12 +28,11 @@ schedule.updateUserPoints = function () {
   db.raw(getGoal)
     .then(function (data) {
       var goalData = data[0]
-      console.log('this is goalData: ___', goalData)
       promiseWhile(function () {
         return counter < goalData.length
       }, function () {
         return new Promise(function (resolve, reject) {
-          console.log('inside updateUser promiseWhile')
+          console.log('inside updateUserPoints promiseWhile')
           var currentDate = new Date()
           var goalDate = goalData[counter].date
           var userId = goalData[counter].user_id
@@ -40,7 +41,6 @@ schedule.updateUserPoints = function () {
           var result = goalData[counter].result
           var betId = goalData[counter].id
           if((currentDate - goalDate) > 0) {
-          console.log('this is result: ____ ', result)
             if(result === 1) {
             db.raw(getTotalPoints, [userId])
               .then(function (data) {
@@ -48,17 +48,17 @@ schedule.updateUserPoints = function () {
                 console.log('this is winTotal: ', winTotal)
                 db.raw(updateUser, [winTotal, userId])
                   .then(function (data) {
-                    console.log('user-winner successfully logged: ', data)
+                    console.log('user-winner successfully logged')
                     db.raw(getTotalPoints, [bettorId])
                       .then(function (data) {
                         var loseTotal = data[0][0].totalpts - goalPts
-                        console.log('this is loseTotl: ', loseTotal)
+                        console.log('this is loserTotal: ', loseTotal)
                         db.raw(updateUser, [loseTotal, bettorId])
                           .then(function (data) {
-                            console.log('bettor-loser successfully logged: ', data)
+                            console.log('bettor-loser successfully logged')
                             db.raw(updateStatus, [betId])
                               .then(function (data) {
-                                console.log('updated bets status -- win: ', data)
+                                console.log('updated bets status -- win')
                                 counter++
                                 resolve()
                               })
