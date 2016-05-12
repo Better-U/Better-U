@@ -4,17 +4,43 @@ var schedule = {}
 
 var promiseWhile = function (condition, action) {
   var resolver = Promise.defer()
-  var loop  = function () {
+  var loop = function () {
     if (!condition()) return resolver.resolve()
-      return Promise.cast(action())
-        .then(loop)
-        .catch(resolver.reject)
+    return Promise.cast(action())
+      .then(loop)
+      .catch(resolver.reject)
   }
   process.nextTick(loop)
   return resolver.promise
 }
 
-// schedule.updateResults = function () {}
+schedule.updateResults = function () {
+  console.log('inside updateResults helper')
+  var counter = 0
+  var selectGoal = 'SELECT g.date, g.value, g.currentValue, g.intensity, b.user_id FROM goals g ' +
+    'INNER JOIN bets b ON b.goals_id = g.id ' +
+    'WHERE b.status = 1'
+  var updateWin = 'UPDATE bets SET result = 1 WHERE id = ?'
+  var updateLose = 'UPDATE bets SET result = 0 WHERE id = ?'
+  db.raw(selectGoal)
+    .then(function (data) {
+      var goals = data[0]
+      promiseWhile(function () {
+        return counter < goals.length
+      }, function () {
+        return new Promise(function (resolve, reject) {
+          console.log('inside updateResults promiseWhile')
+          var current = new Date()
+          var gDate = goals[counter].date
+          var gUserId = goals[counter].user_id
+          var value = goals[counter].value
+          var currentVal = goals[counter].currentVal
+          var intensity = goals[counter].intensity
+          var result
+        })
+      })
+    })
+}
 
 schedule.updateUserPoints = function () {
   console.log('inside updateUserPoints helper')
