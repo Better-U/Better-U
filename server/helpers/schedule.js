@@ -20,8 +20,8 @@ schedule.updateResults = function () {
   var selectGoal = 'SELECT g.date, g.value, g.currentValue, g.intensity, b.user_id FROM goals g ' +
     'INNER JOIN bets b ON b.goals_id = g.id ' +
     'WHERE b.status = 1'
-  var updateWin = 'UPDATE bets SET result = 1 WHERE id = ?'
-  var updateLose = 'UPDATE bets SET result = 0 WHERE id = ?'
+  var updateWin = 'UPDATE bets SET result = 1 WHERE user_id = ?'
+  var updateLose = 'UPDATE bets SET result = 0 WHERE user_id = ?'
   db.raw(selectGoal)
     .then(function (data) {
       var goals = data[0]
@@ -73,7 +73,7 @@ schedule.updateResults = function () {
             }
           }
         }).then(function (data) {
-          console.log('done with results', data)
+          console.log('done with results')
         })
       })
     })
