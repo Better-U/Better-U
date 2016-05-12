@@ -127,12 +127,14 @@ md-option {
     padding: 0px;
 }
 #chattingWith {
-    font-size: 30px;
+    font-size: 50px;
+    font-family: 'Arvo', serif;
     text-align:center;
+    background-color:grey;
 }
-#messageForm { padding: 3px; position: absolute; left: 80px; width: 80%; }
+#messageForm { padding: 3px; position: absolute; left: 50px; width: 100%; }
 #m { background: #fff; border: 1px #000 solid; padding: 10px; width: 70%; margin-right: .5%; }
-#sendMessage { background: rgb(130, 224, 255); border: 1px #000 solid; padding: 10px; width: 20%;}
+#sendMessage { background: rgb(130, 224, 255); border: 1px #000 solid; padding: 10px; width: 28%;}
 #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: auto;}
 #messages li { padding: 5px 10px; background:white; }
 #messages li:nth-child(odd) { background: #ddd; }
@@ -320,7 +322,7 @@ div .row{
     position: absolute;
 }
 .searchBuddy{
-    left: 40%;
+    left: 30%;
 }
 .clearer{
     clear: both;
@@ -398,7 +400,7 @@ td .goalDueDate {
     text-align: center;
 }
 .cool-font {
-  font-size: 49px;
+  font-size: 50px;
   font-family: 'Arvo', serif;
 }
 
