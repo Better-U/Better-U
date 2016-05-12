@@ -448,11 +448,23 @@ td .goalDueDate {
 }
 .lilProfiles {
   width: 230px;
+  height: 230px;
 }
 .lilerProfiles {
   width: 25px;
+  height:25px;
 }
-
+.userLocation {
+  color: #0A100E;
+}
+.locationForm {
+  position: relative;
+  padding: 15px 0px 30px 0px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #0E1615;
+  bottom: 30px;
+  background-color: #E8E7DC;
+}
 .team > div{
     text-align: center;
 }
@@ -474,10 +486,24 @@ td .goalDueDate {
   list-style-type: none;
 }
 
+.chatWithButton {
+  background-color: #0A100E;
+  color: #E8E7DC;
+
+}
+.chatWithButton:hover{
+  background-color: #2C322F;
+  color: white;
+}
 .profileCard {
-  width:350px;
+  background-color: #E8E7DC;
+  width:300px;
   border: 2px black solid;
   margin: 5px;
+  box-shadow: 10px 10px 5px #0E1615;
+  border-radius: 10px;
+  padding-bottom: 15px;
+  padding-top: 5px;
 }
 
 .positionUL {

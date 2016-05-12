@@ -1,16 +1,17 @@
 <div class="row">
 <div class="col-lg-12">
-<div>
-
-</div>
+<div class="locationForm">
+  <h2>Search Users</h2>
 	<form role="form" ng-submit="sendCity()">
 	  <input id="userAddress" ng-model="address" class="form-control" placeholder="Enter city or zipcode" />
 	  <button type="submit" class="btn btn-default">Search</button>
 	</form>
-    <div >Displaying users in: {{savedAddress}}</div>
+    <div class="userLocation">Displaying users in: {{savedAddress}}</div>
+</div>
+</div>
 </div>
 <div class="row">
-<div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <ul class="flexor noListStyles">
     <li class="profileCard" ng-repeat = "user in userList">
       <ul class="positionUL noListStyles">
@@ -28,11 +29,10 @@
  	    Gym: {{user.gym}}
       </li>
       <li>
-      	<button class="btn btn-default" ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
+      	<button class="chatWithButton btn btn-default" ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
       </li>
       </ul> 
     </li>
   </ul>
-</div>
 </div>
 </div>
