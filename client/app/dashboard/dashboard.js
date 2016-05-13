@@ -171,6 +171,10 @@ angular.module('myApp.dashboard', [])
       return results
     }
 
+    $scope.convertWater = function (weight) {
+      return Math.floor((weight * (2/3)) / 8)
+    }
+
     $scope.getWater = function (data) {
       var pastDays = $scope.getPastSevenDays()
       var results = []
@@ -293,8 +297,8 @@ angular.module('myApp.dashboard', [])
         $scope.todayNutritionPie.today !== null) {
         $scope.todayNutritionPie.today = new Date()
         // $scope.todayNutritionPie.fat = 0
-        // $scope.todayNutritionPie.carbs = 0
-        // $scope.todayNutritionPie.protein = 0
+        $scope.todayNutritionPie.calories = 0
+        $scope.todayNutritionPie.protein = 0
       }
 
       for (var i = 0; i < $scope.nutritionData.length; i++) {
@@ -400,40 +404,16 @@ angular.module('myApp.dashboard', [])
       var pieData = $scope.todaysPieData()
       // console.log(pieData)
 
-      // new Chartist.Bar('#ct1', $scope.waterData)
-      new Chartist.Pie('#ct2', {
-        labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
-        series: [{
-          value: pieData.fat,
-          name: 'Fat (g)',
-          // label: 'Fat',
-          // className: 'my-custom-class-one',
-          meta: 'Fat'
-        }, {
-          value: pieData.carbs,
-          name: 'Carbohydrates (g)',
-          // className: 'my-custom-class-two',
-          meta: 'Meta Two'
-        }, {
-          value: pieData.protein,
-          name: 'Protein (g)',
-          // className: 'my-custom-class-three',
-          meta: 'Meta Three'
-        }]
-      })
-      console.log()
-      new Chartist.Line('#ct3', $scope.calorieData)
       // console.log('Line 380: $scope.cardiodata', $scope.cardioData)
       console.log('cardio data: ', $scope.cardioData)
 
       var chart = new Chartist.Pie('#ct1', {
         series: [$scope.waterIntake[6]],
-        // labels: [($scope.waterIntake[6] / 8 * 100) + '%']
-        labels: [($scope.waterIntake[6]) + ' of 8 cups']
+        labels: [($scope.waterIntake[6]) + ' of ' + $scope.convertWater($scope.dash.weight) + ' cups']
       }, {
         donut: true,
         showLabel: true,
-        total: 8,
+        total: $scope.convertWater($scope.dash.weight),
         chartPadding: 30,
         labelOffset: 50,
         labelDirection: 'explode'
@@ -474,14 +454,12 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.nutritionLogs = function () {
-      // console.log('inside nutrition logs: ', $scope.username)
       NutritionFactory.getFoodLog($scope.username)
         .then(function (data) {
           $scope.nutritionData = data.data
           $scope.getWater($scope.nutritionData)
           $scope.getCalories($scope.nutritionData)
           $scope.getPaceData()
-          // $scope.getPastSevenSessions()
           $scope.createChart()
         })
     }
@@ -491,6 +469,9 @@ angular.module('myApp.dashboard', [])
       $scope.getGoals()
       $scope.getDashboardProfile()
       $scope.getPastSevenSessions()
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
     }
 
     $scope.init()
@@ -517,4 +498,16 @@ angular.module('myApp.dashboard', [])
     }
   })
 
+  .directive('tooltip', function(){
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs){
+        $(element).hover(function(){
+          $(element).tooltip('show');
+        }, function(){
+          $(element).tooltip('hide');
+        });
+      }
+    };
+  });
 
