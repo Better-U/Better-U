@@ -11,7 +11,7 @@
   <!-- Display users -->
   <div ng-if="withGoalsList">
     <h2>{{displayUser}}'s goals</h2>
-    <table class="table table-striped">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Goal</th>
@@ -48,7 +48,7 @@
   </div>
   <div ng-if="userBets.length > 0">
     <h2>Your Goals Been Bet On</h2>
-    <table class="table table-striped" ng-if="userBets">
+    <table class="table table-hover" ng-if="userBets">
       <thead>
         <tr>
           <th>Goal</th>
@@ -69,19 +69,21 @@
   </div>
 
   <!-- List users with most points-->
-  <div ng-if="userPoints">
+  <div class="table-responsive" ng-if="userPoints">
+    <table class="table1 table-condensed">
     <h2> BetterU Leaderboard</h2>
-    <table class="table table-striped">
       <thead>
         <tr>
+          <th>Rank</th>
           <th>Username</th>
           <th>Points</th>
         </tr>
       </thead>
       <tbody ng-if="userPoints">
         <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
-          <td class="col-sm-3">{{top.username}}</td>
-          <td class="col-sm-3">{{top.totalpts}}</td>
+          <td class=".col-md-1">{{$index+1}}</td>
+          <td class=".col-md-1"><img class="leaderboard img-circle" ng-src="{{top.image}}"><span class="spacing">{{top.username}}</span></td>
+          <td class=".col-md-1">{{top.totalpts}}</td>
         </tr>
       </tbody>
     </table>

@@ -25,6 +25,10 @@
   background-color: gray;
 }
 
+.table1 {
+        width: 50%;
+    }
+
 #brandName {
   width: 80px;
   height: 15px;
@@ -100,6 +104,11 @@
     padding: 5px;
 }
 
+.leaderboard {
+  width: 50px;
+  height: 50px;
+}
+
 
 /*.authContainer {*/
 	/*width: 300px;*/
@@ -165,7 +174,7 @@ md-option {
 #messages li:nth-child(even) { background: #AAA; color: black ; }
 
 .eachMessage {
-    text-align: left; 
+    text-align: left;
     word-wrap: break-word;
     padding: 8px;
     font-size: 16px;
@@ -567,6 +576,9 @@ div .calculations {
     margin: auto;
 }
 
+.spacing {
+  padding:0 0 0 15px;
+}
 .goals {
     background-color: #E8E7DC;
     /*margin: 50px*/
@@ -597,3 +609,4 @@ div .calculations {
 .ct-series-a .ct-slice-donut {
     stroke: #0b97c4;
 }
+
