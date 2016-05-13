@@ -107,8 +107,21 @@
 .leaderboard {
   width: 50px;
   height: 50px;
+  text-align: center;
 }
 
+.leaderTable {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.leaderHeader {
+    width: 425px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
 
 /*.authContainer {*/
 	/*width: 300px;*/
