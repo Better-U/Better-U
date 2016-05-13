@@ -1,35 +1,119 @@
 <div class="cardioForm">
-    <h1>Cardio Input</h1>
-      <form>
-        <div class="form-group">
-          *Date: <input type="date" ng-model="date" placeholder="date" required><br><br>
+  <h1>Log a Cardio Session</h1>  
+  <div class="form">
 
-          <div class="form-group">
-            <label class="col-md-3 control-label">Time</label>
+    <form class="form-horizontal" role="form">
+      <div class="form-body">
+
+        <!-- Date Group -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Date</label>
+            <div class="col-md-7">
+              <div class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+            </div>
+        </div>
+
+        <!-- Time -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Time</label>
+          <div class="col-md-7">
             <input uib-timepicker ng-model='time' required>
           </div>
+        </div>
 
-          *Activity:
-          <select name="type" ng-model="type" required>
-          <option value="" selected disabled>---Please select---</option>
-          <option value="Running">Running</option>
-          <option value="Cycling">Cycling</option>
-          <option value="Swimming">Swimming</option>
-          <option value="Rowing">Rowing</option>
-          <option value="Jumping Rope">Jumping Rope</option>
-          <option value="Steppers">Steppers</option>
-          <option value="Ellipticals">Ellipticals</option>
-          </select><br><br>
+        <!-- Activity Form Multilist-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Activity</label>
+          <div class="col-md-7">
+            <select multiple class="form-control" ng-model="type" required>
+              <option value="Running">Running</option>
+              <option value="Cycling">Cycling</option>
+              <option value="Swimming">Swimming</option>
+              <option value="Rowing">Rowing</option>
+              <option value="Jumping Rope">Jumping Rope</option>
+              <option value="Steppers">Steppers</option>
+              <option value="Ellipticals">Ellipticals</option>
+            </select>
+          </div>
+        </div>
 
-          Intensity: <input class="dropdown" type="number" min="1" max="5" name="intensity" ng-model="intensity"><br>
-          Scale 1-5: 1 being least intense, 5 being most intense<br><br>
+        <!-- Distance Input Box -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Distance (Miles)</label>
+          <div class="col-md-7">
+            <input type="number" min="1" max="9000" class="form-control" placeholder="Miles" ng-model="distance" required>
+          </div>
+        </div>
 
-          *Distance: <input class="dropdown" type="number" min="1" max="9000" name="distance" ng-model="distance" required> miles<br><br>
-          Convert <input class="dropdown" type="number" min="1" max="9000" name="meters" ng-model="meters"> meters to {{convertMiles(meters)}} miles<br><br>
+        <!-- Meters to Miles Calculator -->
+        <div class="form-group">
+            <label class="col-md-3 control-label">Meters?</label>
+            <div class="col-md-7">
+              <input class="number" type="number" min="1" max="9000" name="meters" ng-model="meters">  {{convertMiles(meters)}} Miles
+            </div>
+        </div>
 
-          *Duration: <input class="dropdown" type="number" min="1" max="9000" name="duration" ng-model="duration" required> minutes<br><br>
-          Pace: {{pace(duration, distance)}} minutes per mile<br><br>
-          * = required <br><br>
-        <button class="btn btn-primary" ng-click="submitCardio()">Submit</button>
+        <!-- Duration Input Box -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Duration (Minutes)</label>
+          <div class="col-md-7">
+            <input type="number" min="1" max="50" class="form-control" placeholder="Minutes" ng-model="duration" required>
+
+          </div>
+        </div>
+
+        <!-- Pace Calculator -->
+        <div class="form-group" ng-if="pace(duration,distance) > 0">
+            <label class="col-md-3 control-label">Calculated Pace</label>
+            <div class="col-md-7">
+                <p class="form-control-static">{{pace(duration, distance)}} minutes per mile</p>
+            </div>
+        </div>      
+
+        <!-- Intensity Radio Select -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Intensity</label>
+          <div class="col-md-7">
+            <div class="mt-radio-list">
+              <label>
+                <input type="radio" ng-model="intensity" value="1"> 1
+                <span></span>
+              </label>
+              <label>
+                <input type="radio" ng-model="intensity" value="2"> 2
+                <span></span>
+              </label>
+              <label >
+                <input type="radio" ng-model="intensity" value="3"> 3
+                <span></span>
+              </label>
+              <label>
+                <input type="radio" ng-model="intensity" value="4"> 4
+                <span></span>
+              </label>
+              <label>
+                <input type="radio" ng-model="intensity" value="5" checked> 5
+                <span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit/Cancel Button -->
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-7">
+                    <button type="submit" ng-click="submitCardio()" class="btn btn-primary">Submit</button>
+                    <button type="button" ng-click="$close()" class="btn default">Cancel</button>
+                </div>
+            </div>
+        </div>
+
     </form>
+  </div>
 </div>

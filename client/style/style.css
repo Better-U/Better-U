@@ -65,6 +65,9 @@
 .app-modal-window .modal-dialog {
   width: 800px;
 }
+.app-modal-window-fitness {
+  width: 600px;
+}
 
 #nutritionContainer {
   margin-left: 30px;

@@ -6,18 +6,21 @@
     <div class="col-lg-5 goalsTable">
         <my-goals></my-goals>
     </div>
-
+    
     <div class="col-lg-5 allGraphs">
         <div>
-            <h2>Nutrition Graphs</h2>
+            <h2>Fitness/Health Details</h2>
             <span ng-if="nutritionData.length === 0">No nutrition logs found.</span>
             <div ng-if="nutritionData.length !== 0">
                 <div>
+                    <h4 style="text-align: center">Consumed {{todayNutritionPie.calories}} calories today</h4>
+                    <h4 style="text-align: center">Consumed {{todayNutritionPie.protein}}g of protein today</h4>
+                    <h4 style="text-align: center">Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake</h4>
                     <div class="ct-chart" id="ct1"></div>
-                    <h5>Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake</h5>
                 </div>
                 <div class="ct-chart" id="ct2"></div>
                 <div class="ct-chart" id="ct3"></div>
+                <div class='ct-chart' id="ct4"></div>
             </div>
         </div>
     </div>

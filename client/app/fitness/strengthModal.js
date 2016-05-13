@@ -1,21 +1,20 @@
 angular.module('myApp.strengthModal', ['factories'])
   .controller('StrengthModalCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal, $uibModalInstance) {
-    // Date Stuff
+
+    // Date Modal
     $scope.today = function () {
       $scope.dt = new Date()
     }
-
     $scope.today()
-
     $scope.format = 'dd-MMMM-yyyy'
 
     $scope.open1 = function () {
       $scope.popup1.opened = true
     }
 
-    // $scope.clear = function () {
-    //   $scope.dt = null
-    // }
+    $scope.clear = function () {
+      $scope.dt = null
+    }
 
     $scope.popup1 = {
       opened: false
@@ -27,13 +26,13 @@ angular.module('myApp.strengthModal', ['factories'])
 
     // Submit Button
     $scope.submitStrength = function () {
-      if ($scope.str.date === undefined || $scope.str.type === undefined || $scope.str.weight === undefined || $scope.str.sets === undefined || $scope.str.reps === undefined) {
+      if ($scope.dt === undefined || $scope.str.type === undefined || $scope.str.weight === undefined || $scope.str.sets === undefined || $scope.str.reps === undefined) {
         $scope.noInput = true
       } else {
         $uibModalInstance.dismiss('cancel')
         StrengthFactory.submitStrength(
           $scope.user,
-          $scope.str.date,
+          $scope.dt,
           $scope.str.type,
           $scope.str.sets,
           $scope.str.intensity,
