@@ -312,7 +312,7 @@ angular.module('myApp.dashboard', [])
     $scope.getPastSevenSessions = function () {
       var dates = []
       var lastSeven = []
-      cardioFactory.getCardio(user)
+      cardioFactory.getCardio($scope.username)
       .then(function (data) {
         data.data.forEach(function (item) {
           dates.push([item.date, item.time])

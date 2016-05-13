@@ -154,14 +154,7 @@ angular.module('myApp.strength', ['factories'])
           chartPadding: 20
         }]
       ]
-<<<<<<< d9a67fc9e3f772874aae4d298e79bb1f51939c6f
-=======
 
-      $(function () {
-        $("[data-toggle='tooltip']").tooltip()
-      })
-
->>>>>>> [Feat] Modals for Cardio and Strength
       new Chartist.Bar('#chart1', $scope.c1_data, options)
       new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
     }
