@@ -143,7 +143,6 @@ router.get('/getCardio', function (req, res) {
   var user = req.query.username
   User.findUser(user)
     .then(function (data) {
-      console.log(data)
       Cardio.getRecords(data[0].id)
         .then(function (success) {
           if (success) {

@@ -19,6 +19,7 @@ angular.module('myApp.cardio', ['factories'])
         $scope.cardioData = data.data
       })
     }
+
     $(function () {
       $("[data-toggle='tooltip']").tooltip()
     })
