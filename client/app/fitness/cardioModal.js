@@ -4,6 +4,25 @@ angular.module('myApp.cardioModal', ['factories'])
     $scope.noInput = false
     var user = $cookies.get('username')
 
+    $scope.today = function () {
+      $scope.date = new Date()
+    }
+
+    $scope.today()
+
+    $scope.format = 'dd-MMMM-yyyy'
+
+    $scope.open1 = function () {
+      $scope.popup1.opened = true
+    }
+
+    $scope.clear = function () {
+      $scope.date = null
+    }
+    $scope.popup1 = {
+      opened: false
+    }
+
     $scope.pace = function (duration, distance) {
       if (duration === undefined || distance === undefined) {
         return 0
@@ -55,10 +74,10 @@ angular.module('myApp.cardioModal', ['factories'])
         $uibModalInstance.dismiss('cancel')
         console.log('$scope.time', $scope.time.toString())
         console.log('new Date($scope.time).getTime()', new Date($scope.time).getTime())
+
         var newTime = new Date($scope.time).getTime()
         var convertedTime = $scope.convertTime(newTime)
-
-        cardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
+        cardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type[0], $scope.distance, $scope.duration, pace, $scope.intensity)
           .then(function (data) {
             console.log('data from time', data)
             $state.reload()

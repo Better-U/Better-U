@@ -1,6 +1,5 @@
 angular.module('myApp.dashboard', [])
 
-
   .controller('DashboardCtrl', function ($scope, $window, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
@@ -209,6 +208,7 @@ angular.module('myApp.dashboard', [])
     }
 
     // Getting Cardio Data
+
     $scope.getPastSevenSessions = function () {
       var dates = []
       var lastSeven = []
@@ -312,7 +312,7 @@ angular.module('myApp.dashboard', [])
     $scope.getPastSevenSessions = function () {
       var dates = []
       var lastSeven = []
-      cardioFactory.getCardio(user)
+      cardioFactory.getCardio($scope.username)
       .then(function (data) {
         data.data.forEach(function (item) {
           dates.push([item.date, item.time])
@@ -364,10 +364,12 @@ angular.module('myApp.dashboard', [])
       }
 
       // Chart for Cardio
+
       console.log('lastsevensesh', $scope.getPastSevenSessions(),
         'getPaceData', $scope.lastSevenPace)
 
       $scope.getPaceData()
+
       $scope.cardioData = {
         labels: $scope.getPastSevenSessions(),
         series: [
@@ -475,13 +477,13 @@ angular.module('myApp.dashboard', [])
 
   .directive('myGoals', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-goals.html',
+      templateUrl: 'app/dashboard/directives/my-goals.html'
       // controller: 'DashboardCtrl'
     }
   })
   .directive('nutritionGraphs', function () {
     return {
-      templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
+      templateUrl: 'app/dashboard/directives/nutrition-graphs.html'
       // controller: 'DashboardCtrl'
     }
   })
