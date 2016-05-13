@@ -1,20 +1,9 @@
 <div class="container">
-  <div>
-
-    <!-- Charts & Graphs -->
-    <div>
-      <h1>Average Workout Duration by day: </h1>
-      <div ng-if="c1_data" class="ct-chart" id="chart1"></div>
-      <h1>Activity Types:</h1>
-      <div ng-if="c2_data" class="ct-chart ct-slice-pie" id="chart2"></div>
-    </div><br>
-
-    <!-- Activity Table Logs -->
     <div>
       <h1>Strength Weekly Progress</h1>
-
       <button button class="btn btn-primary" ng-click="inputStrength()">Log Daily Workout</button><br><br>
-
+      
+      <!-- Strength Activity Log -->
       <table class="table table-striped">
         <thead>
           <tr>
@@ -28,8 +17,9 @@
             <th>Duration</th>
           </tr>
         </thead>
-        <tbody ng-if="strengthList">
+        <tbody>
           <tr ng-repeat="str in strengthList | orderBy:'date':true">
+            <tr ng-if="strengthList.length === 0">No Strength logs found. Add a workout!</tr>
             <td>{{str.date | date: "MM-dd-yyyy"}}</td>
             <td>{{str.type}}</td>
             <td>{{str.weight}}</td>
@@ -41,7 +31,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
 
+    </div>
   </div>
 </div>
