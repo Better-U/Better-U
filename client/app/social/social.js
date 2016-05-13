@@ -126,7 +126,6 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
   })
   .directive('search', function () {
     return {
-      templateUrl: 'app/social/directives/search.html',
-      controller: 'socialCtrl'
+      templateUrl: 'app/social/directives/search.html'
     }
   })
