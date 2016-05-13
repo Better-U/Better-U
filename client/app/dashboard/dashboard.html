@@ -15,8 +15,9 @@
                 <div>
                     <h4 style="text-align: center">Consumed {{todayNutritionPie.calories}} calories today</h4>
                     <h4 style="text-align: center">Consumed {{todayNutritionPie.protein}}g of protein today</h4>
-                    <h4 style="text-align: center">Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake</h4>
+                    <h4 style="text-align: center" data-original-title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-container='body' data-toggle='tooltip'>Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake Based On Your Weight<br>{{convertWater(dash.weight)}} cups</h4>
                     <div class="ct-chart" id="ct1"></div>
+                    <span title="My Tooltip!" data-toggle="tooltip" data-placement="top" tooltip><h5>hi</h5></span>
                 </div>
                 <div class="ct-chart" id="ct2"></div>
                 <div class="ct-chart" id="ct3"></div>
