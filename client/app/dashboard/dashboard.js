@@ -367,6 +367,7 @@ angular.module('myApp.dashboard', [])
         'getPaceData', $scope.lastSevenPace)
 
       $scope.getPaceData()
+
       $scope.cardioData = {
         labels: $scope.getPastSevenSessions(),
         series: [
@@ -474,13 +475,13 @@ angular.module('myApp.dashboard', [])
 
   .directive('myGoals', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-goals.html',
+      templateUrl: 'app/dashboard/directives/my-goals.html'
       // controller: 'DashboardCtrl'
     }
   })
   .directive('nutritionGraphs', function () {
     return {
-      templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
+      templateUrl: 'app/dashboard/directives/nutrition-graphs.html'
       // controller: 'DashboardCtrl'
     }
   })

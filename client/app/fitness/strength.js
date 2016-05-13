@@ -154,7 +154,6 @@ angular.module('myApp.strength', ['factories'])
           chartPadding: 20
         }]
       ]
-
       new Chartist.Bar('#chart1', $scope.c1_data, options)
       new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
     }

@@ -76,7 +76,6 @@ angular.module('myApp.cardioModal', ['factories'])
         console.log('new Date($scope.time).getTime()', new Date($scope.time).getTime())
         var newTime = new Date($scope.time).getTime()
         var convertedTime = $scope.convertTime(newTime)
-
         cardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type[0], $scope.distance, $scope.duration, pace, $scope.intensity)
           .then(function (data) {
             console.log('data from time', data)
