@@ -6,28 +6,9 @@ angular.module('myApp.strength', ['factories'])
       $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'app/fitness/strengthModal.html',
-        controller: 'StrengthModalCtrl'
+        controller: 'StrengthModalCtrl',
+        windowClass: 'app-modal-window-fitness'
       })
-    }
-
-    // Date Stuff
-    $scope.today = function () {
-      $scope.dt = new Date()
-    }
-
-    $scope.today()
-    $scope.format = 'dd-MMMM-yyyy'
-
-    $scope.open1 = function () {
-      $scope.popup1.opened = true
-    }
-
-    $scope.clear = function () {
-      $scope.dt = null
-    }
-
-    $scope.popup1 = {
-      opened: false
     }
 
     $scope.user = $cookies.get('username')
@@ -70,39 +51,40 @@ angular.module('myApp.strength', ['factories'])
           renderGraphs()
         })
     }
-
-    // const day_of_week = function (num) {
-    //   var day
-    //   switch (num) {
-    //     case 0:
-    //       day = 'Sunday'
-    //       break
-    //     case 1:
-    //       day = 'Monday'
-    //       break
-    //     case 2:
-    //       day = 'Tuesday'
-    //       break
-    //     case 3:
-    //       day = 'Wednesday'
-    //       break
-    //     case 4:
-    //       day = 'Thursday'
-    //       break
-    //     case 5:
-    //       day = 'Friday'
-    //       break
-    //     case 6:
-    //       day = 'Saturday'
-    //       break
-    //   }
-    //   return day
-    // }
+    // Convert number (0-6) to day of week
+    const day_of_week = function (num) {
+      var day
+      switch (num) {
+        case 0:
+          day = 'Sunday'
+          break
+        case 1:
+          day = 'Monday'
+          break
+        case 2:
+          day = 'Tuesday'
+          break
+        case 3:
+          day = 'Wednesday'
+          break
+        case 4:
+          day = 'Thursday'
+          break
+        case 5:
+          day = 'Friday'
+          break
+        case 6:
+          day = 'Saturday'
+          break
+      }
+      return day
+    }
 
     // Chart Graph 1 - X: Date Y: Duration at Gym
     const c1_duration_date = function (arr) {
       var c1_obj = {}
       var dateshort
+      // var days = arr.length
 
       // Creating object of [day of week:duration]
       for (var i = 0; i < arr.length; i++) {
@@ -114,12 +96,12 @@ angular.module('myApp.strength', ['factories'])
           c1_obj[x] = arr[i].duration
         }
       }
+
       // Setting the label and series to scope c1_data
       for (var k in c1_obj) {
-        // $scope.c1_data.labels.push(k)
+        $scope.c1_data.labels.push(day_of_week(parseInt(k)))
         $scope.c1_data.series[0].push(c1_obj[k])
       }
-      $scope.c1_data.labels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     }
 
     // Pie Chart 2 - Type of activities for entire data set
@@ -172,10 +154,8 @@ angular.module('myApp.strength', ['factories'])
           chartPadding: 20
         }]
       ]
-      console.log($scope.c1_data)
-      console.log($scope.c2_data)
 
-      new Chartist.Bar('#chart1', $scope.c1_data)
+      new Chartist.Bar('#chart1', $scope.c1_data, options)
       new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
     }
 
