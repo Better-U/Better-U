@@ -100,7 +100,7 @@ knex.schema.createTableIfNotExists('cardio_record', function (cardio) {
   cardio.decimal('pace')
   cardio.string('type')
   cardio.date('date')
-  cardio.time('time')
+  cardio.string('time')
 }).then(function () {
   console.log('cardio_record table created')
 })

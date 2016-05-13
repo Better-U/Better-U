@@ -23,17 +23,42 @@ angular.module('myApp.cardioModal', ['factories'])
       }
     }
 
+    $scope.convertTime = function formatDate (date) {
+      var d = new Date(date)
+      var hh = d.getHours()
+      var m = d.getMinutes()
+      var s = d.getSeconds()
+      var dd = 'AM'
+      var h = hh
+      if (h >= 12) {
+        h = hh - 12
+        dd = 'PM'
+      }
+      if (h == 0) {
+        h = 12
+      }
+      m = m < 10 ? '0' + m : m
+
+      s = s < 10 ? '0' + s : s
+
+      /* if you want 2 digit hours: */
+      h = h < 10 ? '0' + h : h
+
+      return (h + ':' + m + ' ' + dd)
+    }
+
     $scope.submitCardio = function () {
       if ($scope.date === undefined || $scope.distance === undefined || $scope.duration === undefined || $scope.type === undefined) {
         $scope.noInput = true
       } else {
         var pace = $scope.pace($scope.duration, $scope.distance)
         $uibModalInstance.dismiss('cancel')
-        console.log('$scope.time', $scope.time)
+        console.log('$scope.time', $scope.time.toString())
         console.log('new Date($scope.time).getTime()', new Date($scope.time).getTime())
-        // var newTime = new Date($scope.time).getTime()
-        // var newTime = Date.parse($scope.time)
-        cardioFactory.submitCardio(user, $scope.date, $scope.time, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
+        var newTime = new Date($scope.time).getTime()
+        var convertedTime = $scope.convertTime(newTime)
+
+        cardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type, $scope.distance, $scope.duration, pace, $scope.intensity)
           .then(function (data) {
             console.log('data from time', data)
             $state.reload()
