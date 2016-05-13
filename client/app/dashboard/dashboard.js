@@ -1,6 +1,6 @@
 angular.module('myApp.dashboard', [])
-
-  .controller('DashboardCtrl', function ($scope, $window, $rootScope, $state, GoalsFactory, $cookies, StrengthFactory, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
+  
+  .controller('DashboardCtrl', function ($scope, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, StrengthFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
@@ -16,7 +16,7 @@ angular.module('myApp.dashboard', [])
 
     $scope.nutritionData = null
     $scope.files = []
-
+    
     $scope.goalsData = null
     $scope.dash = null
 
@@ -441,8 +441,6 @@ angular.module('myApp.dashboard', [])
           logDate.getFullYear() === today.getFullYear()) {
           $scope.todayNutritionPie.calories += Number($scope.nutritionData[i].cal)
           $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
-          // $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
-          // console.log('carbs: ', $scope.todayNutritionPie.carbs)
         }
       }
 
@@ -527,8 +525,6 @@ angular.module('myApp.dashboard', [])
         labels: null,
         series: []
       }
-      // Chart for Cardio
-      //   'getPaceData', $scope.lastSevenPace)
 
       $scope.lastSevenPace = $scope.getPaceData()
       //console.log('lastsevensesh', $scope.lastSevenSessions,'getPaceData', $scope.lastSevenPace)
@@ -571,8 +567,7 @@ angular.module('myApp.dashboard', [])
         showLabel: true,
         total: $scope.convertWater($scope.dash.weight),
         chartPadding: 30,
-        labelOffset: 50,
-        labelDirection: 'explode'
+        labelOffset: 50
       })
 
       chart.on('draw', function (data) {

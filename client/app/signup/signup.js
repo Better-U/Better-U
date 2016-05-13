@@ -78,7 +78,7 @@ angular.module('myApp.signup', [])
         templateUrl: 'app/signup/registerProfile.html',
         controller: 'SignupCtrl',
         // windowClass: 'register-profile-modal',
-        windowClass: 'app-modal-window'
+        windowClass: 'app-modal-window-signup'
       })
     }
   })

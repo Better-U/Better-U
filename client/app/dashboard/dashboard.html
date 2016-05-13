@@ -1,5 +1,5 @@
 <div class="dashboard container-fluid">
-    <div class="col-lg-2">
+    <div class="col-lg-2 calcCards">
         <my-calculations></my-calculations>
     </div>
 
@@ -12,12 +12,12 @@
             <h2>Fitness/Health Details</h2>
             <span ng-if="nutritionData.length === 0">No nutrition logs found.</span>
             <div ng-if="nutritionData.length !== 0">
-                <div>
-                    <h4 style="text-align: center">Consumed {{todayNutritionPie.calories}} calories today</h4>
-                    <h4 style="text-align: center">Consumed {{todayNutritionPie.protein}}g of protein today</h4>
-                    <h4 style="text-align: center" data-original-title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-container='body' data-toggle='tooltip'>Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake Based On Your Weight<br>{{convertWater(dash.weight)}} cups</h4>
-                    <div class="ct-chart" id="ct1"></div>
-                    <span title="My Tooltip!" data-toggle="tooltip" data-placement="top" tooltip><h5>hi</h5></span>
+                <div class="nutritionDetails">
+                    <span ng-if="todayNutritionPie.calories !== 0">You consumed {{todayNutritionPie.calories}} calories today</span><br>
+                    <span ng-if="todayNutritionPie.protein !== 0">You consumed {{todayNutritionPie.protein}}g of protein today</span><br>
+                    <span ng-if="(waterIntake[6]/8 * 100) !== 0" title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-toggle='tooltip' data-placement="bottom" tooltip>You drank {{(waterIntake[6]/8 * 100)}}% of daily recommended water intake based on your weight<br>~{{convertWater(dash.weight)}} cups</span>
+                    <br>
+                    <div class="ct-chart" id="ct1" ng-if="(waterIntake[6]/8 * 100) !== 0"></div>
                 </div>
                 <h2>Gym Duration By Day </h2>
                 <div ng-if="c1_data" class="ct-chart" id="chart1"></div>
@@ -25,6 +25,7 @@
                 <div ng-if="c2_data" class="ct-chart ct-slice-pie" id="chart2"></div>
                 <div class="ct-chart" id="ct2"></div>
                 <div class="ct-chart" id="ct3"></div>
+
                 <div class='ct-chart' id="ct4"></div>
             </div>
         </div>
