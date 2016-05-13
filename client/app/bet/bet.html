@@ -82,7 +82,7 @@
       <tbody ng-if="userPoints">
         <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
           <td class=".col-md-1">{{$index+1}}</td>
-          <td class=".col-md-1"><img class="leaderboard img-circle" ng-src="{{top.image}}">{{top.username}}</td>
+          <td class=".col-md-1"><img class="leaderboard img-circle" ng-src="{{top.image}}"><span class="spacing">{{top.username}}</span></td>
           <td class=".col-md-1">{{top.totalpts}}</td>
         </tr>
       </tbody>

@@ -576,6 +576,9 @@ div .calculations {
     margin: auto;
 }
 
+.spacing {
+  padding:0 0 0 15px;
+}
 .goals {
     background-color: #E8E7DC;
     /*margin: 50px*/
