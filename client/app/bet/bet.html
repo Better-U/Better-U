@@ -1,15 +1,15 @@
-<div class="container">
-  <div>
+<div class="container-fluid">
+  <div class="goals leaderTable betHeader col-md-12">
     <h3>Search a username to bet on</h3>
-  </div>
   <!-- Search for users -->
   <form>
     <input type="text" ng-model="searchbetuser" placeholder="username" required>
     <button button class="btn btn-primary" ng-click="submitSearch()">Search</button>
   </form>
+  </div>
 
   <!-- Display users -->
-  <div ng-if="withGoalsList">
+  <div class="goals leaderTable betHeader col-md-12" ng-if="withGoalsList">
     <h2>{{displayUser}}'s goals</h2>
     <table class="table table-hover">
       <thead>
@@ -31,9 +31,10 @@
 	  </table>
   </div>
 
-  <div ng-if="betsPlacedList.length > 0">
+  <!-- Display bets placed by user -->
+  <div class="goals leaderTable betHeader col-md-12" ng-if="betsPlacedList.length > 0">
     <h2>Bets you've placed</h2>
-    <table class="table table-striped">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Bets</th>
@@ -46,7 +47,9 @@
       </tbody>
     </table>
   </div>
-  <div ng-if="userBets.length > 0">
+
+  <!-- Display bets placed on user -->
+  <div class="goals leaderTable betHeader col-md-12" ng-if="userBets.length > 0">
     <h2>Your Goals Been Bet On</h2>
     <table class="table table-hover" ng-if="userBets">
       <thead>
@@ -69,10 +72,10 @@
   </div>
 
   <!-- List users with most points-->
-  <div class="goals leaderTable leaderHeader" ng-if="userPoints">
+  <div class="goals leaderTable leaderHeader col-md-12" ng-if="userPoints">
     <table class="table1 table-condensed">
     <h2> BetterU Leaderboard</h2>
-      <div class="spacing">
+      <div class="col-md-1">
       <thead>
         <tr>
           <th>Rank</th>
@@ -82,9 +85,9 @@
       </thead>
       <tbody ng-if="userPoints">
         <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
-          <td class=".col-md-1">{{$index+1}}</td>
-          <td class=".col-md-1"><img class="leaderboard img-circle" ng-src="{{top.image}}"><span class="spacing">{{top.username}}</span></td>
-          <td class=".col-md-1">{{top.totalpts}}</td>
+          <td>{{$index+1}}</td>
+          <td><img class="leaderboard img-circle" ng-src="{{top.image}}"><span class="spacing">{{top.username}}</span></td>
+          <td>{{top.totalpts}}</td>
         </tr>
       </tbody>
       </div>
