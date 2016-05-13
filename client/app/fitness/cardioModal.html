@@ -54,8 +54,8 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Meters?</label>
             <div class="col-md-7">
-              <input class="number" type="number" min="1" max="9000" name="meters" ng-model="meters">  {{convertMiles(meters)}} Miles
-            </div>
+              <input class="number" type="number" min="1" max="9000" name="meters" ng-model="meters">  <span ng-if="meters > 0">{{convertMiles(meters)}} Miles
+            </span></div>
         </div>
 
         <!-- Duration Input Box -->
