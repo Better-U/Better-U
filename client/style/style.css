@@ -366,7 +366,10 @@ div .row{
     clear: both;
 }
 body {
-    background-color: #1C2329;
+    /*background-color: #1A232F;*/
+    /*background-color:#33414D;*/
+    background-color: #29343D;
+
 }
 
 tr .goalsData {
@@ -411,30 +414,23 @@ td .goalDueDate {
 /*}*/
 
 .profileImage {
-    border-radius: 10px;
-    background-color: white;
-    margin: 0 auto;
-    padding: 5px;
+    position: relative;
+    border-radius: 100px;
  }
 
 .profileImage div {
-
     min-height: 10px;
-    margin: 20px 10px;
-    padding: 7px 0px 0px 0px;
+    margin: 20px 20px;
+    padding: 5px;
     vertical-align: middle;
     text-align: center;
     line-height: 90%;
     font-size: 16px;
 }
 
-.trueProfileImage {
-  width: 80%;
-}
 .profileForm {
-    border-radius: 10px;
-    margin: 0;
-    background-color: white;
+    margin: 25px 0;
+    padding: 15px 5px;
 }
 
 .control-label {
@@ -548,6 +544,8 @@ td .goalDueDate {
 
 .landingFooter {
     background-color: #1C2329
+
+
 }
 
 .navbar {
@@ -555,7 +553,13 @@ td .goalDueDate {
 }
 
 .dashboard {
- background-color: #1C2329;
+ /*background-color: #2D343A;*/
+    /*background-color: #1A232F;*/
+    background-color: #29343D;
+    
+
+
+
     color: #000;
 }
 
