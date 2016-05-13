@@ -22,7 +22,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Activity</label>
           <div class="col-md-6">
-            <select multiple class="form-control" ng-model="str.type">
+            <select multiple class="form-control" ng-model="str.type" required>
               <option value="Bench">Bench</option>
               <option value="Squat">Squat</option>
               <option value="Deadlift">Deadlift</option>
@@ -39,7 +39,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Weight</label>
           <div class="col-md-6">
-            <input type="number" min="1" max="600" class="form-control" placeholder="Pounds" ng-model="str.weight">
+            <input type="number" min="1" max="600" class="form-control" placeholder="Pounds" ng-model="str.weight" required>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Reps</label>
           <div class="col-md-6">
-            <input type="number" min="1" max="50" class="form-control" placeholder="Number of Reps" ng-model="str.reps">
+            <input type="number" min="1" max="50" class="form-control" placeholder="Number of Reps" ng-model="str.reps" required>
           </div>
         </div>
 
@@ -55,7 +55,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Sets</label>
           <div class="col-md-6">
-            <input type="number" min="1" max="100" class="form-control" placeholder="Number of Sets" ng-model="str.sets">
+            <input type="number" min="1" max="100" class="form-control" placeholder="Number of Sets" ng-model="str.sets" required>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Duration</label>
           <div class="col-md-6">
-              <input type="number" min="1" max="500" class="form-control" placeholder="Minutes" ng-model="str.duration">
+              <input type="number" min="1" max="500" class="form-control" placeholder="Minutes" ng-model="str.duration" required>
           </div>
         </div>
 

@@ -1,6 +1,5 @@
 angular.module('myApp.dashboard', [])
 
-
   .controller('DashboardCtrl', function ($scope, $window, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
