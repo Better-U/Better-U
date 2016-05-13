@@ -366,7 +366,10 @@ div .row{
     clear: both;
 }
 body {
-    background-color: #1C2329;
+    /*background-color: #1A232F;*/
+    /*background-color:#33414D;*/
+    background-color: #29343D;
+
 }
 
 tr .goalsData {
@@ -541,6 +544,8 @@ td .goalDueDate {
 
 .landingFooter {
     background-color: #1C2329
+
+
 }
 
 .navbar {
@@ -548,7 +553,13 @@ td .goalDueDate {
 }
 
 .dashboard {
- background-color: #1C2329;
+ /*background-color: #2D343A;*/
+    /*background-color: #1A232F;*/
+    background-color: #29343D;
+    
+
+
+
     color: #000;
 }
 
@@ -557,7 +568,7 @@ div .calculations {
     /*width: 300px;*/
     position: relative;
     top: 25px;
-    width: 192px;
+    /*width: 192px;*/
     height: 150px;
     /*width: 100%;*/
     text-align: center;
