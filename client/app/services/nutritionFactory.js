@@ -1,13 +1,14 @@
 angular.module('app.NutritionFactory', [])
 
 .factory('NutritionFactory', function ($http) {
-  function submitFoodLog (username, name, date, time, serving, cal, carbs, fat, fiber, sodium, protein, water) {
+  function submitFoodLog (username, name, date, time, serving, size, cal, carbs, fat, fiber, sodium, protein, water) {
     var foodLog = {
       username: username,
       name: name,
       date: date,
       time: time,
       serving: serving,
+      size: size,
       cal: cal,
       carbs: carbs,
       fat: fat,
@@ -31,7 +32,7 @@ angular.module('app.NutritionFactory', [])
     var req = {
       url: 'https://api.nutritionix.com/v1/item/' + id + '?&appId=' + appID + '&appKey=' + appKey,
       method: 'GET',
-      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      headers: { 'Content-Type': 'application/json; charset=utf-8' }
     }
     return $http(req)
   }

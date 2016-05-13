@@ -95,14 +95,19 @@
       <div id='profile-gym' class="form-group">
       <label class="col-sm-4 control-label">Gym of Choice:</label>
           <div class="col-sm-7">
-
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="la"> LA Fitness
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value='None'> None
        <br>
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24hour"> 24 Hour Fitness
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="LA Fitness"> LA Fitness
        <br>
-       <label class="col-sm-2 control-label"></label>
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="ufc"> UFC Gym
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24 Hour Fitness"> 24 Hour Fitness
        <br>
+       <!-- <label class="col-sm-2 control-label"></label> -->
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="UFC Gym"> UFC Gym
+       <br>
+       <span>
+       <input type="radio" name="gym"> Other            
+         <input type="text" style='width:100px' ng-model="prof.gym"/>
+       </span>
           </div>
       </div>
       <br>

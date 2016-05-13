@@ -9,7 +9,7 @@ angular.module('myApp.profile', ['factories'])
           console.log('data inside ProfileFactory.getProfile =', data.data[0])
           $scope.display = data.data[0]
           $scope.prof = {activity: data.data[0].activitylvl,
-            gym: data.data[0].gym
+            gym: data.data[0].gym || ''
           }
           $scope.image = data.data[0].image
           $scope.prof.interest = $scope.display.interest

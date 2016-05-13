@@ -2,7 +2,7 @@
   <h3>Search for Food</h3>
     <form name='searchNutrition' method='post'>
       <div class="col-sm-6">
-        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)'>
+        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-wait-ms='100'>
         <!-- <input type='submit' id='logSubmit' class="btn btn-primary btn-sm"> -->
         <div ng-if='asyncSelected.length > 0' id='searchResults'>
           <div class="searchContainer" id='{{i}}' ng-repeat='(index,item) in results track by $index' ng-click='getNutrition(item._id)' ng-class='{red:hover}' class='font' ng-mouseenter="hover=true" ng-mouseleave="hover=false">
@@ -30,7 +30,12 @@
       <br>
       <div class="form-group space">
         <label for="servingSize">Serving Size:</label>
-        <input type="number" min="0" class="form-control input-sm" name='foodServing' id="foodServing" ng-model="log.serving" value='{{ log.serving }}'>
+        <input type="text" class="form-control input-sm" name='foodServing' id="foodServing" ng-model="log.serving" value='{{ log.serving }}'> 
+      </div>
+      <br>
+      <div class="form-group space">
+        <label for="servingSize">Serving Size Unit:</label>
+        <input type="text" class="form-control input-sm" name='foodServing' id="foodServingSize" ng-model="log.size" value='{{ log.size }}'>
       </div>
       <br>
       <div class="form-group space">
