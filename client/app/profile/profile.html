@@ -1,17 +1,17 @@
-<div class="profileContainer container" ng-controller='ProfileCtrl' data-ng-init="init()">
-  <div id='profile-page'>
-      <div class="profileHeader">
+<div class="profileContainer container-fluid" ng-controller='ProfileCtrl' data-ng-init="init()">
+  <div class="row" id='profile-page'>
+      <div class="col-lg-12 col-sm-12 profileHeader">
           <h1>Edit Profile</h1>
       </div>
 
 
 
-
-    <div class="col-lg-5  col-md-6 col-xs-12 profileImage">
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12 profileImage">
         <div>
           <div>
-              <img ng-src="{{image | fpConvert: {w:250} }}" alt="image placeholder" class="img-circle" ng-if="image">
-              <img src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 250px" ng-if="!image">
+              <img ng-src="{{image | fpConvert: {w:250} }}" alt="image placeholder" class="img-circle trueProfileImage" ng-if="image">
+              <img src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle trueProfileImage" style="width: 250px" ng-if="!image">
           </div>
             <p><strong>Name: </strong>{{display.username}}</p>
             <p><strong>Age: </strong>{{display.age}}</p>
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-      <div class="col-lg-7 col-xs-12 profileForm">
+      <div class="col-lg-6 col-md-6 col-xs-12 profileForm">
       <form class="form-horizontal" name='profile-setup' method='post' ng-submit='submitProfile()'>
         <!--<div class="form-group">-->
           <!--<label class="col-sm-2 control-label">Name</label>-->
@@ -109,6 +109,7 @@
       <input id='profBtn' type='submit' class="btn btn-primary" value='Save Profile' ng-click='submitProfile()'/>
     </form>
    <div style='padding-left:140px' ng-if='changesSaved'>Your changes have been saved.</div> 
+    </div>
     </div>
   </div>
 

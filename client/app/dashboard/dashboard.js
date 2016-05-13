@@ -1,6 +1,6 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('DashboardCtrl', function ($scope, $window, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
+  .controller('DashboardCtrl', function ($scope, $window, $rootScope, $state, GoalsFactory, $cookies, StrengthFactory, ProfileFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
@@ -9,13 +9,19 @@ angular.module('myApp.dashboard', [])
     $scope.calorieIntake = null
     $scope.lastSevenSessions = null
     $scope.lastSevenPace = null
+
     $rootScope.signout = function () {
       $scope.signout()
     }
+
     $scope.nutritionData = null
     $scope.files = []
     $scope.goalsData = null
     $scope.dash = null
+
+    $scope.strengthList
+    $scope.c1_data = {labels: [], series: [[]]}
+    $scope.c2_data = {labels: [], series: []}
 
     $scope.signout = function () {
       $cookies.remove('token')
@@ -65,7 +71,7 @@ angular.module('myApp.dashboard', [])
       var numWeight = Number(weight)
       var numHeight = Number(height)
       var total
-      if (gender == 0) {
+      if (gender === 0) {
         var maleBMR = 66.5 + (6.23 * numWeight) + (12.7 * numHeight) - (6.8 * numAge)
         if (activity === 'sedentary') {
           total = (maleBMR * 1.2).toFixed()
@@ -76,7 +82,7 @@ angular.module('myApp.dashboard', [])
         } else if (activity === 'active') {
           total = (maleBMR * 1.725).toFixed()
         }
-      } else if (gender == 1) {
+      } else if (gender === 1) {
         var femaleBMR = 655.1 + (4.35 * numWeight) + (4.7 * numHeight) - (4.7 * numAge)
         if (activity === 'sedentary') {
           total = (femaleBMR * 1.2).toFixed()
@@ -96,9 +102,9 @@ angular.module('myApp.dashboard', [])
       var uWeight = Number(weight)
       var uHeight = Number(height)
       var BMR
-      if (gender == 0) {
+      if (gender === 0) {
         BMR = (66.5 + (6.23 * uWeight) + (12.7 * uHeight) - (6.8 * uAge)).toFixed(2)
-      } else if (gender == 1) {
+      } else if (gender === 1) {
         BMR = (655.1 + (4.35 * uWeight) + (4.7 * uHeight) - (4.7 * uAge)).toFixed(2)
       }
       return BMR
@@ -192,6 +198,132 @@ angular.module('myApp.dashboard', [])
       return $scope.waterIntake
     }
 
+    // Fetching Activity log function
+    const fetchLog = function () {
+      StrengthFactory.getStrength($scope.username)
+        .then(function (data) {
+          $scope.strengthList = data.data
+          // reset $scope array values
+          $scope.c1_data = {labels: [], series: [[]]}
+          $scope.c2_data = {labels: [], series: []}
+
+          c1_duration_date(data.data)
+          c2_activity_type(data.data)
+        })
+        .then(function (data) {
+          renderGraphs()
+        })
+    }
+
+    const day_of_week = function (num) {
+      var day
+      switch (num) {
+        case 0:
+          day = 'Sunday'
+          break
+        case 1:
+          day = 'Monday'
+          break
+        case 2:
+          day = 'Tuesday'
+          break
+        case 3:
+          day = 'Wednesday'
+          break
+        case 4:
+          day = 'Thursday'
+          break
+        case 5:
+          day = 'Friday'
+          break
+        case 6:
+          day = 'Saturday'
+          break
+      }
+      return day
+    }
+
+    // Chart Graph 1 - X: Date Y: Duration at Gym
+    const c1_duration_date = function (arr) {
+      var c1_obj = {}
+      var dateshort
+      // var days = arr.length
+
+      // Creating object of [day of week:duration]
+      for (var i = 0; i < arr.length; i++) {
+        dateshort = arr[i].date
+        var x = new Date(dateshort).getDay()
+        if (c1_obj[x] !== undefined) {
+          c1_obj[x] = c1_obj[x] + arr[i].duration
+        } else {
+          c1_obj[x] = arr[i].duration
+        }
+      }
+
+      // Setting the label and series to scope c1_data
+      for (var k in c1_obj) {
+        $scope.c1_data.labels.push(day_of_week(parseInt(k)))
+        $scope.c1_data.series[0].push(c1_obj[k])
+      }
+      console.log("THis is c1_data", $scope.c1_data)
+    }
+
+    // Pie Chart 2 - Type of activities for entire data set
+    const c2_activity_type = function (arr) {
+      var c2_obj = {}
+      var c2_arr = []
+
+      // Creating array of all strength workout types
+      for (var i = 0; i < arr.length; i++) {
+        c2_arr.push(arr[i].type)
+      }
+
+      // Counting instances(removing dup keys) of each strength workout type
+      for (var j = 0; j < c2_arr.length; j++) {
+        if (c2_obj[c2_arr[j]]) {
+          c2_obj[c2_arr[j]]++
+        } else {
+          c2_obj[c2_arr[j]] = 1
+        }
+      }
+
+      // Putting the instances and type into $scope.c2_data for export
+      for (var k in c2_obj) {
+        $scope.c2_data.labels.push(k)
+        $scope.c2_data.series.push(c2_obj[k])
+      }
+      console.log("THis is c2_data", $scope.c2_data)
+    }
+
+    // Rendering the graphs
+    const renderGraphs = function () {
+      var options = {
+        width: 500,
+        height: 250,
+        labelInterpolationFnc: function (value) {
+          return value
+        }
+      }
+
+      var responsiveOptions = [
+        ['screen and (min-width: 640px)', {
+          chartPadding: 30,
+          labelOffset: 100,
+          labelDirection: 'explode',
+          labelInterpolationFnc: function (value) {
+            return value
+          }
+        }],
+        ['screen and (min-width: 1024px)', {
+          labelOffset: 80,
+          chartPadding: 20
+        }]
+      ]
+
+      new Chartist.Bar('#chart1', $scope.c1_data, options)
+      new Chartist.Pie('#chart2', $scope.c2_data, responsiveOptions)
+    }
+
     $scope.getCalories = function (data) {
       var pastDays = $scope.getPastSevenDays()
       var results = []
@@ -217,6 +349,7 @@ angular.module('myApp.dashboard', [])
       var lastSeven = []
       cardioFactory.getCardio($scope.username)
       .then(function (data) {
+        console.log("data inside getpastsevensessions", data)
         data.data.forEach(function (item) {
           dates.push(item.date)
         })
@@ -231,6 +364,7 @@ angular.module('myApp.dashboard', [])
           }
         }
       })
+      console.log(lastSeven, "lastSeven")
       return $scope.lastSevenSessions
     }
 
@@ -239,11 +373,11 @@ angular.module('myApp.dashboard', [])
       var lastSevenPace = []
       cardioFactory.getCardio($scope.username)
         .then(function (data) {
-          console.log('getPaceDta', data)
+          //console.log('getPaceDta', data)
           data.data.forEach(function (item) {
-            console.log('item: ', item)
+            //console.log('item: ', item)
             pace.push([$scope.shortDateConverter(item.date), item.time, item.pace])
-            console.log('this is pace: ', pace)
+            //console.log('this is pace: ', pace)
           })
           pace.sort(function (a, b) {
             if (Date.parse(b[0]) === Date.parse(a[0])) {
@@ -263,22 +397,21 @@ angular.module('myApp.dashboard', [])
 
           if (pace.length > 7) {
             for (var i = pace.length - 7; i < pace.length; i++) {
-              console.log('this is pace[i]', pace[i])
+              //console.log('this is pace[i]', pace[i])
               lastSevenPace.push(pace[i][2])
             }
           } else {
             for (var i = 0; i < pace.length; i++) {
-              console.log('this is pace[i]', pace[i])
+              //console.log('this is pace[i]', pace[i])
               lastSevenPace.push(pace[i][2])
             }
           }
-          console.log('lastSevenPace', lastSevenPace)
+          //console.log('lastSevenPace', lastSevenPace)
           $scope.lastSevenPace = lastSevenPace
-          console.log('this is $scope.lastDventPace: ', $scope.lastSevenPace)
+          //console.log('this is $scope.lastDventPace: ', $scope.lastSevenPace)
         })
       return $scope.lastSevenPace
     }
-
 
     $scope.todaysPieData = function () {
       $scope.todayNutritionPie = {
@@ -349,22 +482,21 @@ angular.module('myApp.dashboard', [])
                 lastSeven.push($scope.shortDateConverter(dates[ i ][ 0 ]).concat(dates[ i ][ 1 ]))
               }
             }
-            console.log('lastSeven =', lastSeven)
+            //console.log('lastSeven =', lastSeven)
             $scope.lastSevenSessions = lastSeven
             resolve($scope.lastSevenSessions)
           })
-        console.log('this is lastsevensessions: ', $scope.lastSevenSessions)
+        //console.log('this is lastsevensessions: ', $scope.lastSevenSessions)
       })
     }
 
     $scope.createChart = function () {
-
       $scope.cardioData = {
         labels: [],
         series: []
       }
       $scope.getPastSevenSessions()
-        .then(function(data){
+        .then(function (data) {
           $scope.cardioData = {
             labels: data,
             series: [
@@ -373,9 +505,8 @@ angular.module('myApp.dashboard', [])
           }
           new Chartist.Line('#ct4', $scope.cardioData, {low: 0, showArea: true})
 
-          console.log($scope.cardioData, "CARDIODATA IN PASTSEVENSESSIONs")
+          //console.log($scope.cardioData, "CARDIODATA IN PASTSEVENSESSIONs")
         })
-      console.log('last session sesh', $scope.lastSevenSessions)
 
       $scope.waterData = {
         labels: $scope.getPastSevenDays(),
@@ -391,12 +522,14 @@ angular.module('myApp.dashboard', [])
         ]
 
       }
-
+      $scope.cardioData={
+        labels: null,
+        series: []
+      }
       // Chart for Cardio
       //   'getPaceData', $scope.lastSevenPace)
 
       $scope.lastSevenPace = $scope.getPaceData()
-      console.log('lastsevensesh', $scope.lastSevenSessions,'getPaceData', $scope.lastSevenPace)
 
       var pieData = $scope.todaysPieData()
       // console.log(pieData)
@@ -422,7 +555,6 @@ angular.module('myApp.dashboard', [])
           meta: 'Meta Three'
         }]
       })
-      console.log()
       new Chartist.Line('#ct3', $scope.calorieData)
 
       var chart = new Chartist.Pie('#ct1', {
@@ -438,7 +570,7 @@ angular.module('myApp.dashboard', [])
       })
 
       chart.on('draw', function (data) {
-        if(data.type === 'slice') {
+        if (data.type === 'slice') {
           var pathLength = data.element._node.getTotalLength()
 
           data.element.attr({
@@ -456,10 +588,9 @@ angular.module('myApp.dashboard', [])
             }
           }
 
-          if(data.index !== 0) {
-            animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+          if (data.index !== 0) {
+            animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end'
           }
-
 
           data.element.attr({
             'stroke-dashoffset': -pathLength + 'px'
@@ -491,6 +622,8 @@ angular.module('myApp.dashboard', [])
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+
+      fetchLog()
     }
 
     $scope.init()
@@ -498,20 +631,20 @@ angular.module('myApp.dashboard', [])
   })
   .directive('myGoals', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-goals.html'
-      // controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/my-goals.html',
+      controller: 'DashboardCtrl'
     }
   })
   .directive('nutritionGraphs', function () {
     return {
-      templateUrl: 'app/dashboard/directives/nutrition-graphs.html'
-      // controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
+      controller: 'DashboardCtrl'
     }
   })
   .directive('myCalculations', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-calculations.html'
-      // controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/my-calculations.html',
+      controller: 'DashboardCtrl'
     }
   })
 
