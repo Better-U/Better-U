@@ -311,12 +311,12 @@ div .row{
 }
 
 .calcHeader {
-    font-size: 20px;
+    font-size: 15px;
     line-height: 90%;
 }
 
 .calcNumber {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 600;
 }
 
@@ -548,6 +548,9 @@ div .calculations {
     width: 192px;
     height: 150px;
     /*width: 100%;*/
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
     margin: 0 0 10px 0;
     border-radius: 10px;
     box-shadow: 10px 10px 5px #0E1615
@@ -586,4 +589,8 @@ div .calculations {
     top: 25px;
     border-radius: 10px;
     box-shadow: 10px 10px 5px #0E1615
+}
+
+.ct-series-a .ct-slice-donut {
+    stroke: #0b97c4;
 }
