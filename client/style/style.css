@@ -65,6 +65,10 @@
 .app-modal-window .modal-dialog {
   width: 800px;
 }
+
+.app-modal-window-signup .modal-content {
+    padding: 50px
+}
 .app-modal-window-fitness {
   width: 600px;
 }
@@ -318,7 +322,7 @@ div > h2 > span {
     width: 50px;
 }
 
-div .row{
+.row{
     text-align: center;
 }
 
@@ -579,9 +583,6 @@ div .calculations {
     box-shadow: 10px 10px 5px #0E1615
 }
 
-/*.row {*/
-    /*margin-left: -30px;*/
-/*}*/
 
 .calculations div {
     margin: auto;
@@ -592,8 +593,6 @@ div .calculations {
 }
 .goals {
     background-color: #E8E7DC;
-    /*margin: 50px*/
-    /*height: 100%;*/
     position: relative;
     top: 15px;
     overflow-scrolling: ;
@@ -608,9 +607,6 @@ div .calculations {
 
 .allGraphs {
     background-color: #E8E7DC;
-    /*width: 500px;*/
-    /*height: 5px;*/
-    /*margin: 5px;*/
     position: relative;
     top: 25px;
     border-radius: 10px;
@@ -619,5 +615,19 @@ div .calculations {
 
 .ct-series-a .ct-slice-donut {
     stroke: #0b97c4;
+    stroke-width: 20px;
 }
 
+.ct-label {
+    font-size: 16px;
+}
+
+.nutritionDetails {
+    text-align: center;
+    font-size: 14px;
+}
+
+.calcCards {
+    left: 15px;
+    margin-left: -15px;
+}
