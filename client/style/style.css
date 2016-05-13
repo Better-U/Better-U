@@ -7,6 +7,7 @@
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
 }
 
+.space { margin-top: 5px; }
 
 #searchBox {
   width: 438px;
@@ -608,5 +609,10 @@ div .calculations {
 
 .ct-series-a .ct-slice-donut {
     stroke: #0b97c4;
+}
+
+#nutriFlex {
+  display: flex;
+  flex-direction: column;
 }
 

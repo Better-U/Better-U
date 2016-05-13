@@ -14,7 +14,6 @@ angular.module('myApp.dashboard', [])
     }
     $scope.nutritionData = null
     $scope.files = []
-
     $scope.goalsData = null
     $scope.dash = null
 
@@ -378,7 +377,6 @@ angular.module('myApp.dashboard', [])
         })
       console.log('last session sesh', $scope.lastSevenSessions)
 
-    
       $scope.waterData = {
         labels: $scope.getPastSevenDays(),
         series: [
@@ -400,12 +398,32 @@ angular.module('myApp.dashboard', [])
       $scope.lastSevenPace = $scope.getPaceData()
       console.log('lastsevensesh', $scope.lastSevenSessions,'getPaceData', $scope.lastSevenPace)
 
-
       var pieData = $scope.todaysPieData()
       // console.log(pieData)
 
-      // console.log('Line 380: $scope.cardiodata', $scope.cardioData)
-      console.log('cardio data: ', $scope.cardioData)
+      new Chartist.Bar('#ct1', $scope.waterData)
+      new Chartist.Pie('#ct2', {
+        labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
+        series: [{
+          value: pieData.fat,
+          name: 'Fat (g)',
+          // label: 'Fat',
+          // className: 'my-custom-class-one',
+          meta: 'Fat'
+        }, {
+          value: pieData.carbs,
+          name: 'Carbohydrates (g)',
+          // className: 'my-custom-class-two',
+          meta: 'Meta Two'
+        }, {
+          value: pieData.protein,
+          name: 'Protein (g)',
+          // className: 'my-custom-class-three',
+          meta: 'Meta Three'
+        }]
+      })
+      console.log()
+      new Chartist.Line('#ct3', $scope.calorieData)
 
       var chart = new Chartist.Pie('#ct1', {
         series: [$scope.waterIntake[6]],
@@ -447,10 +465,9 @@ angular.module('myApp.dashboard', [])
             'stroke-dashoffset': -pathLength + 'px'
           })
 
-          data.element.animate(animationDefinition, false);
+          data.element.animate(animationDefinition, false)
         }
-      });
-
+      })
     }
 
     $scope.nutritionLogs = function () {
@@ -460,15 +477,17 @@ angular.module('myApp.dashboard', [])
           $scope.getWater($scope.nutritionData)
           $scope.getCalories($scope.nutritionData)
           $scope.getPaceData()
+          $scope.getPastSevenSessions()
           $scope.createChart()
         })
     }
-  
+
     $scope.init = function () {
       $scope.nutritionLogs()
       $scope.getGoals()
       $scope.getDashboardProfile()
       $scope.getPastSevenSessions()
+
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
@@ -477,7 +496,6 @@ angular.module('myApp.dashboard', [])
     $scope.init()
 
   })
-
   .directive('myGoals', function () {
     return {
       templateUrl: 'app/dashboard/directives/my-goals.html'
@@ -490,7 +508,6 @@ angular.module('myApp.dashboard', [])
       // controller: 'DashboardCtrl'
     }
   })
-
   .directive('myCalculations', function () {
     return {
       templateUrl: 'app/dashboard/directives/my-calculations.html'
@@ -510,4 +527,5 @@ angular.module('myApp.dashboard', [])
       }
     };
   });
+
 
