@@ -208,6 +208,7 @@ angular.module('myApp.dashboard', [])
     }
 
     // Getting Cardio Data
+
     $scope.getPastSevenSessions = function () {
       var dates = []
       var lastSeven = []
@@ -363,6 +364,7 @@ angular.module('myApp.dashboard', [])
       }
 
       // Chart for Cardio
+
       console.log('lastsevensesh', $scope.getPastSevenSessions(),
         'getPaceData', $scope.lastSevenPace)
 
