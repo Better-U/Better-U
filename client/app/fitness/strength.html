@@ -19,15 +19,16 @@
         </thead>
         <tbody>
           <tr ng-repeat="str in strengthList | orderBy:'date':true">
-            <tr ng-if="strengthList.length === 0">No Strength logs found. Add a workout!</tr>
-            <td>{{str.date | date: "MM-dd-yyyy"}}</td>
-            <td>{{str.type}}</td>
-            <td>{{str.weight}}</td>
-            <td>{{str.reps}}</td>
-            <td>{{str.sets}}</td>
-            <td>{{onerepmax(str.weight, str.reps)}}</td>
-            <td>{{str.intensity}}</td>
-            <td>{{str.duration}}</td>
+            <div ng-if="strengthList">
+              <td>{{str.date | date: "MM-dd-yyyy"}}</td>
+              <td>{{str.type}}</td>
+              <td>{{str.weight}}</td>
+              <td>{{str.reps}}</td>
+              <td>{{str.sets}}</td>
+              <td>{{onerepmax(str.weight, str.reps)}}</td>
+              <td>{{str.intensity}}</td>
+              <td>{{str.duration}}</td>
+            </div>
           </tr>
         </tbody>
       </table>
