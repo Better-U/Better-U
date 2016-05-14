@@ -1,6 +1,8 @@
 angular.module('app.AuthFactory', [])
   .factory('AuthFactory', function ($http, $cookies) {
     
+    var userData = null
+    
     function registerUserDetails (username, password) {
       var form = {
         username: username,
@@ -77,6 +79,7 @@ angular.module('app.AuthFactory', [])
       registerUserDetails: registerUserDetails,
       registerProfileDetails: registerProfileDetails,
       signIn: signIn,
+      userData: userData,
       isAuth: isAuth
     }
   })
