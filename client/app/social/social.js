@@ -120,12 +120,12 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
   })
   .directive('chat', function () {
     return {
-      templateUrl: 'app/social/directives/chat.html',
+      templateUrl: 'app/social/sub-views/chat.html',
       controller: 'chatCtrl'
     }
   })
   .directive('search', function () {
     return {
-      templateUrl: 'app/social/directives/search.html'
+      templateUrl: 'app/social/sub-views/search.html'
     }
   })
