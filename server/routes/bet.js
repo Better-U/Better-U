@@ -37,7 +37,6 @@ router.get('/placedBets', function (req, res) {
 })
 
 router.get('/fetchBets', function (req, res) {
-  console.log('this is fetchBets req.body: ', req.query.username)
   User.findUser(req.query.username)
     .then(function (id) {
       var user = id[0].id
@@ -53,7 +52,6 @@ router.get('/fetchBets', function (req, res) {
 })
 
 router.post('/addBets', function (req, res) {
-  console.log('This is addBets: req.body', req.body)
   var goals = req.body.goals_id
   var user = req.body.user_id
   User.findUser(req.body.username)

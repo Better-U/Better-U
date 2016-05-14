@@ -64,6 +64,16 @@ angular.module('factories', [])
       return $http.get('/api/goals/', config)
     }
 
+    function checkBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      return $http.get('/api/goals/bets', config)
+    }
+
     function removeLog (id) {
       var params = {
         id: id
@@ -77,7 +87,8 @@ angular.module('factories', [])
     return {
       postLog: postLog,
       getLog: getLog,
-      removeLog: removeLog
+      removeLog: removeLog,
+      checkBets: checkBets
     }
   })
 

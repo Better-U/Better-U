@@ -1,5 +1,5 @@
 angular.module('myApp.dashboard', [])
-  
+
   .controller('DashboardCtrl', function ($scope, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, StrengthFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
@@ -25,11 +25,6 @@ angular.module('myApp.dashboard', [])
 
     $scope.signout = function () {
       $cookies.remove('token')
-      $cookies.remove('username')
-      $state.go('landing')
-    }
-
-    $scope.getDashboardProfile = function () {
       AuthFactory.getProfile($scope.username)
         .then(function (data) {
           console.log('data', data.data)
@@ -51,6 +46,11 @@ angular.module('myApp.dashboard', [])
       if (weight > 0 && height > 0) {
         var BMI = ((weight / (height * height)) * 703.06957964).toFixed(2)
       }
+      $cookies.remove('username')
+      $state.go('landing')
+    }
+
+    $scope.getDashboardProfile = function () {
       return BMI
     }
 
@@ -119,11 +119,18 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.removeLog = function (id) {
-      GoalsFactory.removeLog(id)
+      var username = $cookies.get('username')
+      GoalsFactory.checkBets(username)
         .then(function (data) {
-          // console.log('successful delete', data)
-          // swal("Goal successfully removed!")
-          $state.reload()
+          if (data.data.length === 0) {
+            GoalsFactory.removeLog(id)
+              .then(function (data) {
+                swal('Goal successfully removed!')
+                $state.reload()
+              })
+          } else {
+            swal('Someone has bet on you', 'Keep going!', 'warning')
+          }
         })
     }
 
@@ -510,7 +517,7 @@ angular.module('myApp.dashboard', [])
             ]
           }
           new Chartist.Line('#ct4', $scope.cardioData, {low: 0, showArea: true})
-          
+
         })
 
       $scope.waterData = {
