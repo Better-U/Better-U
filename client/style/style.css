@@ -84,8 +84,8 @@
 }
 
 .customJumbotron {
-    /*background-image: url('../assets/images/landingMan.jpg');*/
-    height: 90%;
+    background-image: url('../assets/images/landingMan.jpg');
+    height: 100%;
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))), url('../assets/images/landingMan.jpg');
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
@@ -129,7 +129,7 @@
     text-align: center;
 }
 
-/*.authContainer {*/
+/*.authContainer {
 	/*width: 300px;*/
 	/*max-width: 50%;*/
 	/*margin: 0 auto;*/
@@ -149,7 +149,7 @@
 
 body {
     padding-top: 50px;
-    font-family: 'Hind', sans-serif;
+    font-family: 'Bariol Light', sans-serif;
 }
 
 md-select {
@@ -307,7 +307,7 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .navbar {
-    border-bottom: 6px solid #1C2329;
+    border-bottom: 4px solid #578ebe;
 }
 
 .goalsTable tr {
@@ -390,7 +390,7 @@ div > h2 > span {
 body {
     /*background-color: #1A232F;*/
     /*background-color:#33414D;*/
-    background-color: #29343D;
+    background-color: #e9eadf;
 
 }
 
@@ -563,17 +563,24 @@ td .goalDueDate {
     overflow: hidden;
 }
 
-.navbar-inverse-override {
+/*.navbar-inverse-override {
     background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
     background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
     background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
     background-image: linear-gradient(to bottom,#0E1614 0,#0A100E 100%) !important
-}
+}*/
 
 .landingFooter {
-    background-color: #1C2329
+    background-color: #4C87B9
+}
 
+#landingTop {
+ font-size: 24px;
+}
 
+#landingBtm {
+  margin-top: 5px;
+ font-size: 40px;
 }
 
 .navbar {
@@ -659,4 +666,20 @@ div .calculations {
 .calcCards {
     left: 15px;
     margin-left: -15px;
+}
+
+.navbar-brand {
+  font-family: 'Arimo';
+  font-size: 32px;
+  font-weight: 100;
+  margin-top: 7px;
+}
+
+.navbar-brand .navbar-inverse #betterU {
+  font-color: #f0f1e9 !important
+}
+
+#logo {
+  float: left;
+  margin-right: 5px;
 }
