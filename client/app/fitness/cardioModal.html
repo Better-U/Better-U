@@ -52,27 +52,27 @@
 
         <!-- Meters to Miles Calculator -->
         <div class="form-group">
-            <label class="col-md-3 control-label">Meters?</label>
-            <div class="col-md-7">
-              <input class="number" type="number" min="1" max="9000" name="meters" ng-model="meters">  <span ng-if="meters > 0">{{convertMiles(meters)}} Miles
-            </span></div>
+          <label class="col-md-3 control-label">Meters?</label>
+          <div class="col-md-7">
+            <input class="number" type="number" min="1" max="9000" name="meters" ng-model="meters">  <span ng-if="meters > 0">{{convertMiles(meters)}} Miles
+            </span>
+          </div>
         </div>
 
         <!-- Duration Input Box -->
         <div class="form-group">
           <label class="col-md-3 control-label">Duration (Minutes)</label>
           <div class="col-md-7">
-            <input type="number" min="1" max="50" class="form-control" placeholder="Minutes" ng-model="duration" required>
-
+            <input type="number" min="1" max="5000" class="form-control" placeholder="Minutes" ng-model="duration" required>
           </div>
         </div>
 
         <!-- Pace Calculator -->
         <div class="form-group" ng-if="pace(duration,distance) > 0">
-            <label class="col-md-3 control-label">Calculated Pace</label>
-            <div class="col-md-7">
-                <p class="form-control-static">{{pace(duration, distance)}} minutes per mile</p>
-            </div>
+          <label class="col-md-3 control-label">Calculated Pace</label>
+          <div class="col-md-7">
+            <p class="form-control-static">{{pace(duration, distance)}} minutes per mile</p>
+          </div>
         </div>      
 
         <!-- Intensity Radio Select -->
@@ -113,7 +113,6 @@
                 </div>
             </div>
         </div>
-
     </form>
   </div>
 </div>
