@@ -17,11 +17,15 @@ angular.module('myApp.profile', ['factories'])
     }
     $scope.submitProfile = function () {
       console.log('submitted')
-      ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
-        .then(function (data) {
-          $scope.changesSaved = true
-          console.log('profile data inside profile.js =', data)
-        })
+      if(!$scope.prof.gym){
+        $scope.prof.gym = $scope.prof.otherGym
+      }
+      console.log($scope.prof.gym)
+      // ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
+      //   .then(function (data) {
+      //     $scope.changesSaved = true
+      //     console.log('profile data inside profile.js =', data)
+      //   })
     }
 
     $scope.getGender = function (integer) {
@@ -53,3 +57,20 @@ angular.module('myApp.profile', ['factories'])
       )
     }
   })
+  .directive('theGym2', function(){
+  return {
+    restrict: 'A',
+    transclude: true,
+    scope: true,
+    link: function(scope, element, attrs){
+        element.bind('click',function(
+
+          ){
+          console.log(scope.prof.gym, "click is working")
+          scope.prof.gym = ''
+          console.log(scope.prof.gym)
+        })
+
+      }
+    }
+})
