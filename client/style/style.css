@@ -27,8 +27,9 @@
 }
 
 .table1 {
-        width: 50%;
-    }
+  width: 80%;
+  text-align: center;
+}
 
 #brandName {
   width: 80px;
@@ -112,8 +113,21 @@
 .leaderboard {
   width: 50px;
   height: 50px;
+  text-align: center;
 }
 
+.leaderTable {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.betHeader {
+    width: 600px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
 
 /*.authContainer {*/
 	/*width: 300px;*/
@@ -567,7 +581,7 @@ td .goalDueDate {
  /*background-color: #2D343A;*/
     /*background-color: #1A232F;*/
     background-color: #29343D;
-    
+
 
 
 
@@ -597,6 +611,10 @@ div .calculations {
 
 .spacing {
   padding:0 0 0 15px;
+}
+
+.leaderRow {
+  padding: 30px;
 }
 .goals {
     background-color: #E8E7DC;
