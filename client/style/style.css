@@ -462,6 +462,12 @@ td .goalDueDate {
   align-items: stretch;
 
 }
+.xChat {
+  position: relative;
+
+  left: 24px;
+  width: 50px;
+}
 .searchedUsername {
   font-size: 26px;
   font-family: 'Arvo', serif;
