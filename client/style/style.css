@@ -123,16 +123,9 @@
 }
 
 .betHeader {
-    width: 500px;
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-}
-
-.leaderHeader {
-    width: 400px;
-    margin: 20px;
-    padding: 20px;
+    width: 600px;
+    margin: 10px;
+    padding: 10px;
     text-align: center;
 }
 
