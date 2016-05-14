@@ -12,6 +12,11 @@
             <h2>Fitness/Health Details</h2>
             <span ng-if="nutritionData.length === 0">No nutrition logs found.</span>
             <div ng-if="nutritionData.length !== 0">
+                <div>
+                    <h4 style="text-align: center">Consumed {{todayNutritionPie.calories}} calories today</h4>
+                    <h4 style="text-align: center">Consumed {{todayNutritionPie.protein}}g of protein today</h4>
+                    <h4 style="text-align: center" data-original-title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-container='body' data-toggle='tooltip'>Drank {{(waterIntake[6]/8 * 100)}}% of Daily Recommended Water Intake Based On Your Weight<br>{{convertWater(dash.weight)}} cups</h4>
+                    <div class="ct-chart" id="ct1"></div>
                 <div class="nutritionDetails">
                     <span ng-if="todayNutritionPie.calories !== 0">You consumed {{todayNutritionPie.calories}} calories today</span><br>
                     <span ng-if="todayNutritionPie.protein !== 0">You consumed {{todayNutritionPie.protein}}g of protein today</span><br>

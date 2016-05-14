@@ -17,17 +17,24 @@ angular.module('myApp.signup', [])
       gender: null,
       activity: null,
       interest: null,
-      gym: null
+      gym: null,
+      otherGym: null
     }
 
     
     $scope.submit = function () {
+
+        if(!$scope.user.gym){
+          $scope.user.gym = $scope.user.otherGym
+        }
+      
       console.log('user details: ', $scope.user)
       var username = $cookies.get('username')
       console.log('userdetails submitted', $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity)
       if (!$scope.user.age || !$scope.user.height || !$scope.user.weight || !$scope.user.gender) {
         console.log('Form not complete')
       } else {
+
         $uibModalInstance.dismiss('cancel')
         AuthFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
           .then(function (data) {
@@ -82,3 +89,20 @@ angular.module('myApp.signup', [])
       })
     }
   })
+.directive('theGym', function(){
+  return {
+    restrict: 'A',
+    transclude: true,
+    scope: true,
+    link: function(scope, element, attrs){
+        element.bind('click',function(
+
+          ){
+          console.log(scope.user.gym, "click is working")
+          scope.user.gym = ''
+          console.log(scope.user.gym)
+        })
+
+      }
+    }
+})

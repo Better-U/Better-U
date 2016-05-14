@@ -13,7 +13,7 @@
               <img ng-src="{{image | fpConvert: {w:250} }}" alt="image placeholder" class="img-circle trueProfileImage" ng-if="image">
               <img src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle trueProfileImage" style="width: 250px" ng-if="!image">
           </div>
-            <p><strong>Name: </strong>{{display.username}}</p>
+            <p ><strong id="profileUsername">Name: </strong>{{display.username}}</p>
             <p><strong>Age: </strong>{{display.age}}</p>
             <p><strong>Gender: </strong>{{getGender(display.gender)}}</p>
             <p><strong>Points: </strong>{{display.totalpts}}</p>
@@ -25,24 +25,6 @@
 
       <div class="col-lg-6 col-md-6 col-xs-12 profileForm">
       <form class="form-horizontal" name='profile-setup' method='post' ng-submit='submitProfile()'>
-        <!--<div class="form-group">-->
-          <!--<label class="col-sm-2 control-label">Name</label>-->
-          <!--<div class="col-sm-10">-->
-            <!--<p class="form-control-static">{{display.username}}</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-          <!--<label class="col-sm-2 control-label">Age</label>-->
-          <!--<div class="col-sm-10">-->
-            <!--<p class="form-control-static">{{display.age}}</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-          <!--<label class="col-sm-2 control-label">Gender</label>-->
-          <!--<div class="col-sm-10">-->
-            <!--<p class="form-control-static">{{getGender(display.gender)}}</p>-->
-          <!--</div>-->
-        <!--</div>-->
         <div class="form-group">
           <label class="col-sm-4 control-label">Height (inches)</label>
           <div class="col-sm-2">
@@ -95,14 +77,19 @@
       <div id='profile-gym' class="form-group">
       <label class="col-sm-4 control-label">Gym of Choice:</label>
           <div class="col-sm-7">
-
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="la"> LA Fitness
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value='None'> None
        <br>
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24hour"> 24 Hour Fitness
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="LA Fitness"> LA Fitness
        <br>
-       <label class="col-sm-2 control-label"></label>
-       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="ufc"> UFC Gym
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="24 Hour Fitness"> 24 Hour Fitness
        <br>
+       <!-- <label class="col-sm-2 control-label"></label> -->
+       <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="UFC Gym"> UFC Gym
+       <br>
+       <span>
+       <input type="radio" name="gym"> Other            
+         <input type="text" style='width:100px' ng-model="prof.gym"/>
+       </span>
           </div>
       </div>
       <br>

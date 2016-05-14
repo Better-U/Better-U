@@ -16,7 +16,6 @@ angular.module('myApp.dashboard', [])
 
     $scope.nutritionData = null
     $scope.files = []
-    
     $scope.goalsData = null
     $scope.dash = null
 
@@ -527,13 +526,11 @@ angular.module('myApp.dashboard', [])
       }
 
       $scope.lastSevenPace = $scope.getPaceData()
-      //console.log('lastsevensesh', $scope.lastSevenSessions,'getPaceData', $scope.lastSevenPace)
 
       var pieData = $scope.todaysPieData()
       // console.log(pieData)
 
-
-      // new Chartist.Bar('#ct1', $scope.waterData)
+      new Chartist.Bar('#ct1', $scope.waterData)
       new Chartist.Pie('#ct2', {
         labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
         series: [{
@@ -554,10 +551,7 @@ angular.module('myApp.dashboard', [])
           meta: 'Meta Three'
         }]
       })
-
       new Chartist.Line('#ct3', $scope.calorieData)
-      // console.log('Line 380: $scope.cardiodata', $scope.cardioData)
-      //console.log('cardio data: ', $scope.cardioData)
 
       var chart = new Chartist.Pie('#ct1', {
         series: [$scope.waterIntake[6]],
@@ -609,6 +603,7 @@ angular.module('myApp.dashboard', [])
           $scope.getWater($scope.nutritionData)
           $scope.getCalories($scope.nutritionData)
           $scope.getPaceData()
+          $scope.getPastSevenSessions()
           $scope.createChart()
         })
     }
@@ -618,16 +613,17 @@ angular.module('myApp.dashboard', [])
       $scope.getGoals()
       $scope.getDashboardProfile()
       $scope.getPastSevenSessions()
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
       fetchLog()
     }
 
     $scope.init()
 
   })
-
   .directive('myGoals', function () {
     return {
       templateUrl: 'app/dashboard/directives/my-goals.html',
@@ -640,7 +636,6 @@ angular.module('myApp.dashboard', [])
       controller: 'DashboardCtrl'
     }
   })
-
   .directive('myCalculations', function () {
     return {
       templateUrl: 'app/dashboard/directives/my-calculations.html',
@@ -660,4 +655,5 @@ angular.module('myApp.dashboard', [])
       }
     };
   });
+
 

@@ -80,6 +80,7 @@ knex.schema.createTableIfNotExists('nutrition_record', function (nutrition) {
   nutrition.date('date')
   nutrition.string('time', 50)
   nutrition.integer('serving')
+  nutrition.string('servingSize')
   nutrition.integer('cal')
   nutrition.integer('carbs')
   nutrition.integer('fat')

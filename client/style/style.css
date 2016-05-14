@@ -7,6 +7,7 @@
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
 }
 
+.space { margin-top: 5px; }
 
 #searchBox {
   width: 438px;
@@ -482,6 +483,12 @@ td .goalDueDate {
   align-items: stretch;
 
 }
+.xChat {
+  position: relative;
+
+  left: 24px;
+  width: 50px;
+}
 .searchedUsername {
   font-size: 26px;
   font-family: 'Arvo', serif;
@@ -642,6 +649,7 @@ div .calculations {
     stroke: #0b97c4;
     stroke-width: 20px;
 }
+
 
 .ct-label {
     font-size: 16px;
