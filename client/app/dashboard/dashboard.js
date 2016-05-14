@@ -23,7 +23,7 @@ angular.module('myApp.dashboard', [])
       $state.go('landing')
 
     }
-    
+
 
     $scope.getCalories = function (data) {
       var pastDays = $scope.getPastSevenDays()
@@ -45,7 +45,6 @@ angular.module('myApp.dashboard', [])
 
 
 
-
   })
 
 
@@ -62,5 +61,4 @@ angular.module('myApp.dashboard', [])
       }
     }
   })
-
 
