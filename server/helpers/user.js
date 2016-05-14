@@ -37,8 +37,8 @@ User.comparePassword = function (username, password) {
           }
         })
       })
-  }
-  )}
+  })
+}
 
 User.insertUserPw = function (username, password) {
   console.log('password inside insertPW', password)

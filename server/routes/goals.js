@@ -24,6 +24,20 @@ router.get('/', function (req, res) {
     })
 })
 
+router.get('/bets', function (req, res) {
+  User.findUser(req.query.username)
+    .then(function (data) {
+      var userId = data[0].id
+      Goals.getBets(userId)
+        .then(function (data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
+    })
+})
+
 router.post('/', function (req, res) {
   console.log(req.body)
   User.findUser(req.body.username)
