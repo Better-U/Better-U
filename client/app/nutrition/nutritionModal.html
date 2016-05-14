@@ -4,7 +4,7 @@
 
     <form name='searchNutrition' method='post'>
       <div class="col-sm-6">
-        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)'>
+        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-wait-ms='100'>
         <!-- <input type='submit' id='logSubmit' class="btn btn-primary btn-sm"> -->
         <div ng-if='asyncSelected.length > 0' id='searchResults'>
           <div class="searchContainer" id='{{i}}' ng-repeat='(index,item) in results track by $index' ng-click='getNutrition(item._id)' ng-class='{red:hover}' class='font' ng-mouseenter="hover=true" ng-mouseleave="hover=false">
@@ -18,17 +18,16 @@
         <br>
      </div>
     </form>
-
     <form class='form-inline' name='inputNutrition' method='post' style='width:768px'>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label" for="foodName">Type</label>
         <div class="col-md-5">
           <input type="text" class="form-control" id="foodInput" ng-model='log.name' value='{{ log.name }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label" for="date">Date</label>
         <div class="col-md-7">  
           <div class="input-group">
@@ -40,63 +39,70 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label" for="servingSize">Serving Size</label>
         <div class="col-md-5">
           <input type="number" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.serving" value='{{ log.serving }}'>
           </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="servingSizeUnit">Serving Size Unit</label>
+        <div class="col-md-5">
+          <input type="number" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.size" value='{{ log.size }}'>
+          </div>
+      </div>
+
+      <div class="form-group space">
         <label class="col-md-1 control-label" for="cal">Calories:</label>
         <div class="col-md-5">
           <input type="number" min="0" class="form-control" id="cal" ng-model="log.cal" value='{{ log.cal }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Fat (g):</label>
         <div class="col-md-5">
           <input type="number" class="form-control" min="0" ng-model='log.fat' name='foodFat' id='foodFat' maxlength='4' value='{{ log.fat }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Fiber (g):</label>
         <div class="col-md-5">
           <input type="number" class="form-control" min="0" ng-model='log.fiber' name='foodFiber' id='foodFiber' maxlength='4' value='{{ log.fiber}}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Carbs (g):</label>
         <div class="col-md-5">
           <input class="form-control" type="number" min="0" ng-model='log.carbs' name='foodCarb' id='foodCarb' maxlength='4' value='{{ log.carbs }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Sodium (mg):</label>
         <div class="col-md-5">
           <input class="form-control" type="number" min="0" ng-model='log.sodium' name='foodSalt' id='foodSalt' maxlength='5' value='{{ log.sodium }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Protein (g):</label>
         <div class="col-md-5">
           <input class="form-control" type="number" min="0" ng-model='log.protein' name='foodProtein' id='foodProtein' maxlength='4' value='{{ log.protein }}'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">Water (cups):</label>
         <div class="col-md-5">
           <input class="form-control" type="number" min="0" ng-model='log.water' name='water' id='water' maxlength='4'>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group space">
         <label class="col-md-1 control-label">When?</label>
           <div class="col-md-5">
             <select name='Time' ng-model='log.time' required> 

@@ -7,6 +7,7 @@
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
 }
 
+.space { margin-top: 5px; }
 
 #searchBox {
   width: 438px;
@@ -617,6 +618,7 @@ div .calculations {
     stroke: #0b97c4;
     stroke-width: 20px;
 }
+
 
 .ct-label {
     font-size: 16px;

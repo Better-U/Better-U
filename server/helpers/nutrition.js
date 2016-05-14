@@ -1,7 +1,7 @@
 var db = require('../db')
 var Nutrition = {}
 
-Nutrition.postFoodLog = function (id, name, date, time, serving, cal, carbs, fat, fiber, sodium, protein, water) {
+Nutrition.postFoodLog = function (id, name, date, time, serving, size, cal, carbs, fat, fiber, sodium, protein, water) {
   console.log('inside postFoodLog')
   var foodLog = {
     user_id: id,
@@ -9,6 +9,7 @@ Nutrition.postFoodLog = function (id, name, date, time, serving, cal, carbs, fat
     date: date,
     time: time,
     serving: serving,
+    servingSize: size,
     cal: cal,
     carbs: carbs,
     fat: fat,
