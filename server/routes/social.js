@@ -36,7 +36,14 @@ io.on('connection', function (socket) {
     var message = {username: data.username, message: data.message}
     console.log(data, 'message sent', message)
     socket.to('' + data.roomNumber).emit('messenger', message)
-    socket.to('' + data.roomNumber).broadcast.emit('notification', message)
+    helpers.getImage(data.username)
+      .then(function(image){
+        console.log("image received!", image)
+    var message2 = {username: data.username, message: data.message, image: image}
+
+        socket.to('' + data.roomNumber).broadcast.emit('notification', message2)
+      })
+    
     helpers.saveMessage(data.roomNumber, message)
       .then(function (data) {
         console.log(data, 'MESSAGE SAVED')
