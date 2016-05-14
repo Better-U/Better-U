@@ -26,7 +26,8 @@ angular.module('myApp.nutritionModal', ['factories'])
       if (!$scope.date || !$scope.log.time) {
         console.log('Error: Missing fields.')
       } else {
-        NutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.log.date, $scope.log.time, $scope.log.serving, $scope.log.size, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
+        console.log('this is scope log date: ', $scope.log.date)
+        NutritionFactory.submitFoodLog($cookies.get('username'), $scope.log.name, $scope.date, $scope.time, $scope.log.serving, $scope.log.size, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
         .then(function (data) {
           console.log($cookies.get('username'), $scope.log.name, $scope.date, $scope.log.time, $scope.log.serving, $scope.log.cal, $scope.log.carbs, $scope.log.fat, $scope.log.fiber, $scope.log.sodium, $scope.log.protein, $scope.log.water)
           swal('Nutritional Facts Saved!', 'Click OK to input another item.', 'success')

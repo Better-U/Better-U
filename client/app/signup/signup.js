@@ -24,10 +24,10 @@ angular.module('myApp.signup', [])
     
     $scope.submit = function () {
 
-        if(!$scope.user.gym){
-          $scope.user.gym = $scope.user.otherGym
-        }
-      
+      if (!$scope.user.gym) {
+        $scope.user.gym = $scope.user.otherGym
+      }
+
       console.log('user details: ', $scope.user)
       var username = $cookies.get('username')
       console.log('userdetails submitted', $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity)
@@ -39,7 +39,13 @@ angular.module('myApp.signup', [])
         AuthFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
           .then(function (data) {
             $cookies.put('token', data.data.token)
-            $state.go('dashboard')
+            AuthFactory.getProfile($cookies.get('username'))
+              .then(function (data) {
+                AuthFactory.userData = data.data
+                console.log('data', data.data[0])
+                console.log('run dashboard data: ', AuthFactory.userData)
+                $state.go('dashboard')
+              })
           })
       }
     }

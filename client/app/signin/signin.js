@@ -26,8 +26,6 @@ angular.module('myApp.signin', [])
               $uibModalInstance.dismiss('cancel')
               $cookies.put('username', data.config.data.username)
               $cookies.put('token', data.data.token)
-              // window.localStorage.setItem('username', $cookies.get('username'))
-              // $rootScope.username = window.localStorage.getItem('username')
               AuthFactory.getProfile($cookies.get('username'))
                 .then(function(data) {
                   AuthFactory.userData = data.data[0]

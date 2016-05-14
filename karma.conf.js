@@ -18,7 +18,7 @@ module.exports = function(config) {
       'client/lib/angular/angular.js',
       'client/lib/angular-mocks/angular-mocks.js',
       'client/app/dashboard/dashboard.js',
-      'client/app/dashboard/dashGoalModal.js',
+      'client/app/dashboard/sub-views/controllers/goals.js',
       'client/app/fitness/cardio.js',
       'client/app/fitness/cardioModal.js',
       'client/app/fitness/strength.js',

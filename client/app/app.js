@@ -25,7 +25,13 @@ angular.module('myApp', ['myApp.signin',
   'app.ProfileFactory',
   'app.StrengthFactory',
   'app.NutritionFactory',
-  'luegg.directives'])
+  'luegg.directives',
+  'myApp.nutritionGraphs',
+  'myApp.cardioGraphs',
+  'myApp.strengthGraphs',
+  'myApp.calculations',
+  'myApp.goalsModal',
+  'myApp.selectGoal'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -54,9 +60,35 @@ angular.module('myApp', ['myApp.signin',
       })
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: '/app/dashboard/dashboard.html',
-        controller: 'DashboardCtrl',
-        authenticate: true
+        // templateUrl: '/app/dashboard/dashboard.html',
+        // controller: 'DashboardCtrl',
+        authenticate: true,
+        views: {
+          '': {
+            templateUrl: '/app/dashboard/dashboard.html',
+            controller: 'dashboardCtrl'
+          },
+          'nutritionGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/nutrition-graphs.html',
+            controller: 'nutritionGraphsCtrl'
+          },
+          'cardioGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/cardio-graphs.html',
+            controller: 'cardioGraphsCtrl'
+          },
+          'strengthGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/strength-graphs.html',
+            controller: 'strengthGraphsCtrl'
+          },
+          'calculations@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/calculations/calculations.html',
+            controller: 'calculationsCtrl'
+          },
+          'goals@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/goals/goals.html',
+            controller: 'goalsCtrl'
+          }
+        }
       })
       .state('cardio', {
         url: '/cardio',
