@@ -1,10 +1,10 @@
 <div class="calculations">
-    <strong>Hello {{dash.username}}!</strong>
+    <strong>Hello {{userData.username}}!</strong>
     <br>
     <br>
     Total Points
     <br>
-    <span class="calcNumber">{{dash.totalpts}}</span><br>
+    <span class="calcNumber">{{userData.totalpts}}</span><br>
 </div>
 <div class="calculations">
         <div>
@@ -17,11 +17,11 @@
             </span>
         <br>
             <span class="calcNumber">
-                {{userBMI(dash.height, dash.weight)}}
+                {{userBMI(userData.height, userData.weight)}}
             </span>
         <br>
             <span class="calcNotice">
-               {{categorize(dash.height, dash.weight)}}
+               {{categorize(userData.height, userData.weight)}}
             </span>
         </div>
     </div>
@@ -36,7 +36,7 @@
             </span>
         <br>
             <span class="calcNumber">
-                {{userBMR(dash.gender, dash.age, dash.weight, dash.height)}}
+                {{userBMR(userData.gender, userData.age, userData.weight, userData.height)}}
             </span>
     </div>
     <div class="calculations">
@@ -47,7 +47,7 @@
             </span>
         <br>
             <span class="calcNumber">
-                {{calorieBurn(dash.gender, dash.age, dash.weight, dash.height, dash.activitylvl)}}
+                {{calorieBurn(userData.gender, userData.age, userData.weight, userData.height, userData.activitylvl)}}
             </span>
         <br>
             <span class="calcNotice">
