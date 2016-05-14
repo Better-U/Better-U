@@ -36,16 +36,16 @@ angular.module('myApp.profile', ['factories'])
     $scope.upload = function () {
       filepickerService.pick(
         {
-          cropRatio: 4/4,
+          cropRatio: 4 / 4,
           mimetype: 'image/*',
           language: 'en',
           services: ['COMPUTER', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM', 'CONVERT'],
           conversions: ['crop', 'rotate', 'filter'],
           openTo: 'IMAGE_SEARCH'
         },
-        function(Blob){
+        function (Blob) {
           ProfileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
-            .then(function(data) {
+            .then(function (data) {
               $scope.image = data
               $state.reload()
             })
