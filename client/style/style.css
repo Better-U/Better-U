@@ -147,7 +147,10 @@
 	padding: 5px;
 }
 
-body { padding-top: 50px; }
+body {
+    padding-top: 50px;
+    font-family: 'Hind', sans-serif;
+}
 
 md-select {
     width: 175px;

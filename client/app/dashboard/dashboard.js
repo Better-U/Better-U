@@ -32,9 +32,15 @@ angular.module('myApp.dashboard', [])
     $scope.getDashboardProfile = function () {
       AuthFactory.getProfile($scope.username)
         .then(function (data) {
-          // console.log('data', data.data)
+          console.log('data', data.data)
+          console.log('run dashboard data: ', data.data)
           $scope.dash = data.data[0]
+          console.log('$dash data: ', $scope.dash)
           $scope.image = $scope.dash.image
+          $scope.nutritionLogs()
+          $scope.getGoals()
+          $scope.getPastSevenSessions()
+          // $state.reload()
           // console.log('image: ', $scope.image)
         })
     }
@@ -67,11 +73,13 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.calorieBurn = function (gender, age, weight, height, activity) {
+      console.log('inside calorie burn formula')
       var numAge = Number(age)
       var numWeight = Number(weight)
       var numHeight = Number(height)
+      console.log('activity: ', activity)
       var total
-      if (gender === 0) {
+      if (gender == 0) {
         var maleBMR = 66.5 + (6.23 * numWeight) + (12.7 * numHeight) - (6.8 * numAge)
         if (activity === 'sedentary') {
           total = (maleBMR * 1.2).toFixed()
@@ -82,7 +90,7 @@ angular.module('myApp.dashboard', [])
         } else if (activity === 'active') {
           total = (maleBMR * 1.725).toFixed()
         }
-      } else if (gender === 1) {
+      } else if (gender == 1) {
         var femaleBMR = 655.1 + (4.35 * numWeight) + (4.7 * numHeight) - (4.7 * numAge)
         if (activity === 'sedentary') {
           total = (femaleBMR * 1.2).toFixed()
@@ -102,9 +110,9 @@ angular.module('myApp.dashboard', [])
       var uWeight = Number(weight)
       var uHeight = Number(height)
       var BMR
-      if (gender === 0) {
+      if (gender == 0) {
         BMR = (66.5 + (6.23 * uWeight) + (12.7 * uHeight) - (6.8 * uAge)).toFixed(2)
-      } else if (gender === 1) {
+      } else if (gender == 1) {
         BMR = (655.1 + (4.35 * uWeight) + (4.7 * uHeight) - (4.7 * uAge)).toFixed(2)
       }
       return BMR
@@ -502,8 +510,7 @@ angular.module('myApp.dashboard', [])
             ]
           }
           new Chartist.Line('#ct4', $scope.cardioData, {low: 0, showArea: true})
-
-          //console.log($scope.cardioData, "CARDIODATA IN PASTSEVENSESSIONs")
+          
         })
 
       $scope.waterData = {
@@ -530,28 +537,7 @@ angular.module('myApp.dashboard', [])
       var pieData = $scope.todaysPieData()
       // console.log(pieData)
 
-      new Chartist.Bar('#ct1', $scope.waterData)
-      new Chartist.Pie('#ct2', {
-        labels: ['Fat (g): ' + pieData.fat, 'Carbohydrates (g): ' + pieData.carbs, 'Protein (g): ' + pieData.protein],
-        series: [{
-          value: pieData.fat,
-          name: 'Fat (g)',
-          // label: 'Fat',
-          // className: 'my-custom-class-one',
-          meta: 'Fat'
-        }, {
-          value: pieData.carbs,
-          name: 'Carbohydrates (g)',
-          // className: 'my-custom-class-two',
-          meta: 'Meta Two'
-        }, {
-          value: pieData.protein,
-          name: 'Protein (g)',
-          // className: 'my-custom-class-three',
-          meta: 'Meta Three'
-        }]
-      })
-      new Chartist.Line('#ct3', $scope.calorieData)
+
 
       var chart = new Chartist.Pie('#ct1', {
         series: [$scope.waterIntake[6]],
@@ -609,37 +595,29 @@ angular.module('myApp.dashboard', [])
     }
 
     $scope.init = function () {
-      $scope.nutritionLogs()
-      $scope.getGoals()
       $scope.getDashboardProfile()
-      $scope.getPastSevenSessions()
-
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-
-      fetchLog()
     }
 
     $scope.init()
 
   })
+
   .directive('myGoals', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-goals.html',
-      controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/my-goals.html'
+      // controller: 'DashboardCtrl'
     }
   })
   .directive('nutritionGraphs', function () {
     return {
-      templateUrl: 'app/dashboard/directives/nutrition-graphs.html',
-      controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/nutrition-graphs.html'
+      // controller: 'DashboardCtrl'
     }
   })
   .directive('myCalculations', function () {
     return {
-      templateUrl: 'app/dashboard/directives/my-calculations.html',
-      controller: 'DashboardCtrl'
+      templateUrl: 'app/dashboard/directives/my-calculations.html'
+      // controller: 'DashboardCtrl'
     }
   })
 

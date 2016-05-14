@@ -28,7 +28,12 @@ angular.module('myApp.signin', [])
               $cookies.put('token', data.data.token)
               // window.localStorage.setItem('username', $cookies.get('username'))
               // $rootScope.username = window.localStorage.getItem('username')
-              $state.go('dashboard')
+              AuthFactory.getProfile($cookies.get('username'))
+                .then(function(data) {
+                  AuthFactory.userData = data.data[0]
+                  console.log('signin data: ', AuthFactory.userData)
+                  $state.go('dashboard')
+                })
             }
           })
       }
