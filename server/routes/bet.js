@@ -62,7 +62,6 @@ router.post('/addBets', function (req, res) {
           res.json({
             success: true
           })
-          console.log('Bet Added in server!')
         })
     })
 })

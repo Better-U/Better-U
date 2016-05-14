@@ -64,9 +64,9 @@ angular.module('factories', [])
       return $http.get('/api/goals/', config)
     }
 
-    function checkBets (username) {
+    function checkBets (goals_id) {
       var params = {
-        username: username
+        goals_id: goals_id
       }
       var config = {
         params: params

@@ -32,8 +32,8 @@ Goals.updateValue = function (id, currentValue) {
   return db('goals').where({id: id}).update({currentValue: currentValue})
 }
 
-Goals.getBets = function (id) {
-  return db('bets').select('*').where({user_id: id})
+Goals.getBets = function (goals_id) {
+  return db('bets').select('*').where({goals_id: goals_id})
 }
 
 module.exports = Goals
