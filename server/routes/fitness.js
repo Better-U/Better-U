@@ -10,6 +10,7 @@ var Auth = require('../helpers/auth')
 var Goals = require('../helpers/goals')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 router.use(Auth.ifAuthorized)
 
 router.post('/strengthForm', function (req, res) {

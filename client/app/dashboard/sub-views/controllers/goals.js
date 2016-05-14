@@ -2,8 +2,8 @@ angular.module('myApp.goalsModal', [])
 
   .controller('goalsCtrl', function ($scope, AuthFactory, GoalsFactory, $cookies, $state, $uibModal) {
     $scope.animationsEnabled = true
-    $scope.added = false
-    $scope.disabled = false
+    // $scope.added = false
+    // $scope.disabled = false
     $scope.userData = []
     
     $scope.inputGoal = function () {
@@ -32,7 +32,8 @@ angular.module('myApp.goalsModal', [])
     }
 
     $scope.removeLog = function (id) {
-      GoalsFactory.checkBets($scope.userData.username)
+      console.log('remove log id:', id)
+      GoalsFactory.checkBets(id)
         .then(function (data) {
           console.log('this is dat from remove goal log: ', data.data.data)
           if (data.data.data.length === 0) {
