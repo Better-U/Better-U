@@ -13,7 +13,7 @@
               <img ng-src="{{image | fpConvert: {w:250} }}" alt="image placeholder" class="img-circle trueProfileImage" ng-if="image">
               <img src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle trueProfileImage" style="width: 250px" ng-if="!image">
           </div>
-            <p><strong>Name: </strong>{{display.username}}</p>
+            <p ><strong id="profileUsername">Name: </strong>{{display.username}}</p>
             <p><strong>Age: </strong>{{display.age}}</p>
             <p><strong>Gender: </strong>{{getGender(display.gender)}}</p>
             <p><strong>Points: </strong>{{display.totalpts}}</p>

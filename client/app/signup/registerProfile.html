@@ -19,14 +19,14 @@
 
         <div class="form-group">
             <label for="genderSignup">Gender?</label><br>
-            <input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="male"> Male<br>
+            <input id="genderSignup" class="genderSignupMale" type="radio" name="gender" ng-model='user.gender' value="male"> Male<br>
             <input id="genderSignup" type="radio" name="gender" ng-model='user.gender' value="female"> Female<br>
         </div>
 
 
         <div class="form-group">
             <label for="activitySignup">How often do you work out?</label><br>
-            <input id="activitySignup" type='radio' name='activity' ng-model='user.activity' value='sedentary'> Sedentary (little to no exercise)<br>
+            <input id="activitySignup" class="activitySignupSedentary" type='radio' name='activity' ng-model='user.activity' value='sedentary'> Sedentary (little to no exercise)<br>
             <input id="activitySignup" type='radio' name='activity' ng-model='user.activity' value='light'> Lightly Active (light exercise; 1-3 days/wk)<br>
             <input id="activitySignup" type='radio' name='activity' ng-model='user.activity' value='moderate'> Moderately Active (moderate exercise; 3-5 days/wk)<br>
             <input id="activitySignup" type='radio' name='activity' ng-model='user.activity' value='active'> Very Active (hard exercise; 6-7 days/wk)<br>
@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label for="interestSignup">What type of exercises are you interested in?</label><br>
-            <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="Cardio"> Cardio<br>
+            <input id="interestSignup" type="radio" name="interest" class="interestSignupCardio" ng-model='user.interest' value="Cardio"> Cardio<br>
             <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="Strength"> Strength<br>
             <input id="interestSignup" type="radio" name="interest" ng-model='user.interest' value="Cardio and Strength"> Both<br>
         </div>
@@ -43,14 +43,14 @@
             <label for="gymSignup">What gym do you go to?</label><br>
             <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="None"> None<br>
             <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="LA Fitness"> LA Fitness<br>
-            <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="24 Hour Fitness"> 24 Hour Fitness<br>
+            <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' class="gymSignup24" value="24 Hour Fitness"> 24 Hour Fitness<br>
             <input id="gymSignup" type="radio" name="gym" ng-model='user.gym' value="UFC"> UFC Gym<br>
-            <input id="gymSignup" type="radio" name="gym" > Other <input type="text" name="other_reason" ng-model="user.gym"/>
+            <input id="gymSignup" type="radio" name="gym"  the-gym > Other <input type="text" name="other_reason" ng-model="user.otherGym" />
 
         </div>
 
         <div>
-            <input type="submit" class="btn btn-primary">
+            <input id="registerProfileSubmit" type="submit" class="btn btn-primary">
         </div>
 
     </form>
