@@ -9,6 +9,10 @@ function getIDs (username1, username2) {
   return db('user').whereIn('username', [username1, username2]).select('id')
 }
 
+Social.getImage = function(username){  
+  console.log("inside helpers, getting image!", username)
+  return db('user').where({username: username}).select('image')
+}
 Social.getCity = function (username) {
   return db('user').where({username: username}).select('city')
 }
