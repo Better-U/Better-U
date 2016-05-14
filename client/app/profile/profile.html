@@ -75,8 +75,8 @@
 
       </div>
       <div id='profile-gym' class="form-group">
-      <label class="col-sm-4 control-label">Gym of Choice:</label>
-          <div class="col-sm-7">
+      <label for="gymSignup" class="col-sm-4 control-label">Gym of Choice:</label>
+      <div class="col-md-7">
        <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value='None'> None
        <br>
        <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="LA Fitness"> LA Fitness
@@ -86,11 +86,9 @@
        <!-- <label class="col-sm-2 control-label"></label> -->
        <input class='form=control-static' id="gymSignup" type="radio" name="prof.gym" ng-model="prof.gym" value="UFC Gym"> UFC Gym
        <br>
-       <span>
-       <input type="radio" name="gym"> Other            
-         <input type="text" style='width:100px' ng-model="prof.gym"/>
-       </span>
-          </div>
+       <input the-gym2 type="radio" name="prof.gym"> Other            
+         <input  type="text" style='width:100px' ng-model="prof.otherGym"/>
+         </div>
       </div>
       <br>
       <input id='profBtn' type='submit' class="btn btn-primary" value='Save Profile' ng-click='submitProfile()'/>

@@ -36,7 +36,7 @@ io.on('connection', function (socket) {
     var message = {username: data.username, message: data.message}
     console.log(data, 'message sent', message)
     socket.to('' + data.roomNumber).emit('messenger', message)
-
+    socket.to('' + data.roomNumber).broadcast.emit('notification', message)
     helpers.saveMessage(data.roomNumber, message)
       .then(function (data) {
         console.log(data, 'MESSAGE SAVED')
