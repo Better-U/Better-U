@@ -57,9 +57,7 @@ angular.module('myApp.profile', ['factories'])
       )
     }
 
-    $scope.init = function () {
-      $rootScope.dashboard = false
-    }
+    $scope.init()
   })
   .directive('theGym2', function(){
   return {
