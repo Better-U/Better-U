@@ -30,13 +30,6 @@ angular.module('myApp.dashboard', [])
       })
     }
 
-
-    $scope.init = function () {
-      $rootScope.dashboard = true;
-    }
-
-    $scope.init()
-
   })
   .directive('tooltip', function(){
     return {

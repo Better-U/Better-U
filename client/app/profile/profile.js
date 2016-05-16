@@ -21,11 +21,11 @@ angular.module('myApp.profile', ['factories'])
         $scope.prof.gym = $scope.prof.otherGym
       }
       console.log($scope.prof.gym)
-      // ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
-      //   .then(function (data) {
-      //     $scope.changesSaved = true
-      //     console.log('profile data inside profile.js =', data)
-      //   })
+      ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
+        .then(function (data) {
+          $scope.changesSaved = true
+          console.log('profile data inside profile.js =', data)
+        })
     }
 
     $scope.getGender = function (integer) {
