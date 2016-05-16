@@ -53,7 +53,6 @@ angular.module('factories', [])
     }
 
     function getLog (username) {
-      console.log('inside getlog', username)
       var params = {
         username: username
       }
