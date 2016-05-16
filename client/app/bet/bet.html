@@ -42,7 +42,7 @@
 
           <li>
             <a href="#bet">
-              <i class="fa fa-bold"></i>
+              <i class="fa fa-money"></i>
               &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
             </a>
           </li>
@@ -57,10 +57,6 @@
 <div class="container">
   <div class="content">
     <div class="content-container">
-      <div>
-        <h4 class="heading-inline">Welcome {{username}}</h4>
-       <div ui-view="calculations"></div>
-      </div>
 
 <!-- Left Big Box 1 -->
       <div class="row">
@@ -68,14 +64,36 @@
           <div class="portlet">
             <div class="portlet-header">
               <h3>
-                <i class="fa fa-tasks"></i>Goals in Progress
+                <i class="fa fa-spinner"></i> Search for a user and start betting!
              </h3>
-              <div class="portlet-tools pull-right">
-                <button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button>
-              </div>
             </div>
             <div class="portlet-content">
-              <div class="portlet-content" ui-view="goals">
+              <div class="portlet-content">
+                <form>
+                  <input type="text" ng-model="searchbetuser" placeholder="username" required>
+                  <button button class="btn btn-primary" ng-click="submitSearch()">Search</button>
+                </form>
+                <div class="portlet-content" ng-if="withGoalsList">
+                  <h3>{{displayUser}}'s goals</h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Goal</th>
+                        <th>Deadline</th>
+                        <th>Points</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="goal in withGoalsList">
+                        <td class="col-sm-4">{{goal.intensity}} {{goal.category}} by {{goal.value}} {{goal.measurement}}</td>
+                        <td class="col-sm-3">{{goal.date| date : format : timezone}}</td>
+                        <td class="col-sm-3">{{goal.points}} </td>
+                        <td class="col-sm-3"><button class="btn btn-primary" ng-if="!goal.status" ng-click="addBets(goal.user_id, goal.id)"> Bet!</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -86,12 +104,20 @@
           <div class="portlet">
             <div class="portlet-header">
               <h3>
-                <i class="fa fa-instagram"></i>
-                Graph 2
+                <i class="fa fa-history"></i>
+                Bets You've Placed
               </h3>
             </div>
             <div class="portlet-content">
-              <div ui-view="strengthGraphs"></div>
+              <div class="portlet-content" ng-if="betsPlacedList.length > 0">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr ng-repeat="user in betsPlacedList">
+                      <td>You've bet {{user.points}} points on {{user.username}} to {{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}} on {{user.date| date : format : timezone}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -102,34 +128,32 @@
             <div class="portlet-header">
               <h3>
               <i class="fa fa-calendar"></i>
-              Something
+              Current Bets on the Table
               </h3>
             </div>
             <div class="portlet-content" >
               <div ui-view="cardioGraphs">
+              <div ng-if="userBets.length > 0">
+                <table class="table table-hover" ng-if="userBets">
+                  <thead>
+                    <tr>
+                      <th>Goal</th>
+                      <th>Deadline</th>
+                      <th>Points</th>
+                      <th>Bettor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="bet in userBets | orderBy:'totalpts':true">
+                        <td>{{bet.intensity}} {{bet.category}} by {{bet.value}} {{bet.measurement}}</td>
+                        <td>{{bet.date| date : format : timezone}}</td>
+                        <td>{{bet.points}} </td>
+                        <td>{{bet.username}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
-          </div>
-
-<!-- Left Big Box 4 -->
-          <div class="portlet">
-            <div class="portlet-header">
-              <h3>
-              <i class="fa fa-calendar"></i>
-              Something
-              </h3>
-            </div>
-            <div class="portlet-content">
-              <div class="datagrid"><table>
-              <thead><tr><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th></tr></thead>
-              <tbody><tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
-              <tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
-              <tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
-              <tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
-              <tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
-              </tbody>
-              </table></div>
-
+              </div>
             </div>
           </div>
   </div>
@@ -139,18 +163,35 @@
           <div class="portlet">
             <div class="portlet-header">
               <h3>
-                <i class="fa fa-pie-chart"></i>
-                Daily Nutrition Intake
+                <i class="fa fa-gamepad"></i>
+                BetterU Leaderboard
               </h3>
             </div>
             <div class="portlet-content">
-              <div ui-view="nutritionIntake"></div>
+              <table class="table table-condensed">
+                <div class="col-md-2">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                  </tr>
+                </thead>
+                <tbody ng-if="userPoints">
+                  <tr ng-repeat="top in userPoints | orderBy:'totalpts':true">
+                    <td>{{$index+1}}</td>
+                    <td>{{top.username}}</td>
+                    <td>{{top.totalpts}}</td>
+                  </tr>
+                </tbody>
+                </div>
+              </table>
             </div>
           </div>
         </div>
 
 <!-- Second Right col-4 Stuff -->
-        <div class="col-md-4">
+<!--         <div class="col-md-4">
           <div class="portlet">
             <div class="portlet-header">
               <h3>
@@ -162,23 +203,7 @@
               <div ui-view="nutritionGraphs"></div>
             </div>
           </div>
-        </div>
-
-<!-- Third Right col-4 Stuff -->
-        <div class="col-md-4">
-          <div class="portlet">
-            <div class="portlet-header">
-              <h3>
-                <i class="fa fa-pie-chart"></i>
-                Stuff
-              </h3>
-            </div>
-            <div class="portlet-content">
-
-              <div ui-view="strengthGraphs2"></div>
-            </div>
-          </div>
-        </div>
+        </div> -->
 
 <!-- End Bar -->
 
