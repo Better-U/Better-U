@@ -57,6 +57,9 @@
 <div class="container">
   <div class="content">
     <div class="content-container">
+    <div>
+    <h4 class="heading-inline">Your current points: {{totalpts}}</h4>
+    </div>
 
 <!-- Left Big Box 1 -->
       <div class="row">
@@ -113,7 +116,7 @@
                 <table class="table table-hover">
                   <tbody>
                     <tr ng-repeat="user in betsPlacedList">
-                      <td>You've bet {{user.points}} points on {{user.username}} to {{user.intensity}} {{user.category}} by {{user.value}} {{user.measurement}} on {{user.date| date : format : timezone}}</td>
+                      <td>You've bet {{user.points}} points on {{user.username}} to {{user.intensity | lowercase}} {{user.category | lowercase}} by {{user.value}} {{user.measurement | lowercase}} on {{user.date| date : format : timezone}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -145,7 +148,7 @@
                   </thead>
                   <tbody>
                     <tr ng-repeat="bet in userBets | orderBy:'totalpts':true">
-                        <td>{{bet.intensity}} {{bet.category}} by {{bet.value}} {{bet.measurement}}</td>
+                        <td>{{bet.intensity}} {{bet.category | lowercase}} by {{bet.value}} {{bet.measurement | lowercase}}</td>
                         <td>{{bet.date| date : format : timezone}}</td>
                         <td>{{bet.points}} </td>
                         <td>{{bet.username}}</td>
