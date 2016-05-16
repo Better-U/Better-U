@@ -3,6 +3,7 @@ angular.module('myApp.nutritionGraphs', [])
   .controller('nutritionGraphsCtrl', function ($scope, NutritionFactory, AuthFactory, $cookies) {
     $scope.userData = null
     $scope.nutritionData = null
+    $scope.waterIntake = []
 
     $scope.todaysPieData = function () {
       $scope.todayNutritionPie = {
@@ -100,8 +101,8 @@ angular.module('myApp.nutritionGraphs', [])
         donut: true,
         showLabel: true,
         total: $scope.convertWater($scope.userData.weight),
-        chartPadding: 30,
-        labelOffset: 50
+        width: 300
+        // labelOffset: 50
       })
       chart.on('draw', function (data) {
         if (data.type === 'slice') {

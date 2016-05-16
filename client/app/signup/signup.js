@@ -21,21 +21,15 @@ angular.module('myApp.signup', [])
       otherGym: null
     }
 
-    
+
     $scope.submit = function () {
 
       if (!$scope.user.gym) {
         $scope.user.gym = $scope.user.otherGym
       }
 
-      console.log('user details: ', $scope.user)
       var username = $cookies.get('username')
-      console.log('userdetails submitted', $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity)
-      if (!$scope.user.age || !$scope.user.height || !$scope.user.weight || !$scope.user.gender) {
-        console.log('Form not complete')
-      } else {
-
-        $uibModalInstance.dismiss('cancel')
+      $uibModalInstance.dismiss('cancel')
         AuthFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
           .then(function (data) {
             $cookies.put('token', data.data.token)
@@ -47,7 +41,6 @@ angular.module('myApp.signup', [])
                 $state.go('dashboard')
               })
           })
-      }
     }
 
     $scope.cancel = function () {
@@ -55,7 +48,8 @@ angular.module('myApp.signup', [])
     }
 
     $scope.goNext = function () {
-      if ($scope.user.name && $scope.user.password) {
+      // if ($scope.user.name && $scope.user.password) {
+      console.log('inside go next')
         AuthFactory.registerUserDetails($scope.user.name, $scope.user.password)
           .then(function (data) {
             console.log('data after next: ', data)
@@ -70,9 +64,9 @@ angular.module('myApp.signup', [])
               $scope.registerProfile()
             }
           })
-      } else {
-        $scope.noUserDetail = true
-      }
+      // } else {
+      //   $scope.noUserDetail = true
+      // }
     }
 
     $scope.signin = function () {
