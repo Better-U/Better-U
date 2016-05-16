@@ -1,28 +1,28 @@
 angular.module('myApp.nutrition', ['factories'])
 
   .controller('NutritionCtrl', function ($state, $http, $scope, NutritionFactory, $cookies, $uibModal) {
-    var user = $cookies.get('username')
-    $scope.foodData = null
+    $scope.foodData = []
 
     $scope.getFoodLog = function (user) {
       NutritionFactory.getFoodLog(user)
       .then(function (data) {
         $scope.foodData = data.data
+        console.log('foodData: ', $scope.foodData)
       })
     }
 
     $scope.inputNutrition = function () {
       $uibModal.open({
-        animation: $scope.animationsEnabled,
+        animation: true,
         templateUrl: 'app/nutrition/nutritionModal.html',
         controller: 'NutritionModalCtrl',
         windowClass: 'app-modal-window'
       })
     }
 
-    $scope.getFoodLog(user)
-    // jQuery fixed tooltips
-    $(function () {
-      $("[data-toggle='tooltip']").tooltip()
-    })
+    $scope.init = function () {
+      $scope.getFoodLog($cookies.get('username'))
+    }
+
+    $scope.init()
   })

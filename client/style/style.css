@@ -327,9 +327,6 @@ div h2 {
     text-align: center;
 }
 
-span {
-    text-align: center;
-}
 
 div > h2 > span {
     text-align: center;
@@ -659,10 +656,10 @@ div .calculations {
     font-size: 16px;
 }
 
-.nutritionDetails {
-    text-align: center;
-    font-size: 14px;
-}
+/*.nutritionDetails {*/
+    /*text-align: center;*/
+    /*font-size: 14px;*/
+/*}*/
 
 .calcCards {
     left: 15px;
@@ -683,5 +680,9 @@ div .calculations {
 #logo {
   float: left;
   margin-right: 5px;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
 }
 
