@@ -1,6 +1,6 @@
 angular.module('myApp.profile', ['factories'])
 
-  .controller('ProfileCtrl', function ($state, $scope, $window, AuthFactory, ProfileFactory, $cookies, filepickerService) {
+  .controller('ProfileCtrl', function ($state, $rootScope, $scope, $window, AuthFactory, ProfileFactory, $cookies, filepickerService) {
     $scope.changesSaved = false
     $scope.username = $cookies.get('username')
     $scope.init = function () {
@@ -55,6 +55,10 @@ angular.module('myApp.profile', ['factories'])
             })
         }
       )
+    }
+
+    $scope.init = function () {
+      $rootScope.dashboard = false
     }
   })
   .directive('theGym2', function(){

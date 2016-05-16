@@ -1,6 +1,6 @@
 angular.module('myApp.dashboard', [])
 
-  .controller('dashboardCtrl', function ($scope, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, StrengthFactory, NutritionFactory, $uibModal, filepickerService, AuthFactory, cardioFactory) {
+  .controller('dashboardCtrl', function ($scope, $rootScope, $state, GoalsFactory, $cookies, ProfileFactory, StrengthFactory, NutritionFactory, $uibModal) {
     $scope.animationsEnabled = true
     $scope.username = $cookies.get('username')
     $rootScope.hideit = false
@@ -23,6 +23,14 @@ angular.module('myApp.dashboard', [])
 
     }
 
+    $scope.inputGoal = function () {
+      $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'app/dashboard/sub-views/goals/goals-modal.html',
+        controller: 'selectGoalCtrl'
+      })
+    }
+
     $scope.getCalories = function (data) {
       var pastDays = $scope.getPastSevenDays()
       var results = []
@@ -40,6 +48,12 @@ angular.module('myApp.dashboard', [])
       $scope.calorieIntake = results
       return $scope.calorieIntake
     }
+    
+    $scope.init = function () {
+      $rootScope.dashboard = true;
+    }
+    
+    $scope.init()
 
   })
   .directive('tooltip', function(){

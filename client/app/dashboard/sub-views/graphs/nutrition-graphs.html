@@ -1,17 +1,8 @@
-<!-- <div>
-    <h2>Nutrition Graphs</h2>
-    <span ng-if="nutritionData.length === 0" style="text-align: center">No nutrition logs found.</span>
-    <div ng-if="nutritionData.length !== 0">
-        <div class="nutritionDetails">
-            <span ng-if="todayNutritionPie.calories !== 0">You consumed {{todayNutritionPie.calories}} calories today</span><br>
-            <span ng-if="todayNutritionPie.protein !== 0">You consumed {{todayNutritionPie.protein}}g of protein today</span><br>
-            <span ng-if="(waterIntake[6]/8 * 100) !== 0" title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-toggle='tooltip' data-placement="bottom" tooltip>You drank {{(waterIntake[6]/8 * 100)}}% of daily recommended water intake based on your weight<br>~{{convertWater(userData.weight)}} cups</span>
-            <br>
-            <div class="ct-chart" id="water-intake-chart" ng-if="(waterIntake[6]/8 * 100) !== 0"></div>
-        </div>
-    </div>
-
+<div class="portlet-content  ng-cloak">
+   <div class="nutritionDetails">
+       <span ng-if="(waterIntake[6]/8 * 100) === 0">No water logs have been made today.</span>
+       <span ng-if="(waterIntake[6]/8 * 100) !== 0" title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-toggle='tooltip' data-placement="bottom" tooltip>Drank {{(waterIntake[6]/8 * 100)}}% of daily recommended water intake based on your weight<br>~{{convertWater(userData.weight)}} cups</span>
+       <div class="ct-chart" id="water-intake-chart" ng-if="(waterIntake[6]/8 * 100) === 0"></div>
+   </div>
 </div>
- -->
 
- <div class="ct-chart" id="water-intake-chart"></div>
