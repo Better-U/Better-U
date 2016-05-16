@@ -14,7 +14,6 @@ angular.module('myApp.dashboard', [])
     $scope.goalsData = null
     $scope.dash = null
 
-
     $scope.signout = function () {
       $cookies.remove('token')
       $cookies.remove('username')
@@ -23,7 +22,6 @@ angular.module('myApp.dashboard', [])
       $state.go('landing')
 
     }
-    
 
     $scope.getCalories = function (data) {
       var pastDays = $scope.getPastSevenDays()
@@ -43,13 +41,7 @@ angular.module('myApp.dashboard', [])
       return $scope.calorieIntake
     }
 
-
-
-
   })
-
-
-
   .directive('tooltip', function(){
     return {
       restrict: 'A',

@@ -56,7 +56,6 @@ angular.module('myApp.strengthGraphs', [])
       return day
     }
 
-
     $scope.c1_duration_date = function (arr) {
       var c1_obj = {}
       var dateshort
@@ -66,6 +65,7 @@ angular.module('myApp.strengthGraphs', [])
       for (var i = 0; i < arr.length; i++) {
         dateshort = arr[i].date
         var x = new Date(dateshort).getDay()
+
         if (c1_obj[x] !== undefined) {
           c1_obj[x] = c1_obj[x] + arr[i].duration
         } else {

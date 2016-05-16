@@ -1,4 +1,4 @@
-<div class="calculations">
+<!-- <div class="calculations">
     <strong>Hello {{userData.username}}!</strong>
     <br>
     <br>
@@ -53,4 +53,71 @@
             <span class="calcNotice">
                 Based on the Harris Benedict Method
             </span>
-    </div>
+    </div> -->
+
+<div class="row">
+<div class="col-sm-6 col-md-3">
+  <div class="row-stat">
+    <p class="row-stat-label">
+        <span class="calcHeader">
+            <span title='A weight-to-height ratio, calculated by dividing weight by the square of your height. Used as an indicator of obesity and underweight.' data-toggle='tooltip' data-placement='top' tooltip>
+            Body Mass Index
+            </span>
+        </span>
+    </p>
+    <h3 class="row-stat-value">            
+    <span class="calcNumber">
+        {{userBMI(userData.height, userData.weight)}}
+    </span></h3>
+    <h3 class="row-stat-value">
+  </div>
+</div>
+
+<div class="col-sm-6 col-md-3">
+  <div class="row-stat">
+    <p class="row-stat-label">
+        <span class="calcHeader">
+            <span title='A measurement of the number of calories needed to perform the most basic (basal) functions, like breathing, circulation and cell production.' data-toggle='tooltip' data-placement='top' tooltip>
+            Basal Metabolic Rate
+            </span>
+            <br>
+        </span>
+    </p>
+    <h3 class="row-stat-value">
+        <span class="calcNumber">
+            {{userBMR(userData.gender, userData.age, userData.weight, userData.height)}}
+        </span>
+    </h3>
+  </div>
+</div>
+
+<div class="col-sm-6 col-md-3">
+  <div class="row-stat">
+    <p class="row-stat-label">
+        <span class="calcHeader">
+            <span title='The BMR value multiplied by a number that corresponds to your activity level.  
+            Based on the Harris Benedict Method' data-toggle='tooltip' data-placement='top' tooltip>
+            Calorie Burn
+            </span>
+        </span>
+    </p>
+    <h3 class="row-stat-value">            
+    <span class="calcNumber">
+        {{calorieBurn(userData.gender, userData.age, userData.weight, userData.height, userData.activitylvl)}}
+
+    </span></h3>
+  </div> 
+</div>
+
+<div class="col-sm-6 col-md-3">
+  <div class="row-stat">
+    <p class="row-stat-label"><span class="calcHeader"> <span title='Your points value.  Set a goal and watch this number grow' data-toggle='tooltip' data-placement='top' tooltip>
+            Points Earned
+            </span></span></p>
+    <h3 class="row-stat-value">
+    <span class="calcNumber">
+      {{userData.totalpts}}
+    </span></h3>
+  </div>
+</div>
+</div> 
