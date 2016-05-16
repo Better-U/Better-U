@@ -18,7 +18,6 @@ angular.module('myApp.dashboard', [])
       $cookies.remove('token')
       $cookies.remove('username')
       console.log('token after remove: ', $cookies.get('token'))
-      // $rootScope.hideit = true
       $state.go('landing')
 
     }
