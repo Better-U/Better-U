@@ -1,8 +1,16 @@
-<div class="portlet-content  ng-cloak">
+<div class="ng-cloak" style="text-align: left">
    <div class="nutritionDetails">
+       <span title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-toggle='tooltip' data-placement="bottom" tooltip>Daily recommended water intake based on weight: </span>
+       <br>
+       <span style="'font-size': 14px; 'text-align': center">~{{convertWater(userData.weight)}} cups</span>
+       <br>
+       <br>
        <span ng-if="(waterIntake[6]/8 * 100) === 0">No water logs have been made today.</span>
-       <span ng-if="(waterIntake[6]/8 * 100) !== 0" title="Adjust your daily recommended water intake value based on how often you exercise. Add 1.5 cups to your daily total for every 30 minutes of exercise." data-toggle='tooltip' data-placement="bottom" tooltip>Drank {{(waterIntake[6]/8 * 100)}}% of daily recommended water intake based on your weight<br>~{{convertWater(userData.weight)}} cups</span>
-       <div class="ct-chart" id="water-intake-chart"></div>
+       <span ng-if="(waterIntake[6]/8 * 100) !== 0">You drank {{(waterIntake[6]/8 * 100)}}% of the daily recommended value</span>
+       <div ng-if="(waterIntake[6]/8 * 100) !== 0" class="ct-chart" id="water-intake-chart"></div>
+       <div ng-if="(waterIntake[6]/8 * 100) !== 0">
+           <span>{{waterIntake[6]}} of {{convertWater(userData.weight)}} cups</span>
+       </div>
    </div>
 </div>
 
