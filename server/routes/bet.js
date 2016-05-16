@@ -77,4 +77,19 @@ router.delete('/betDelete', function (req, res) {
     })
 })
 
+router.get('/searchBets', function (req, res) {
+  console.log('inside searchBets: ____', req.query.username, req.query.goals_id)
+  User.findUser(req.query.username)
+    .then(function (id) {
+      var bettor = id[0].id
+      Bets.searchBets(req.query.goals_id, bettor)
+        .then(function (data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
+    })
+})
+
 module.exports = router
