@@ -389,7 +389,6 @@ body {
     /*background-color: #1A232F;*/
     /*background-color:#33414D;*/
     background-color: #e9eadf;
-
 }
 
 tr .goalsData {
@@ -561,15 +560,15 @@ td .goalDueDate {
     overflow: hidden;
 }
 
-/*.navbar-inverse-override {
+.navbar-inverse-override {
     background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
     background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
     background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
     background-image: linear-gradient(to bottom,#0E1614 0,#0A100E 100%) !important
-}*/
+}
 
 .landingFooter {
-    background-color: #4C87B9
+    background-color: #e9e9e6
 }
 
 #landingTop {
@@ -578,23 +577,19 @@ td .goalDueDate {
 
 #landingBtm {
   margin-top: 5px;
- font-size: 40px;
+  font-size: 40px;
 }
 
 .navbar {
  background-color: #000 !important
 }
 
-.dashboard {
+/*.dashboard {*/
  /*background-color: #2D343A;*/
     /*background-color: #1A232F;*/
-    background-color: #29343D;
-
-
-
-
+/*    background-color: #29343D;
     color: #000;
-}
+}*/
 
 div .calculations {
  background-color: #E8E7DC;
@@ -684,4 +679,22 @@ div .calculations {
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
+
+.title {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  margin-top: -8px;
+}
+
+.name {
+  font-family: 'Montserrat';
+  color: #000;
+  font-size: 16px;
+}
+
+#footer {
+  text-align: center;
+  color: white;
+}
+
 
