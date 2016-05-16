@@ -23,8 +23,6 @@ angular.module('myApp.dashboard', [])
 
     }
 
-<<<<<<< HEAD
-=======
     $scope.inputGoal = function () {
       $uibModal.open({
         animation: $scope.animationsEnabled,
@@ -32,36 +30,13 @@ angular.module('myApp.dashboard', [])
         controller: 'selectGoalCtrl'
       })
     }
->>>>>>> b4f313a1d9abf3c5f01dc034147e065580b44463
-
-    $scope.getCalories = function (data) {
-      var pastDays = $scope.getPastSevenDays()
-      var results = []
-      var sum = 0
-      for (var i = 0; i < pastDays.length; i++) {
-        sum = 0
-        for (var j = 0; j < data.length; j++) {
-          if ($scope.shortDateConverter(data[j].date) === pastDays[i]) {
-            sum += Number(data[j].cal)
-          }
-        }
-        results.push(sum)
-      }
-
-      $scope.calorieIntake = results
-      return $scope.calorieIntake
-    }
-<<<<<<< HEAD
 
 
-=======
-    
     $scope.init = function () {
       $rootScope.dashboard = true;
     }
-    
+
     $scope.init()
->>>>>>> b4f313a1d9abf3c5f01dc034147e065580b44463
 
   })
   .directive('tooltip', function(){
