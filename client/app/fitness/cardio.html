@@ -1,24 +1,214 @@
-<div class="container">
-  <h1>Cardio Weekly Progress</h1>
-  <button class="btn btn-primary" ng-click="inputCardio()">Log Daily Workout</button><br>
-  <br>
-  <table class="table table-striped">
-    <tr>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Activity</th>
-      <th>Distance (miles)</th>
-      <th>Duration (minutes)</th>
-      <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
-    </tr>
-    <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
-      <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
-      <td>{{cardio.time}}</td>
-      <td>{{cardio.type}}</td>
-      <td>{{cardio.distance}}</td>
-      <td>{{cardio.duration}}</td>
-      <td>{{cardio.pace}}</td>
-    </tr>
-  </table>
+<div class="mainbar">
+  <div class="container">
+    <div class="mainbar-collapse collapse">
+
+      <ul class="nav navbar-nav mainbar-nav">
+
+        <li>
+          <a href="#dashboard">
+            <i class="fa fa-dashboard"></i>
+            Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="#cardio">
+            <i class="fa fa-bicycle"></i>
+            &nbsp;&nbsp;Cardio&nbsp;&nbsp;
+          </a>
+        </li>
+
+        <li>
+          <a href="#strength">
+            <i class="fa fa-male"></i>
+            Strength
+          </a>
+        </li>
+
+        <li>
+          <a href="#nutrition">
+            <i class="fa fa-cutlery"></i>
+            Nutrition
+          </a>
+        </li>
+
+        <li>
+          <a href="#social">
+            <i class="fa fa-users"></i>
+            Socialize
+          </a>
+        </li>
+
+        <li>
+          <a href="#bet">
+            <i class="fa fa-bold"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
+          </a>
+        </li>
+
+      </ul>
+    </div>
   </div>
+</div>
+
+<!-- Main Container -->
+
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div>
+        <!--<h4 class="heading-inline">Welcome {{username}}</h4>-->
+        <div class="container datagrid" style="width: 100%">
+          <h1>Cardio Weekly Progress</h1>
+          <button class="btn btn-primary" ng-click="inputCardio()">Log Daily Workout</button><br>
+          <br>
+          <table class="table table-striped">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Activity</th>
+              <th>Distance (miles)</th>
+              <th>Duration (minutes)</th>
+              <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
+            </tr>
+            <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
+              <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
+              <td>{{cardio.time}}</td>
+              <td>{{cardio.type}}</td>
+              <td>{{cardio.distance}}</td>
+              <td>{{cardio.duration}}</td>
+              <td>{{cardio.pace}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+        <!--<div ui-view="calculations"></div>-->
+      </div>
+
+      <!--&lt;!&ndash; Left Big Box 1 &ndash;&gt;-->
+      <!--<div class="row">-->
+        <!--<div class="col-md-8">-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-tasks"></i>Goals in Progress-->
+              <!--</h3>-->
+              <!--<div class="portlet-tools pull-right">-->
+                <!--<button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="portlet-content">-->
+              <!--<div class="portlet-content" ui-view="goals">-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--&lt;!&ndash; Left Big Box 2&ndash;&gt;-->
+          <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+              <!--<div class="portlet">-->
+                <!--<div class="portlet-header">-->
+                  <!--<h3>-->
+                    <!--<i class="fa fa-instagram"></i>-->
+                    <!--Graph 2-->
+                  <!--</h3>-->
+                <!--</div>-->
+                <!--<div class="portlet-content">-->
+                  <!--<div ui-view="strengthGraphs"></div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--&lt;!&ndash; Left Big Box 3 &ndash;&gt;-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-calendar"></i>-->
+                <!--Something-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="portlet-content" >-->
+              <!--<div ui-view="cardioGraphs">-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--&lt;!&ndash; Left Big Box 4 &ndash;&gt;-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-calendar"></i>-->
+                <!--Something-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="portlet-content">-->
+              <!--<div class="datagrid"><table>-->
+                <!--<thead><tr><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th></tr></thead>-->
+                <!--<tbody><tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
+                <!--<tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
+                <!--<tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
+                <!--<tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
+                <!--<tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
+                <!--</tbody>-->
+              <!--</table></div>-->
+
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; First Right col-4 Stuff &ndash;&gt;-->
+        <!--<div class="col-md-4">-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-pie-chart"></i>-->
+                <!--Donut Water-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="portlet-content">-->
+              <!--<div ui-view="strengthGraphs2"></div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Second Right col-4 Stuff &ndash;&gt;-->
+        <!--<div class="col-md-4">-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-instagram"></i>-->
+                <!--Chart-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="portlet-content">-->
+              <!--<div ui-view="nutritionGraphs"></div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Third Right col-4 Stuff &ndash;&gt;-->
+        <!--<div class="col-md-4">-->
+          <!--<div class="portlet">-->
+            <!--<div class="portlet-header">-->
+              <!--<h3>-->
+                <!--<i class="fa fa-instagram"></i>-->
+                <!--Stuff-->
+              <!--</h3>-->
+            <!--</div>-->
+            <!--<div class="portlet-content">-->
+
+              <!--<div ui-view="strengthGraphs2"></div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!-- End Bar -->
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

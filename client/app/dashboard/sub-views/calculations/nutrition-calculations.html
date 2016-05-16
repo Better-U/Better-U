@@ -1,0 +1,10 @@
+<div class="portlet-content  ng-cloak"  ng-show="todayNutritionPie.calories">
+    <div class="nutritionDetails">
+        <span ng-if="todayNutritionPie.calories !== 0">You consumed {{todayNutritionPie.calories}} calories today</span><br>
+        <span ng-if="todayNutritionPie.protein !== 0">You consumed {{todayNutritionPie.protein}}g of protein today</span><br>
+    </div>
+</div>
+
+<div ng-show="!todayNutritionPie.calories">
+    No nutrition logs have been made today.
+</div>

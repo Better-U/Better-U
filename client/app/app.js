@@ -72,6 +72,10 @@ angular.module('myApp', ['myApp.signin',
             templateUrl: '/app/dashboard/sub-views/graphs/nutrition-graphs.html',
             controller: 'nutritionGraphsCtrl'
           },
+          'nutritionIntake@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/calculations/nutrition-calculations.html',
+            controller: 'nutritionGraphsCtrl'
+          },
           'cardioGraphs@dashboard': {
             templateUrl: '/app/dashboard/sub-views/graphs/cardio-graphs.html',
             controller: 'cardioGraphsCtrl'
@@ -87,6 +91,10 @@ angular.module('myApp', ['myApp.signin',
           'goals@dashboard': {
             templateUrl: '/app/dashboard/sub-views/goals/goals.html',
             controller: 'goalsCtrl'
+          },
+          'strengthGraphs2@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/strength-graphs2.html',
+            controller: 'strengthGraphsCtrl'
           }
         }
       })

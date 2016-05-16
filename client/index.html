@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./lib/sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="./style/simple-sidebar.css">
+    <link rel="stylesheet" href="./style/custom.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Arvo:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
@@ -62,17 +64,18 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a ui-sref="dashboard">Dashboard</a></li>
-                <li><a ui-sref="cardio">Cardio</a></li>
-                <li><a ui-sref="strength">Strength</a></li>
-                <li><a ui-sref="nutrition">Food Log</a></li>
-                <!--<li><a ui-sref="goals">Add Goals</a></li>-->
-                <li><a ui-sref="social">Social</a></li>
-                <li><a ui-sref="bet">Bet</a></li>
-            </ul>
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a ui-sref="dashboard">Dashboard</a></li>-->
+                <!--<li><a ui-sref="cardio">Cardio</a></li>-->
+                <!--<li><a ui-sref="strength">Strength</a></li>-->
+                <!--<li><a ui-sref="nutrition">Food Log</a></li>-->
+                <!--&lt;!&ndash;<li><a ui-sref="goals">Add Goals</a></li>&ndash;&gt;-->
+                <!--<li><a ui-sref="social">Social</a></li>-->
+                <!--<li><a ui-sref="bet">Bet</a></li>-->
+            <!--</ul>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="profile"><span class="glyphicon glyphicon-cog profileNavigator"></span> Edit Profile</a></li>
+                <li><a ui-sref="profile" ng-hide="!dashboard"><span class="glyphicon glyphicon-cog profileNavigator"></span> Edit Profile</a></li>
+                <li><a ui-sref="dashboard" ng-hide="dashboard">Dashboard</a></li>
                 <li><a href="#" ng-click="signout()" >Sign Out</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
