@@ -29,12 +29,18 @@ bet.addBets = function (id, bet_id, goals_id) {
 }
 
 bet.placedBets = function (id) {
-  var placedBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username FROM goals ' +
+  var placedBet = 'SELECT goals.intensity, goals.category, goals.value, goals.measurement, goals.date, goals.points, user.username, bets.bettor_id FROM goals ' +
     'INNER JOIN bets ON goals.id = bets.goals_id ' +
     'INNER JOIN user ON user.id = bets.user_id ' +
     'WHERE bets.bettor_id = ?'
   console.log('this is placedBets: ', id)
   return db.raw(placedBet, [id])
+}
+
+bet.searchBets = function (goals_id, id) {
+  console.log('inside searchBets')
+  var checkBet = 'SELECT * FROM bets WHERE goals_id = ? AND bettor_id = ?'
+  return db.raw(checkBet, [goals_id, id])
 }
 
 module.exports = bet

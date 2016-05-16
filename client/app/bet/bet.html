@@ -25,7 +25,7 @@
 	        <td class="col-sm-4">{{goal.intensity}} {{goal.category}} by {{goal.value}} {{goal.measurement}}</td>
 	        <td class="col-sm-3">{{goal.date| date : format : timezone}}</td>
           <td class="col-sm-3">{{goal.points}} </td>
-          <td class="col-sm-3"><button class="btn btn-primary" ng-click="addBets(goal.user_id, goal.id)"> Bet!</button></td>
+          <td class="col-sm-3"><button class="btn btn-primary" ng-if="!goal.status" ng-click="addBets(goal.user_id, goal.id)"> Bet!</button></td>
         </tr>
       </tbody>
     </table>
