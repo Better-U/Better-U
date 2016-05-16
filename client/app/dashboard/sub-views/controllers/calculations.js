@@ -16,7 +16,6 @@ angular.module('myApp.calculations', [])
       if (weight > 0 && height > 0) {
         var BMI = ((weight / (height * height)) * 703.06957964).toFixed(2)
       }
-
       return BMI
     }
 

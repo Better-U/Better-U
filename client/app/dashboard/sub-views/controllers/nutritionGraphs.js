@@ -103,7 +103,6 @@ angular.module('myApp.nutritionGraphs', [])
         chartPadding: 30,
         labelOffset: 50
       })
-
       chart.on('draw', function (data) {
         if (data.type === 'slice') {
           var pathLength = data.element._node.getTotalLength()

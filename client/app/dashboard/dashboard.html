@@ -1,4 +1,4 @@
-<div class="dashboard container-fluid">
+<!-- <div class="dashboard container-fluid">
     <div class="col-lg-2 calcCards">
         <div ui-view="calculations"></div>
     </div>
@@ -15,7 +15,200 @@
             <div ui-view="strengthGraphs"></div>
         </div>
     </div>
+</div> -->
 
-        <!--SUBVIEW -->
 
+<!-- Main Navbar with buttons -->
+<div class="mainbar">
+    <div class="container">
+      <div class="mainbar-collapse collapse">
+
+        <ul class="nav navbar-nav mainbar-nav">
+
+          <li>
+            <a href="#dashboard">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>
+          </li>
+
+          <li>
+            <a href="#cardio">
+              <i class="fa fa-bicycle"></i>
+              &nbsp;&nbsp;Cardio&nbsp;&nbsp;
+            </a>
+          </li>
+
+          <li>
+            <a href="#strength">
+              <i class="fa fa-male"></i> 
+              Strength
+            </a>
+          </li>
+
+          <li>
+            <a href="#nutrition">
+              <i class="fa fa-cutlery"></i>
+              Nutrition
+            </a>
+          </li>  
+
+          <li>
+            <a href="#social">
+              <i class="fa fa-users"></i>
+              Socialize
+            </a>
+          </li>  
+
+          <li>
+            <a href="#bet">
+              <i class="fa fa-bold"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+          </li>
+
+        </ul>
+      </div>
+   </div> 
 </div>
+
+<!-- Main Container -->
+
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div>
+        <h4 class="heading-inline">Welcome {{username}}</h4>
+       <div ui-view="calculations"></div>
+      </div>
+
+<!-- Left Big Box 1 -->
+      <div class="row">
+        <div class="col-md-8">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-tasks"></i>Goals in Progress
+             </h3>
+              <div class="portlet-tools pull-right">
+                <button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button>
+              </div>
+            </div>
+            <div class="portlet-content">
+              <div class="portlet-content" ui-view="goals">
+              </div>
+            </div>
+          </div>
+
+<!-- Left Big Box 2-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-instagram"></i>
+                Graph 2
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div ui-view="strengthGraphs"></div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+<!-- Left Big Box 3 -->
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+              <i class="fa fa-calendar"></i>
+              Something
+              </h3>
+            </div>
+            <div class="portlet-content" >
+              <div ui-view="cardioGraphs">
+              </div> 
+            </div> 
+          </div> 
+
+<!-- Left Big Box 4 -->
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+              <i class="fa fa-calendar"></i>
+              Something
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div class="datagrid"><table>
+              <thead><tr><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th></tr></thead>
+              <tbody><tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
+              <tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
+              <tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
+              <tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
+              <tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>
+              </tbody>
+              </table></div>
+
+            </div> 
+          </div> 
+  </div> 
+
+<!-- First Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-pie-chart"></i>
+                Donut Water
+              </h3>
+            </div> 
+            <div class="portlet-content">
+              <div ui-view="strengthGraphs2"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- Second Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-instagram"></i>
+                Chart
+              </h3>
+            </div> 
+            <div class="portlet-content">
+              <div ui-view="nutritionGraphs"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- Third Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-instagram"></i>
+                Stuff
+              </h3>
+            </div> 
+            <div class="portlet-content">
+
+              <div ui-view="strengthGraphs2"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- End Bar -->
+
+      </div> 
+
+    </div> 
+      
+  </div> 
+
+</div> 
+
+
+

@@ -87,6 +87,10 @@ angular.module('myApp', ['myApp.signin',
           'goals@dashboard': {
             templateUrl: '/app/dashboard/sub-views/goals/goals.html',
             controller: 'goalsCtrl'
+          },
+          'strengthGraphs2@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/strength-graphs2.html',
+            controller: 'strengthGraphsCtrl'
           }
         }
       })
