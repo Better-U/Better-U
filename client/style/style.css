@@ -1,6 +1,6 @@
 #searchResults {
   height: 300px;
-  width: 438px;
+  width: 454px;
   overflow: auto;
   border-radius: 0 0 4px 4px;
   background-color: rgba(170, 170, 170, 0.50);
@@ -10,7 +10,7 @@
 .space { margin-top: 5px; }
 
 #searchBox {
-  width: 438px;
+  width: 454px;
   border-radius: 4px 4px 0 0;
 }
 
