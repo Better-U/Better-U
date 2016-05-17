@@ -703,14 +703,14 @@ div .calculations {
 
 .navbar-brand {
   font-family: 'Alegreya Sans SC', sans-serif;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 100;
   margin-top: 7px;
-  color: e9eadf;
+  color: #fff !important;
 }
 
 .navbar-inverse .navbar-brand #betterU {
-  color: e9eadf !important;
+  color: #e9eadf !important;
 }
 
 #logo {
