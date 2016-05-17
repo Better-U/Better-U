@@ -49,7 +49,7 @@
       <div class="form-group space">
         <label class="col-md-1 control-label" for="servingSizeUnit">*Serving Size Unit</label>
         <div class="col-md-5">
-          <input id="servingSizeUnit" type="number" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.size" value='{{ log.size }}'>
+          <input id="servingSizeUnit" type="string" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.size" value='{{ log.size }}'>
           </div>
       </div>
 
@@ -122,7 +122,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <input type="submit"  class="btn btn-primary" ng-disabled="nutritionLog.$invalid">
-                    <button type="button" ng-click="$close()" class="btn default">Cancel</button>
+                    <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
                 </div>
             </div>
         <!--</div>-->

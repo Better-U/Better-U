@@ -57,10 +57,13 @@
   <div class="content">
     <div class="content-container">
       <div>
-        <div class="datagrid" style="width: 100%; background-color: inherit; border: none" ng-controller='NutritionCtrl'>
+        <div ng-controller='NutritionCtrl'>
           <h1> Nutrition Cumulative Log </h1>
           <button class="btn btn-primary" ng-click="inputNutrition()">Log Meals</button> <br><br>
+
+          <!-- Nutrition Log -->
           <table class="datagrid table">
+            <thead>
             <tr>
               <th style="border-bottom: 2px solid #ddd">Date</th>
               <th style="border-bottom: 2px solid #ddd">Item</th>
@@ -75,6 +78,9 @@
               <th style="border-bottom: 2px solid #ddd" title='Proteins contribute to key body functions like blood clotting, fluid balance, production of hormones and enzymes, vision, and cell repair. The recommended intake is 0.36g of protein per lb.' data-container='body' data-toggle='tooltip' tooltip>Protein (g)</th>
               <th style="border-bottom: 2px solid #ddd" title='Water flushes toxins out of vital organs, carries nutrients to cells, & provides a moist environment for ear, nose and throat tissues. The Institute of Medicine determined an adequate intake (AI) for men is ~13 cups/day and ~9 cups/day for women.' data-container='body' data-toggle='tooltip' tooltip>Water (cups)</th>
             </tr>
+            </thead>
+
+            <tbody>
             <tr ng-repeat="food in foodData | orderBy:'date':true">
               <td>{{food.date | date: "MM-dd-yyyy"}}</td>
               <td>{{food.name}}</td>
@@ -89,6 +95,7 @@
               <td>{{food.protein}}</td>
               <td>{{food.water}}</td>
             </tr>
+            </tbody>
           </table>
         </div>
     </div>

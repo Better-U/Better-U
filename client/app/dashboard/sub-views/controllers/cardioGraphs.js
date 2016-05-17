@@ -20,15 +20,16 @@ angular.module('myApp.cardioGraphs', [])
           $scope.userData = data.data[0]
           cardioFactory.getCardio($scope.userData.username)
             .then(function (data) {
-              console.log("data inside getpastsevensessions", data)
               data.data.forEach(function (item) {
-                $scope.dates.push(item.date)
+                console.log('item =', item)
+                $scope.dates.push([item.date, item.time])
                 console.log('dates array: ', $scope.dates)
               })
               $scope.dates.sort()
+              console.log('$scope.dates after sort', $scope.dates)
               if ($scope.dates.length > 7) {
                 for (var i = $scope.dates.length - 7; i < $scope.dates.length; i++) {
-                  $scope.lastSeven.push($scope.shortDateConverter(dates[i]))
+                  $scope.lastSevenSessions.push($scope.shortDateConverter($scope.dates[i][0]) + '\n' + $scope.dates[i][1])
                 }
               } else {
                 for (var i = 0; i < $scope.dates.length; i++) {
@@ -57,7 +58,7 @@ angular.module('myApp.cardioGraphs', [])
                   })
                     .reverse()
 
-                  console.log('this is scope.pace: ', $scope.pace)
+                  // console.log('this is scope.pace: ', $scope.pace)
                   if ($scope.pace.length > 7) {
 
                     for (var i = $scope.pace.length - 7; i < $scope.pace.length; i++) {
@@ -68,7 +69,6 @@ angular.module('myApp.cardioGraphs', [])
                       $scope.lastSevenPace.push($scope.pace[i][2])
                     }
                   }
-              console.log('scope last seven pace inside init: ', $scope.lastSevenPace)
               $scope.createCardioCharts()
                 })
             })
@@ -85,6 +85,7 @@ angular.module('myApp.cardioGraphs', [])
 
       new Chartist.Line('#cardio-pace', $scope.cardioData, {
         low: 0,
+        width: 650,
         showArea: true
       })
     }

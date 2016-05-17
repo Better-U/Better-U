@@ -68,7 +68,7 @@
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
                 <input class="btn btn-primary" type="submit" ng-disabled="strengthGoal.$invalid">
-                <button type="button" ng-click="$close()" class="btn default">Cancel</button>
+                <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
             </div>
         </div>
 
