@@ -1,4 +1,4 @@
-angular.module('chatModule', ['myApp.socialFactoryModule'])
+  angular.module('chatModule', ['myApp.socialFactoryModule', 'luegg.directives'])
   .controller('chatCtrl', function ($scope, socket, $cookies) {
     $scope.name = $cookies.get('username')
     $scope.messages = []
