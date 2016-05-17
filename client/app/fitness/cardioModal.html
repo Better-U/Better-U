@@ -10,7 +10,7 @@
           <label class="col-md-3 control-label">*Date</label>
             <div class="col-md-7">
               <div class="input-group">
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required>
+                <input datepicker-localdate type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -22,7 +22,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">*Time</label>
           <div class="col-md-7">
-            <input uib-timepicker ng-model='time' readonly-input='true' required>
+            <uib-timepicker ng-model='time'datetimepicker-neutralTimezone required></uib-timepicker>
           </div>
         </div>
 

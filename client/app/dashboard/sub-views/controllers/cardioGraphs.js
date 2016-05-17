@@ -67,8 +67,6 @@ angular.module('myApp.cardioGraphs', [])
         })
     }
     $scope.createCardioCharts = function () {
-      console.log('last seven sessions: ', $scope.lastSevenSessions)
-      console.log('last even pace: ', $scope.lastSevenPace)
       $scope.cardioData = {
         labels: $scope.lastSevenSessions,
         series: [$scope.lastSevenPace]
