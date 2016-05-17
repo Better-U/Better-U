@@ -1,9 +1,7 @@
 <div class="mainbar">
   <div class="container">
     <div class="mainbar-collapse collapse">
-
       <ul class="nav navbar-nav mainbar-nav">
-
         <li>
           <a href="#dashboard">
             <i class="fa fa-dashboard"></i>
@@ -58,45 +56,57 @@
     <div class="content-container">
       <div>
         <div style="width: 100%; background-color: inherit; border: none">
-          <div>
-            <h1>Strength Weekly Progress</h1>
-            <button button class="btn btn-primary" ng-click="inputStrength()">Log Daily Workout</button><br><br>
-
-            <!-- Strength Activity Log -->
-            <table class="datagrid table">
-              <thead>
-              <tr>
-                <th>Date</th>
-                <th>Activity</th>
-                <th>Weight</th>
-                <th>Reps</th>
-                <th>Sets</th>
-                <th title='The maximum amount of force that can be generated in one maximal contraction (90%).' data-container='body' data-toggle='tooltip' tooltip>One rep max</th>
-                <th>Intensity</th>
-                <th>Duration</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="str in strengthList | orderBy:'date':true">
-                <div ng-if="strengthList">
-                  <td>{{str.date | date: "MM-dd-yyyy"}}</td>
-                  <td>{{str.type}}</td>
-                  <td>{{str.weight}}</td>
-                  <td>{{str.reps}}</td>
-                  <td>{{str.sets}}</td>
-                  <td>{{onerepmax(str.weight, str.reps)}}</td>
-                  <td>{{str.intensity}}</td>
-                  <td>{{str.duration}}</td>
+          <div class="heading-inline">
+            <h2>Strength Weekly Progress</h2>
+            <button button class="btn btn-primary" ng-click="inputStrength()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Track your Strength</button><br><br>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="portlet">
+                <div class="portlet-header">
+                  <div>
+                    <h3><i class="fa fa-caret-square-o-up"></i>Cumulative Strength Log</h3>
+                  </div>
                 </div>
-              </tr>
-              </tbody>
-            </table>
-
+                <div class="portlet-content">
+                  <table class="datagrid table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Weight</th>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                        <th title='The maximum amount of force that can be generated in one maximal contraction (90%).' data-container='body' data-toggle='tooltip' tooltip>One rep max</th>
+                        <th>Intensity</th>
+                        <th>Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="str in strengthList | orderBy:'date':true">
+                        <div ng-if="strengthList">
+                          <td>{{str.date | date: "MM-dd-yyyy"}}</td>
+                          <td>{{str.type}}</td>
+                          <td>{{str.weight}}</td>
+                          <td>{{str.reps}}</td>
+                          <td>{{str.sets}}</td>
+                          <td>{{onerepmax(str.weight, str.reps)}}</td>
+                          <td>{{str.intensity}}</td>
+                          <td>{{str.duration}}</td>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <!--<div ui-view="calculations"></div>-->
     </div>
+  </div>
+</div>
+      <!--<div ui-view="calculations"></div>-->
 
     <!--&lt;!&ndash; Left Big Box 1 &ndash;&gt;-->
     <!--<div class="row">-->
@@ -218,13 +228,6 @@
 
     <!-- End Bar -->
 
-  </div>
-
-</div>
-
-</div>
-
-</div>
 
 
 
