@@ -2,6 +2,7 @@ body {
   font: 400 14px/1.6 'Hind', Verdana, Helvetica, sans-serif;
   background: #e9eadf;
 }
+
 /*.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #36752D; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #87B94C), color-stop(1, #34471E) );background:-moz-linear-gradient( center top, #87B94C 5%, #34471E 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#87B94C', endColorstr='#34471E');background-color:#87B94C; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #36752D; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #000000; border-left: 1px solid #87B94C;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #DFFFDE; color: #275420; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }*/
 
 /*@font-face {
@@ -17,6 +18,7 @@ body {
 }
 */
 /*
+
 @media (min-width: 768px) {
 body {
   background: #e6e6e6;
@@ -260,7 +262,7 @@ h6 {
 .row-stat {
   padding: 17px 13px 21px;
   margin-bottom: 1.25em;
-  border: 2px solid #ddd;
+  border: 3px solid #ddd;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -280,11 +282,91 @@ h6 {
 .progress-bar-primary {
   background-color: #87b94c;
 }
-.progress-bar-secondary {
-  background-color: #4c87b9;
-}
-.progress-bar-tertiary {
-  background-color: #b94c50;
-}
 
-.datagrid { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #FFFFFF; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FFFFFF), color-stop(1, #FFFFFF) );background:-moz-linear-gradient( center top, #FFFFFF 5%, #FFFFFF 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF');background-color:#FFFFFF; color:#000000; font-size: 12px; font-weight: bold; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #000000; font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #000000; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #FFFFFF;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }*/
+
+
+.datagrid { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #FFFFFF; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FFFFFF), color-stop(1, #FFFFFF) );background:-moz-linear-gradient( center top, #FFFFFF 5%, #FFFFFF 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF');background-color:#FFFFFF; color:#000000; font-size: 12px; font-weight: bold; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #000000; font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #000000; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #FFFFFF;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+
+.dashboard-stat {
+  font-weight: 600;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 25px;
+  overflow: hidden;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+  .dashboard-stat:before, .dashboard-stat:after {
+    content: " ";
+    display: table; }
+  .dashboard-stat:after {
+    clear: both; }
+  .portlet .dashboard-stat:last-child {
+    margin-bottom: 0; }
+  .dashboard-stat .visual {
+    width: 80px;
+    height: 80px;
+    display: block;
+    float: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    line-height: 35px; }
+    .dashboard-stat .visual > i {
+      margin-left: -35px;
+      font-size: 110px;
+      line-height: 110px; }
+  .dashboard-stat .details {
+    position: absolute; 
+    right: 15px;
+    padding-right: 15px; }
+    .dashboard-stat .details .number {
+      padding-top: 25px;
+      text-align: right;
+      font-size: 34px;
+      line-height: 36px;
+      letter-spacing: -1px;
+      margin-bottom: 0px;
+      font-weight: 300; }
+  .dashboard-stat.dashboard-stat-v2 .visual {
+    padding-top: 35px;
+    margin-bottom: 40px; }
+
+.dashboard-stat.one {
+  background-color: #4cb9b5; }
+  .dashboard-stat.one .visual > i {
+    color: #FFFFFF;
+    opacity: 0.1;
+    filter: alpha(opacity=10); }
+  .dashboard-stat.one .details .number {
+    color: #FFFFFF; }
+
+.dashboard-stat.two {
+  background-color: #87b94c; }
+  .dashboard-stat.two .visual > i {
+    color: #FFFFFF;
+    opacity: 0.1;
+    filter: alpha(opacity=10); }
+  .dashboard-stat.two .details .number {
+    color: #FFFFFF; }
+
+.dashboard-stat.three {
+  background-color: #e6c200; }
+  .dashboard-stat.three .visual > i {
+    color: #FFFFFF;
+    opacity: 0.1;
+    filter: alpha(opacity=10); }
+  .dashboard-stat.three .details .number {
+    color: #FFFFFF; }
+
+.dashboard-stat.four {
+  background-color: #b94c50; }
+  .dashboard-stat.four .visual > i {
+    color: #FFFFFF;
+    opacity: 0.1;
+    filter: alpha(opacity=10); }
+  .dashboard-stat.four .details .number {
+    color: #FFFFFF; }

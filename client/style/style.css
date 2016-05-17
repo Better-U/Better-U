@@ -346,6 +346,7 @@ div > h2 > span {
 .calcHeader {
     font-size: 15px;
     line-height: 90%;
+    color: white;
 }
 
 .calcNumber {
@@ -648,7 +649,7 @@ div .calculations {
 }
 
 .ct-label {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /*.nutritionDetails {*/
