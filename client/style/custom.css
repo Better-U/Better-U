@@ -285,6 +285,7 @@ h6 {
 
 
 
+
 .datagrid { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #FFFFFF; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FFFFFF), color-stop(1, #FFFFFF) );background:-moz-linear-gradient( center top, #FFFFFF 5%, #FFFFFF 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF');background-color:#FFFFFF; color:#000000; font-size: 12px; font-weight: bold; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #000000; font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #000000; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #FFFFFF;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
 
 .dashboard-stat {
@@ -370,3 +371,31 @@ h6 {
     filter: alpha(opacity=10); }
   .dashboard-stat.four .details .number {
     color: #FFFFFF; }
+.overflower{
+  overflow: scroll;
+}
+.searchHeader{
+  color:white !important;
+  background: #4c87b9 !important;
+}
+.fullChat{
+  position: relative;
+  bottom: 50px;
+}
+
+.displayButton{
+  position: relative;
+  left: 15px;
+   border-radius: 2px;
+    color: white;
+    background-color:#923a3d;
+    box-shadow: 0 3px 3px 0 #5b2426;
+    border: 1px white solid;
+}
+.displayButton:hover{
+  background:#c46e71;
+  color: white;
+}
+.displayChats{
+  z-index: 10;
+}

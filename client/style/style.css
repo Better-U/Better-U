@@ -175,27 +175,41 @@ md-option {
   border-radius: 10px;
 }
 #chattingWith {
-    font-size: 50px;
     font-family: 'Arvo', serif;
     text-align:center;
-    background-color: #0E1615;
-    color: #E8E7DC;
+    background-color: #b94c50;
     width: 100%;
-
+      font-size: 7rem;
+  font-weight: 700;
+   color: rgba(#AB1795, 0.75);
+   mix-blend-mode: multiply;
+  letter-spacing: -1.25rem;
 }
 
-.searchButton{
-  width: 230px;
-  position: relative;
-  right: 13px;
+.sidebar-heading{
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  background-color:#4C87B9;
 }
-#messageForm { padding: 3px; width: 100%; }
-#m { border-radius: 10px; background: #FFF; border: 1px #0A100E solid; padding: 10px; width: 70%; margin-right: .5%; }
-#sendMessage { border-radius: 10px; color: #E8E7DC; background-color:#0A100E; border: 1px #000 solid; padding: 10px; width: 29%;}
-#messages { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: auto;}
-#messages li { background:#E5E3D8; color: #2d343a; padding: 5px 10px; background:white; }
-#messages li:nth-child(even) { background: #AAA; color: black ; }
+#messageForm { position: relative; left: 75px; top: 25px; padding: 3px; width: 80%; }
+#m {   -webkit-box-shadow: 0 3px 3px 0 #a94346; border-radius: 2px;
+box-shadow: 0 3px 3px 0 #a94346; background: #dda8aa; border: 1px #777 solid; padding: 10px; width: 70%; margin-right: .5%; }
+#sendMessage { border-radius: 2px; color: white; background-color:#b94c50; border: 1px #777 solid; padding: 10px; width: 29%;}
+#messages { 
+ height: 400px; 
+   list-style-type: none; margin: 0; 
+   padding: 0; width: 100%;
+    overflow: scroll;}
+#messages li { background:#E5E3D8; opacity: 0.5; color: black; padding: 5px 10px; background:white; }
+#messages li:nth-child(even) { opacity: 0.7; background: #AAA; color: black ; }
 
+/*#imageHolder {
+  opacity: 0.9;
+  background-image: url('../assets/images/riverWalk.jpg');
+   background-color: #b94c50;
+   background-size: cover;
+   background-blend-mode: multiply;
+}*/
 .eachMessage {
     text-align: left;
     word-wrap: break-word;
@@ -358,6 +372,7 @@ div > h2 > span {
     font-size: 15px;
 }
 .entireChat {
+  color:white;
     background-color: white;
     padding-right: 0;
     padding-left: 0;
@@ -468,9 +483,10 @@ td .goalDueDate {
 
 
 .flexor {
+  text-align: center;
   position: relative;
-  left: -150px;
-  width: calc(100% + 265px);
+  right: 15px;
+  width: 100%;
   height: 600px;
   display: flex;
   flex-flow:row wrap;
@@ -480,8 +496,9 @@ td .goalDueDate {
 }
 .xChat {
   position: relative;
-
-  left: 24px;
+  z-index: 20;
+  right: 25px;
+  bottom: 15px;
   width: 50px;
 }
 .searchedUsername {
@@ -489,8 +506,8 @@ td .goalDueDate {
   font-family: 'Arvo', serif;
 }
 .lilProfiles {
-  width: 230px;
-  height: 230px;
+  width: 180px;
+  height: 180px;
 }
 .lilerProfiles {
   width: 25px;
@@ -500,12 +517,11 @@ td .goalDueDate {
   color: #0A100E;
 }
 .locationForm {
-  position: relative;
-  padding: 15px 0px 30px 0px;
+  text-align: center;
+  /*position: relative;*/
   border-radius: 10px;
-  box-shadow: 10px 10px 5px #0E1615;
-  bottom: 30px;
-  background-color: #E8E7DC;
+  /*box-shadow: 10px 10px 5px #0E1615;*/
+  /*bottom: 30px;*/
 }
 .team > div{
     text-align: center;
@@ -529,12 +545,15 @@ td .goalDueDate {
 }
 
 .chatWithButton {
-  background-color: #0A100E;
-  color: #E8E7DC;
+  background-color: #4c87b9;
+  color: white;
+  padding: 10px 20px;
+  -webkit-box-shadow: 0 3px 3px 0 #a94346;
+box-shadow: 0 3px 3px 0 #a94346;
 
 }
 .chatWithButton:hover{
-  background-color: #2C322F;
+  background-color: #5CA3E0;
   color: white;
 }
 .profileCard {
@@ -552,6 +571,7 @@ td .goalDueDate {
   overflow: hidden;
   position: relative;
   right: 25px;
+  padding-bottom: 5px;
 }
 #userAddress {
     width: 50%;
@@ -606,7 +626,7 @@ div .calculations {
     padding: 20px;
     margin: 0 0 10px 0;
     border-radius: 10px;
-    box-shadow: 10px 10px 5px #0E1615
+    box-shadow: 10px 10px 5px #0E1615;
 }
 
 
@@ -632,7 +652,6 @@ div .calculations {
 
 .chatButtons {
   margin-bottom: 5px;
-
 }
 
 .allGraphs {
@@ -642,6 +661,7 @@ div .calculations {
     border-radius: 10px;
     box-shadow: 10px 10px 5px #0E1615
 }
+
 
 .ct-series-a .ct-slice-donut {
     stroke: #0b97c4;

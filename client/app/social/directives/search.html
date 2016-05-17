@@ -1,27 +1,26 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="locationForm portlet">
-      
-      <div class="portlet-header">
-        <h2>Search Users</h2>
+      <div class="portlet-header searchHeader">
+        <h2 class="searchHeader">Search Users</h2>
       </div>
       
       <div class="portlet-content">
-            <form role="form" ng-submit="sendCity()">
-              <input id="userAddress" ng-model="address" class="form-control" placeholder="Enter city or zipcode" />
-              <button type="submit" class="btn btn-default">Search</button>
-            </form>
+	        <form role="form" ng-submit="sendCity()">
+	          <input id="userAddress" ng-model="address" class="form-control" placeholder="Enter city or zipcode" />
+	          <button type="submit" class="chatWithButton btn btn-default">Search</button>
+	        </form>
           <div class="userLocation">Displaying users in: {{savedAddress}}</div>
       </div>
     </div>
-  
   </div>
 </div>
+
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-    <div class="portlet">
-      <div class="portlet-header">
-       <h1>Users</h1>
+    <div class="portlet overflower">
+      <div class="portlet-header searchHeader">
+       <h1 class="searchHeader">Users</h1>
       </div>
       <div class="portlet-content">
         <ul class="flexor noListStyles">
@@ -31,17 +30,17 @@
                 {{user.username}}
               </li>
               <li>
-                <img ng-if="!user.image" class="lilProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
-                <img ng-if="user.image" class="lilProfiles img-rounded" ng-src="{{user.image}}" />
+      	        <img ng-if="!user.image" class="lilProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+      	        <img ng-if="user.image" class="lilProfiles img-rounded" ng-src="{{user.image}}" />
               </li>
               <li>
-                Interested in: {{user.interest}}
+                <strong>Interest:</strong> {{user.interest}}
               </li>
               <li>
-                  Gym: {{user.gym}}
+ 	              <strong>Gym:</strong> {{user.gym}}
               </li>
               <li>
-                <button class="chatWithButton btn btn-default" ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
+      	        <button class="chatWithButton btn btn-default" ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
               </li>
             </ul> 
           </li>

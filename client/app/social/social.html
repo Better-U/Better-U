@@ -2,6 +2,7 @@
     <div class="container">
       <div class="mainbar-collapse collapse">
         <ul class="nav navbar-nav mainbar-nav">
+
           <li>
             <a href="#dashboard">
               <i class="fa fa-dashboard"></i>
@@ -52,19 +53,17 @@
                         <li class="sidebar-brand">
                             <div class="sidebar-title">Chats:</div>
                         </li>
-                        <li ng-repeat="chat in chatList">
+                        <li class="friendList" ng-repeat="chat in chatList">
                             <a ng-click="joinRoom(chat.username)">
                                 <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
                                 <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
                                 <span class="cut-overflow">
-                                    {{chat.username}}!
+                                    {{chat.username}}
                                 </span>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <!-- /#sidebar-wrapper -->
-                
                 <!-- Page Content -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid relative">

@@ -20,7 +20,34 @@ Social.updateAddress = function (username, city) {
   return db('user').where({username: username}).update({city: city})
 }
 Social.getUsersInZip = function (username, city) {
-  return db('user').whereNot({username: username}).andWhere({city: city}).select('username', 'interest', 'gym', 'city', 'image')
+    return new Promise(function (resolve) {
+    db('user').where({username: username}).select('id')
+      .then(function (data) {
+        console.log('inside listchats', data)
+        db('userRooms').where({userID: data[0].id}).select('roomID')
+          .then(function (data1) {
+            var newRay = []
+            for (var i = 0; i < data1.length; i++) {
+              newRay.push(data1[i].roomID)
+            }
+            db('userRooms').whereIn('roomID', newRay).whereNot('userID', data[0].id).select('userID')
+              .then(function (data2) {
+                var tempRay = []
+                for (var j = 0; j < data2.length; j++) {
+                  tempRay.push(data2[j].userID)
+                }
+                db('user').whereNotIn('id', tempRay).andWhere({city: city}).andWhereNot({'username': username}).select('username', 'interest', 'gym', 'city', 'image')
+                  .then(function (data) {
+                    console.log("getUsersinZip called", data)
+                    resolve(data)
+                  })
+              })
+          })
+      })
+  })
+
+
+
 }
 
 Social.makeChatRoom = function (username1, username2) {
