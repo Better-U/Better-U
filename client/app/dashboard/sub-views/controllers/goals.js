@@ -32,13 +32,12 @@ angular.module('myApp.goalsModal', [])
     }
 
     $scope.removeLog = function (id) {
-      console.log('remove log id:', id)
       GoalsFactory.checkBets(id)
         .then(function (data) {
-          console.log('this is dat from remove goal log: ', data.data.data)
           if (data.data.data.length === 0) {
             GoalsFactory.removeLog(id)
               .then(function (data) {
+                console.log('data from remove: ', data)
                 swal('Goal successfully removed!')
                 $state.reload()
               })
