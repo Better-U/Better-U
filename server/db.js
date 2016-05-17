@@ -69,6 +69,8 @@ knex.schema.createTableIfNotExists('bets', function (bets) {
   bets.integer('goals_id').unsigned().references('id').inTable('goals')
   bets.boolean('status').defaultTo(1)
   bets.boolean('result').defaultTo(1)
+  bets.integer('user_pts')
+  bets.integer('bettor_pts')
 }).then(function () {
   console.log('bets table created')
 })
