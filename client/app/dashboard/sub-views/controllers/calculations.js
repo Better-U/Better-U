@@ -38,11 +38,11 @@ angular.module('myApp.calculations', [])
     }
 
     $scope.calorieBurn = function (gender, age, weight, height, activity) {
-      console.log('inside calorie burn formula')
+      // console.log('inside calorie burn formula')
       var numAge = Number(age)
       var numWeight = Number(weight)
       var numHeight = Number(height)
-      console.log('activity: ', activity)
+      // console.log('activity: ', activity)
       var total
       if (gender == 0) {
         var maleBMR = 66.5 + (6.23 * numWeight) + (12.7 * numHeight) - (6.8 * numAge)

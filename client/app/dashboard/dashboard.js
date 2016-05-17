@@ -28,16 +28,14 @@ angular.module('myApp.dashboard', [])
         controller: 'selectGoalCtrl'
       })
     }
-
-
   })
-  .directive('tooltip', function(){
+  .directive('tooltip', function () {
     return {
       restrict: 'A',
-      link: function(scope, element, attrs){
-        $(element).hover(function(){
+      link: function (scope, element, attrs) {
+        $(element).hover(function () {
           $(element).tooltip('show')
-        }, function(){
+        }, function () {
           $(element).tooltip('hide')
         })
       }

@@ -175,14 +175,14 @@ md-option {
   border-radius: 10px;
 }
 #chattingWith {
-    font-family: 'Arvo', serif;
-    text-align:center;
-    background-color: #b94c50;
-    width: 100%;
-      font-size: 7rem;
-  font-weight: 700;
-   color: rgba(#AB1795, 0.75);
-   mix-blend-mode: multiply;
+  font-family: 'Arvo', serif;
+  text-align:center;
+  background-color: #b94c50;
+  width: 100%;
+  font-size: 7rem;
+  font-weight: 500;
+  color: #fff;
+  mix-blend-mode: multiply;
   letter-spacing: -1.25rem;
 }
 
@@ -191,17 +191,36 @@ md-option {
   border-bottom: 2px black solid;
   background-color:#4C87B9;
 }
-#messageForm { position: relative; left: 75px; top: 25px; padding: 3px; width: 80%; }
-#m {   -webkit-box-shadow: 0 3px 3px 0 #a94346; border-radius: 2px;
-box-shadow: 0 3px 3px 0 #a94346; background: #dda8aa; border: 1px #777 solid; padding: 10px; width: 70%; margin-right: .5%; }
-#sendMessage { border-radius: 2px; color: white; background-color:#b94c50; border: 1px #777 solid; padding: 10px; width: 29%;}
+#messageForm { 
+  position: relative; 
+  left: 75px; 
+  top: 25px; 
+  padding: 3px; 
+  width: 80%;
+   }
+#m {   
+  -webkit-box-shadow: 0 3px 3px 0 #a94346; 
+  border-radius: 2px;
+  box-shadow: 0 3px 3px 0 #a94346;
+  background: #dda8aa; border: 1px #777 solid;
+  padding: 10px; 
+  width: 70%; 
+  margin-right: .5%; }
+#sendMessage { 
+  box-shadow: 0 3px 3px 0 #6e2b2d;
+  border-radius: 2px;
+  color: white; background-color:#b94c50; 
+  border: 1px #777 solid; 
+  padding: 10px; 
+  width: 29%;
+}
 #messages { 
- height: 400px; 
-   list-style-type: none; margin: 0; 
-   padding: 0; width: 100%;
-    overflow: scroll;}
-#messages li { background:#E5E3D8; opacity: 0.5; color: black; padding: 5px 10px; background:white; }
-#messages li:nth-child(even) { opacity: 0.7; background: #AAA; color: black ; }
+  height: 400px; 
+  list-style-type: none; margin: 0; 
+  padding: 0; width: 100%;
+  overflow: scroll;}
+  #messages li { background:white; color: black; padding: 5px 10px; }
+  #messages li:nth-child(even) { background: #DDD; color: black ; }
 
 /*#imageHolder {
   opacity: 0.9;
@@ -497,8 +516,8 @@ td .goalDueDate {
 .xChat {
   position: relative;
   z-index: 20;
-  right: 25px;
-  bottom: 15px;
+  top: 37px;
+  right: 15px;
   width: 50px;
 }
 .searchedUsername {
@@ -545,11 +564,11 @@ td .goalDueDate {
 }
 
 .chatWithButton {
-  background-color: #4c87b9;
+  background-color: #4cb97f;
   color: white;
   padding: 10px 20px;
-  -webkit-box-shadow: 0 3px 3px 0 #a94346;
-box-shadow: 0 3px 3px 0 #a94346;
+  -webkit-box-shadow: 0 3px 3px 0 #2b6e4a;
+box-shadow: 0 3px 3px 0 #2b6e4a;
 
 }
 .chatWithButton:hover{
@@ -684,14 +703,14 @@ div .calculations {
 
 .navbar-brand {
   font-family: 'Alegreya Sans SC', sans-serif;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 100;
   margin-top: 7px;
-  color: e9eadf;
+  color: #fff !important;
 }
 
 .navbar-inverse .navbar-brand #betterU {
-  color: e9eadf !important;
+  color: #e9eadf !important;
 }
 
 #logo {
