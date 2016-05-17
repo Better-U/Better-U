@@ -26,6 +26,7 @@ router.post('/nutrition', function (req, res) {
 
 router.get('/nutrition', function (req, res) {
   var user = req.query.username
+  console.log('this is user in get nutrition: ', user)
   User.findUser(user)
     .then(function (data) {
       console.log('get Nutrition data =', data)
