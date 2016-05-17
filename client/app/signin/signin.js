@@ -7,15 +7,12 @@ angular.module('myApp.signin', [])
     $scope.goSignup = function () {
       $state.go('signup')
     }
-
-    $scope.user = {
-      name: null,
-      password: null
-    }
+    //
+    // $scope.user = {
+    //   name: null,
+    //   password: null
+    // }
     $scope.signin = function () {
-      if ($scope.user.name === null || $scope.user.password === null) {
-        $scope.noInput = true
-      } else {
         AuthFactory.signIn($scope.user.name, $scope.user.password)
           .then(function (data) {
             console.log(data.data.success)
@@ -34,7 +31,6 @@ angular.module('myApp.signin', [])
                 })
             }
           })
-      }
     }
 
     $scope.signup = function () {

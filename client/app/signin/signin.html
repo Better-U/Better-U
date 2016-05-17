@@ -4,10 +4,10 @@
   <div class="form-group">
     <div ng-if="userDoesNotExist">Username/Password incorrect!</div>
     <div ng-if="noInput">Please input username and password</div>
-  <form name='login_form' class="form-inline" ng-submit='signin()'>
-    <input type='text' ng-model='user.name' class="form-control" placeholder='username'>
-    <input type="password" ng-model='user.password' class="form-control" placeholder='password'>
-    <input type="submit" class="btn btn-default">
+  <form name='loginForm' class="form-inline" ng-submit='signin()'>
+    <input type='text' ng-model='user.name' class="form-control" placeholder='username' required>
+    <input type="password" ng-model='user.password' class="form-control" placeholder='password' required>
+    <input type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid">
   </form>
     </div>
 </div>

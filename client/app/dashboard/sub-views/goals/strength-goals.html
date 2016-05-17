@@ -2,17 +2,17 @@
     <div class="strengthHeader">
         <h2>Strength Exercise Goal</h2>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" name="strengthGoal" ng-submit="submitStrength(strength.date, strength.intensity, strength.category, strength.value, strength.measurement, strength.points)">
         <div class="form-group">
-            <label for="date" class="col-sm-4 control-label">Complete By:</label>
-            <div class="col-sm-4">
+            <label for="date" class="col-sm-4 control-label">*Complete By</label>
+            <div class="col-sm-8">
                 <input class="form-control" id="date" type="date" min="2014-01-01" max="2020-12-31" ng-model="strength.date" placeholder="date" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="intensity" class="col-sm-4 control-label">Change:</label>
-            <div class="col-sm-4">
+            <label for="intensity" class="col-sm-4 control-label">*Change</label>
+            <div class="col-sm-8">
                 <select name="intensity" id="intensity" ng-model='strength.intensity'>
                     <option value="" selected disabled>Increase/Decrease</option>
                     <option value="Increase">Increase</option>
@@ -22,8 +22,8 @@
         </div>
 
         <div class="form-group">
-            <label for="category" class="col-sm-4 control-label">Exercise Type:</label>
-            <div class="col-sm-4">
+            <label for="category" class="col-sm-4 control-label">*Exercise Type</label>
+            <div class="col-sm-8">
                 <select name="strength" id="category" ng-model='strength.category'>
                     <option value="" selected disabled>Strength Exercise</option>
                     <option value="Benching">Benching</option>
@@ -38,15 +38,15 @@
         </div>
 
         <div class="form-group">
-            <label for="value" class="col-sm-4 control-label">By:</label>
-            <div class="col-sm-4">
+            <label for="value" class="col-sm-4 control-label">*By</label>
+            <div class="col-sm-8">
                 <input type="number" id="value" ng-model='strength.value' class="form-control">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="measurement" class="col-sm-4 control-label">Measurement:</label>
-            <div class="col-sm-4">
+            <label for="measurement" class="col-sm-4 control-label">*Measurement</label>
+            <div class="col-sm-8">
                 <select name="measurement" id="measurement" ng-model='strength.measurement'>
                     <option value="" selected disabled>Select Measurement</option>
                     <option value="Pounds">Pounds</option>
@@ -58,16 +58,17 @@
         </div>
 
         <div class="form-group">
-            <label for="value" class="col-sm-4 control-label">Bet Points:</label>
-            <div class="col-sm-4">
-                <input type="number" id="value" ng-model='strength.points' class="form-control" required>
+            <label for="value" class="col-sm-4 control-label">*Bet Points</label>
+            <div class="col-sm-8">
+                <input type="number" id="value" min="1" max="1000" ng-model='strength.points' class="form-control" required>
+                <span>Please pick a number between 1 - 1000</span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button class="btn btn-primary" type="submit" ng-click="submitStrength(strength.date, strength.intensity, strength.category, strength.value, strength.measurement, strength.points)">Create Goal!</button>
-                <button type="button" ng-click="$close()" class="btn default">Cancel</button>
+                <input class="btn btn-primary" type="submit" ng-disabled="strengthGoal.$invalid">
+                <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
             </div>
         </div>
 

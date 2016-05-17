@@ -1,6 +1,6 @@
 #searchResults {
   height: 300px;
-  width: 438px;
+  width: 454px;
   overflow: auto;
   border-radius: 0 0 4px 4px;
   background-color: rgba(170, 170, 170, 0.50);
@@ -10,7 +10,7 @@
 .space { margin-top: 5px; }
 
 #searchBox {
-  width: 438px;
+  width: 454px;
   border-radius: 4px 4px 0 0;
 }
 
@@ -76,6 +76,7 @@
 }
 
 #nutritionContainer {
+  margin-top: 20px;
   margin-left: 30px;
 }
 
@@ -149,7 +150,7 @@
 
 body {
     padding-top: 50px;
-    font-family: 'Bariol Light', sans-serif;
+    font-family: 'Hind', sans-serif;
 }
 
 md-select {
@@ -568,7 +569,7 @@ td .goalDueDate {
 }
 
 .landingFooter {
-    background-color: #e9e9e6
+    background-color: #ddd;
 }
 
 #landingTop {
