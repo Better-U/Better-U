@@ -378,6 +378,24 @@ h6 {
   color:white !important;
   background: #4c87b9 !important;
 }
+.fullChat{
+  position: relative;
+  bottom: 50px;
+}
 
-
-
+.displayButton{
+  position: relative;
+  left: 15px;
+   border-radius: 2px;
+    color: white;
+    background-color:#923a3d;
+    box-shadow: 0 3px 3px 0 #5b2426;
+    border: 1px white solid;
+}
+.displayButton:hover{
+  background:#c46e71;
+  color: white;
+}
+.displayChats{
+  z-index: 10;
+}

@@ -1,7 +1,7 @@
 
-<div class="row chatButtons">
-<div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
-<button ng-click="displayChats()" class="btn btn-default">Show  your chats</button>
+<div class="row">
+<div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 displayChats">
+<button ng-click="displayChats()" class="displayButton btn btn-default">Show  your chats</button>
 </div>
 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
 <span ng-click="searching()" class="xChat btn glyphicon glyphicon-remove"></span>
@@ -10,9 +10,9 @@
 
 <div class="row">
 <div class="col-md-12 col-lg-12">
-<div class="portlet">
+<div class="portlet fullChat">
 <div id="chattingWith" class="chattingWith portlet-header">{{chattingWith}}</div>
-<div class="portlet-content">
+<div id="imageHolder" class="portlet-content">
  
   <ul scroll-glue id="messages" >
  	<li class="eachMessage" ng-repeat="messager in messages track by $index"><strong>{{messager.username}}:</strong> {{messager.message}}</li>
@@ -22,7 +22,7 @@
 </div>
 <div class="portlet-content">
  <form class="col-lg-12 col-md-12" id="messageForm" ng-submit="sendMessage()">
-    <input id="m" autocomplete="off" ng-model="message" required /><button class="chatWithButton">Send</button>
+    <input id="m" autocomplete="off" ng-model="message" required /><button id="sendMessage" class="chatWithButton">Send</button>
 
   </form>
   </div>
