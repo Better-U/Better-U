@@ -13,8 +13,18 @@ angular.module('myApp.cardio', ['factories'])
 
     $scope.cardioData = null
 
+    $scope.shortenDate = function (date) {
+      // console.log('date inside shortenDate', date)
+      var dateArr = date.split("")
+      // console.log('date after split: ', dateArr)
+      return dateArr.splice(0, 10).join("")
+    }
+
     $scope.cardioList = function () {
       cardioFactory.getCardio(user).then(function (data) {
+        // data.data.forEach(function (item) {
+        //   item.date = item.date.slice(0, 10)
+        // })
         console.log('cardioList data =', data)
         $scope.cardioData = data.data
       })

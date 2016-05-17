@@ -1,13 +1,13 @@
 <div class="container" id="nutritionContainer" ng-controller='NutritionModalCtrl'>
-  
     <h1>Nutrition Log</h1>
 
+    <!-- API Search Input -->
     <form name='searchNutrition' method='post'>
       <div class="col-sm-6">
         <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-wait-ms='100'>
-        <!-- <input type='submit' id='logSubmit' class="btn btn-primary btn-sm"> -->
         <div ng-if='asyncSelected.length > 0' id='searchResults'>
           <div class="searchContainer" id='{{i}}' ng-repeat='(index,item) in results track by $index' ng-click='getNutrition(item._id)' ng-class='{red:hover}' class='font' ng-mouseenter="hover=true" ng-mouseleave="hover=false">
+          <!-- Search Results -->
             <span id='rowColor'>
               <div id='brandName'> {{item.fields.brand_name}} </div>
               <div id='itemName'> {{item.fields.item_name}} </div>
@@ -18,6 +18,8 @@
         <br>
      </div>
     </form>
+
+    <!-- Nutrition Log -->
     <form class='form-inline' name='nutritionLog' method='post' ng-submit="submitFoodLog()" style='width:768px'>
 
       <div class="form-group space">
@@ -118,14 +120,14 @@
       </div>
       <br>
       <br>
-      <!--<div align='middle' class="form-actions">-->
+          <!-- Submit/Cancel Buttons -->
             <div class="row">
                 <div class="col-md-5">
                     <input type="submit"  class="btn btn-primary" ng-disabled="nutritionLog.$invalid">
                     <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
                 </div>
             </div>
-        <!--</div>-->
     </form>
+<!-- API Source -->
 <img align='middle' id='nutritionix' src="https://d3jpl91pxevbkh.cloudfront.net/nutritionix/image/upload/v1363458498/attribution_jqfdgy.png" border="0">
 </div>

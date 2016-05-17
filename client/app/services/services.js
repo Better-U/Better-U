@@ -12,7 +12,6 @@ angular.module('factories', [])
         pace: pace,
         intensity: intensity
       }
-      console.log('cardio Form inside cardio factory =', cardioForm)
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
 

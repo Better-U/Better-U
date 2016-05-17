@@ -191,9 +191,17 @@ h6 {
   border-bottom-left-radius: 0;
 }
 .navbar .navbar-nav > li > a {
-  color: #999999;
-  font-size: 13px;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
 }
+.navbar .navbar-nav > li > a:hover {
+  color: #b2d6f5;
+  font-size: 14px;
+  font-family: 'Montserrat';
+}
+
 .portlet {
   position: relative;
   clear: both;

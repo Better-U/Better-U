@@ -72,7 +72,7 @@
               <th style="border-bottom: 2px solid #ddd">Intensity (1 - 5)</th>
             </tr>
             <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
-              <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
+              <td>{{shortenDate(cardio.date)}}</td>
               <td>{{cardio.time}}</td>
               <td>{{cardio.type}}</td>
               <td>{{cardio.distance}}</td>
