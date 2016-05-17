@@ -14,15 +14,13 @@ bet.fetchBets = function (id) {
   return db.raw(fetchBet, [id])
 }
 
-bet.getUsername = function (id) {
-  return db.select('username').from('user').where({'id': id})
-}
-
-bet.addBets = function (id, bet_id, goals_id) {
+bet.addBets = function (id, bet_id, goals_id, user_pts, bettor_pts) {
   var betObj = {
     user_id: id,
     bettor_id: bet_id,
-    goals_id: goals_id
+    goals_id: goals_id,
+    user_pts: user_pts,
+    bettor_pts: bettor_pts
   }
   return db.insert(betObj).into('bets')
 }
@@ -38,6 +36,11 @@ bet.placedBets = function (id) {
 bet.searchBets = function (goals_id, id) {
   var checkBet = 'SELECT * FROM bets WHERE goals_id = ? AND bettor_id = ?'
   return db.raw(checkBet, [goals_id, id])
+}
+
+bet.getUserPoints = function (id) {
+  var getPoints = 'SELECT totalpts FROM user WHERE id = ?'
+  return db.raw(getPoints, [id])
 }
 
 module.exports = bet
