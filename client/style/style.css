@@ -662,14 +662,15 @@ div .calculations {
 }
 
 .navbar-brand {
-  font-family: 'Arimo';
+  font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 32px;
   font-weight: 100;
   margin-top: 7px;
+  color: e9eadf;
 }
 
-.navbar-brand .navbar-inverse #betterU {
-  font-color: #f0f1e9 !important
+.navbar-inverse .navbar-brand #betterU {
+  color: e9eadf !important;
 }
 
 #logo {
