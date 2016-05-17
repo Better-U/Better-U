@@ -23,7 +23,7 @@
       <div class="form-group space">
         <label class="col-md-1 control-label" for="foodName">*Type</label>
         <div class="col-md-5">
-          <input id="foodName" type="text" class="form-control" id="foodInput" ng-model='log.name' value='{{ log.name }}'>
+          <input id="foodName" type="text" class="form-control" ng-model='log.name' value='{{ log.name }}'>
         </div>
       </div>
 
@@ -42,63 +42,63 @@
       <div class="form-group space">
         <label class="col-md-1 control-label" for="servingSize">*Serving Size</label>
         <div class="col-md-5">
-          <input id="servingSize"type="number" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.serving" value='{{ log.serving }}'>
+          <input id="servingSize"type="number" step="any" class="form-control" min="0" name='foodServing' ng-model="log.serving" value='{{ log.serving }}'>
           </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label" for="servingSizeUnit">*Serving Size Unit</label>
         <div class="col-md-5">
-          <input id="servingSizeUnit" type="string" class="form-control" min="0" name='foodServing' id="foodServing" ng-model="log.size" value='{{ log.size }}'>
+          <input id="servingSizeUnit" type="string" class="form-control" name='foodServingUnit' ng-model="log.size" value='{{ log.size }}'>
           </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label" for="cal">*Calories</label>
         <div class="col-md-5">
-          <input type="number" min="0" class="form-control" id="cal" ng-model="log.cal" value='{{ log.cal }}'>
+          <input type="number" min="0" step="any" class="form-control" id="cal" ng-model="log.cal" value='{{ log.cal }}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Fat (g)</label>
         <div class="col-md-5">
-          <input type="number" class="form-control" min="0" ng-model='log.fat' name='foodFat' id='foodFat' maxlength='4' value='{{ log.fat }}'>
+          <input type="number" class="form-control" step="any" min="0" ng-model='log.fat' name='foodFat' id='foodFat' value='{{ log.fat }}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Fiber (g)</label>
         <div class="col-md-5">
-          <input type="number" class="form-control" min="0" ng-model='log.fiber' name='foodFiber' id='foodFiber' maxlength='4' value='{{ log.fiber}}'>
+          <input type="number" class="form-control" min="0" step="any" ng-model='log.fiber' name='foodFiber' id='foodFiber' value='{{ log.fiber}}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Carbs (g)</label>
         <div class="col-md-5">
-          <input class="form-control" type="number" min="0" ng-model='log.carbs' name='foodCarb' id='foodCarb' maxlength='4' value='{{ log.carbs }}'>
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.carbs' name='foodCarb' id='foodCarb' value='{{ log.carbs }}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Sodium (mg)</label>
         <div class="col-md-5">
-          <input class="form-control" type="number" min="0" ng-model='log.sodium' name='foodSalt' id='foodSalt' maxlength='5' value='{{ log.sodium }}'>
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.sodium' name='foodSalt' id='foodSalt' value='{{ log.sodium }}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Protein (g)</label>
         <div class="col-md-5">
-          <input class="form-control" type="number" min="0" ng-model='log.protein' name='foodProtein' id='foodProtein' maxlength='4' value='{{ log.protein }}'>
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.protein' name='foodProtein' id='foodProtein' value='{{ log.protein }}'>
         </div>
       </div>
 
       <div class="form-group space">
         <label class="col-md-1 control-label">*Water (cups)</label>
         <div class="col-md-5">
-          <input class="form-control" type="number" min="0" ng-model='log.water' name='water' id='water' maxlength='4'>
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.water' name='water' id='water'>
         </div>
       </div>
 
