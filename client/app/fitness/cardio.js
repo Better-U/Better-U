@@ -20,9 +20,10 @@ angular.module('myApp.cardio', ['factories'])
       })
     }
 
-    $(function () {
-      $("[data-toggle='tooltip']").tooltip()
-    })
+    $scope.init = function () {
+      $scope.cardioList()
+    }
 
-    $scope.cardioList()
+    $scope.init()
+
   })

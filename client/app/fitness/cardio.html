@@ -57,19 +57,19 @@
   <div class="content">
     <div class="content-container">
       <div>
-        <!--<h4 class="heading-inline">Welcome {{username}}</h4>-->
         <div style="width: 100%; background-color: inherit; border: none">
           <h1>Cardio Weekly Progress</h1>
           <button class="btn btn-primary" ng-click="inputCardio()">Log Daily Workout</button><br>
           <br>
           <table class="datagrid table">
             <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Activity</th>
-              <th>Distance (miles)</th>
-              <th>Duration (minutes)</th>
-              <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
+              <th style="border-bottom: 2px solid #ddd">Date</th>
+              <th style="border-bottom: 2px solid #ddd">Time</th>
+              <th style="border-bottom: 2px solid #ddd">Activity</th>
+              <th style="border-bottom: 2px solid #ddd">Distance (miles)</th>
+              <th style="border-bottom: 2px solid #ddd">Duration (minutes)</th>
+              <th style="border-bottom: 2px solid #ddd" title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip' tooltip>Pace (mpm)</th>
+              <th style="border-bottom: 2px solid #ddd">Intensity (1 - 5)</th>
             </tr>
             <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
               <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
@@ -78,6 +78,7 @@
               <td>{{cardio.distance}}</td>
               <td>{{cardio.duration}}</td>
               <td>{{cardio.pace}}</td>
+              <td>{{cardio.intensity}}</td>
             </tr>
           </table>
         </div>

@@ -2,12 +2,12 @@
   <h1>Log a Cardio Session</h1>  
   <div class="form">
 
-    <form class="form-horizontal" role="form">
+    <form name="cardioLog" class="form-horizontal" role="form"  ng-submit="submitCardio()">
       <div class="form-body">
 
         <!-- Date Group -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Date</label>
+          <label class="col-md-3 control-label">*Date</label>
             <div class="col-md-7">
               <div class="input-group">
                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required>
@@ -20,7 +20,7 @@
 
         <!-- Time -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Time</label>
+          <label class="col-md-3 control-label">*Time</label>
           <div class="col-md-7">
             <input uib-timepicker ng-model='time' readonly-input='true' required>
           </div>
@@ -28,7 +28,7 @@
 
         <!-- Activity Form Multilist-->
         <div class="form-group">
-          <label class="col-md-3 control-label">Activity</label>
+          <label class="col-md-3 control-label">*Activity</label>
           <div class="col-md-7">
             <select multiple class="form-control" ng-model="type" required>
               <option value="Running">Running</option>
@@ -44,7 +44,7 @@
 
         <!-- Distance Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Distance (Miles)</label>
+          <label class="col-md-3 control-label">*Distance (Miles)</label>
           <div class="col-md-7">
             <input type="number" min="1" max="9000" class="form-control" placeholder="Miles" ng-model="distance" required>
           </div>
@@ -61,7 +61,7 @@
 
         <!-- Duration Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Duration (Minutes)</label>
+          <label class="col-md-3 control-label">*Duration (Minutes)</label>
           <div class="col-md-7">
             <input type="number" min="1" max="5000" class="form-control" placeholder="Minutes" ng-model="duration" required>
           </div>
@@ -77,38 +77,27 @@
 
         <!-- Intensity Radio Select -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Intensity</label>
-          <div class="col-md-7">
-            <div class="mt-radio-list">
-              <label>
-                <input type="radio" ng-model="intensity" value="1"> 1
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="intensity" value="2"> 2
-                <span></span>
-              </label>
-              <label >
-                <input type="radio" ng-model="intensity" value="3"> 3
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="intensity" value="4"> 4
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="intensity" value="5" checked> 5
-                <span></span>
-              </label>
-            </div>
-          </div>
+
+          <label class="col-md-3 control-label">*Intensity</label>
+          <!--<div class="col-md-7">-->
+            <!--<div class="mt-radio-list">-->
+              <div class="col-md-7">
+
+                <input type="radio" ng-model="intensity" value="1" ng-required="!intensity"> 1
+                <input type="radio" ng-model="intensity" value="2" ng-required="!intensity"> 2
+                <input type="radio" ng-model="intensity" value="3" ng-required="!intensity"> 3
+                <input type="radio" ng-model="intensity" value="4" ng-required="!intensity"> 4
+                <input type="radio" ng-model="intensity" value="5" ng-required="!intensity"> 5
+              </div>
+            <!--</div>-->
+
         </div>
 
         <!-- Submit/Cancel Button -->
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-7">
-                    <button type="submit" ng-click="submitCardio()" class="btn btn-primary">Submit</button>
+                    <input type="submit" class="btn btn-primary" ng-disabled="cardioLog.$invalid">
                     <button type="button" ng-click="$close()" class="btn default">Cancel</button>
                 </div>
             </div>

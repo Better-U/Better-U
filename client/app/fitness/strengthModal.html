@@ -1,14 +1,14 @@
 <div class="strengthForm">
-  <h1>Add a Strength Session</h1>  
+  <h1>Log a Strength Session</h1>
   <div class="form">
 
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" name="strengthLog" ng-submit="submitStrength()">
       <div class="form-body">
 
         <!-- Date Group -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Date</label>
-            <div class="col-md-6">
+          <label class="col-md-3 control-label">*Date</label>
+            <div class="col-md-7">
               <div class="input-group">
                 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                 <span class="input-group-btn">
@@ -20,8 +20,8 @@
 
         <!-- Activity Form Multilist-->
         <div class="form-group">
-          <label class="col-md-3 control-label">Activity</label>
-          <div class="col-md-6">
+          <label class="col-md-3 control-label">*Activity</label>
+          <div class="col-md-7">
             <select multiple class="form-control" ng-model="str.type" required>
 
               <option value="Bench">Bench</option>
@@ -38,8 +38,8 @@
 
         <!-- Weight Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Weight</label>
-          <div class="col-md-6">
+          <label class="col-md-3 control-label">*Weight</label>
+          <div class="col-md-7">
             <input type="number" min="1" max="600" class="form-control" placeholder="Pounds" ng-model="str.weight" required>
 
           </div>
@@ -47,8 +47,8 @@
 
         <!-- Reps Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Reps</label>
-          <div class="col-md-6">
+          <label class="col-md-3 control-label">*Reps</label>
+          <div class="col-md-7">
             <input type="number" min="1" max="50" class="form-control" placeholder="Number of Reps" ng-model="str.reps" required>
 
           </div>
@@ -56,54 +56,38 @@
 
         <!-- Sets Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Sets</label>
-          <div class="col-md-6">
+          <label class="col-md-3 control-label">*Sets</label>
+          <div class="col-md-7">
             <input type="number" min="1" max="100" class="form-control" placeholder="Number of Sets" ng-model="str.sets" required>
           </div>
         </div>
 
         <!--Duration Input Box -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Duration</label>
-          <div class="col-md-6">
+          <label class="col-md-3 control-label">*Duration</label>
+          <div class="col-md-7">
               <input type="number" min="1" max="500" class="form-control" placeholder="Minutes" ng-model="str.duration" required>
           </div>
         </div>
 
         <!-- Intensity Radio Select -->
         <div class="form-group">
-          <label class="col-md-3 control-label">Intensity</label>
-          <div class="col-md-7">
-            <div class="mt-radio-list">
-              <label>
-                <input type="radio" ng-model="str.intensity" value="1"> 1
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="str.intensity" value="2"> 2
-                <span></span>
-              </label>
-              <label >
-                <input type="radio" ng-model="str.intensity" value="3"> 3
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="str.intensity" value="4"> 4
-                <span></span>
-              </label>
-              <label>
-                <input type="radio" ng-model="str.intensity" value="5" checked> 5
-                <span></span>
-              </label>
+          <label class="col-md-3 control-label">*Intensity</label>
+            <div class="col-md-7">
+                <input type="radio" ng-model="str.intensity" value="1" ng-required="!str.intensity"> 1
+                <input type="radio" ng-model="str.intensity" value="2" ng-required="!str.intensity"> 2
+                <input type="radio" ng-model="str.intensity" value="3" ng-required="!str.intensity"> 3
+                <input type="radio" ng-model="str.intensity" value="4" ng-required="!str.intensity"> 4
+                <input type="radio" ng-model="str.intensity" value="5" ng-required="!str.intensity"> 5
             </div>
-          </div>
+
         </div>
 
         <!-- Submit/Cancel Button -->
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-7">
-                    <button type="submit" ng-click="submitStrength()" class="btn btn-primary">Submit</button>
+                    <input type="submit"  class="btn btn-primary" ng-disabled="strengthLog.$invalid">
                     <button type="button" ng-click="$close()" class="btn default">Cancel</button>
                 </div>
             </div>

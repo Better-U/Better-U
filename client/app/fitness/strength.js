@@ -1,8 +1,8 @@
-angular.module('myApp.strength', ['factories'])
+angular.module('myApp.strength', [])
   .controller('StrengthCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal) {
     $scope.animationsEnabled = true
     $scope.user = $cookies.get('username')
-    $scope.strengthList
+    $scope.strengthList = []
 
     // Strength submission modal
     $scope.inputStrength = function () {
@@ -19,16 +19,16 @@ angular.module('myApp.strength', ['factories'])
     }
 
     // Getting profile information and then calling fetchLog
-    const getStrengthProfile = function () {
+    $scope.getStrengthProfile = function () {
       StrengthFactory.getStrength($scope.user)
         .then(function (data) {
           $scope.strengthList = data.data
         })
     }
 
-    getStrengthProfile()
+    $scope.init = function () {
+      $scope.getStrengthProfile()
+    }
 
-    $(function () {
-      $("[data-toggle='tooltip']").tooltip()
-    })
+    $scope.init()
   })
