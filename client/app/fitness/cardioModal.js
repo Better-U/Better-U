@@ -60,7 +60,7 @@ angular.module('myApp.cardioModal', ['factories'])
 
       s = s < 10 ? '0' + s : s
 
-      /* if you want 2 digit hours: */
+      // if you want 2 digit hours:
       h = h < 10 ? '0' + h : h
 
       return (h + ':' + m + ' ' + dd)
