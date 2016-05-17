@@ -109,34 +109,27 @@ angular.module('myApp.strengthGraphs', [])
 
     $scope.createStrengthCharts = function () {
       var options = {
-        width: 500,
-        height: 250,
+        width: 600,
+        height: 300,
         labelInterpolationFnc: function (value) {
           return value
         }
       }
 
-      var responsiveOptions = [
-        ['screen and (min-width: 640px)', {
-          chartPadding: 30,
-          labelOffset: 100,
-          labelDirection: 'explode',
-          labelInterpolationFnc: function (value) {
-            return value
-          }
-        }],
-        ['screen and (min-width: 1024px)', {
-          labelOffset: 80,
-          chartPadding: 20
-        }]
-      ]
+      var options2 = {
+        width: 290,
+        height: 240,
+        labelInterpolationFnc: function (value) {
+          return value
+        }
+      }
 
       console.log('$scope c1 data before render: ', $scope.c1_data.labels)
       new Chartist.Bar('#str-chart-1', {
         labels: $scope.c1_data.labels,
         series: $scope.c1_data.series
       }, options)
-      new Chartist.Pie('#str-chart-2', $scope.c2_data, responsiveOptions)
+      new Chartist.Pie('#str-chart-2', $scope.c2_data, options2)
     }
 
     $scope.init = function () {

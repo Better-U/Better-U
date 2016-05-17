@@ -56,68 +56,96 @@
     </div> -->
 
 <div class="row">
-<div class="col-sm-6 col-md-3">
-  <div class="row-stat">
-    <p class="row-stat-label">
-        <span class="calcHeader">
+
+<div class="col-md-3 col-sm-6">
+    <div class="dashboard-stat dashboard-stat-v2 blue">
+        <div class="visual">
+            <i class="fa fa-square-o"></i>
+        </div>
+        <div class="details">
+            <span class="calcHeader">
             <span title='A weight-to-height ratio, calculated by dividing weight by the square of your height. Used as an indicator of obesity and underweight.' data-toggle='tooltip' data-placement='top' tooltip>
+            <h4>      
             Body Mass Index
+            </h4>
             </span>
         </span>
-    </p>
-    <h3 class="row-stat-value">            
-    <span class="calcNumber">
-        {{userBMI(userData.height, userData.weight)}}
-    </span></h3>
-    <h3 class="row-stat-value">
-  </div>
+            <div class="number">
+                <span class="calcNumber">
+                    {{userBMI(userData.height, userData.weight)}}
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="col-sm-6 col-md-3">
-  <div class="row-stat">
-    <p class="row-stat-label">
-        <span class="calcHeader">
-            <span title='A measurement of the number of calories needed to perform the most basic (basal) functions, like breathing, circulation and cell production.' data-toggle='tooltip' data-placement='top' tooltip>
-            Basal Metabolic Rate
+<div class="col-md-3 col-sm-6">
+    <div class="dashboard-stat dashboard-stat-v2 blue">
+        <div class="visual">
+            <i class="fa fa-arrows"></i>
+        </div>
+        <div class="details">
+            <span class="calcHeader">
+                <span title='A measurement of the number of calories needed to perform the most basic (basal) functions, like breathing, circulation and cell production.' data-toggle='tooltip' data-placement='top' tooltip>
+                    <h4>
+                        Basal Metabolic rate
+                    </h4>
+                </span>
             </span>
-            <br>
-        </span>
-    </p>
-    <h3 class="row-stat-value">
-        <span class="calcNumber">
-            {{userBMR(userData.gender, userData.age, userData.weight, userData.height)}}
-        </span>
-    </h3>
-  </div>
+            <div class="number">
+                <span class="calcNumber">
+                    {{userBMR(userData.gender, userData.age, userData.weight, userData.height)}}
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="col-sm-6 col-md-3">
-  <div class="row-stat">
-    <p class="row-stat-label">
-        <span class="calcHeader">
+<div class="col-md-3 col-sm-6">
+    <div class="dashboard-stat dashboard-stat-v2 blue">
+        <div class="visual">
+            <i class="fa fa-certificate"></i>
+        </div>
+        <div class="details">
+            <span class="calcHeader">
             <span title='The BMR value multiplied by a number that corresponds to your activity level.  
             Based on the Harris Benedict Method' data-toggle='tooltip' data-placement='top' tooltip>
-            Calorie Burn
+                <h4>
+                    Calorie Burn
+                </h4>
             </span>
         </span>
-    </p>
-    <h3 class="row-stat-value">            
-    <span class="calcNumber">
-        {{calorieBurn(userData.gender, userData.age, userData.weight, userData.height, userData.activitylvl)}}
-
-    </span></h3>
-  </div> 
+            <div class="number">
+                <span class="calcNumber">
+                    {{calorieBurn(userData.gender, userData.age, userData.weight, userData.height, userData.activitylvl)}}
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="col-sm-6 col-md-3">
-  <div class="row-stat">
-    <p class="row-stat-label"><span class="calcHeader"> <span title='Your points value.  Set a goal and watch this number grow!' data-toggle='tooltip' data-placement='top' tooltip>
-            Points Earned
-            </span></span></p>
-    <h3 class="row-stat-value">
-    <span class="calcNumber">
-      {{userData.totalpts}}
-    </span></h3>
-  </div>
+
+<div class="col-md-3 col-sm-6">
+    <div class="dashboard-stat dashboard-stat-v2 blue">
+        <div class="visual">
+            <i class="fa fa-bold"></i>
+        </div>
+        <div class="details">
+            <span class="calcHeader">
+                <span title='Your points value.  Set a goal and watch this number grow' data-toggle='tooltip' data-placement='top' tooltip>
+                    <h4>
+                        Points Earned
+                    </h4>
+                </span>
+            </span>
+        </span>
+            <div class="number">
+                <span class="calcNumber">
+                    {{userData.totalpts}}
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
+
 </div> 

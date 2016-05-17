@@ -19,7 +19,6 @@ angular.module('myApp.dashboard', [])
       $cookies.remove('username')
       console.log('token after remove: ', $cookies.get('token'))
       $state.go('landing')
-
     }
 
     $scope.inputGoal = function () {
@@ -29,6 +28,7 @@ angular.module('myApp.dashboard', [])
         controller: 'selectGoalCtrl'
       })
     }
+
 
   })
   .directive('tooltip', function(){

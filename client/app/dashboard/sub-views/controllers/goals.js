@@ -5,7 +5,7 @@ angular.module('myApp.goalsModal', [])
     // $scope.added = false
     // $scope.disabled = false
     $scope.userData = []
-    
+
     $scope.inputGoal = function () {
       $uibModal.open({
         animation: $scope.animationsEnabled,
@@ -46,7 +46,6 @@ angular.module('myApp.goalsModal', [])
           }
         })
     }
-
 
     $scope.dateConverter = function (dateStr) {
       var date = new Date(dateStr)

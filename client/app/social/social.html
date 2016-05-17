@@ -1,43 +1,81 @@
- <div class="container">
- 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-
-    <div id="wrapper" ng-class="wrapperToggler">
-
-        <!-- Sidebar -->
-
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a ng-show="searchPage" class="searchButton" ng-click="searching()">
-Search workout partners!
-</a></li>
-
-                <li class="sidebar-brand">
-                <div class="sidebar-title">Chats:</div>
-                </li>
-                <li ng-repeat="chat in chatList">
-                  <a ng-click="joinRoom(chat.username)">
-                            <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
-        <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
-
-                    <span class="cut-overflow">
-                     {{chat.username}}!
-                    </span>
-                  </a>
-                </li>
-            </ul>
-        </div>`
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid relative">
-                  <chat ng-show="searchPage"></chat>
-                  <search ng-hide="searchPage"></search>
+ <div class="mainbar">
+    <div class="container">
+      <div class="mainbar-collapse collapse">
+        <ul class="nav navbar-nav mainbar-nav">
+          <li>
+            <a href="#dashboard">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#cardio">
+              <i class="fa fa-bicycle"></i>
+              &nbsp;&nbsp;Cardio&nbsp;&nbsp;
+            </a>
+          </li>
+          <li>
+            <a href="#strength">
+              <i class="fa fa-male"></i> 
+              Strength
+            </a>
+          </li>
+          <li>
+            <a href="#nutrition">
+              <i class="fa fa-cutlery"></i>
+              Nutrition
+            </a>
+          </li>  
+          <li>
+            <a href="#social">
+              <i class="fa fa-users"></i>
+              Socialize
+            </a>
+          </li>  
+          <li>
+            <a href="#bet">
+              <i class="fa fa-bold"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+          </li>
+        </ul>
+      </div>
+   </div> 
+</div>
+<div class="container">
+    <div class="content">
+        <div class='content-container'>
+           <div id="wrapper" ng-class="wrapperToggler">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <div class="sidebar-title">Chats:</div>
+                        </li>
+                        <li ng-repeat="chat in chatList">
+                            <a ng-click="joinRoom(chat.username)">
+                                <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+                                <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
+                                <span class="cut-overflow">
+                                    {{chat.username}}!
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+                
+                <!-- Page Content -->
+                <div id="page-content-wrapper">
+                    <div class="container-fluid relative">
+                          <chat ng-show="searchPage"></chat>
+                          <search ng-hide="searchPage"></search>
+                    </div>
+                </div>
             </div>
+        <!-- /#page-content-wrapper -->
         </div>
     </div>
-        <!-- /#page-content-wrapper -->
-
 </div>
 <!-- <div class="col-md-3" ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div> -->
+
