@@ -67,7 +67,7 @@
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
                 <button class="btn btn-primary" type="submit" ng-click="submitStrength(strength.date, strength.intensity, strength.category, strength.value, strength.measurement, strength.points)">Create Goal!</button>
-                <button type="button" ng-click="$close()" class="btn default">Cancel</button>
+                <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
             </div>
         </div>
 
