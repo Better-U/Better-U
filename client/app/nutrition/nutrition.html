@@ -62,18 +62,18 @@
           <button class="btn btn-primary" ng-click="inputNutrition()">Log Meals</button> <br><br>
           <table class="datagrid table">
             <tr>
-              <th>Date</th>
-              <th>Item</th>
-              <th>Time</th>
-              <th title='Amount of a food or drink that is generally served.' data-container='body' data-toggle='tooltip' tooltip>Serving</th>
-              <th>Serving Size Unit</th>
-              <th title='A calorie is the energy it takes to raise the temperature of 1 gram of water 1 degree Celsius. If you exceed the number of calories your body requires each day you will eventually gain weight. It takes an excess of 3500 calories to gain 1 lb. of fat.' data-container='body' data-toggle='tooltip' tooltip>Calories</th>
-              <th title='Carbs are present in food in the form of starch, sugar and fiber. The recommended grams of carbs each day is 45-65% of your total calorie intake divided by 4.' data-container='body' data-toggle='tooltip' tooltip>Carbs (g)</th>
-              <th title='Sum of mono/poly/unsaturated & saturated fats. Fat is the major storage form of energy in the body & used as a fuel source. Avoid transfat & limit saturated fat to less than 10% of calories/day.' data-container='body' data-toggle='tooltip' tooltip>Fat (g)</th>
-              <th title='Naturally found in fruits, vegetables, whole grains and legumes. Fiber provides many benefits, such as helping to support the digestive system, maintain immunity, and promote overall well-being. Total dietary fiber intake should be 25-30 g/day.' data-container='body' data-toggle='tooltip' tooltip>Fiber (g)</th>
-              <th title='A nutrient needed by the body in small amounts to maintain a balance of body fluids & keep muscles & nerves running smoothly. The Dietary Guidelines for Americans recommends that adults & children ages 14 years(+) limit sodium intake to less than 2,300 mg/day.' data-container='body' data-toggle='tooltip' tooltip>Sodium (mg)</th>
-              <th title='Proteins contribute to key body functions like blood clotting, fluid balance, production of hormones and enzymes, vision, and cell repair. The recommended intake is 0.36g of protein per lb.' data-container='body' data-toggle='tooltip' tooltip>Protein (g)</th>
-              <th title='Water flushes toxins out of vital organs, carries nutrients to cells, & provides a moist environment for ear, nose and throat tissues. The Institute of Medicine determined an adequate intake (AI) for men is ~13 cups/day and ~9 cups/day for women.' data-container='body' data-toggle='tooltip' tooltip>Water (cups)</th>
+              <th style="border-bottom: 2px solid #ddd">Date</th>
+              <th style="border-bottom: 2px solid #ddd">Item</th>
+              <th style="border-bottom: 2px solid #ddd">Time</th>
+              <th style="border-bottom: 2px solid #ddd" title='Amount of a food or drink that is generally served.' data-container='body' data-toggle='tooltip' tooltip>Serving</th>
+              <th style="border-bottom: 2px solid #ddd">Serving Size Unit</th>
+              <th style="border-bottom: 2px solid #ddd" title='A calorie is the energy it takes to raise the temperature of 1 gram of water 1 degree Celsius. If you exceed the number of calories your body requires each day you will eventually gain weight. It takes an excess of 3500 calories to gain 1 lb. of fat.' data-container='body' data-toggle='tooltip' tooltip>Calories</th>
+              <th style="border-bottom: 2px solid #ddd" title='Carbs are present in food in the form of starch, sugar and fiber. The recommended grams of carbs each day is 45-65% of your total calorie intake divided by 4.' data-container='body' data-toggle='tooltip' tooltip>Carbs (g)</th>
+              <th style="border-bottom: 2px solid #ddd" title='Sum of mono/poly/unsaturated & saturated fats. Fat is the major storage form of energy in the body & used as a fuel source. Avoid transfat & limit saturated fat to less than 10% of calories/day.' data-container='body' data-toggle='tooltip' tooltip>Fat (g)</th>
+              <th style="border-bottom: 2px solid #ddd" title='Naturally found in fruits, vegetables, whole grains and legumes. Fiber provides many benefits, such as helping to support the digestive system, maintain immunity, and promote overall well-being. Total dietary fiber intake should be 25-30 g/day.' data-container='body' data-toggle='tooltip' tooltip>Fiber (g)</th>
+              <th style="border-bottom: 2px solid #ddd" title='A nutrient needed by the body in small amounts to maintain a balance of body fluids & keep muscles & nerves running smoothly. The Dietary Guidelines for Americans recommends that adults & children ages 14 years(+) limit sodium intake to less than 2,300 mg/day.' data-container='body' data-toggle='tooltip' tooltip>Sodium (mg)</th>
+              <th style="border-bottom: 2px solid #ddd" title='Proteins contribute to key body functions like blood clotting, fluid balance, production of hormones and enzymes, vision, and cell repair. The recommended intake is 0.36g of protein per lb.' data-container='body' data-toggle='tooltip' tooltip>Protein (g)</th>
+              <th style="border-bottom: 2px solid #ddd" title='Water flushes toxins out of vital organs, carries nutrients to cells, & provides a moist environment for ear, nose and throat tissues. The Institute of Medicine determined an adequate intake (AI) for men is ~13 cups/day and ~9 cups/day for women.' data-container='body' data-toggle='tooltip' tooltip>Water (cups)</th>
             </tr>
             <tr ng-repeat="food in foodData | orderBy:'date':true">
               <td>{{food.date | date: "MM-dd-yyyy"}}</td>
@@ -91,128 +91,8 @@
             </tr>
           </table>
         </div>
-      <!--<div ui-view="calculations"></div>-->
     </div>
 
-    <!--&lt;!&ndash; Left Big Box 1 &ndash;&gt;-->
-    <!--<div class="row">-->
-    <!--<div class="col-md-8">-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-tasks"></i>Goals in Progress-->
-    <!--</h3>-->
-    <!--<div class="portlet-tools pull-right">-->
-    <!--<button class="btn btn-primary" ng-click="inputGoal()">Set a Goal!</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-    <!--<div class="portlet-content" ui-view="goals">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; Left Big Box 2&ndash;&gt;-->
-    <!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-instagram"></i>-->
-    <!--Graph 2-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-    <!--<div ui-view="strengthGraphs"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; Left Big Box 3 &ndash;&gt;-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-calendar"></i>-->
-    <!--Something-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content" >-->
-    <!--<div ui-view="cardioGraphs">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; Left Big Box 4 &ndash;&gt;-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-calendar"></i>-->
-    <!--Something-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-    <!--<div class="datagrid"><table>-->
-    <!--<thead><tr><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th><th>header</th></tr></thead>-->
-    <!--<tbody><tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
-    <!--<tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
-    <!--<tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
-    <!--<tr class="alt"><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
-    <!--<tr><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td><td>data</td></tr>-->
-    <!--</tbody>-->
-    <!--</table></div>-->
-
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; First Right col-4 Stuff &ndash;&gt;-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-pie-chart"></i>-->
-    <!--Donut Water-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-    <!--<div ui-view="strengthGraphs2"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; Second Right col-4 Stuff &ndash;&gt;-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-instagram"></i>-->
-    <!--Chart-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-    <!--<div ui-view="nutritionGraphs"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash; Third Right col-4 Stuff &ndash;&gt;-->
-    <!--<div class="col-md-4">-->
-    <!--<div class="portlet">-->
-    <!--<div class="portlet-header">-->
-    <!--<h3>-->
-    <!--<i class="fa fa-instagram"></i>-->
-    <!--Stuff-->
-    <!--</h3>-->
-    <!--</div>-->
-    <!--<div class="portlet-content">-->
-
-    <!--<div ui-view="strengthGraphs2"></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!-- End Bar -->
 
   </div>
 
