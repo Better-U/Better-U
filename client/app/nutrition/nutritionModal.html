@@ -1,77 +1,133 @@
 <div class="container" id="nutritionContainer" ng-controller='NutritionModalCtrl'>
-  <h3>Search for Food</h3>
+    <h1>Nutrition Log</h1>
+
+    <!-- API Search Input -->
     <form name='searchNutrition' method='post'>
       <div class="col-sm-6">
-        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)'>
-        <!-- <input type='submit' id='logSubmit' class="btn btn-primary btn-sm"> -->
+        <input id='searchBox' class='form-control' type='text' name='query' placeholder='Search the database by food name or UPC'  ng-model='asyncSelected' uib-typeahead='result for result in searchFoodDB($viewValue)' typeahead-wait-ms='100'>
         <div ng-if='asyncSelected.length > 0' id='searchResults'>
           <div class="searchContainer" id='{{i}}' ng-repeat='(index,item) in results track by $index' ng-click='getNutrition(item._id)' ng-class='{red:hover}' class='font' ng-mouseenter="hover=true" ng-mouseleave="hover=false">
-          <span id='rowColor'>
-          <div id='brandName'> {{item.fields.brand_name}} </div>
-          <div id='itemName'> {{item.fields.item_name}} </div>
-          <div id='itemCal'> {{item.fields.nf_calories + ' cal'}} </div>
-          </span>
+          <!-- Search Results -->
+            <span id='rowColor'>
+              <div id='brandName'> {{item.fields.brand_name}} </div>
+              <div id='itemName'> {{item.fields.item_name}} </div>
+              <div id='itemCal'> {{item.fields.nf_calories + ' cal'}} </div>
+            </span>
           </div>
         </div>
         <br>
      </div>
     </form>
 
-    <form class='form-inline' name='inputNutrition' method='post' style='width:700px'>
-      <div class="form-group">
-        <label for="foodName">What did you eat?</label>
-        <input type="text" style="width:300px" class="form-control input-sm" id="foodInput" ng-model='log.name' value='{{ log.name }}'>
-      </div>
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" class="form-control input-sm" id="date" ng-model="log.date" required>
-      </div>
-      <br>
-      <div class="form-group">
-        <label for="servingSize">Serving Size:</label>
-        <input type="number" min="0" class="form-control input-sm" name='foodServing' id="foodServing" ng-model="log.serving" value='{{ log.serving }}'>
-      </div>
-      <div class="form-group">
-        <label for="cal">Calories:</label>
-        <input type="number" min="0" class="form-control input-sm" id="cal" ng-model="log.cal" value='{{ log.cal }}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Fat (g):</label>
-        <input type="number" min="0" ng-model='log.fat' name='foodFat' id='foodFat' class="form-control input-sm" maxlength='4' value='{{ log.fat }}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Fiber (g):</label>
-        <input type="number" min="0" ng-model='log.fiber' name='foodFiber' id='foodFiber' class="form-control input-sm" maxlength='4' value='{{ log.fiber}}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Carbs (g):</label>
-        <input type="number" min="0" ng-model='log.carbs' name='foodCarb' id='foodCarb' class="form-control input-sm" maxlength='4' value='{{ log.carbs }}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Sodium (mg):</label>
-        <input type="number" min="0" ng-model='log.sodium' name='foodSalt' id='foodSalt' class="form-control input-sm" maxlength='5' value='{{ log.sodium }}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Protein (g):</label>
-        <input type="number" min="0" ng-model='log.protein' name='foodProtein' id='foodProtein' class="form-control input-sm" maxlength='4' value='{{ log.protein }}'>
-      </div>
-      <div class="form-group">
-        <label class="form-control-static">Water (cups):</label>
-        <input type="number" min="0" ng-model='log.water' name='water' id='water' class="form-control input-sm" maxlength='4'>
+    <!-- Nutrition Log -->
+    <form class='form-inline' name='nutritionLog' method='post' ng-submit="submitFoodLog()" style='width:768px'>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="foodName">*Type</label>
+        <div class="col-md-5">
+          <input id="foodName" type="text" class="form-control" ng-model='log.name' value='{{ log.name }}'>
+        </div>
       </div>
 
-      <label class="form-control-static">When?</label>
-      <select name='Time' ng-model='log.time' required> 
-        <option value="" selected disabled>--Please Select--</option>
-        <option>Breakfast</option>
-        <option>Morning Snack</option>
-        <option>Lunch</option>
-        <option>Afternoon Snack</option>
-        <option>Dinner</option>
-        <option>Evening Snack</option>
-      </select>
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="date">*Date</label>
+        <div class="col-md-7">  
+          <div class="input-group">
+            <input id="date" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="servingSize">*Serving Size</label>
+        <div class="col-md-5">
+          <input id="servingSize"type="number" step="any" class="form-control" min="0" name='foodServing' ng-model="log.serving" value='{{ log.serving }}'>
+          </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="servingSizeUnit">*Serving Size Unit</label>
+        <div class="col-md-5">
+          <input id="servingSizeUnit" type="string" class="form-control" name='foodServingUnit' ng-model="log.size" value='{{ log.size }}'>
+          </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label" for="cal">*Calories</label>
+        <div class="col-md-5">
+          <input type="number" min="0" step="any" class="form-control" id="cal" ng-model="log.cal" value='{{ log.cal }}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Fat (g)</label>
+        <div class="col-md-5">
+          <input type="number" class="form-control" step="any" min="0" ng-model='log.fat' name='foodFat' id='foodFat' value='{{ log.fat }}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Fiber (g)</label>
+        <div class="col-md-5">
+          <input type="number" class="form-control" min="0" step="any" ng-model='log.fiber' name='foodFiber' id='foodFiber' value='{{ log.fiber}}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Carbs (g)</label>
+        <div class="col-md-5">
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.carbs' name='foodCarb' id='foodCarb' value='{{ log.carbs }}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Sodium (mg)</label>
+        <div class="col-md-5">
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.sodium' name='foodSalt' id='foodSalt' value='{{ log.sodium }}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Protein (g)</label>
+        <div class="col-md-5">
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.protein' name='foodProtein' id='foodProtein' value='{{ log.protein }}'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*Water (cups)</label>
+        <div class="col-md-5">
+          <input class="form-control" type="number" step="any" min="0" ng-model='log.water' name='water' id='water'>
+        </div>
+      </div>
+
+      <div class="form-group space">
+        <label class="col-md-1 control-label">*When?</label>
+          <div class="col-md-5">
+            <select name='Time' ng-model='log.time' required> 
+              <option value="" selected disabled>--Please Select--</option>
+              <option>Breakfast</option>
+              <option>Morning Snack</option>
+              <option>Lunch</option>
+              <option>Afternoon Snack</option>
+              <option>Dinner</option>
+              <option>Evening Snack</option>
+            </select>
+          </div>
+      </div>
       <br>
-      <input type='submit' class="btn btn-primary btn-sm" value='Log Nutritional Facts' ng-click='submitFoodLog()'/>
+      <br>
+          <!-- Submit/Cancel Buttons -->
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="submit"  class="btn btn-primary" ng-disabled="nutritionLog.$invalid">
+                    <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
+                </div>
+            </div>
     </form>
+<!-- API Source -->
 <img align='middle' id='nutritionix' src="https://d3jpl91pxevbkh.cloudfront.net/nutritionix/image/upload/v1363458498/attribution_jqfdgy.png" border="0">
 </div>

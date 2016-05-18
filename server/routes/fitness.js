@@ -10,6 +10,7 @@ var Auth = require('../helpers/auth')
 var Goals = require('../helpers/goals')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 router.use(Auth.ifAuthorized)
 
 router.post('/strengthForm', function (req, res) {
@@ -28,9 +29,10 @@ router.post('/strengthForm', function (req, res) {
       }]
       Strength.postForm(strengthForm)
         .then(function (success) {
+          console.log('strengthform[0].type: ', strengthForm[0].type)
           Goals.findLog(strengthForm[0].user_id, strengthForm[0].type)
             .then(function (data) {
-              console.log(data)
+              console.log('this is data after posting str form:', data)
               for (var i = 0; i < data.length; i++) {
                 var currentVal = data[i].currentValue
                 if (data[i].measurement === 'Sets') {
@@ -99,6 +101,7 @@ router.post('/cardioForm', function (req, res) {
       var cardioForm = [{
         user_id: data[0].id,
         date: req.body.date,
+        time: req.body.time,
         type: req.body.type,
         distance: req.body.distance,
         duration: req.body.duration,
@@ -142,7 +145,6 @@ router.get('/getCardio', function (req, res) {
   var user = req.query.username
   User.findUser(user)
     .then(function (data) {
-      console.log(data)
       Cardio.getRecords(data[0].id)
         .then(function (success) {
           if (success) {

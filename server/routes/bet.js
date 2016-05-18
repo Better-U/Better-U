@@ -27,7 +27,6 @@ router.get('/placedBets', function (req, res) {
       var user = id[0].id
       Bets.placedBets(user)
         .then(function (data) {
-          console.log('Placed Bets: ', data)
           res.json({
             success: true,
             data: data
@@ -37,13 +36,11 @@ router.get('/placedBets', function (req, res) {
 })
 
 router.get('/fetchBets', function (req, res) {
-  console.log('this is fetchBets req.body: ', req.query.username)
   User.findUser(req.query.username)
     .then(function (id) {
       var user = id[0].id
       Bets.fetchBets(user)
         .then(function (data) {
-          console.log('fetch user bets: ', data)
           res.json({
             success: true,
             data: data
@@ -53,18 +50,24 @@ router.get('/fetchBets', function (req, res) {
 })
 
 router.post('/addBets', function (req, res) {
-  console.log('This is addBets: req.body', req.body)
   var goals = req.body.goals_id
   var user = req.body.user_id
   User.findUser(req.body.username)
     .then(function (id) {
       var bettor = id[0].id
-      Bets.addBets(user, bettor, goals)
-        .then(function () {
-          res.json({
-            success: true
-          })
-          console.log('Bet Added in server!')
+      Bets.getUserPoints(bettor)
+        .then(function (bettorPts) {
+          var bettor_pts = bettorPts[0][0].totalpts
+          Bets.getUserPoints(user)
+            .then(function (userPts) {
+              var user_pts = userPts[0][0].totalpts
+              Bets.addBets(user, bettor, goals, user_pts, bettor_pts)
+                .then(function (data) {
+                  res.json({
+                    success: true
+                  })
+                })
+            })
         })
     })
 })
@@ -77,6 +80,36 @@ router.delete('/betDelete', function (req, res) {
         success: true,
         data: data
       })
+    })
+})
+
+router.get('/searchBets', function (req, res) {
+  User.findUser(req.query.username)
+    .then(function (id) {
+      var bettor = id[0].id
+      Bets.searchBets(req.query.goals_id, bettor)
+        .then(function (data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
+    })
+})
+
+router.get('/bettor', function (req, res) {
+  console.log('inside bettor get request')
+  User.findUser(req.query.username)
+    .then(function (id) {
+      var bettorId = id[0].id
+      Bets.getBets(bettorId)
+        .then(function (data) {
+          console.log('inside select bettor points ____')
+          res.json({
+            success: true,
+            data: data
+          })
+        })
     })
 })
 

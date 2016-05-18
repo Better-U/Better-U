@@ -36,12 +36,25 @@ app.use('/api/signup/', signup)
 app.use('/api/social/', social)
 app.use('/api/bet/', bet)
 
-// var rule = new cron.RecurrenceRule()
-// rule.minute = 42
-// cron.scheduleJob(rule, function () {
-//   console.log('new schedule made!')
-//   Schedule.updateUserPoints()
-// })
+
+var rule = new cron.RecurrenceRule()
+rule.dayOfWeek = [0, 1, 2, 3, 4, 5, 6]
+rule.hour = 17
+rule.minute = 0
+cron.scheduleJob(rule, function () {
+  console.log('beginning to update user results')
+  Schedule.updateResults()
+})
+
+var rule2 = new cron.RecurrenceRule()
+rule2.dayOfWeek = [0, 1, 2, 3, 4, 5, 6]
+rule2.hour = 17
+rule2.minute = 10
+cron.scheduleJob(rule2, function () {
+  console.log('beginning to update bet status')
+  Schedule.updateUserPoints()
+})
+
 
 var port = process.env.PORT || 8080
 

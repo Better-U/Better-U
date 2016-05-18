@@ -1,6 +1,6 @@
 angular.module('myApp.signin', [])
 
-  .controller('SigninCtrl', function ($scope, $state, authFactory, $uibModalInstance, $uibModal, $cookies, $rootScope) {
+  .controller('SigninCtrl', function ($scope, $state, AuthFactory, $uibModalInstance, $uibModal, $cookies, $rootScope) {
     $scope.animationsEnabled = true
     $scope.noInput = false
     $scope.userDoesNotExist = null
@@ -8,30 +8,24 @@ angular.module('myApp.signin', [])
       $state.go('signup')
     }
 
-    $scope.user = {
-      name: null,
-      password: null
-    }
     $scope.signin = function () {
-      if ($scope.user.name === null || $scope.user.password === null) {
-        $scope.noInput = true
-      } else {
-        authFactory.signIn($scope.user.name, $scope.user.password)
-          .then(function (data) {
-            console.log(data.data.success)
-            if (!data.data.success) {
-              $state.reload()
-              $scope.userDoesNotExist = true
-            } else {
-              $uibModalInstance.dismiss('cancel')
-              $cookies.put('username', data.config.data.username)
-              $cookies.put('token', data.data.token)
-              // window.localStorage.setItem('username', $cookies.get('username'))
-              // $rootScope.username = window.localStorage.getItem('username')
-              $state.go('dashboard')
-            }
-          })
-      }
+      AuthFactory.signIn($scope.user.name, $scope.user.password)
+        .then(function (data) {
+          if (!data.data.success) {
+            $state.reload()
+            $scope.userDoesNotExist = true
+          } else {
+            $uibModalInstance.dismiss('cancel')
+            $cookies.put('username', data.config.data.username)
+            $cookies.put('token', data.data.token)
+            AuthFactory.getProfile($cookies.get('username'))
+              .then(function(data) {
+                AuthFactory.userData = data.data[0]
+                console.log('signin data: ', AuthFactory.userData)
+                $state.go('dashboard')
+              })
+          }
+        })
     }
 
     $scope.signup = function () {
@@ -50,7 +44,6 @@ angular.module('myApp.signin', [])
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem
       }, function () {
-        console.log('hi')
       })
     }
   })

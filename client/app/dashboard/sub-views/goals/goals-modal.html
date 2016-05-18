@@ -1,0 +1,25 @@
+<div class="goalForm">
+    <div class="goalHeader">
+        <h2>Start by selecting a category</h2>
+    </div>
+        <div class="goalType">
+            <!--<label for="goals">Select a Goal:</label>-->
+            <select name="goals" id="goals" ng-model='goal.type' class="goalsDropdown">
+                <option value="" selected disabled>Category</option>
+                <option value="cardio">Cardio</option>
+                <option value="strength">Strength</option>
+            </select>
+            <button class="btn btn-primary" ng-click="selectGoal(goal.type)">Submit</button>
+        </div>
+
+        <!-- IF CARDIO SELECTED -->
+        <div ng-if="cardioSelected">
+            <cardio-goals></cardio-goals>
+        </div>
+
+        <!-- IF STRENGTH SELECTED -->
+        <div ng-if="strengthSelected">
+            <strength-goals></strength-goals>
+        </div>
+
+</div>

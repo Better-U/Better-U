@@ -1,26 +1,31 @@
 <div>
   <div class="jumbotron customJumbotron">
   <div>
-    <div class="col-md-6 text-center">
-
-      <p>Fitness Analytics for a Generation of Accuracy</p><br>
-      <p>Log. Track. Bet. Achieve.<p>
-      <button class="btn btn-primary" ng-click="signup()">Start Today!</button>
+    <div class="col-md-6 text-center" style="font-family: 'Alegreya Sans SC', sans-serif;">
+      <p id='landingTop'>Fitness Analytics for a Generation of Accuracy</p>
+      <p id='landingBtm'>Log. Track. Bet. Achieve.<p>
+      <button id="landingSignUpButton" class="btn btn-primary btn-lg" style="font-family: 'Hind'"ng-click="signup()">Start Today!</button>
       </div>
 
     </div>
   </div>
   <div class="container" style="position: static">
     <div class="section">
-      <div class="row">
-        <div class="col-sm-12 col-md-4 threeSection">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel arcu egestas, cursus nisi et, egestas lorem. Donec sodales non urna eget suscipit. Nulla consequat vehicula neque vel venenatis. Aliquam velit mauris, elementum at aliquam at, ultrices at quam. Curabitur lorem purus, ornare eget dapibus in, lacinia sit amet felis. Curabitur blandit tristique vestibulum. Duis nisl ante, vestibulum nec varius eu, mattis a arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque dictum purus felis, ut gravida massa consectetur ac. Quisque massa mauris, suscipit ut ultrices hendrerit, venenatis eget ipsum.
+      <div class="row" style="padding: 10px 5px">
+     <br>
+        <div class="col-sm-12 col-md-4 threeSection" style="padding-top: 20px; height: 200px">
+          <img ng-src="../../assets/images/fitGlyphicon.png" style="padding-top: 20px; padding-bottom: 6px; width: 150px; display: block; margin-left: auto; margin-right: auto"><br>
+          <p style="text-align: center; font-family: 'Montserrat'; font-size: 16px; padding-top:18px">Track your daily physical activity and nutritional intake. Monitor your weekly trends through our data visualizations.</p>
         </div>
         <div class="col-sm-12 col-md-4 threeSection">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel arcu egestas, cursus nisi et, egestas lorem. Donec sodales non urna eget suscipit. Nulla consequat vehicula neque vel venenatis. Aliquam velit mauris, elementum at aliquam at, ultrices at quam. Curabitur lorem purus, ornare eget dapibus in, lacinia sit amet felis. Curabitur blandit tristique vestibulum. Duis nisl ante, vestibulum nec varius eu, mattis a arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque dictum purus felis, ut gravida massa consectetur ac. Quisque massa mauris, suscipit ut ultrices hendrerit, venenatis eget ipsum.
+        <br>
+          <img ng-src="../../assets/images/betGlyphicon.png" id='betGlyph' style="width: 115px;  display: block; margin-left: auto; margin-right: auto"><br>
+          <p style="text-align: center; font-family: 'Montserrat'; padding-top: 0px; font-size: 16px">Compete with others to reach set goals with our betting system. Feeling risky? Bet on other users' goals!</p>
         </div>
-        <div class="col-sm-12 col-md-4 threeSection">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel arcu egestas, cursus nisi et, egestas lorem. Donec sodales non urna eget suscipit. Nulla consequat vehicula neque vel venenatis. Aliquam velit mauris, elementum at aliquam at, ultrices at quam. Curabitur lorem purus, ornare eget dapibus in, lacinia sit amet felis. Curabitur blandit tristique vestibulum. Duis nisl ante, vestibulum nec varius eu, mattis a arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque dictum purus felis, ut gravida massa consectetur ac. Quisque massa mauris, suscipit ut ultrices hendrerit, venenatis eget ipsum.
+        <div class="col-sm-12 col-md-4 threeSection" style="height: 200px; margin-top: -6px">
+        <br>
+        <img ng-src="../../assets/images/chatGlyphicon.png" style="width: 140px; display: block; margin-left: auto; margin-right: auto"><br>
+          <p style="text-align: center; padding-top: 0px; font-family: 'Montserrat';font-size: 16px; margin-top: 2px">Meet other users in the area and chat with them. Find a lifelong gym buddy!</p>
         </div>
 
       </div>
@@ -30,37 +35,68 @@
   </div>
 
   <!--FOOTER-->
-  <footer class="navbar-default"">
+  <footer class="landingFooter">
     <div class="container">
-      <div class="row team">
+      <div class="row team" style="padding: 10px 5px">
         <div class="col-lg-1"></div>
         <div class="col-lg-2">
-           <p>Jessica Chou</p>
+           <p><span class="name">Jessica Chou<p class='title'>Scrum Master<br>Software Engineer</p></span></p>
           <br>
-          <img ng-src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 125px">
+          <img ng-src="../../assets/images/Jessica.png" alt="image placeholder" class="img-circle" style="width: 125px; height: 125px; margin-top: -16px">
+          <br>
+          <p class='contact' style='padding-top: 4px; margin-right: 9px'>
+            <a href='https://www.linkedin.com/in/jessicachou1'><img ng-src="../../assets/images/LinkedIn.png" class="relativizer img-circle" style="width: 25px; margin-left: 5px"></a>
+            <a href="https://github.com/j4chou"><img src="../../assets/images/GitHub.png" class="relativizer img-circle" style="width: 25px"></a>
+          </p>
         </div>
         <div class="col-lg-2">
-           <p>Jane Fong</p>
+           <p><span class='name'>Jane Fong<br><p class='title'>Software Engineer</p></span></p>
           <br>
-          <img ng-src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 125px">
+          <img ng-src="../../assets/images/Jane.png" alt="image placeholder" class="img-circle" style="width: 125px; height: 125px">
+          <br>
+          <p class='contact' style='padding-top: 6px; margin-right: 9px'>
+            <a href='https://www.linkedin.com/in/janeefongg'><img ng-src="../../assets/images/LinkedIn.png" class="relativizer img-circle" style="width: 25px; margin-left: 5px"></a>
+            <a href="https://github.com/janeefongg"><img src="../../assets/images/GitHub.png" class="relativizer img-circle" style="width: 25px"></a>
+          </p>
         </div>
+
         <div class="col-lg-2">
-           <p>Eirik Lin</p>
+           <p><span class='name'>Eirik Lin<br><p class='title'>Software Engineer</p></span></p>
           <br>
-          <img ng-src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="relativizer img-circle" style="width: 125px">
+          <img ng-src="../../assets/images/Eirik.png" alt="image placeholder" class="relativizer img-circle" style="width: 125px; height: 125px">
+          <br>
+          <p class='contact' style='padding-top: 4px; margin-right: 9px'>
+            <a href='https://www.linkedin.com/in/eiriklin'><img ng-src="../../assets/images/LinkedIn.png" class="relativizer img-circle" style="width: 25px; margin-left: 5px"></a>
+            <a href="https://github.com/kirie"><img src="../../assets/images/GitHub.png" class="relativizer img-circle" style="width: 25px"></a>
+          </p>
         </div>
+
         <div class="col-lg-2">
-           <p>Eric So</p>
+           <p><span class='name'>Eric So<br><p class='title'>Software Engineer</p></span></p>
           <br>
-          <img ng-src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 125px">
+          <img ng-src="../../assets/images/Eric.png" alt="image placeholder" class="img-circle" style="width: 125px; height: 125px">
+          <br>
+          <p class='contact' style='padding-top: 4px; margin-right: 9px'>
+            <a href='https://www.linkedin.com/in/eric-so-5864b4b6'><img ng-src="../../assets/images/LinkedIn.png" class="relativizer img-circle" style="width: 25px; margin-left: 5px"></a>
+            <a href="https://github.com/eso001"><img src="../../assets/images/GitHub.png" class="relativizer img-circle" style="width: 25px"></a>
+          </p>
         </div>
+
         <div class="col-lg-2">
-           <p>Michelle Tham</p>
+           <p><span class='name'>Michelle Tham<br><p class='title'>Product Owner<br>Software Engineer</p></span></p>
           <br>
-          <img ng-src="../../assets/images/imageplaceholder.png" alt="image placeholder" class="img-circle" style="width: 125px">
+          <img ng-src="../../assets/images/Michelle.png" alt="image placeholder" class="img-circle" style="width: 125px; height: 125px;margin-top:-16px">
+          <br>
+          <p class='contact' style='padding-top: 4px; margin-right: 9px'>
+            <a href='https://www.linkedin.com/in/michelletham1'><img ng-src="../../assets/images/LinkedIn.png" class="relativizer img-circle" style="width: 25px; margin-left: 5px"></a>
+            <a href="https://github.com/mtham8"><img src="../../assets/images/GitHub.png" class="relativizer img-circle" style="width: 25px"></a>
+          </p>
         </div>
         <div class="col-lg-1"></div>
       </div>
+    </div>
+    <div id='footer' style="background-color: #000">
+      © BetterU 2016
     </div>
   </footer>
 </div>

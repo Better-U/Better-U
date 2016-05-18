@@ -1,0 +1,15 @@
+<div>
+  <span ng-if="goalsData.length === 0">No goals have been logged yet.</span>
+  <div class="progress-stat" ng-repeat="goals in goalsData | orderBy:'date'">
+    <div class="progress-stat-label goalsTitle" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
+      I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
+    </div>
+    <div class="progress-stat-value">
+      By {{dateConverter(goals.date)}}
+      <span class="glyphicon glyphicon-remove" ng-click="removeLog(goals.id)" style="cursor: pointer; cursor: hand;"></span>
+    </div>
+    <uib-progressbar class="progress progress-striped active" max="goals.value" value="goals.currentValue"><span style="color:white; white-space:nowrap;">{{goalPercentage(goals.currentValue, goals.value)}}%</span></uib-progressbar>
+
+    </div>
+  </div>
+</div>

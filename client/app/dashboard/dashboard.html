@@ -1,22 +1,190 @@
-<div>
-    <div class="welcome">
-        <span>Hello {{username}}!</span>
-        <br>
+<!-- <div class="dashboard container-fluid">
+    <div class="col-lg-2 calcCards">
+        <div ui-view="calculations"></div>
+    </div>
+
+    <div class="col-lg-5 goalsTable">
+        <div ui-view="goals"></div>
+    </div>
+
+    <div class="col-lg-5 allGraphs">
+        <div>
+            <h2>Fitness/Health Details</h2>
+            <div ui-view="nutritionGraphs"></div>
+            <div ui-view="cardioGraphs"></div>
+            <div ui-view="strengthGraphs"></div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Main Navbar with buttons -->
+<div class="mainbar">
+    <div class="container">
+      <div class="mainbar-collapse collapse">
+
+        <ul class="nav navbar-nav mainbar-nav">
+
+          <li>
+            <a href="#dashboard">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>
+          </li>
+
+          <li>
+            <a href="#cardio">
+              <i class="fa fa-bicycle"></i>
+              &nbsp;&nbsp;Cardio&nbsp;&nbsp;
+            </a>
+          </li>
+
+          <li>
+            <a href="#strength">
+              <i class="fa fa-caret-square-o-up"></i>
+              Strength
+            </a>
+          </li>
+
+          <li>
+            <a href="#nutrition">
+              <i class="fa fa-cutlery"></i>
+              Nutrition
+            </a>
+          </li>
+
+          <li>
+            <a href="#social">
+              <i class="fa fa-users"></i>
+              Socialize
+            </a>
+          </li>
+
+          <li>
+            <a href="#bet">
+              <i class="fa fa-money"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+          </li>
+
+        </ul>
+      </div>
+   </div>
+</div>
+
+<!-- Main Container -->
+
+<div class="container">
+  <div class="content">
+    <div class="content-container">
+      <div>
+         <h2 class="heading-inline">Welcome back, {{username}}!</h2>
+         <div ui-view="calculations"></div>
+      </div>
+
+<!-- Left Big Box 1 -->
+      <div class="row">
+        <div class="col-md-8">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-tasks" style="color:#8ca9cf"></i>Goals in Progress
+             </h3>
+              <div class="portlet-tools pull-right">
+                <button class="btn btn-primary" style="margin-top:1px" ng-click="inputGoal()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Set a Goal!</button>
+              </div>
+            </div>
+            <div class="portlet-content">
+              <div class="portlet-content" ui-view="goals">
+              </div>
+            </div>
+          </div>
+
+<!-- Left Big Box 2-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-bar-chart" style="color:#c05e93" aria-hidden="true"></i>
+                Weekly Strength Exercise Duration
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div ui-view="strengthGraphs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Left Big Box 3 -->
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+              <i class="fa fa-area-chart" style="color:#87b94c" aria-hidden="true"></i>
+              Cardio Pace Based On Latest Seven Sessions
+              </h3>
+            </div>
+            <div class="portlet-content" >
+              <div ui-view="cardioGraphs">
+              </div>
+            </div>
+          </div>
+  </div>
+
+<!-- First Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-heart" style="color:#ca353b" aria-hidden="true"></i>
+                Daily Nutrition Intake
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div ui-view="nutritionIntake"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- Second Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-tint" style="color:#4cb9b5" aria-hidden="true"></i>
+                Daily Water Intake Chart
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div ui-view="nutritionGraphs"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- Third Right col-4 Stuff -->
+        <div class="col-md-4">
+          <div class="portlet">
+            <div class="portlet-header">
+              <h3>
+                <i class="fa fa-pie-chart" style="color:#b97e4c"></i>
+                Strength Exercises by Frequency
+              </h3>
+            </div>
+            <div class="portlet-content">
+              <div ui-view="strengthGraphs2"></div>
+            </div>
+          </div>
+        </div>
+
+<!-- End Bar -->
+
+      </div>
 
     </div>
 
-
-
-    <div>
-        <my-calculations></my-calculations>
-    </div>
-
-    <div>
-        <my-goals></my-goals>
-    </div>
-
-    <div>
-        <nutrition-graphs></nutrition-graphs>
-    </div>
+  </div>
 
 </div>
+
+
+

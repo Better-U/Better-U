@@ -1,22 +1,98 @@
+<!-- Navbar -->
+<div class="mainbar">
+  <div class="container">
+    <div class="mainbar-collapse collapse">
+      <ul class="nav navbar-nav mainbar-nav">
+
+        <li>
+          <a href="#dashboard">
+            <i class="fa fa-dashboard"></i>
+            Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="#cardio">
+            <i class="fa fa-bicycle"></i>
+            &nbsp;&nbsp;Cardio&nbsp;&nbsp;
+          </a>
+        </li>
+
+        <li>
+          <a href="#strength">
+            <i class="fa fa-caret-square-o-up"></i>
+            Strength
+          </a>
+        </li>
+
+        <li>
+          <a href="#nutrition">
+            <i class="fa fa-cutlery"></i>
+            Nutrition
+          </a>
+        </li>
+
+        <li>
+          <a href="#social">
+            <i class="fa fa-users"></i>
+            Socialize
+          </a>
+        </li>
+
+        <li>
+          <a href="#bet">
+            <i class="fa fa-money"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;Bet&nbsp;&nbsp;&nbsp;&nbsp;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Main Container -->
+
 <div class="container">
-  <h1>Cardio Weekly Progress</h1>
-  <button class="btn btn-primary" ng-click="inputCardio()">Log Daily Workout</button><br>
-  <br>
-  <table class="table table-striped">
-    <tr>
-      <th>Date</th>
-      <th>Activity</th>
-      <th>Distance (miles)</th>
-      <th>Duration (minutes)</th>
-      <th data-original-title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip'>Pace (mpm)</th>
-    </tr>
-    <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
-      <td>{{cardio.date | date: "MM-dd-yyyy"}}</td>
-      <td>{{cardio.type}}</td>
-      <td>{{cardio.distance}}</td>
-      <td>{{cardio.duration}}</td>
-      <td>{{cardio.pace}}</td>
-    </tr>
-  </table>
+  <div class="content">
+    <div class="content-container">
+      <div>
+        <h2 class="cardioHeadingHeader heading-inline">Cardio Activity</h2><br>
+        <button class="callInputCardio btn btn-primary" ng-click="inputCardio()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Track your Cardio</button>
+        <br><br>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="portlet">
+            <div class="portlet-header">
+              <div>
+                <h3><i class="fa fa-bicycle" style="color:#87b94c"></i>Cumulative Cardio Log</h3>
+              </div>  
+            </div>
+            <div class="portlet-content">     
+              <table class="datagrid table">
+                <tr>
+                  <th style="border-bottom: 2px solid #ddd">Date</th>
+                  <th style="border-bottom: 2px solid #ddd">Time</th>
+                  <th style="border-bottom: 2px solid #ddd">Activity</th>
+                  <th style="border-bottom: 2px solid #ddd">Distance (miles)</th>
+                  <th style="border-bottom: 2px solid #ddd">Duration (minutes)</th>
+                  <th style="border-bottom: 2px solid #ddd" title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip' tooltip>Pace (mpm)</th>
+                  <th style="border-bottom: 2px solid #ddd">Intensity (1 - 5)</th>
+                </tr>
+                <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
+                  <td>{{shortenDate(cardio.date) | date: "MM-dd-yyyy"}}</td>
+                  <td>{{cardio.time}}</td>
+                  <td>{{cardio.type}}</td>
+                  <td>{{cardio.distance}}</td>
+                  <td>{{cardio.duration}}</td>
+                  <td>{{cardio.pace}}</td>
+                  <td>{{cardio.intensity}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

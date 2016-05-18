@@ -10,7 +10,6 @@ angular.module('myApp', ['myApp.signin',
   'myApp.strengthModal',
   'myApp.bet',
   'ui.router',
-  'factories',
   'myApp.dashboard',
   'myApp.modal',
   'ui.bootstrap',
@@ -20,7 +19,21 @@ angular.module('myApp', ['myApp.signin',
   'myApp.socialFactoryModule',
   'myApp.goals',
   'angular-filepicker',
-  'chatModule'])
+  'chatModule',
+  'myApp.AuthFactory',
+  'myApp.BetsFactory',
+  'myApp.CardioFactory',
+  'myApp.GoalsFactory',
+  'app.ProfileFactory',
+  'app.StrengthFactory',
+  'app.NutritionFactory',
+  'luegg.directives',
+  'myApp.nutritionGraphs',
+  'myApp.cardioGraphs',
+  'myApp.strengthGraphs',
+  'myApp.calculations',
+  'myApp.goalsModal',
+  'myApp.selectGoal'])
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('landing')
@@ -49,9 +62,41 @@ angular.module('myApp', ['myApp.signin',
       })
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: '/app/dashboard/dashboard.html',
-        controller: 'DashboardCtrl',
-        authenticate: true
+        authenticate: true,
+        views: {
+          '': {
+            templateUrl: '/app/dashboard/dashboard.html',
+            controller: 'dashboardCtrl'
+          },
+          'nutritionGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/nutrition-graphs.html',
+            controller: 'nutritionGraphsCtrl'
+          },
+          'nutritionIntake@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/calculations/nutrition-calculations.html',
+            controller: 'nutritionGraphsCtrl'
+          },
+          'cardioGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/cardio-graphs.html',
+            controller: 'cardioGraphsCtrl'
+          },
+          'strengthGraphs@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/strength-graphs.html',
+            controller: 'strengthGraphsCtrl'
+          },
+          'calculations@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/calculations/calculations.html',
+            controller: 'calculationsCtrl'
+          },
+          'goals@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/goals/goals.html',
+            controller: 'goalsCtrl'
+          },
+          'strengthGraphs2@dashboard': {
+            templateUrl: '/app/dashboard/sub-views/graphs/strength-graphs2.html',
+            controller: 'strengthGraphsCtrl'
+          }
+        }
       })
       .state('cardio', {
         url: '/cardio',
@@ -107,20 +152,8 @@ angular.module('myApp', ['myApp.signin',
   .config(function ($httpProvider, filepickerProvider) {
     filepickerProvider.setKey(fileStackAPI)
     $httpProvider.defaults.headers.common['Access']
-    // $httpProvider.defaults.useXDomain = true
-    // $http.defaults.headers.common['Access-Control-Allow-Credentials'] = true
-    // $httpProvider.defaults.headers.common['Access-Control-Allow-Method'] = 'GET, POST, PUT, DELETE'
-    // $http.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization'
-
-    // delete $httpProvider.defaults.headers.common['X-Requested-With']
-
     $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
       return {
-        //      request: function (config) {
-        //        config.headers['Token'] = $cookies.get('token')
-        //        config.headers.Authorization = "Bearer " + $cookies.get('token')
-        //        return config
-        //      },
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $injector.get('$state').transitionTo('landing')
@@ -131,14 +164,13 @@ angular.module('myApp', ['myApp.signin',
     })
   })
 
-  .run(function ($rootScope, $state, authFactory, $cookies) {
+  .run(function ($rootScope, $state, AuthFactory, $cookies) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       var requireLogin = toState.authenticate
-      if (requireLogin && authFactory.getToken() === null) {
+      if (requireLogin && AuthFactory.getToken() === null) {
         event.preventDefault()
         $state.go('landing')
-      }
-      else if (requireLogin && !authFactory.isAuth()) {
+      } else if (requireLogin && !AuthFactory.isAuth()) {
         $cookies.remove('username')
         $cookies.remove('token')
         event.preventDefault()

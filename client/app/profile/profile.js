@@ -1,26 +1,27 @@
-angular.module('myApp.profile', ['factories'])
+angular.module('myApp.profile', [])
 
-  .controller('ProfileCtrl', function ($state, $scope, $window, authFactory, profileFactory, $cookies, filepickerService) {
+  .controller('ProfileCtrl', function ($state, $rootScope, $scope, $window, AuthFactory, ProfileFactory, $cookies, filepickerService) {
     $scope.changesSaved = false
     $scope.username = $cookies.get('username')
     $scope.init = function () {
-      profileFactory.getProfile($cookies.get('username'))
+      ProfileFactory.getProfile($cookies.get('username'))
         .then(function (data) {
-          console.log('data inside profileFactory.getProfile =', data.data[0])
           $scope.display = data.data[0]
           $scope.prof = {activity: data.data[0].activitylvl,
-            gym: data.data[0].gym
+            gym: data.data[0].gym || ''
           }
           $scope.image = data.data[0].image
           $scope.prof.interest = $scope.display.interest
         })
     }
+
     $scope.submitProfile = function () {
-      console.log('submitted')
-      profileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
-        .then(function (data) {
+      if (!$scope.prof.gym) {
+        $scope.prof.gym = $scope.prof.otherGym
+      }
+      ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
+        .then(function () {
           $scope.changesSaved = true
-          console.log('profile data inside profile.js =', data)
         })
     }
 
@@ -36,23 +37,34 @@ angular.module('myApp.profile', ['factories'])
     $scope.upload = function () {
       filepickerService.pick(
         {
+          cropRatio: 4 / 4,
           mimetype: 'image/*',
           language: 'en',
-          services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+          services: ['COMPUTER', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM', 'CONVERT'],
+          conversions: ['crop', 'rotate', 'filter'],
           openTo: 'IMAGE_SEARCH'
         },
         function (Blob) {
-          console.log(JSON.stringify(Blob))
-          // $scope.superhero.picture = Blob
-          profileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
+          ProfileFactory.uploadPicture($scope.username, JSON.stringify(Blob))
             .then(function (data) {
-              console.log('upload data: ', data)
-              // $scope.apply()
               $scope.image = data
               $state.reload()
             })
-        // $state.reload()
         }
       )
+    }
+
+    $scope.init()
+  })
+  .directive('theGym2', function () {
+    return {
+      restrict: 'A',
+      transclude: true,
+      scope: true,
+      link: function (scope, element, attrs) {
+          element.bind('click', function() {
+          scope.prof.gym = ''
+          })
+      }
     }
   })

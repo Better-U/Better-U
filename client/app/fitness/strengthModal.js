@@ -1,23 +1,33 @@
-angular.module('myApp.strengthModal', ['factories'])
-  .controller('StrengthModalCtrl', function ($scope, authFactory, strengthFactory, $cookies, profileFactory, $state, $uibModal, $uibModalInstance) {
-    // Date Stuff
-    $scope.today = function () {
-      $scope.dt = new Date()
+angular.module('myApp.strengthModal', [])
+  .controller('StrengthModalCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal, $uibModalInstance) {
+
+    $scope.format = 'dd-MMMM-yyyy'
+
+    $scope.open1 = function () {
+      $scope.popup1.opened = true
+    }
+
+    $scope.clear = function () {
+      $scope.dt = null
+    }
+
+    $scope.popup1 = {
+      opened: false
     }
 
     $scope.user = $cookies.get('username')
     $scope.animationsEnabled = true
     $scope.noInput = false
 
-    // Submit Button
+    // Submit Button: Save information to database
     $scope.submitStrength = function () {
-      if ($scope.str.date === undefined || $scope.str.type === undefined || $scope.str.weight === undefined || $scope.str.sets === undefined || $scope.str.reps === undefined) {
+      if ($scope.dt === undefined || $scope.str.type === undefined || $scope.str.weight === undefined || $scope.str.sets === undefined || $scope.str.reps === undefined) {
         $scope.noInput = true
       } else {
         $uibModalInstance.dismiss('cancel')
-        strengthFactory.submitStrength(
+        StrengthFactory.submitStrength(
           $scope.user,
-          $scope.str.date,
+          $scope.dt,
           $scope.str.type,
           $scope.str.sets,
           $scope.str.intensity,

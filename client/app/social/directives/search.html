@@ -1,42 +1,51 @@
 <div class="row">
-<div class="col-lg-12">
-  <div >Your current city: {{savedAddress}}</div>
-	<form ng-submit="sendCity()">
-	  <label for="userAddress">Enter City or Zip Code</label>
-	  <input id="userAddress" ng-model="address" />
-	  <div>{{address}}</div>
-	  <button type="submit">Send City or Zip</button>
-	</form>
+  <div class="col-lg-12">
+    <div class="locationForm portlet">
+      <div class="portlet-header searchHeader">
+        <h2 class="searchHeader">Search Users</h2>
+      </div>
+      
+      <div class="portlet-content">
+	        <form role="form" ng-submit="sendCity()">
+	          <input id="userAddress" ng-model="address" class="form-control" placeholder="Enter city or zipcode" />
+	          <button type="submit" class="chatWithButton btn btn-default">Search</button>
+	        </form>
+          <div class="userLocation">Displaying users in: {{savedAddress}}</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="row">
-<div>
-  <ul class="flexor noListStyles">
-    <li ng-repeat = "user in userList">
-      <ul class="noListStyles">
-      <li class="searchedUsername">
-        {{user.username}}
-      </li>
-      <li>
-      	<img ng-if="!user.image" class="lilProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
-      	<img ng-if="user.image" class="lilProfiles img-rounded" ng-src="{{user.image}}" />
-      </li>
-<!--       <li>
-        <div>Interests include:</div>
-        <ul>
-          <li ng-repeat="interesting in user.interest">
-            {{interesting}}
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+    <div class="portlet overflower">
+      <div class="portlet-header searchHeader">
+       <h1 class="searchHeader">Users</h1>
+      </div>
+      <div class="portlet-content">
+        <ul class="flexor noListStyles">
+          <li ng-repeat = "user in userList">
+            <ul class="positionUL noListStyles">
+              <li class="searchedUsername">
+                {{user.username}}
+              </li>
+              <li>
+      	        <img ng-if="!user.image" class="lilProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+      	        <img ng-if="user.image" class="lilProfiles img-rounded" ng-src="{{user.image}}" />
+              </li>
+              <li>
+                <strong>Interest:</strong> {{user.interest}}
+              </li>
+              <li>
+ 	              <strong>Gym:</strong> {{user.gym}}
+              </li>
+              <li>
+      	        <button class="chatWithButton btn btn-default" ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
+              </li>
+            </ul> 
           </li>
         </ul>
-      </li>
- -->      <li>
- 	    {{user.gym}}
-      </li>
-      <li>
-      	<button ng-click='chatWithUser(user.username)'>Chat with {{user.username}}</button>
-      </li>
-      </ul> 
-    </li>
-  </ul>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>

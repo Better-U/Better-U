@@ -1,6 +1,6 @@
 angular.module('myApp.signup', [])
 
-  .controller('SignupCtrl', function ($scope, authFactory, $state, $uibModalInstance, $uibModal, $cookies, $rootScope) {
+  .controller('SignupCtrl', function ($scope, AuthFactory, $state, $uibModalInstance, $uibModal, $cookies, $rootScope) {
     $scope.alreadyExists = null
     $scope.userExistError = false
     $scope.animationsEnabled = true
@@ -17,23 +17,26 @@ angular.module('myApp.signup', [])
       gender: null,
       activity: null,
       interest: null,
-      gym: null
+      gym: null,
+      otherGym: null
     }
 
     $scope.submit = function () {
-      console.log('user details: ', $scope.user)
+      if (!$scope.user.gym) {
+        $scope.user.gym = $scope.user.otherGym
+      }
+
       var username = $cookies.get('username')
-      console.log('userdetails submitted', $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity)
-      if (!$scope.user.age || !$scope.user.height || !$scope.user.weight || !$scope.user.gender) {
-        console.log('Form not complete')
-      } else {
-        $uibModalInstance.dismiss('cancel')
-        authFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
+      $uibModalInstance.dismiss('cancel')
+        AuthFactory.registerProfileDetails(username, $scope.user.age, $scope.user.height, $scope.user.weight, $scope.user.gender, $scope.user.activity, $scope.user.interest, $scope.user.gym)
           .then(function (data) {
             $cookies.put('token', data.data.token)
-            $state.go('dashboard')
+            AuthFactory.getProfile($cookies.get('username'))
+              .then(function (data) {
+                AuthFactory.userData = data.data
+                $state.go('dashboard')
+              })
           })
-      }
     }
 
     $scope.cancel = function () {
@@ -41,24 +44,19 @@ angular.module('myApp.signup', [])
     }
 
     $scope.goNext = function () {
-      if ($scope.user.name && $scope.user.password) {
-        authFactory.registerUserDetails($scope.user.name, $scope.user.password)
-          .then(function (data) {
-            console.log('data after next: ', data)
-            $scope.alreadyExists = data.data.exists
-            if ($scope.alreadyExists) {
-              $scope.noUserDetail = false
-              $scope.userExistError = true
-            } else {
-              $scope.next = true
-              $scope.profileButton = true
-              $cookies.put('username', data.config.data.username)
-              $scope.registerProfile()
-            }
-          })
-      } else {
-        $scope.noUserDetail = true
-      }
+      AuthFactory.registerUserDetails($scope.user.name, $scope.user.password)
+        .then(function (data) {
+          $scope.alreadyExists = data.data.exists
+          if ($scope.alreadyExists) {
+            $scope.noUserDetail = false
+            $scope.userExistError = true
+          } else {
+            $scope.next = true
+            $scope.profileButton = true
+            $cookies.put('username', data.config.data.username)
+            $scope.registerProfile()
+          }
+        })
     }
 
     $scope.signin = function () {
@@ -76,8 +74,20 @@ angular.module('myApp.signup', [])
         animation: $scope.animationsEnabled,
         templateUrl: 'app/signup/registerProfile.html',
         controller: 'SignupCtrl',
-        // windowClass: 'register-profile-modal',
-        windowClass: 'app-modal-window'
+        windowClass: 'app-modal-window-signup'
       })
     }
   })
+
+.directive('theGym', function () {
+  return {
+    restrict: 'A',
+    transclude: true,
+    scope: true,
+    link: function (scope, element, attrs) {
+      element.bind('click', function () {
+        scope.user.gym = ''
+      })
+    }
+  }
+})
