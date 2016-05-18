@@ -1,4 +1,5 @@
 angular.module('myApp.cardioModal', [])
+
   .controller('CardioModalCtrl', function ($scope, CardioFactory, AuthFactory, $cookies, $state, $uibModal, $uibModalInstance) {
     $scope.animationsEnabled = true
     $scope.noInput = false
@@ -13,6 +14,7 @@ angular.module('myApp.cardioModal', [])
     $scope.clear = function () {
       $scope.date = null
     }
+
     $scope.popup1 = {
       opened: false
     }
@@ -68,25 +70,6 @@ angular.module('myApp.cardioModal', [])
           .then(function (data) {
             $state.reload()
           })
-      }
-    }
-  })
-  .directive('datetimepickerNeutralTimezone', function () {
-    return {
-      restrict: 'A',
-      priority: 1,
-      require: 'ngModel',
-      link: function (scope, element, attrs, ctrl) {
-        ctrl.$formatters.push(function (value) {
-          var date = new Date(Date.parse(value))
-          date = new Date(date.getTime() + (60000 * date.getTimezoneOffset()))
-          return date
-        })
-
-        ctrl.$parsers.push(function (value) {
-          var date = new Date(value.getTime() - (60000 * value.getTimezoneOffset()))
-          return date
-        })
       }
     }
   })
