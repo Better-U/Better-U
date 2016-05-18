@@ -73,10 +73,8 @@ angular.module('myApp.bet', ['factories'])
     $scope.bettorPoints = function () {
       BetsFactory.bettorBets($scope.username)
         .then(function (data) {
-          console.log('inside bettorPoints: ', data.data.data[0])
           var blob = data.data.data[0]
           for (var i = 0; i < blob.length; i++) {
-            console.log('inside blob loop', blob[i].bettor_pts, blob[i].user_pts)
             $scope.bettorSeries.push(blob[i].bettor_pts)
           }
         })
