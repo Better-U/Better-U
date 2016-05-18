@@ -16,6 +16,16 @@ describe('Protractor Demo App', function () {
   var submitProfile = element(by.id('registerProfileSubmit'))
 
 
+  //============================================================
+    var signInButton = element(by.id('signinButton')) 
+     var signinUsername = element(by.model('user.name'))
+     var signinPassword = element(by.model('user.password'))
+     var signinSubmit = element(by.className('submitSignin'))
+     var cardioRoute = element(by.className('fa-bicycle'))
+  //============================================================
+
+  //============================================================
+
   // var goProfile = element(by.className('profileNavigator'))
   // var profileUsername = element(by.id('profileUsername'))
   // beforeEach(function () {
@@ -33,10 +43,12 @@ describe('Protractor Demo App', function () {
   expect(browser.getTitle()).toEqual('BetterU - Fitness');
   })
   it('should be able to sign up', function(){
+    var EC = protractor.ExpectedConditions;
+
     // browser.get('http://localhost:8080/#/');
     signUpButton.click()
-    usernameInput.sendKeys('cuteElephant12')
-    passwordInput.sendKeys('cuteElephant12')
+    usernameInput.sendKeys('cuteElephant19')
+    passwordInput.sendKeys('cuteElephant')
     submitSignup.click()
     age.sendKeys(50)
     height.sendKeys(70)
@@ -46,11 +58,61 @@ describe('Protractor Demo App', function () {
     interest.click()
     gym.click()
     submitProfile.click()
-    browser.waitForAngular()
-        var welcomed = element(by.id('welcomeUser'))
-    expect(welcomed.getText()).toEqual('Welcome back, cuteElephant12!')
+    var welcomed = element(by.binding('username'))
+    browser.wait(EC.visibilityOf(welcomed), 1000);
+    expect(welcomed.getText()).toEqual('Welcome back, cuteElephant19!')
+      
+    })
+
     // webdriver.wait(expect(welcomed.getText()).toEqual('Welcome back, cuteElephant7!'), 5000)
-    
+          it('should be able to sign in', function(){
+    var EC = protractor.ExpectedConditions;
+
+        signInButton.click()
+        signinUsername.sendKeys('arm')
+        signinPassword.sendKeys('arm')
+        signinSubmit.click()
+    var welcomed = element(by.binding('username'))
+
+      browser.wait(EC.visibilityOf(welcomed), 2000);
+
+        cardioRoute.click()
+     var cardioHeader =element(by.className('cardioHeadingHeader'))
+
+      browser.wait(EC.visibilityOf(cardioHeader), 2000);
+
+      var inputCardioButton = element(by.className('callInputCardio'));
+      inputCardioButton.click()
+
+      var date = element(by.model('date'));
+      var time = element(by.className('uib-increment.minutes'))
+      var run = element(by.id('run'))
+      var distance = element(by.model('distance'))
+      var duration = element(by.model('duration'))
+      var intensity = element(by.id('intensityOf1'))
+      var submitCardio = element(by.id('submitCardioModal'))
+
+      browser.wait(EC.visibilityOf(date), 2000);
+
+      date.sendKeys('24-May-2016')
+      time.click()
+      run.click()
+      distance.sendKeys(5)
+      duration.sendKeys(5)
+      intensity.click()
+      submitCardio.click()
+
+      var elm = element.all(by.repeater('cardio in cardioData')).last()
+
+      browser.wait(EC.visibilityOf(elm), 2000);
+
+      // .column(cardio.date)
+      // .last()
+
+      browser.wait(EC.visibilityOf(elm), 2000);
+      expect(elm.getText()).toEqual('24-May-2016')
+    })
+
 
     // goProfile.click()
     // expect(profileUsername).toEqual('Name: ')
@@ -64,4 +126,3 @@ describe('Protractor Demo App', function () {
   //   expect(phoneList.count()).toBe(2);
   //   expect(nameHolder.getText()).toEqual('eric')
   // })
-})

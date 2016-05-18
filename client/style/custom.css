@@ -349,7 +349,7 @@ h6 {
 }
 .searchHeader{
   color:white !important;
-  background: #4cb97f !important;
+  background: #87b94c !important;
 }
 .fullChat{
   position: relative;
@@ -360,7 +360,7 @@ h6 {
   left: 2px;
    border-radius: 2px;
     color: white;
-    background-color:#923a3d;
+    background-color:#b94c50;
     box-shadow: 0 3px 3px 0 #5b2426;
     border: 1px white solid;
 }

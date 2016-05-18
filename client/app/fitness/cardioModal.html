@@ -31,7 +31,7 @@
           <label class="col-md-3 control-label">*Activity</label>
           <div class="col-md-7">
             <select multiple class="form-control" ng-model="type" required>
-              <option value="Running">Running</option>
+              <option id="runningPicker" value="Running">Running</option>
               <option value="Cycling">Cycling</option>
               <option value="Swimming">Swimming</option>
               <option value="Rowing">Rowing</option>
@@ -79,7 +79,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">*Intensity</label>
               <div class="col-md-7">
-                <input type="radio" ng-model="intensity" value="1" ng-required="!intensity"> 1
+                <input type="radio" id="intensityOf1" ng-model="intensity" value="1" ng-required="!intensity"> 1
                 <input type="radio" ng-model="intensity" value="2" ng-required="!intensity"> 2
                 <input type="radio" ng-model="intensity" value="3" ng-required="!intensity"> 3
                 <input type="radio" ng-model="intensity" value="4" ng-required="!intensity"> 4
@@ -91,7 +91,7 @@
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-7">
-                    <input type="submit" class="btn btn-primary" ng-disabled="cardioLog.$invalid">
+                    <input id="submitCardioModal" type="submit" class="btn btn-primary" ng-disabled="cardioLog.$invalid">
                     <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
                 </div>
             </div>
