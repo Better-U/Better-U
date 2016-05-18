@@ -2,8 +2,7 @@ var db = require('../db')
 var bet = {}
 
 bet.getAllPoints = function () {
-  console.log('inside bet helpers - get all points')
-  return db.raw('SELECT * FROM user ORDER BY totalpts DESC LIMIT 5')
+  return db.raw('SELECT * FROM user ORDER BY totalpts DESC LIMIT 20')
 }
 
 bet.fetchBets = function (id) {
@@ -41,6 +40,13 @@ bet.searchBets = function (goals_id, id) {
 bet.getUserPoints = function (id) {
   var getPoints = 'SELECT totalpts FROM user WHERE id = ?'
   return db.raw(getPoints, [id])
+}
+
+bet.getBets = function (id) {
+  var getBets = 'SELECT g.date, g.points, b.bettor_pts, b.user_pts, b.id FROM goals g ' +
+  'INNER JOIN bets b ON b.goals_id = g.id ' +
+  'WHERE b.bettor_id = ?'
+  return db.raw(getBets, [id])
 }
 
 module.exports = bet

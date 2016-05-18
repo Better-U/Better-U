@@ -58,26 +58,17 @@ router.post('/addBets', function (req, res) {
       Bets.getUserPoints(bettor)
         .then(function (bettorPts) {
           var bettor_pts = bettorPts[0][0].totalpts
-          console.log('this is points for bettor')
           Bets.getUserPoints(user)
             .then(function (userPts) {
               var user_pts = userPts[0][0].totalpts
-              console.log('this is points for user')
               Bets.addBets(user, bettor, goals, user_pts, bettor_pts)
                 .then(function (data) {
-                  console.log('finished adding into bets table')
                   res.json({
                     success: true
                   })
                 })
             })
         })
-      // Bets.addBets(user, bettor, goals)
-      //   .then(function (data) {
-      //     res.json({
-      //       success: true
-      //     })
-      //   })
     })
 })
 
@@ -98,6 +89,22 @@ router.get('/searchBets', function (req, res) {
       var bettor = id[0].id
       Bets.searchBets(req.query.goals_id, bettor)
         .then(function (data) {
+          res.json({
+            success: true,
+            data: data
+          })
+        })
+    })
+})
+
+router.get('/bettor', function (req, res) {
+  console.log('inside bettor get request')
+  User.findUser(req.query.username)
+    .then(function (id) {
+      var bettorId = id[0].id
+      Bets.getBets(bettorId)
+        .then(function (data) {
+          console.log('inside select bettor points ____')
           res.json({
             success: true,
             data: data
