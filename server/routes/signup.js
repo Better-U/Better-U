@@ -14,7 +14,7 @@ router.post('/regUser', function (req, res) {
     .then(function (data) {
       console.log('reg user data: ', data)
       if (data.length === 0) {
-        User.hashPassword(req.body.username, req.body.password)
+        User.hashPassword(req.body.password)
           .then(function (hash) {
             User.insertUserPw(req.body.username, hash)
               .then(function () {

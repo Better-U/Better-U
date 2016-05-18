@@ -11,6 +11,7 @@ angular.module('myApp.signin', [])
     $scope.signin = function () {
       AuthFactory.signIn($scope.user.name, $scope.user.password)
         .then(function (data) {
+          console.log('data after signin', data)
           if (!data.data.success) {
             $state.reload()
             $scope.userDoesNotExist = true
