@@ -2,8 +2,6 @@ angular.module('myApp.goalsModal', [])
 
   .controller('goalsCtrl', function ($scope, AuthFactory, GoalsFactory, $cookies, $state, $uibModal) {
     $scope.animationsEnabled = true
-    // $scope.added = false
-    // $scope.disabled = false
     $scope.userData = []
 
     $scope.inputGoal = function () {
@@ -25,9 +23,7 @@ angular.module('myApp.goalsModal', [])
     $scope.getGoals = function () {
       GoalsFactory.getLog($scope.userData.username)
         .then(function (data) {
-          // console.log('data goals: ', data)
           $scope.goalsData = data.data.data
-          // console.log($scope.goalsData)
         })
     }
 
@@ -37,7 +33,6 @@ angular.module('myApp.goalsModal', [])
           if (data.data.data.length === 0) {
             GoalsFactory.removeLog(id)
               .then(function (data) {
-                console.log('data from remove: ', data)
                 swal('Goal successfully removed!')
                 $state.reload()
               })

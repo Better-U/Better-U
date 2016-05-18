@@ -4,11 +4,6 @@ angular.module('myApp.nutritionModal', [])
     $scope.food = {query: ''}
     $scope.results = []
 
-     // Date Modal
-    $scope.today = function () {
-      $scope.date = new Date()
-    }
-
     $scope.format = 'dd-MMMM-yyyy'
 
     $scope.open1 = function () {
@@ -60,11 +55,5 @@ angular.module('myApp.nutritionModal', [])
                      }
       })
     }
-
-    $scope.init = function () {
-      $scope.today()
-    }
-
-    $scope.init()
   })
 

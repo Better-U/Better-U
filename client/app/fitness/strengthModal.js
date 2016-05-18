@@ -1,11 +1,6 @@
 angular.module('myApp.strengthModal', [])
   .controller('StrengthModalCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal, $uibModalInstance) {
 
-    // Date Modal
-    $scope.today = function () {
-      $scope.dt = new Date()
-    }
-    $scope.today()
     $scope.format = 'dd-MMMM-yyyy'
 
     $scope.open1 = function () {
