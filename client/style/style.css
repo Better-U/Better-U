@@ -179,11 +179,9 @@ md-option {
   text-align:center;
   background-color: #b94c50;
   width: 100%;
-  font-size: 7rem;
-  font-weight: 500;
+  font-size: 5rem;
+  font-weight: 400;
   color: #fff;
-  mix-blend-mode: multiply;
-  letter-spacing: -1.25rem;
 }
 
 .sidebar-heading{
@@ -564,7 +562,7 @@ td .goalDueDate {
 }
 
 .chatWithButton {
-  background-color: #4cb97f;
+  background-color: #87b94c;
   color: white;
   padding: 10px 20px;
   -webkit-box-shadow: 0 3px 3px 0 #2b6e4a;
@@ -572,7 +570,7 @@ box-shadow: 0 3px 3px 0 #2b6e4a;
 
 }
 .chatWithButton:hover{
-  background-color: #5CA3E0;
+  background-color: #c1dba3;
   color: white;
 }
 .profileCard {
