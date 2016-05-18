@@ -17,7 +17,6 @@ angular.module('myApp.dashboard', [])
     $scope.signout = function () {
       $cookies.remove('token')
       $cookies.remove('username')
-      console.log('token after remove: ', $cookies.get('token'))
       $state.go('landing')
     }
 

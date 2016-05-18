@@ -5,8 +5,6 @@ angular.module('myApp.goals', [])
     $scope.added = false
     $scope.disabled = false
 
-
-
     $scope.submitCardio = function (date, intensity, category, value, measurement, points) {
       $uibModalInstance.dismiss('cancel')
       GoalsFactory.postLog('cardio', date, intensity, category, value, measurement, $cookies.get('username'), points)
@@ -19,11 +17,9 @@ angular.module('myApp.goals', [])
       $uibModalInstance.dismiss('cancel')
       GoalsFactory.postLog('strength', date, intensity, category, value, measurement, $cookies.get('username'), points)
         .then(function (data) {
-          console.log('strength goal submitted', data)
           $state.reload()
         })
     }
-
 
   })
 
