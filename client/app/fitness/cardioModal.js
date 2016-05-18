@@ -1,5 +1,5 @@
-angular.module('myApp.cardioModal', ['factories'])
-  .controller('CardioModalCtrl', function ($scope, cardioFactory, AuthFactory, $cookies, $state, $uibModal, $uibModalInstance) {
+angular.module('myApp.cardioModal', [])
+  .controller('CardioModalCtrl', function ($scope, CardioFactory, AuthFactory, $cookies, $state, $uibModal, $uibModalInstance) {
     $scope.animationsEnabled = true
     $scope.noInput = false
     var user = $cookies.get('username')
@@ -68,7 +68,7 @@ angular.module('myApp.cardioModal', ['factories'])
         $uibModalInstance.dismiss('cancel')
         var newTime = new Date($scope.time).getTime()
         var convertedTime = $scope.convertTime(newTime)
-        cardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type[0], $scope.distance, $scope.duration, pace, $scope.intensity)
+        CardioFactory.submitCardio(user, $scope.date, convertedTime, $scope.type[0], $scope.distance, $scope.duration, pace, $scope.intensity)
           .then(function (data) {
             $state.reload()
           })
