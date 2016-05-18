@@ -1,8 +1,7 @@
 angular.module('app.AuthFactory', [])
   .factory('AuthFactory', function ($http, $cookies) {
-    
     var userData = null
-    
+
     function registerUserDetails (username, password) {
       var form = {
         username: username,
@@ -38,7 +37,6 @@ angular.module('app.AuthFactory', [])
         interest: interest,
         gym: gym
       }
-
       return $http.post('/api/signup/regProfile', form)
     }
 

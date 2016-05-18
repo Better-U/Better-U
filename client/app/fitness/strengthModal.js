@@ -24,7 +24,7 @@ angular.module('myApp.strengthModal', ['factories'])
     $scope.animationsEnabled = true
     $scope.noInput = false
 
-    // Submit Button
+    // Submit Button: Save information to database
     $scope.submitStrength = function () {
       if ($scope.dt === undefined || $scope.str.type === undefined || $scope.str.weight === undefined || $scope.str.sets === undefined || $scope.str.reps === undefined) {
         $scope.noInput = true

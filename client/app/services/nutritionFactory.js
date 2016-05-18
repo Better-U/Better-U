@@ -17,17 +17,15 @@ angular.module('app.NutritionFactory', [])
       protein: protein,
       water: water
     }
-    console.log('foodLog =', foodLog)
     return $http.post('/api/health/nutrition', foodLog)
   }
-
+// Searches Nutritionix DB
   function searchFoodDB (query) {
-    console.log('query =', query)
     if (query !== '') {
       return $http.get('https://api.nutritionix.com/v1_1/search/' + query + '?results=0%3A50&fields=item_name,brand_name,nf_calories&appId=' + appID + '&appKey=' + appKey)
     }
   }
-
+// Gets nutritional info of item clicked
   function getNutrition (id) {
     var req = {
       url: 'https://api.nutritionix.com/v1/item/' + id + '?&appId=' + appID + '&appKey=' + appKey,
@@ -41,7 +39,6 @@ angular.module('app.NutritionFactory', [])
     var params = {
       username: username
     }
-
     var config = {
       params: params
     }

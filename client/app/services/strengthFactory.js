@@ -12,11 +12,9 @@ angular.module('app.StrengthFactory', [])
         weight: weight,
         reps: reps
       }
-      console.log('StrengthFactory Submission', strengthForm)
       return $http.post('/api/fitness/strengthForm', strengthForm)
     }
     function getStrength (username) {
-      console.log('getStrength line 126')
       return $http.post('/api/fitness/getStrength', {username: username})
     }
     return {

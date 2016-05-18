@@ -1,8 +1,8 @@
+ <!-- Navbar -->
  <div class="mainbar">
     <div class="container">
       <div class="mainbar-collapse collapse">
         <ul class="nav navbar-nav mainbar-nav">
-
           <li>
             <a href="#dashboard">
               <i class="fa fa-dashboard"></i>
@@ -44,37 +44,35 @@
    </div> 
 </div>
 <div class="container">
-    <div class="content">
-        <div class='content-container'>
-           <div id="wrapper" ng-class="wrapperToggler">
-                <!-- Sidebar -->
-                <div id="sidebar-wrapper">
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-brand">
-                            <div class="sidebar-title">Chats:</div>
-                        </li>
-                        <li class="friendList" ng-repeat="chat in chatList">
-                            <a ng-click="joinRoom(chat.username)">
-                                <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
-                                <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
-                                <span class="cut-overflow">
-                                    {{chat.username}}
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Page Content -->
-                <div id="page-content-wrapper">
-                    <div class="container-fluid relative">
-                          <chat ng-show="searchPage"></chat>
-                          <search ng-hide="searchPage"></search>
-                    </div>
-                </div>
+  <div class="content">
+    <div class='content-container'>
+       <div id="wrapper" ng-class="wrapperToggler">
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                  <div class="sidebar-title">Chats:</div>
+                </li>
+                <li class="friendList" ng-repeat="chat in chatList">
+                  <a ng-click="joinRoom(chat.username)">
+                    <img ng-if="!chat.image" class="lilerProfiles img-circle" src="../../assets/images/imageplaceholder.png" />
+                    <img ng-if="chat.image" class="lilerProfiles img-circle" ng-src="{{chat.image}}" />
+                    <span class="cut-overflow">
+                        {{chat.username}}
+                    </span>
+                  </a>
+                </li>
+            </ul>
+          </div>
+          <!-- Page Content -->
+          <div id="page-content-wrapper">
+            <div class="container-fluid relative">
+              <chat ng-show="searchPage"></chat>
+              <search ng-hide="searchPage"></search>
             </div>
-        <!-- /#page-content-wrapper -->
+          </div>
         </div>
     </div>
+  </div>
 </div>
-<!-- <div class="col-md-3" ng-click="random()">JUST CLICK ME ITS RANDOM AF YES EYS</div> -->
 

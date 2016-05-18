@@ -10,7 +10,6 @@ angular.module('app.ProfileFactory', [])
         interest: interest,
         gym: gym
       }
-      console.log('inside profileFactory submitProfile', profileForm)
       return $http.post('/api/users/profile', profileForm)
     }
 
@@ -19,7 +18,6 @@ angular.module('app.ProfileFactory', [])
         username: username,
         url: url
       }
-
       return $http.post('/api/users/picture', plugin)
     }
 

@@ -1,4 +1,5 @@
 angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
+
   .factory('socialFactory', function ($http) {
     var roomNumber
     function getUserCity (username) {
@@ -15,11 +16,9 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
       return $http.post('/api/social/findPeople', {username: username, city: city})
     }
     function newChat (username1, username2) {
-      console.log('newchatFacotyr being called')
       return new Promise(function (resolve) {
         $http.post('/api/social/newChat', {username1: username1, username2: username2})
           .then(function (data) {
-            console.log(data.data.roomNumber)
             roomNumber = data.data.roomNumber
             resolve(data.data.roomNumber)
           })
@@ -76,7 +75,6 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
           deferred.resolve(results)
         // Should also reject if AJAX errors.
         })
-
         return deferred.promise
       }
     }

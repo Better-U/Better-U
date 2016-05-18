@@ -60,8 +60,6 @@ angular.module('myApp', ['myApp.signin',
       })
       .state('dashboard', {
         url: '/dashboard',
-        // templateUrl: '/app/dashboard/dashboard.html',
-        // controller: 'DashboardCtrl',
         authenticate: true,
         views: {
           '': {
@@ -152,20 +150,8 @@ angular.module('myApp', ['myApp.signin',
   .config(function ($httpProvider, filepickerProvider) {
     filepickerProvider.setKey(fileStackAPI)
     $httpProvider.defaults.headers.common['Access']
-    // $httpProvider.defaults.useXDomain = true
-    // $http.defaults.headers.common['Access-Control-Allow-Credentials'] = true
-    // $httpProvider.defaults.headers.common['Access-Control-Allow-Method'] = 'GET, POST, PUT, DELETE'
-    // $http.defaults.headers.common['Access-Control-Allow-Headers'] = 'Authorization'
-
-    // delete $httpProvider.defaults.headers.common['X-Requested-With']
-
     $httpProvider.interceptors.push(function ($timeout, $q, $cookies, $injector) {
       return {
-        //      request: function (config) {
-        //        config.headers['Token'] = $cookies.get('token')
-        //        config.headers.Authorization = "Bearer " + $cookies.get('token')
-        //        return config
-        //      },
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $injector.get('$state').transitionTo('landing')
@@ -182,8 +168,7 @@ angular.module('myApp', ['myApp.signin',
       if (requireLogin && AuthFactory.getToken() === null) {
         event.preventDefault()
         $state.go('landing')
-      }
-      else if (requireLogin && !AuthFactory.isAuth()) {
+      } else if (requireLogin && !AuthFactory.isAuth()) {
         $cookies.remove('username')
         $cookies.remove('token')
         event.preventDefault()
