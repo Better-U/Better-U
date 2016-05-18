@@ -1,6 +1,6 @@
 # BetterU
 
-Ever find it difficult to keep track of what your diet is and how you are exercising? BetterU is a new web application that combines your input with our extensive set of data visualization and recording tools to accurately depict trends, helping you manage your health. 
+Ever find it difficult to keep track of what your diet is and how you are exercising? [BetterU](http://www.betteru.pro/) is a new web application that combines your input with our extensive set of data visualization and recording tools to accurately depict trends, helping you manage your health. 
 
 
 ## Developer Documentation
