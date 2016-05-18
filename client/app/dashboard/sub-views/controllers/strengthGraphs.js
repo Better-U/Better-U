@@ -59,15 +59,25 @@ angular.module('myApp.strengthGraphs', [])
     $scope.c1_duration_date = function (arr) {
       var c1_obj = {}
       var dateshort
-      // var days = arr.length
-
+      var dateshort2
+      var div = {}
+      for (var j = 0; j < arr.length; j++) {
+        dateshort2 = arr[j].date
+        var y = new Date(dateshort2).getDay()
+        if (div[y] !== undefined) {
+          div[y] = div[y] + 1
+        } else {
+          div[y] = 1
+        }
+      }
+      console.log(div)
       // Creating object of [day of week:duration]
       for (var i = 0; i < arr.length; i++) {
         dateshort = arr[i].date
         var x = new Date(dateshort).getDay()
 
         if (c1_obj[x] !== undefined) {
-          c1_obj[x] = c1_obj[x] + arr[i].duration
+          c1_obj[x] = (c1_obj[x] + arr[i].duration) / div[x]
         } else {
           c1_obj[x] = arr[i].duration
         }
