@@ -1,6 +1,7 @@
 angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule'])
+
   .controller('socialCtrl', function ($scope, socialFactory, $state, $cookies, socket, maps) {
-        $scope.name = $cookies.get('username')
+    $scope.name = $cookies.get('username')
     $scope.savedAddress
     $scope.roomNumber
     $scope.user = $cookies.get('username')
@@ -19,7 +20,6 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.showFriends = function () {
       socialFactory.getFriends($scope.user)
         .then(function (data) {
-          console.log('HERROO', data)
           $scope.chatList = data.data
         })
     }
@@ -72,7 +72,6 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
     $scope.findPeople = function (city) {
       socialFactory.findPeople($scope.user, city)
         .then(function (data) {
-          console.log(data.data)
           $scope.userList = data.data
           if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
             $scope.$apply()
@@ -88,18 +87,15 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
             username1: $scope.user,
             username2: username
           })
-              socialFactory.getFriends($scope.user)
-      .then(function(data){
-        $scope.chatList = data.data
-        console.log($scope.chatList, "THISIS CHATLIST")
-        if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-            $scope.$apply()
-          }
-      })
-    
+          socialFactory.getFriends($scope.user)
+          .then(function (data) {
+            $scope.chatList = data.data
+            if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+              $scope.$apply()
+            }
+          })
         })
-            console.log("about to get")
-}
+    }
     $scope.joinRoom = function (username) {
       $scope.searchPage = true
       $scope.chattingWith = username
@@ -109,7 +105,7 @@ angular.module('myApp.social', ['btford.socket-io', 'myApp.socialFactoryModule']
       })
       $scope.messages = []
     }
-    // add a message to the conversation when a user disconnects or leaves the room
+    // Add a message to the conversation when a user disconnects or leaves the room
   })
   .directive('chat', function () {
     return {

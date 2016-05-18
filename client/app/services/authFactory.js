@@ -38,7 +38,6 @@ angular.module('myApp.AuthFactory', [])
         interest: interest,
         gym: gym
       }
-
       return $http.post('/api/signup/regProfile', form)
     }
 

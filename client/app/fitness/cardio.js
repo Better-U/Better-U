@@ -14,18 +14,13 @@ angular.module('myApp.cardio', [])
     $scope.cardioData = null
 
     $scope.shortenDate = function (date) {
-      // console.log('date inside shortenDate', date)
-      var dateArr = date.split("")
-      // console.log('date after split: ', dateArr)
-      return dateArr.splice(0, 10).join("")
+      var dateArr = date.split('')
+      return dateArr.splice(0, 10).join('')
     }
 
+    // Fetches cardio logs and displays in table
     $scope.cardioList = function () {
       CardioFactory.getCardio(user).then(function (data) {
-        // data.data.forEach(function (item) {
-        //   item.date = item.date.slice(0, 10)
-        // })
-        console.log('cardioList data =', data)
         $scope.cardioData = data.data
       })
     }
@@ -35,5 +30,4 @@ angular.module('myApp.cardio', [])
     }
 
     $scope.init()
-
   })

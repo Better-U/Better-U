@@ -7,30 +7,25 @@ angular.module('myApp.signin', [])
     $scope.goSignup = function () {
       $state.go('signup')
     }
-    //
-    // $scope.user = {
-    //   name: null,
-    //   password: null
-    // }
+
     $scope.signin = function () {
-        AuthFactory.signIn($scope.user.name, $scope.user.password)
-          .then(function (data) {
-            console.log(data.data.success)
-            if (!data.data.success) {
-              $state.reload()
-              $scope.userDoesNotExist = true
-            } else {
-              $uibModalInstance.dismiss('cancel')
-              $cookies.put('username', data.config.data.username)
-              $cookies.put('token', data.data.token)
-              AuthFactory.getProfile($cookies.get('username'))
-                .then(function(data) {
-                  AuthFactory.userData = data.data[0]
-                  console.log('signin data: ', AuthFactory.userData)
-                  $state.go('dashboard')
-                })
-            }
-          })
+      AuthFactory.signIn($scope.user.name, $scope.user.password)
+        .then(function (data) {
+          if (!data.data.success) {
+            $state.reload()
+            $scope.userDoesNotExist = true
+          } else {
+            $uibModalInstance.dismiss('cancel')
+            $cookies.put('username', data.config.data.username)
+            $cookies.put('token', data.data.token)
+            AuthFactory.getProfile($cookies.get('username'))
+              .then(function(data) {
+                AuthFactory.userData = data.data[0]
+                console.log('signin data: ', AuthFactory.userData)
+                $state.go('dashboard')
+              })
+          }
+        })
     }
 
     $scope.signup = function () {
@@ -49,7 +44,6 @@ angular.module('myApp.signin', [])
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem
       }, function () {
-        console.log('hi')
       })
     }
   })

@@ -83,7 +83,6 @@ angular.module('myApp.socialFactoryModule', ['btford.socket-io'])
           deferred.resolve(results)
         // Should also reject if AJAX errors.
         })
-
         return deferred.promise
       }
     }

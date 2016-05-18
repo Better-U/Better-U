@@ -14,19 +14,16 @@ angular.module('factories', [])
       }
       return $http.post('/api/fitness/cardioForm', cardioForm)
     }
-
+  // Gets cardio logs
     function getCardio (username) {
       var params = {
         username: username
       }
-
       var config = {
         params: params
       }
-
       return $http.get('/api/fitness/getCardio', config)
     }
-
     return {
       submitCardio: submitCardio,
       getCardio: getCardio
@@ -45,9 +42,6 @@ angular.module('factories', [])
         username: username,
         points: points
       }
-      console.log('this is points: ', plugin.points)
-      console.log('inside postlog service', plugin)
-
       return $http.post('/api/goals/', plugin)
     }
 
@@ -58,7 +52,6 @@ angular.module('factories', [])
       var config = {
         params: params
       }
-
       return $http.get('/api/goals/', config)
     }
 
