@@ -6,7 +6,6 @@
        <br>
        <br>
        <span ng-if="(waterIntake[6]/8 * 100) === 0">No water logs have been made today.</span>
-       <span ng-if="(waterIntake[6]/8 * 100) !== 0">You drank {{(waterIntake[6]/8 * 100)}}% of the daily recommended value</span>
        <div ng-if="(waterIntake[6]/8 * 100) !== 0" class="ct-chart ct-label" id="water-intake-chart"></div>
        <div ng-if="(waterIntake[6]/8 * 100) !== 0">
            <span>{{waterIntake[6]}} of {{convertWater(userData.weight)}} cups</span>
