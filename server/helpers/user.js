@@ -33,6 +33,7 @@ User.comparePassword = function (username, password) {
             console.log(err)
             reject(err)
           } else {
+            console.log('this is password response: ', response)
             resolve(response)
           }
         })

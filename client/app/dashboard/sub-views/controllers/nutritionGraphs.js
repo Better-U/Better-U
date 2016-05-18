@@ -95,8 +95,8 @@ angular.module('myApp.nutritionGraphs', [])
     $scope.createNutritionCharts = function () {
       console.log('$scope waterintake', $scope.waterIntake)
       var chart = new Chartist.Pie('#water-intake-chart', {
-        series: [$scope.waterIntake[6]],
-        labels: [($scope.waterIntake[6]) + ' of ' + $scope.convertWater($scope.userData.weight) + ' cups']
+        series: [$scope.waterIntake[6]]
+        // labels: [($scope.waterIntake[6]) + ' of ' + $scope.convertWater($scope.userData.weight) + ' cups']
       }, {
         donut: true,
         donutWidth: 30,
