@@ -29,9 +29,10 @@ router.post('/strengthForm', function (req, res) {
       }]
       Strength.postForm(strengthForm)
         .then(function (success) {
+          console.log('strengthform[0].type: ', strengthForm[0].type)
           Goals.findLog(strengthForm[0].user_id, strengthForm[0].type)
             .then(function (data) {
-              console.log(data)
+              console.log('this is data after posting str form:', data)
               for (var i = 0; i < data.length; i++) {
                 var currentVal = data[i].currentValue
                 if (data[i].measurement === 'Sets') {
