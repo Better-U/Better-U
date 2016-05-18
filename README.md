@@ -8,14 +8,21 @@ Ever find it difficult to keep track of what your diet is and how you are exerci
 ### Tools Used:
 
 * AngularJS
+* Angular bootstrap
 * ui-router
+* jQuery
 * Socket.IO
+* Chartist
 * Node
 * Express
 * MySQL
 * KnexJS
+* JSON Web Tokens
+* GoogleMaps API
 * Nutritionix API
+* Filestack API
 * Mocha
+* Karma
 * Protractor
 * Travis CI
 
@@ -32,6 +39,21 @@ bower install
 npm install
 ```
 
+* Set up an .env file with the following information: 
+
+(For the database)
+```
+DB_HOST=[YOUR INFO HERE]
+DB_USER=[YOUR INFO HERE]
+DB_PASS=[YOUR INFO HERE]
+DB_DB=[YOUR INFO HERE]
+```
+
+(For JWT)
+```
+TOKEN_SECRET=[YOUR SECRET HERE]
+```
+
 * Run the server from the respective folder
 
 ```
@@ -40,15 +62,17 @@ node server.js
 ```
 
 * Visit the localhost address indicated.
+* To utilize the Nutritionix API, register for an application key at [Nutritionix](http://www.nutritionix.com/business/api).
+* To utilize the Filestack API, register for an application key at [Filestack](https://www.filestack.com/docs/).
 
 
 ### Front-end
 
-BetterU utilizes AngularJS to render the front-end. Built-in Angular factories were used to manage state. Additionally, ui-router was implemented to enable application routing.
+BetterU utilizes AngularJS to render the front-end. Built-in Angular factories were used to manage state. Additionally, ui-router was implemented to enable application routing. 
 
-Nutritionix API calls are made in the corresponding factory file associated for the type of data that it is maintaining.
+All API calls are made in the corresponding factory file associated for the type of data that it is maintaining.
 
-Our chat feature utilizes the Socket.IO library.
+Our chat feature utilizes the Socket.IO library and our data visualizations are created with Chartist.
 
 ### Back-end
 
