@@ -1,4 +1,4 @@
-angular.module('myApp.profile', ['factories'])
+angular.module('myApp.profile', [])
 
   .controller('ProfileCtrl', function ($state, $rootScope, $scope, $window, AuthFactory, ProfileFactory, $cookies, filepickerService) {
     $scope.changesSaved = false
@@ -6,7 +6,6 @@ angular.module('myApp.profile', ['factories'])
     $scope.init = function () {
       ProfileFactory.getProfile($cookies.get('username'))
         .then(function (data) {
-          console.log('data inside ProfileFactory.getProfile =', data.data[0])
           $scope.display = data.data[0]
           $scope.prof = {activity: data.data[0].activitylvl,
             gym: data.data[0].gym || ''
@@ -15,16 +14,14 @@ angular.module('myApp.profile', ['factories'])
           $scope.prof.interest = $scope.display.interest
         })
     }
+
     $scope.submitProfile = function () {
-      console.log('submitted')
-      if(!$scope.prof.gym){
+      if (!$scope.prof.gym) {
         $scope.prof.gym = $scope.prof.otherGym
       }
-      console.log($scope.prof.gym)
       ProfileFactory.submitProfile($cookies.get('username'), $scope.prof.weight, $scope.prof.bodyFat, $('input[name="prof.activity"]:checked').val(), $scope.prof.interest, $scope.prof.gym)
-        .then(function (data) {
+        .then(function () {
           $scope.changesSaved = true
-          console.log('profile data inside profile.js =', data)
         })
     }
 
@@ -59,20 +56,15 @@ angular.module('myApp.profile', ['factories'])
 
     $scope.init()
   })
-  .directive('theGym2', function(){
-  return {
-    restrict: 'A',
-    transclude: true,
-    scope: true,
-    link: function(scope, element, attrs){
-        element.bind('click',function(
-
-          ){
-          console.log(scope.prof.gym, "click is working")
+  .directive('theGym2', function () {
+    return {
+      restrict: 'A',
+      transclude: true,
+      scope: true,
+      link: function (scope, element, attrs) {
+          element.bind('click', function() {
           scope.prof.gym = ''
-          console.log(scope.prof.gym)
-        })
-
+          })
       }
     }
-})
+  })

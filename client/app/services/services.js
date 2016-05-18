@@ -134,11 +134,22 @@ angular.module('factories', [])
       return $http.post('api/bet/addBets', bet)
     }
 
+    function bettorBets (username) {
+      var params = {
+        username: username
+      }
+      var config = {
+        params: params
+      }
+      return $http.get('api/bet/bettor', config)
+    }
+
     return {
       getAllPoints: getAllPoints,
       fetchBets: fetchBets,
       placedBets: placedBets,
       addBets: addBets,
-      searchBets: searchBets
+      searchBets: searchBets,
+      bettorBets: bettorBets
     }
   })

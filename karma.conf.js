@@ -37,7 +37,6 @@ module.exports = function(config) {
       'client/app/services/authFactory.js',
       'client/app/services/nutritionFactory.js',
       'client/app/services/profileFactory.js',
-      'client/app/services/services.js',
       'client/app/services/socialFactory.js',
       'client/app/services/strengthFactory.js',
       'spec/unit-test/*.js'

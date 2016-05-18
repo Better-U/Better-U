@@ -1,6 +1,6 @@
 angular.module('myApp.cardioGraphs', [])
 
-  .controller('cardioGraphsCtrl', function ($scope, cardioFactory, AuthFactory, $cookies) {
+  .controller('cardioGraphsCtrl', function ($scope, CardioFactory, AuthFactory, $cookies) {
     $scope.userData = null
     $scope.nutritionData = null
     $scope.lastSevenSessions = []
@@ -17,7 +17,7 @@ angular.module('myApp.cardioGraphs', [])
       AuthFactory.getProfile($cookies.get('username'))
         .then(function (data) {
           $scope.userData = data.data[0]
-          cardioFactory.getCardio($scope.userData.username)
+          CardioFactory.getCardio($scope.userData.username)
             .then(function (data) {
               data.data.forEach(function (item) {
                 $scope.dates.push([item.date, item.time])
@@ -32,7 +32,7 @@ angular.module('myApp.cardioGraphs', [])
                   $scope.lastSevenSessions.push($scope.shortDateConverter($scope.dates[i][0]) + '\n' + $scope.dates[i][1])
                 }
               }
-              cardioFactory.getCardio($scope.userData.username)
+              CardioFactory.getCardio($scope.userData.username)
                 .then(function (data) {
                   data.data.forEach(function (item) {
                     $scope.pace.push([$scope.shortDateConverter(item.date), item.time, item.pace])

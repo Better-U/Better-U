@@ -1,5 +1,5 @@
-angular.module('myApp.cardio', ['factories'])
-  .controller('CardioCtrl', function ($scope, cardioFactory, AuthFactory, $cookies, $state, $uibModal) {
+angular.module('myApp.cardio', [])
+  .controller('CardioCtrl', function ($scope, CardioFactory, AuthFactory, $cookies, $state, $uibModal) {
     var user = $cookies.get('username')
     $scope.animationsEnabled = true
 
@@ -20,7 +20,7 @@ angular.module('myApp.cardio', ['factories'])
 
     // Fetches cardio logs and displays in table
     $scope.cardioList = function () {
-      cardioFactory.getCardio(user).then(function (data) {
+      CardioFactory.getCardio(user).then(function (data) {
         $scope.cardioData = data.data
       })
     }

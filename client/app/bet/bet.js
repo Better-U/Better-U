@@ -1,5 +1,6 @@
-angular.module('myApp.bet', ['factories'])
-  .controller('betCtrl', function ($scope, AuthFactory, $cookies, GoalsFactory, BetsFactory, ProfileFactory) {
+angular.module('myApp.bet', [])
+  
+  .controller('betCtrl', function ($scope, AuthFactory, $cookies, GoalsFactory, BetsFactory, ProfileFactory, $state) {
     $scope.username = $cookies.get('username')
 
     $scope.userPoints = null
@@ -7,7 +8,6 @@ angular.module('myApp.bet', ['factories'])
     $scope.userBets = null
     $scope.betsPlacedList = null
     $scope.displayUser = null
-    $scope.bettorBets = null
     $scope.totalpts = null
 
     $scope.topPointsList = function () {
@@ -22,6 +22,7 @@ angular.module('myApp.bet', ['factories'])
         .then(function () {
           swal('Bet Made', 'Click OK to make another bet', 'success')
           $scope.placedBets()
+          $state.reload()
         })
     }
 
@@ -68,6 +69,46 @@ angular.module('myApp.bet', ['factories'])
         })
     }
 
+    $scope.bettorSeries = []
+
+    $scope.bettorPoints = function () {
+      BetsFactory.bettorBets($scope.username)
+        .then(function (data) {
+          var blob = data.data.data[0]
+          for (var i = 0; i < blob.length; i++) {
+            $scope.bettorSeries.push(blob[i].bettor_pts)
+          }
+        })
+        .then(function () {
+          var chart = new Chartist.Line('.ct-chart', {
+            labels: [1, 2, 3, 4, 5, 6, 7, 8],
+            series: [
+              $scope.bettorSeries
+            ]
+          }, {
+            low: 0,
+            showArea: true,
+            showPoint: true,
+            fullWidth: true
+          })
+
+          chart.on('draw', function (data) {
+            if (data.type === 'line' || data.type === 'area') {
+              data.element.animate({
+                d: {
+                  begin: 2000 * data.index,
+                  dur: 2000,
+                  from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                  to: data.path.clone().stringify(),
+                  easing: Chartist.Svg.Easing.easeOutQuint
+                }
+              })
+            }
+          })
+        })
+    }
+
+    $scope.bettorPoints()
     $scope.getPoints()
     $scope.topPointsList()
     $scope.placedBets()

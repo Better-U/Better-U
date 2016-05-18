@@ -1,4 +1,4 @@
-angular.module('myApp.strengthModal', ['factories'])
+angular.module('myApp.strengthModal', [])
   .controller('StrengthModalCtrl', function ($scope, AuthFactory, StrengthFactory, $cookies, ProfileFactory, $state, $uibModal, $uibModalInstance) {
 
     // Date Modal

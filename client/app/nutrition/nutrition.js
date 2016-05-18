@@ -1,4 +1,4 @@
-angular.module('myApp.nutrition', ['factories'])
+angular.module('myApp.nutrition', [])
 
   .controller('NutritionCtrl', function ($state, $http, $scope, NutritionFactory, $cookies, $uibModal) {
     $scope.foodData = []
