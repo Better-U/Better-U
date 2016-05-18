@@ -9,6 +9,24 @@
 
 .space { margin-top: 5px; }
 
+.ct-series-a .ct-line {
+  stroke: #578ebe;
+  stroke-width: 3px;
+}
+
+.ct-series-a .ct-area {
+    fill: blue;
+}
+
+.ct-series-b .ct-slice-donut {
+  stroke: rgba(170, 170, 170, 0.50);
+}
+
+.ct-series-a .ct-point {
+  stroke: #578ebe;
+  stroke-width: 8px;
+}
+
 #searchBox {
   width: 454px;
   border-radius: 4px 4px 0 0;
@@ -130,19 +148,6 @@
     text-align: center;
 }
 
-/*.authContainer {
-	/*width: 300px;*/
-	/*max-width: 50%;*/
-	/*margin: 0 auto;*/
-	/*padding: 5px;*/
-/*}*/
-
-/*.container {*/
-	/*width: 300px;*/
-	/*margin: 0 auto;*/
-	/*padding: 5px;*/
-/*}*/
-
 .signup {
 	margin: 50px;
 	padding: 5px;
@@ -189,44 +194,37 @@ md-option {
   border-bottom: 2px black solid;
   background-color:#4C87B9;
 }
-#messageForm { 
-  position: relative; 
-  left: 75px; 
-  top: 25px; 
-  padding: 3px; 
+#messageForm {
+  position: relative;
+  left: 75px;
+  top: 25px;
+  padding: 3px;
   width: 80%;
    }
-#m {   
-  -webkit-box-shadow: 0 3px 3px 0 #a94346; 
+#m {
+  -webkit-box-shadow: 0 3px 3px 0 #a94346;
   border-radius: 2px;
   box-shadow: 0 3px 3px 0 #a94346;
   background: #dda8aa; border: 1px #777 solid;
-  padding: 10px; 
-  width: 70%; 
+  padding: 10px;
+  width: 70%;
   margin-right: .5%; }
-#sendMessage { 
+#sendMessage {
   box-shadow: 0 3px 3px 0 #6e2b2d;
   border-radius: 2px;
-  color: white; background-color:#b94c50; 
-  border: 1px #777 solid; 
-  padding: 10px; 
+  color: white; background-color:#b94c50;
+  border: 1px #777 solid;
+  padding: 10px;
   width: 29%;
 }
-#messages { 
-  height: 400px; 
-  list-style-type: none; margin: 0; 
+#messages {
+  height: 400px;
+  list-style-type: none; margin: 0;
   padding: 0; width: 100%;
   overflow: scroll;}
   #messages li { background:white; color: black; padding: 5px 10px; }
   #messages li:nth-child(even) { background: #DDD; color: black ; }
 
-/*#imageHolder {
-  opacity: 0.9;
-  background-image: url('../assets/images/riverWalk.jpg');
-   background-color: #b94c50;
-   background-size: cover;
-   background-blend-mode: multiply;
-}*/
 .eachMessage {
     text-align: left;
     word-wrap: break-word;
@@ -278,36 +276,62 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
     }
 }
 
-.ct-line.ct-threshold-above, .ct-point.ct-threshold-above, .ct-bar.ct-threshold-above {
-    stroke: #f05b4f;
+.ct-series-a .ct-slice-pie {
+  fill: #5CA3E0;
+  stroke: white;
+  stroke-width: 2px;
 }
 
-.ct-line.ct-threshold-below, .ct-point.ct-threshold-below, .ct-bar.ct-threshold-below {
-    stroke: #59922b;
+.ct-series-b .ct-slice-pie {
+  fill: #5CD9E0;
+  stroke: white;
+  stroke-width: 2px;
 }
 
-.ct-area.ct-threshold-above {
-    fill: #f05b4f;
+.ct-series-c .ct-slice-pie {
+  fill: #87b94c;
+  stroke: white;
+  stroke-width: 2px;
 }
 
-.ct-area.ct-threshold-below {
-    fill: #59922b;
+.ct-series-d .ct-slice-pie {
+  fill: #D7BE19;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.ct-series-e .ct-slice-pie {
+  fill: #b94c50;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.ct-series-f .ct-slice-pie {
+  fill: #578ebe;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.ct-series-g .ct-slice-pie {
+  fill: #4cb9b5;
+  stroke: white;
+  stroke-width: 2px;
 }
 
 .ct-chart {
     padding: 10px;
     width: 300px;
     height: 250px;
-    /*display: inline-block;*/
+    stroke-width: 2px;
 }
 
-.ct-bar {
+.ct-series-a .ct-bar {
     stroke-width: 30px;
+    stroke: #5CA3E0;
 }
 
 .goalType {
     width: 275px;
-    /*padding: 5px;*/
     margin: auto;
 }
 
@@ -348,8 +372,6 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .goalsTable {
-    /*position: relative;*/
-    /*top: -30px;*/
     margin: auto;
     padding: 10px;
     text-align: center;
@@ -369,10 +391,6 @@ div > h2 > span {
     vertical-align: center;
     width: 50px;
 }
-
-/*.row{
-    text-align: center;
-}*/
 
 .calcHeader {
     font-size: 15px;
@@ -420,8 +438,6 @@ div > h2 > span {
     clear: both;
 }
 body {
-    /*background-color: #1A232F;*/
-    /*background-color:#33414D;*/
     background-color: #e9eadf;
 }
 
@@ -431,17 +447,13 @@ tr .goalsData {
 
 td .indivialGoal {
     font-size: 18px;
-    /*letter-spacing: 0.5px;*/
 }
 
 td .goalDueDate {
     font-size: 12px;
-    /*letter-spacing: 0.5px;*/
 
 }
-/*.app-modal-window .modal-dialog {*/
-    /*width: 500px;*/
-/*}*/
+
 .register-profile-modal .modal-dialog{
     width: 600px;
 }
@@ -453,18 +465,6 @@ td .goalDueDate {
     /* To center horizontally */
     margin: 0 auto;
 }
-
-/*.profileContainer {*/
-    /*display: flex*/
-/*}*/
-
-/*.profileForm {*/
-    /*float: left;*/
-    /*!*display: flex;*!*/
-    /*width: calc(100% - 600px);*/
-    /*background: lightgreen;*/
-
-/*}*/
 
 .profileImage {
     position: relative;
@@ -623,13 +623,6 @@ box-shadow: 0 3px 3px 0 #2b6e4a;
  background-color: #000 !important
 }
 
-/*.dashboard {*/
- /*background-color: #2D343A;*/
-    /*background-color: #1A232F;*/
-/*    background-color: #29343D;
-    color: #000;
-}*/
-
 div .calculations {
  background-color: #E8E7DC;
     /*width: 300px;*/
@@ -688,11 +681,6 @@ div .calculations {
 .ct-label {
     font-size: 14px;
 }
-
-/*.nutritionDetails {*/
-    /*text-align: center;*/
-    /*font-size: 14px;*/
-/*}*/
 
 .calcCards {
     left: 15px;

@@ -80,7 +80,7 @@ angular.module('myApp.bet', [])
           }
         })
         .then(function () {
-          var chart = new Chartist.Line('.ct-chart', {
+          var chart = new Chartist.Line('.ct-line', {
             labels: [1, 2, 3, 4, 5, 6, 7, 8],
             series: [
               $scope.bettorSeries

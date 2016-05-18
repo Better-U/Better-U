@@ -99,10 +99,10 @@ angular.module('myApp.nutritionGraphs', [])
         labels: [($scope.waterIntake[6]) + ' of ' + $scope.convertWater($scope.userData.weight) + ' cups']
       }, {
         donut: true,
-        showLabel: true,
+        donutWidth: 30,
+        showLabel: false,
         total: $scope.convertWater($scope.userData.weight),
         width: 300
-        // labelOffset: 50
       })
       chart.on('draw', function (data) {
         if (data.type === 'slice') {
