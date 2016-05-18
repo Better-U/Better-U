@@ -1,8 +1,8 @@
-angular.module('app.AuthFactory', [])
+angular.module('myApp.AuthFactory', [])
+
   .factory('AuthFactory', function ($http, $cookies) {
-    
     var userData = null
-    
+
     function registerUserDetails (username, password) {
       var form = {
         username: username,
@@ -64,15 +64,13 @@ angular.module('app.AuthFactory', [])
       var token = getToken()
       if (token) {
         var params = parseJwt(token)
-        console.log('exp ', params.exp)
-        console.log('time now?', Math.round(new Date().getTime() / 1000))
-        console.log('token validated: ', Math.round(new Date().getTime() / 1000) <= params.exp)
         return Math.round(new Date().getTime() / 1000) <= params.exp
       } else {
         console.error('No token found')
         return false
       }
     }
+
     return {
       getToken: getToken,
       getProfile: getProfile,

@@ -1,14 +1,11 @@
 angular.module('myApp.modal', [])
 
   .controller('ModalCtrl', function ($scope, $uibModalInstance) {
-    $scope.selected = {
-      item: $scope.items[0]
-    }
-
+    // Used to close modals
     $scope.ok = function () {
-      $uibModalInstance.close($scope.selected.item)
+      $uibModalInstance.close()
     }
-
+    // Used to dismiss modals
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel')
     }
