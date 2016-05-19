@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 var Auth = require('../helpers/auth')
 var User = require('../helpers/user')
-var Bets = require('../helpers/betHelpers')
+var Bets = require('../helpers/bet')
 var app = express()
 
 var bodyParser = require('body-parser')
