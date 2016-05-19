@@ -29,6 +29,6 @@ angular.module('myApp.strength', [])
     $scope.init = function () {
       $scope.getStrengthProfile()
     }
-    
+
     $scope.init()
   })

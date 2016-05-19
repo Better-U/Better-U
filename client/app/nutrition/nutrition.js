@@ -7,7 +7,6 @@ angular.module('myApp.nutrition', [])
       NutritionFactory.getFoodLog(user)
       .then(function (data) {
         $scope.foodData = data.data
-        console.log('foodData: ', $scope.foodData)
       })
     }
 

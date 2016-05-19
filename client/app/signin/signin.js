@@ -11,7 +11,6 @@ angular.module('myApp.signin', [])
     $scope.signin = function () {
       AuthFactory.signIn($scope.user.name, $scope.user.password)
         .then(function (data) {
-          console.log('data after signin', data)
           if (!data.data.success) {
             $state.reload()
             $scope.userDoesNotExist = true
@@ -22,7 +21,6 @@ angular.module('myApp.signin', [])
             AuthFactory.getProfile($cookies.get('username'))
               .then(function(data) {
                 AuthFactory.userData = data.data[0]
-                console.log('signin data: ', AuthFactory.userData)
                 $state.go('dashboard')
               })
           }

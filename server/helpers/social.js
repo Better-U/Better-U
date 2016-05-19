@@ -1,6 +1,6 @@
 var db = require('../db.js')
 
-Social = {}
+var Social = {}
 
 function getUserID (username) {
   return db('user').where({username: username}).select('id')
@@ -9,21 +9,22 @@ function getIDs (username1, username2) {
   return db('user').whereIn('username', [username1, username2]).select('id')
 }
 
-Social.getImage = function(username){  
-  console.log("inside helpers, getting image!", username)
+Social.getImage = function (username) {
   return db('user').where({username: username}).select('image')
 }
+
 Social.getCity = function (username) {
   return db('user').where({username: username}).select('city')
 }
+
 Social.updateAddress = function (username, city) {
   return db('user').where({username: username}).update({city: city})
 }
+
 Social.getUsersInZip = function (username, city) {
-    return new Promise(function (resolve) {
+  return new Promise(function (resolve) {
     db('user').where({username: username}).select('id')
       .then(function (data) {
-        console.log('inside listchats', data)
         db('userRooms').where({userID: data[0].id}).select('roomID')
           .then(function (data1) {
             var newRay = []
@@ -38,16 +39,12 @@ Social.getUsersInZip = function (username, city) {
                 }
                 db('user').whereNotIn('id', tempRay).andWhere({city: city}).andWhereNot({'username': username}).select('username', 'interest', 'gym', 'city', 'image')
                   .then(function (data) {
-                    console.log("getUsersinZip called", data)
                     resolve(data)
                   })
               })
           })
       })
   })
-
-
-
 }
 
 Social.makeChatRoom = function (username1, username2) {
@@ -76,7 +73,6 @@ Social.listChats = function (username) {
   return new Promise(function (resolve) {
     db('user').where({username: username}).select('id')
       .then(function (data) {
-        console.log('inside listchats', data)
         db('userRooms').where({userID: data[0].id}).select('roomID')
           .then(function (data1) {
             var newRay = []
@@ -98,12 +94,12 @@ Social.listChats = function (username) {
       })
   })
 }
+
 Social.checkRoomNumber = function (username1, username2) {
   var called = false
   var histogram = {}
   return new Promise(function (resolve) {
     getIDs(username1, username2).then(function (data) {
-      // data[0].id, data[1].id
       db('userRooms').whereIn('userID', [data[0].id, data[1].id]).orWhereIn('userID', [data[0].id, data[1].id])
         .then(function (data2) {
           for (var i = 0; i < data2.length; i++) {
@@ -115,7 +111,6 @@ Social.checkRoomNumber = function (username1, username2) {
               histogram[data2[i].roomID] = true
             }
           }
-          console.log(histogram)
           if (called === false) {
             resolve([])
           }
