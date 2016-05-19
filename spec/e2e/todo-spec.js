@@ -32,7 +32,7 @@ describe('Protractor Demo App', function () {
   //   browser.get('http://juliemr.github.io/protractor-demo/')
   // })
   beforeEach(function(){
-    browser.get('http://localhost:8080/#/');
+    browser.get('http://betteru.pro/');
   })
 
   //for repeater
@@ -47,8 +47,8 @@ describe('Protractor Demo App', function () {
 
     // browser.get('http://localhost:8080/#/');
     signUpButton.click()
-    usernameInput.sendKeys('cuteElephant19')
-    passwordInput.sendKeys('cuteElephant')
+    usernameInput.sendKeys('Eric So')
+    passwordInput.sendKeys('Eric So')
     submitSignup.click()
     age.sendKeys(50)
     height.sendKeys(70)
@@ -59,8 +59,8 @@ describe('Protractor Demo App', function () {
     gym.click()
     submitProfile.click()
     var welcomed = element(by.binding('username'))
-    browser.wait(EC.visibilityOf(welcomed), 1000);
-    expect(welcomed.getText()).toEqual('Welcome back, cuteElephant19!')
+    browser.wait(EC.visibilityOf(welcomed), 1000000);
+    expect(welcomed.getText()).toEqual('Welcome back, Eric So!')
       
     })
 
@@ -69,17 +69,17 @@ describe('Protractor Demo App', function () {
     var EC = protractor.ExpectedConditions;
 
         signInButton.click()
-        signinUsername.sendKeys('arm')
-        signinPassword.sendKeys('arm')
+        signinUsername.sendKeys('Jane Fong')
+        signinPassword.sendKeys('Jane Fong')
         signinSubmit.click()
     var welcomed = element(by.binding('username'))
 
-      browser.wait(EC.visibilityOf(welcomed), 2000);
+      browser.wait(EC.visibilityOf(welcomed), 2000000);
 
         cardioRoute.click()
      var cardioHeader =element(by.className('cardioHeadingHeader'))
 
-      browser.wait(EC.visibilityOf(cardioHeader), 2000);
+      browser.wait(EC.visibilityOf(cardioHeader), 2000000);
 
       var inputCardioButton = element(by.className('callInputCardio'));
       inputCardioButton.click()

@@ -1,15 +1,12 @@
 var express = require('express')
 var router = express.Router()
-var db = require('../db.js')
 var Auth = require('../helpers/auth')
 var Nutrition = require('../helpers/nutrition')
-var Health = require('../helpers/health')
-
-router.use(Auth.ifAuthorized)
-
 var app = express()
 var bodyParser = require('body-parser')
 var User = require('../helpers/user')
+
+router.use(Auth.ifAuthorized)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -26,13 +23,10 @@ router.post('/nutrition', function (req, res) {
 
 router.get('/nutrition', function (req, res) {
   var user = req.query.username
-  console.log('this is user in get nutrition: ', user)
   User.findUser(user)
     .then(function (data) {
-      console.log('get Nutrition data =', data)
       Nutrition.getRecord(data[0].id)
         .then(function (success) {
-          console.log('success inside getNutrition', success)
           if (success) {
             res.status(201).send(success)
           } else {
