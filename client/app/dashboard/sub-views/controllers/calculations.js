@@ -87,4 +87,3 @@ angular.module('myApp.calculations', [])
 
     $scope.init()
   })
-

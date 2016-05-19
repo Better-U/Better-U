@@ -22,4 +22,3 @@ angular.module('myApp.goals', [])
     }
 
   })
-

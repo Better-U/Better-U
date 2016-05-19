@@ -86,7 +86,6 @@ angular.module('myApp.strengthGraphs', [])
       $scope.c2_activity_type = function (arr) {
         var c2_obj = {}
         var c2_arr = []
-
         // Creating array of all strength workout types
         for (var i = 0; i < arr.length; i++) {
           c2_arr.push(arr[i].type)
@@ -100,21 +99,17 @@ angular.module('myApp.strengthGraphs', [])
             c2_obj[c2_arr[j]] = 1
           }
         }
-
         // Putting the instances and type into $scope.c2_data for export
         for (var k in c2_obj) {
           $scope.c2_data.labels.push(k)
           $scope.c2_data.series.push(c2_obj[k])
         }
-        console.log("THis is c2_data", $scope.c2_data)
       }
-
       // Setting the label and series to scope c1_data
       for (var k in c1_obj) {
         $scope.c1_data.labels.push($scope.getDayOfWeek(parseInt(k)))
         $scope.c1_data.series[0].push(c1_obj[k])
       }
-      console.log("THis is c1_data", $scope.c1_data)
     }
 
     $scope.createStrengthCharts = function () {
@@ -134,7 +129,6 @@ angular.module('myApp.strengthGraphs', [])
         }
       }
 
-      console.log('$scope c1 data before render: ', $scope.c1_data.labels)
       new Chartist.Bar('#str-chart-1', {
         labels: $scope.c1_data.labels,
         series: $scope.c1_data.series
@@ -148,4 +142,3 @@ angular.module('myApp.strengthGraphs', [])
 
     $scope.init()
   })
-
