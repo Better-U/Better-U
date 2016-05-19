@@ -73,6 +73,4 @@ angular.module('myApp.goalsModal', [])
     }
 
     $scope.init()
-
   })
-
