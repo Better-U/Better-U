@@ -148,6 +148,28 @@ describe('Protractor Demo App', function () {
     expect(dat.getText()).toEqual('You\'ve bet 50 points on DanielChen to increase swimming by 200 miles on Jun 23, 2016')
   })
 
+  it('should be able to log strength', function () {
+    var EC = protractor.ExpectedConditions
+    var strengthHeader = element(by.className('strengthHeader'))
+    var strengthLog = element(by.css('[ng-click="inputStrength()"]'))
+
+
+    var bench = element(by.id('bench'))
+    var strengthWeight = element(by.model('str.weight'))
+    var strengthReps = element(by.model('str.reps'))
+    var strengthSets = element(by.model('str.sets'))
+    var strengthDuration = element(by.model('str.duration'))
+    var submitStrength = element(by.css('[ng-click="$close()"]'))
+
+    browser.get('http://betteru.pro/#/strength')
+    strengthLog.click()
+    strengthWeight.sendKeys(210)
+    strengthReps.sendKeys(7)
+    strengthSets.sendKeys(10)
+    strengthDuration.sendKeys(60)
+    submitStrength.click()
+  })
+
   // goProfile.click()
   // expect(profileUsername).toEqual('Name: ')
 })
