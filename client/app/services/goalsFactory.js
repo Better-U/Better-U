@@ -12,8 +12,6 @@ angular.module('myApp.GoalsFactory', [])
         username: username,
         points: points
       }
-      console.log('this is points: ', plugin.points)
-      console.log('inside postlog service', plugin)
 
       return $http.post('/api/goals/', plugin)
     }
@@ -57,4 +55,4 @@ angular.module('myApp.GoalsFactory', [])
     }
   })
 
-  
+
