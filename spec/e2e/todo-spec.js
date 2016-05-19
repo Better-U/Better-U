@@ -21,6 +21,7 @@ describe('Protractor Demo App', function () {
   var signinPassword = element(by.model('user.password'))
   var signinSubmit = element(by.id('submitSignin'))
   var cardioRoute = element(by.className('fa-bicycle'))
+
   // ============================================================
 
   // ============================================================
@@ -62,8 +63,8 @@ describe('Protractor Demo App', function () {
     var EC = protractor.ExpectedConditions
 
     signInButton.click()
-    signinUsername.sendKeys('Jane Fong')
-    signinPassword.sendKeys('Jane Fong')
+    signinUsername.sendKeys('Joseph Martin')
+    signinPassword.sendKeys('Joseph Martin')
     signinSubmit.click()
 
     var welcomed = element(by.binding('username'))
@@ -100,7 +101,7 @@ describe('Protractor Demo App', function () {
     // expect(elm.getText()).toEqual('24/05/2016')
 
     // Created a new test case since cardio doesn't work
-    expect(welcomed.getText()).toEqual('Welcome back, Jane Fong!')
+    expect(welcomed.getText()).toEqual('Welcome back, Joseph Martin!')
   })
 
   it('should search the Nutritionix database and log serving size', function() {
@@ -122,4 +123,31 @@ describe('Protractor Demo App', function () {
     })
   })
 
+  it('should be able to find a goal to bet on', function() {
+
+    var EC = protractor.ExpectedConditions
+    var betSearchBox = element(by.model('searchbetuser'))
+    var betSearchSubmit = element(by.css('[ng-click="submitSearch()"]'))
+
+    browser.get('http://betteru.pro/#/bet')
+    betSearchBox.sendKeys('Kaushik Sahoo')
+    betSearchSubmit.click()
+
+    var dat = element.all(by.repeater('goal in withGoalsList')).first()
+    browser.wait(EC.visibilityOf(dat), 2000)
+    expect(dat.getText()).toEqual('Increase Bench by 25 Sets May 30, 2016 20 Bet!')
+  })
+
+  it('should be able to see a added bet', function() {
+
+    var EC = protractor.ExpectedConditions
+    browser.get('http://betteru.pro/#/bet')
+
+    var dat = element.all(by.repeater('user in betsPlacedList')).first()
+    browser.wait(EC.visibilityOf(dat), 2000)
+    expect(dat.getText()).toEqual('You\'ve bet 50 points on DanielChen to increase swimming by 200 miles on Jun 23, 2016')
+  })
+
+  // goProfile.click()
+  // expect(profileUsername).toEqual('Name: ')
 })
