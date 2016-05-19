@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 var router = express.Router()
 var db = require('../db.js')
-var helpers = require('../helpers/socialHelpers.js')
+var helpers = require('../helpers/social')
 var bodyParser = require('body-parser')
 
 var io = require('../common.js').io
@@ -43,7 +43,7 @@ io.on('connection', function (socket) {
 
         socket.to('' + data.roomNumber).broadcast.emit('notification', message2)
       })
-    
+
     helpers.saveMessage(data.roomNumber, message)
       .then(function (data) {
         console.log(data, 'MESSAGE SAVED')
