@@ -14,26 +14,22 @@ auth.genToken = function (userDetails) {
 }
 
 auth.ifAuthorized = function (req, res, next) {
-  console.log('auth req: ', req.headers.cookie)
   var cookie = req.headers.cookie
   var regex = /token=(.*)/
   var matches = cookie.match(regex)
-  console.log('matches: ', matches)
 
   var token = matches[1]
 
   if (token) {
     jwt.verify(token, secret, function (err) {
       if (err) {
-        console.log('err')
+        console.error('err')
         unauthorized(res)
       } else {
-        console.log('authorized')
         next()
       }
     })
   } else {
-    console.log('unauthorized')
     unauthorized(res)
   }
   function unauthorized (res) {

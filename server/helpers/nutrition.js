@@ -2,7 +2,6 @@ var db = require('../db')
 var Nutrition = {}
 
 Nutrition.postFoodLog = function (id, name, date, time, serving, size, cal, carbs, fat, fiber, sodium, protein, water) {
-  console.log('inside postFoodLog')
   var foodLog = {
     user_id: id,
     name: name,
@@ -22,7 +21,6 @@ Nutrition.postFoodLog = function (id, name, date, time, serving, size, cal, carb
 }
 
 Nutrition.getRecord = function (id) {
-  console.log('inside get records')
   return db.select('*').from('nutrition_record').where({'user_id': id})
 }
 
