@@ -23,8 +23,6 @@ describe('Protractor Demo App', function () {
   var cardioRoute = element(by.className('fa-bicycle'))
   // ============================================================
 
-  // ============================================================
-
   // var goProfile = element(by.className('profileNavigator'))
   // var profileUsername = element(by.id('profileUsername'))
   // beforeEach(function () {
@@ -42,26 +40,25 @@ describe('Protractor Demo App', function () {
     expect(browser.getTitle()).toEqual('BetterU - Fitness')
   })
 
-  it('should be able to sign up', function () {
-    var EC = protractor.ExpectedConditions
+// it('should be able to sign up', function() {
+ //   var EC = protractor.ExpectedConditions
 
-    // browser.get('http://localhost:8080/#/');
-    signUpButton.click()
-    usernameInput.sendKeys('Eric So')
-    passwordInput.sendKeys('Eric So')
-    submitSignup.click()
-    age.sendKeys(50)
-    height.sendKeys(70)
-    weight.sendKeys(170)
-    gender.click()
-    activity.click()
-    interest.click()
-    gym.click()
-    submitProfile.click()
-    var welcomed = element(by.binding('username'))
-    browser.wait(EC.visibilityOf(welcomed), 1000000)
-    expect(welcomed.getText()).toEqual('Welcome back, Eric So!')
-  })
+ //   signUpButton.click()
+ //   usernameInput.sendKeys('Eric So')
+ //   passwordInput.sendKeys('Eric So')
+ //   submitSignup.click()
+ //   age.sendKeys(50)
+ //   height.sendKeys(70)
+ //   weight.sendKeys(170)
+ //   gender.click()
+ //   activity.click()
+ //   interest.click()
+ //   gym.click()
+ //   submitProfile.click()
+ //   var welcomed = element(by.binding('username'))
+ //   browser.wait(EC.visibilityOf(welcomed), 1000000)
+ //   expect(welcomed.getText()).toEqual('Welcome back, Eric So!')
+ // })
 
   // webdriver.wait(expect(welcomed.getText()).toEqual('Welcome back, cuteElephant7!'), 5000)
   it('should be able to sign in', function () {
@@ -75,41 +72,76 @@ describe('Protractor Demo App', function () {
     var welcomed = element(by.binding('username'))
     browser.wait(EC.visibilityOf(welcomed), 2000000)
 
-    cardioRoute.click()
-    var cardioHeader = element(by.className('cardioHeadingHeader'))
+    // cardioRoute.click()
+    // var cardioHeader = element(by.className('cardioHeadingHeader'))
 
-    browser.wait(EC.visibilityOf(cardioHeader), 2000000)
+    // browser.wait(EC.visibilityOf(cardioHeader), 2000000)
 
-    var inputCardioButton = element(by.className('callInputCardio'))
-    inputCardioButton.click()
+    // var inputCardioButton = element(by.className('callInputCardio'))
+    // inputCardioButton.click()
 
-    var date = element(by.model('date'))
-    var time = element(by.className('uib-increment.minutes'))
-    var run = element(by.id('run'))
-    var distance = element(by.model('distance'))
-    var duration = element(by.model('duration'))
-    var intensity = element(by.id('intensityOf1'))
-    var submitCardio = element(by.id('submitCardioModal'))
+    // var date = element(by.model('date'))
+    // var time = element(by.className('uib-increment.minutes'))
+    // var run = element(by.id('runningPicker'))
+    // var distance = element(by.model('distance'))
+    // var duration = element(by.model('duration'))
+    // var intensity = element(by.id('intensityOf1'))
+    // var submitCardio = element(by.id('submitCardioModal'))
 
-    browser.wait(EC.visibilityOf(date), 2000)
+    // browser.wait(EC.visibilityOf(date), 2000)
 
-    date.sendKeys('24-May-2016')
-    time.click()
-    run.click()
-    distance.sendKeys(5)
-    duration.sendKeys(5)
-    intensity.click()
-    submitCardio.click()
+    // date.sendKeys('24-May-2016')
+    // time.click()
+    // run.click()
+    // distance.sendKeys(5)
+    // duration.sendKeys(5)
+    // intensity.click()
+    // submitCardio.click()
 
-    var elm = element.all(by.repeater('cardio in cardioData')).last()
+    // var elm = element.all(by.repeater('cardio in cardioData')).last()
 
+    // browser.wait(EC.visibilityOf(elm), 2000)
+
+    // // .column(cardio.date)
+    // // .last()
+
+    // browser.wait(EC.visibilityOf(elm), 2000)
+    // expect(elm.getText()).toEqual('24-May-2016')
+  })
+
+  it('should be able to log strength', function () {
+    var EC = protractor.ExpectedConditions
+    // browser.get('http://betteru.pro/#/strength')
+    var strengthLog = element(by.css('[ng-click="inputNutrition()"]'))
+
+    var strengthHeader = element(by.className('strengthHeader'))
+    browser.wait(EC.visibilityOf(strengthHeader), 2000000)
+
+    var inputStrengthButton = element(by.className('callStrength'))
+    inputStrengthButton.click()
+
+    var strengthDate = element(by.model('date'))
+    var bench = element(by.id('bench'))
+    var strengthWeight = element(by.model('str.weight'))
+    var strengthReps = element(by.model('str.reps'))
+    var strengthSets = element(by.model('str.sets'))
+    var strengthDuration = element(by.model('str.duration'))
+    var strengthIntensity = element(by.id('intensity2'))
+    var submitStrength = element(by.id('submitStrength'))
+
+    browser.wait(EC.visibilityOf(strengthDate), 2000)
+    strengthDate.sendKeys('20-May-2016')
+    bench.click()
+    strengthWeight.sendKeys(210)
+    strengthReps.sendKeys(7)
+    strengthSets.sendKeys(10)
+    strengthDuration.sendKeys(60)
+    strengthIntensity.click()
+    submitStrength.click()
+
+    var elm = element.all(by.repeater('str in strengthList')).last()
     browser.wait(EC.visibilityOf(elm), 2000)
-
-    // .column(cardio.date)
-    // .last()
-
-    browser.wait(EC.visibilityOf(elm), 2000)
-    expect(elm.getText()).toEqual('24-May-2016')
+    expect(elm.getText()).toEqual('19-May-2016')
   })
 
   // goProfile.click()
