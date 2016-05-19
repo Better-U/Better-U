@@ -57,11 +57,11 @@ router.post('/addBets', function (req, res) {
       var bettor = id[0].id
       Bets.getUserPoints(bettor)
         .then(function (bettorPts) {
-          var bettor_pts = bettorPts[0][0].totalpts
+          var betterPts = bettorPts[0][0].totalpts
           Bets.getUserPoints(user)
             .then(function (userPts) {
-              var user_pts = userPts[0][0].totalpts
-              Bets.addBets(user, bettor, goals, user_pts, bettor_pts)
+              var userPts = userPts[0][0].totalpts
+              Bets.addBets(user, bettor, goals, userPts, betterPts)
                 .then(function (data) {
                   res.json({
                     success: true
@@ -73,7 +73,6 @@ router.post('/addBets', function (req, res) {
 })
 
 router.delete('/betDelete', function (req, res) {
-  console.log('req.query', req.query)
   Bets.deleteBet(req.query.id)
     .then(function (data) {
       res.json({
@@ -98,13 +97,11 @@ router.get('/searchBets', function (req, res) {
 })
 
 router.get('/bettor', function (req, res) {
-  console.log('inside bettor get request')
   User.findUser(req.query.username)
     .then(function (id) {
       var bettorId = id[0].id
       Bets.getBets(bettorId)
         .then(function (data) {
-          console.log('inside select bettor points ____')
           res.json({
             success: true,
             data: data
