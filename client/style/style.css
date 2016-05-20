@@ -15,7 +15,7 @@
 }
 
 .ct-series-a .ct-area {
-    fill: blue;
+  fill: blue;
 }
 
 .ct-series-b .ct-slice-donut {
@@ -103,30 +103,30 @@
 }
 
 .customJumbotron {
-    background-image: url('../assets/images/landingMan.jpg');
-    height: 100%;
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))), url('../assets/images/landingMan.jpg');
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
-    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
-    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 90%, #E8E7DC 100%), url('../assets/images/landingMan.jpg');
-    background-size: cover;
+  background-image: url('../assets/images/landingMan.jpg');
+  height: 100%;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))), url('../assets/images/landingMan.jpg');
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('../assets/images/landingMan.jpg');
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 90%, #E8E7DC 100%), url('../assets/images/landingMan.jpg');
+  background-size: cover;
 }
 
 .cardioForm {
-    margin: 50px;
-    padding: 5px;
+  margin: 50px;
+  padding: 5px;
 }
 
 .strengthForm {
-    margin: 50px;
-    padding: 5px;
+  margin: 50px;
+  padding: 5px;
 }
 
 .goalForm {
-    margin: 50px;
-    padding: 5px;
+  margin: 50px;
+  padding: 5px;
 }
 
 .leaderboard {
@@ -136,16 +136,16 @@
 }
 
 .leaderTable {
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
 }
 
 .betHeader {
-    width: 600px;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
+  width: 600px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .signup {
@@ -154,17 +154,17 @@
 }
 
 body {
-    padding-top: 50px;
-    font-family: 'Hind', sans-serif;
+  padding-top: 50px;
+  font-family: 'Hind', sans-serif;
 }
 
 md-select {
-    width: 175px;
+  width: 175px;
 }
 
 md-option {
-    width: 80%;
-    padding: 0px;
+  width: 80%;
+  padding: 0px;
 }
 .chatParent{
   left: -25px;
@@ -226,54 +226,54 @@ md-option {
   #messages li:nth-child(even) { background: #DDD; color: black ; }
 
 .eachMessage {
-    text-align: left;
-    word-wrap: break-word;
-    padding: 8px;
-    font-size: 16px;
+  text-align: left;
+  word-wrap: break-word;
+  padding: 8px;
+  font-size: 16px;
 }
 .eachMessage:hover {
-    background: black;
-    color: black;
+  background: black;
+  color: black;
 }
 .overdue {
-    color: red;
+  color: red;
 }
 
 .inlineGoal {
-    display: inline-block;
-    font-size: 15.5px;
+  display: inline-block;
+  font-size: 15.5px;
 }
 
 .achieved {
-    color: green;
+  color: green;
 }
 
 .goalsDropdown {
-    width: 200px;
-    line-height: 50px;
+  width: 200px;
+  line-height: 50px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {  /*safari and chrome*/
-    select {
-        height:35px;
-        line-height:35px;
-        background:#f4f4f4;
-    }
+  select {
+    height:35px;
+    line-height:35px;
+    background:#f4f4f4;
+  }
 }
 select::-moz-focus-inner { /*Remove button padding in FF*/
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 @-moz-document url-prefix() { /* targets Firefox only */
-    select {
-        padding: 15px 0!important;
-    }
+  select {
+      padding: 15px 0!important;
+  }
 }
 @media screen\0 { /* IE Hacks: targets IE 8, 9 and 10 */
-    select {
-        height:35px;
-        line-height:35px;
-    }
+  select {
+    height:35px;
+    line-height:35px;
+  }
 }
 
 .ct-series-a .ct-slice-pie {
@@ -319,117 +319,115 @@ select::-moz-focus-inner { /*Remove button padding in FF*/
 }
 
 .ct-chart {
-    padding: 10px;
-    width: 300px;
-    height: 250px;
-    stroke-width: 2px;
+  padding: 10px;
+  width: 300px;
+  height: 250px;
+  stroke-width: 2px;
 }
 
 .ct-series-a .ct-bar {
-    stroke-width: 30px;
-    stroke: #5CA3E0;
+  stroke-width: 30px;
+  stroke: #5CA3E0;
 }
 
 .goalType {
-    width: 275px;
-    margin: auto;
+  width: 275px;
+  margin: auto;
 }
 
 .goalHeader {
-    width: 425px;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  width: 425px;
+  margin: auto;
+  padding: 10px;
+  text-align: left;
 }
 
 .cardioHeader {
-    width: 313px;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  width: 313px;
+  margin: auto;
+  padding: 10px;
+  text-align: left;
 }
 
 .nutritionHeader {
-    width: 225px;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  width: 225px;
+  margin: auto;
+  padding: 10px;
+  text-align: left;
 }
 
 .strengthHeader {
-    width: 340px;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  width: 450px;
+  margin: auto;
+  padding: 10px;
+  text-align: left;
 }
 
 .navbar {
-    border-bottom: 4px solid #578ebe;
+  border-bottom: 4px solid #578ebe;
 }
 
 .goalsTable tr {
-    padding: 5px;
+  padding: 5px;
 }
 
 .goalsTable {
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
 }
 
 div h2 {
-    text-align: center;
+  text-align: center;
 }
-
 
 div > h2 > span {
-    text-align: center;
+  text-align: center;
 }
 
-
 .goalsDelete {
-    vertical-align: center;
-    width: 50px;
+  vertical-align: center;
+  width: 50px;
 }
 
 .calcHeader {
-    font-size: 15px;
-    line-height: 90%;
-    color: white;
+  font-size: 15px;
+  line-height: 90%;
+  color: white;
 }
 
 .calcNumber {
-    font-size: 40px;
-    font-weight: 600;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .calcNotice {
-    font-size: 15px;
+  font-size: 15px;
 }
 .entireChat {
   color:white;
-    background-color: white;
-    padding-right: 0;
-    padding-left: 0;
+  background-color: white;
+  padding-right: 0;
+  padding-left: 0;
 }
 .chat {
-    top: 30px;
-    width: 100%;
-    height: 70%;
-    overflow: scroll;
+  top: 30px;
+  width: 100%;
+  height: 70%;
+  overflow: scroll;
 }
 .welcome {
-    text-align: center;
-    margin: 5px;
-    padding: 10px;
-    font-size: 65px;
-    font-weight: 400;
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  font-size: 65px;
+  font-weight: 400;
 }
 .relative {
-    position: relative;
+  position: relative;
 }
 .absolute {
-    position: absolute;
+  position: absolute;
 }
 .searchBuddy{
     left: 30%;
@@ -438,66 +436,65 @@ div > h2 > span {
     clear: both;
 }
 body {
-    background-color: #e9eadf;
+  background-color: #e9eadf;
 }
 
 tr .goalsData {
-    width: 500px;
+  width: 500px;
 }
 
 td .indivialGoal {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 td .goalDueDate {
-    font-size: 12px;
+  font-size: 12px;
 
 }
 
 .register-profile-modal .modal-dialog{
-    width: 600px;
+  width: 600px;
 }
 
 .modal-content {
-    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-    width:inherit;
-    height:inherit;
-    /* To center horizontally */
-    margin: 0 auto;
+  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+  width:inherit;
+  height:inherit;
+  /* To center horizontally */
+  margin: 0 auto;
 }
 
 .profileImage {
-    position: relative;
-    border-radius: 100px;
+  position: relative;
+  border-radius: 100px;
  }
 
 .profileImage div {
-    min-height: 10px;
-    margin: 20px 20px;
-    padding: 5px;
-    vertical-align: middle;
-    text-align: center;
-    line-height: 90%;
-    font-size: 16px;
+  min-height: 10px;
+  margin: 20px 20px;
+  padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 90%;
+  font-size: 16px;
 }
 
 .profileForm {
-    margin: 25px 0;
-    padding: 15px 5px;
+  margin: 25px 0;
+  padding: 15px 5px;
 }
 
 .control-label {
-    width: 150px;
+  width: 150px;
 }
 
 .profileHeader{
-    text-align: center;
+  text-align: center;
 }
 .cool-font {
   font-size: 50px;
   font-family: 'Arvo', serif;
 }
-
 
 .flexor {
   text-align: center;
@@ -541,20 +538,20 @@ td .goalDueDate {
   /*bottom: 30px;*/
 }
 .team > div{
-    text-align: center;
+  text-align: center;
 }
 
 .relativizer {
-    position: relative;
-    left: 3px;
+  position: relative;
+  left: 3px;
 }
 
 .threeSection {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .section {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .noListStyles {
@@ -566,8 +563,7 @@ td .goalDueDate {
   color: white;
   padding: 10px 20px;
   -webkit-box-shadow: 0 3px 3px 0 #2b6e4a;
-box-shadow: 0 3px 3px 0 #2b6e4a;
-
+  box-shadow: 0 3px 3px 0 #2b6e4a;
 }
 .chatWithButton:hover{
   background-color: #c1dba3;
@@ -591,8 +587,8 @@ box-shadow: 0 3px 3px 0 #2b6e4a;
   padding-bottom: 5px;
 }
 #userAddress {
-    width: 50%;
-    display: inline;
+  width: 50%;
+  display: inline;
 }
 
 .cut-overflow {
@@ -600,14 +596,14 @@ box-shadow: 0 3px 3px 0 #2b6e4a;
 }
 
 .navbar-inverse-override {
-    background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
-    background-image: linear-gradient(to bottom,#0E1614 0,#0A100E 100%) !important
+  background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
+  background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
+  background-image: linear-gradient(to bottom,#0E1614 0,#0A100E 100%) !important
 }
 
 .landingFooter {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 #landingTop {
@@ -620,28 +616,27 @@ box-shadow: 0 3px 3px 0 #2b6e4a;
 }
 
 .navbar {
- background-color: #000 !important
+  background-color: #000 !important
 }
 
 div .calculations {
- background-color: #E8E7DC;
-    /*width: 300px;*/
-    position: relative;
-    top: 25px;
-    /*width: 192px;*/
-    height: 150px;
-    /*width: 100%;*/
-    text-align: center;
-    vertical-align: middle;
-    padding: 20px;
-    margin: 0 0 10px 0;
-    border-radius: 10px;
-    box-shadow: 10px 10px 5px #0E1615;
+  background-color: #E8E7DC;
+  /*width: 300px;*/
+  position: relative;
+  top: 25px;
+  /*width: 192px;*/
+  height: 150px;
+  /*width: 100%;*/
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px;
+  margin: 0 0 10px 0;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #0E1615;
 }
 
-
 .calculations div {
-    margin: auto;
+  margin: auto;
 }
 
 .spacing {
@@ -652,12 +647,12 @@ div .calculations {
   padding: 30px;
 }
 .goals {
-    background-color: #E8E7DC;
-    position: relative;
-    top: 15px;
-    overflow-scrolling: ;
-    border-radius: 10px;
-    box-shadow: 10px 10px 5px #0E1615;
+  background-color: #E8E7DC;
+  position: relative;
+  top: 15px;
+  overflow-scrolling: ;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #0E1615;
 }
 
 .chatButtons {
@@ -665,27 +660,27 @@ div .calculations {
 }
 
 .allGraphs {
-    background-color: #E8E7DC;
-    position: relative;
-    top: 25px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 5px #0E1615
+  background-color: #E8E7DC;
+  position: relative;
+  top: 25px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #0E1615
 }
 
 
 .ct-series-a .ct-slice-donut {
-    stroke: #0b97c4;
-    stroke-width: 20px;
+  stroke: #0b97c4;
+  stroke-width: 20px;
 }
 
 .ct-label {
-    font-size: 14px;
-    /*display: none*/
+  font-size: 14px;
+  /*display: none*/
 }
 
 .calcCards {
-    left: 15px;
-    margin-left: -15px;
+  left: 15px;
+  margin-left: -15px;
 }
 
 .navbar-brand {
@@ -706,7 +701,7 @@ div .calculations {
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
-    display: none !important;
+  display: none !important;
 }
 
 .title {
@@ -727,5 +722,5 @@ div .calculations {
 }
 
 .goalsTitle {
-    font-size: 16px;
+  font-size: 16px;
 }
