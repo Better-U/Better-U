@@ -29,10 +29,8 @@ router.post('/strengthForm', function (req, res) {
       }]
       Strength.postForm(strengthForm)
         .then(function (success) {
-          console.log('strengthform[0].type: ', strengthForm[0].type)
           Goals.findLog(strengthForm[0].user_id, strengthForm[0].type)
             .then(function (data) {
-              console.log('this is data after posting str form:', data)
               for (var i = 0; i < data.length; i++) {
                 var currentVal = data[i].currentValue
                 if (data[i].measurement === 'Sets') {
@@ -110,7 +108,6 @@ router.post('/cardioForm', function (req, res) {
       }]
       db.insert(cardioForm).into('cardio_record').select('user_id', 'date', 'type', 'distance', 'duration', 'pace', 'intensity')
         .then(function (info) {
-          console.log('cardioform', cardioForm[0])
           Goals.findLog(cardioForm[0].user_id, cardioForm[0].type)
             .then(function (data) {
               for (var i = 0; i < data.length; i++) {

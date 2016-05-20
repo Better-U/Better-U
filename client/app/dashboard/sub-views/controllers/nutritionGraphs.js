@@ -33,13 +33,11 @@ angular.module('myApp.nutritionGraphs', [])
           $scope.todayNutritionPie.protein += Number($scope.nutritionData[i].protein)
         }
       }
-      console.log('today nutrition pie:', $scope.todayNutritionPie)
       return $scope.todayNutritionPie
     }
 
     $scope.shortDateConverter = function (dateStr) {
       var date = new Date(dateStr)
-
       return (date.getMonth() + 1) + '/' + (date.getDate()) + '/' + (date.getFullYear())
     }
 
@@ -50,7 +48,6 @@ angular.module('myApp.nutritionGraphs', [])
         var formattedDate = today.setDate(today.getDate() - 1)
         results.unshift($scope.shortDateConverter(formattedDate))
       }
-
       return results
     }
 
@@ -92,11 +89,11 @@ angular.module('myApp.nutritionGraphs', [])
           $scope.createNutritionCharts()
         })
     }
+
     $scope.createNutritionCharts = function () {
       console.log('$scope waterintake', $scope.waterIntake)
       var chart = new Chartist.Pie('#water-intake-chart', {
         series: [$scope.waterIntake[6]]
-        // labels: [($scope.waterIntake[6]) + ' of ' + $scope.convertWater($scope.userData.weight) + ' cups']
       }, {
         donut: true,
         donutWidth: 30,
@@ -139,7 +136,5 @@ angular.module('myApp.nutritionGraphs', [])
     $scope.init = function () {
       $scope.getUserData()
     }
-
     $scope.init()
   })
-

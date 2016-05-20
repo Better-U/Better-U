@@ -34,36 +34,32 @@ schedule.updateResults = function () {
           var value = goals[counter].value
           var currentVal = goals[counter].currentVal
           var intensity = goals[counter].intensity
-          if((current - gDate) > 0) {
-            if(intensity === "Increase") {
-              if(currentVal >= value) {
+          if ((current - gDate) > 0) {
+            if (intensity === 'Increase') {
+              if (currentVal >= value) {
                 db.raw(updateWin, [gUserId])
                   .then(function (data) {
-                    console.log('updated increase-user-winner result')
                     counter++
                     resolve()
                   })
               } else {
                 db.raw(updateLose, [gUserId])
                   .then(function (data) {
-                    console.log('updated increase-user-loser result')
                     counter++
                     resolve()
                   })
               }
             }
-            if(intensity === "Decrease") {
-              if(currentVal <= value) {
+            if (intensity === 'Decrease') {
+              if (currentVal <= value) {
                 db.raw(updateWin, [gUserId])
                   .then(function (data) {
-                    console.log('updated decrease-user-winner result')
                     counter++
                     resolve()
                   })
               } else {
                 db.raw(updateLose, [gUserId])
                   .then(function (data) {
-                    console.log('updated decrease-user-loser result')
                     counter++
                     resolve()
                   })
@@ -99,23 +95,20 @@ schedule.updateUserPoints = function () {
           var bettorId = goalData[counter].bettor_id
           var result = goalData[counter].result
           var betId = goalData[counter].id
-          if((currentDate - goalDate) > 0) {
-            if(result === 1) {
-            db.raw(getTotalPoints, [userId])
+          if ((currentDate - goalDate) > 0) {
+            if (result === 1) {
+              db.raw(getTotalPoints, [userId])
               .then(function (data) {
                 var winTotal = data[0][0].totalpts + goalPts
                 db.raw(updateUser, [winTotal, userId])
                   .then(function (data) {
-                    console.log('user-winner successfully logged')
                     db.raw(getTotalPoints, [bettorId])
                       .then(function (data) {
                         var loseTotal = data[0][0].totalpts - goalPts
                         db.raw(updateUser, [loseTotal, bettorId])
                           .then(function (data) {
-                            console.log('bettor-loser successfully logged')
                             db.raw(updateStatus, [betId])
                               .then(function (data) {
-                                console.log('updated bets status -- win')
                                 counter++
                                 resolve()
                               })
@@ -128,7 +121,6 @@ schedule.updateUserPoints = function () {
               db.raw(getTotalPoints, [bettorId])
                 .then(function (data) {
                   var newTotal = data[0][0].totalpts + goalPts
-                  console.log('this is newTotal: ', newTotal)
                   db.raw(updateUser, [newTotal, bettorId])
                     .then(function (data) {
                       db.raw(getTotalPoints, [userId])
@@ -136,10 +128,8 @@ schedule.updateUserPoints = function () {
                           var total = data[0][0].totalpts - goalPts
                           db.raw(updateUser, [total, userId])
                             .then(function (data) {
-                              console.log('winner-loser successfully logged')
                               db.raw(updateStatus, [betId])
                                 .then(function (data) {
-                                  console.log('updated bets status -- lose')
                                   counter++
                                   resolve()
                                 })

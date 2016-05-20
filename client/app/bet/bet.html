@@ -69,6 +69,9 @@
               <h3>
                 <i class="fa fa-pencil-square-o" style="color:#4cb97e"></i> Search for a user and start betting!
              </h3>
+           <div class="portlet-tools pull-right">
+            <button class="btn btn-xs" data-toggle="collapse" data-target="#betsearch" style="margin-top:6px"><i class="fa fa-minus"></i></button>
+          </div>
             </div>
             <div class="portlet-content">
               <div class="portlet-content">
@@ -77,6 +80,7 @@
                   <button button class="btn btn-primary" ng-click="submitSearch()">Search</button>
                 </form>
                 <div class="portlet-content" ng-if="withGoalsList">
+                  <div id="betsearch" class="collapse in">
                   <h3>{{displayUser}}'s goals</h3>
                   <table class="table table-hover">
                     <thead>
@@ -97,6 +101,7 @@
                     </tbody>
                   </table>
                 </div>
+                </div>
               </div>
             </div>
           </div>
@@ -108,9 +113,14 @@
           <i class="fa fa-area-chart" aria-hidden="true"></i>
           Bet History: Total Points vs. Bets Made
           </h3>
+          <div class="portlet-tools pull-right">
+            <button class="btn btn-xs" data-toggle="collapse" data-target="#betgraph" style="margin-top:6px"><i class="fa fa-minus"></i></button>
+          </div>
         </div>
         <div class="portlet-content" >
+        <div id="betgraph" class="collapse in">
           <div class="ct-line" style="width:600px;height:250px;"></div>
+        </div>
         </div>
       </div>
 
@@ -123,9 +133,13 @@
                 <i class="fa fa-history" style="color:#b94c87" aria-hidden="true"></i>
                 Bets You've Placed
               </h3>
+             <div class="portlet-tools pull-right">
+               <button class="btn btn-xs" data-toggle="collapse" data-target="#bettableuno" style="margin-top:6px"><i class="fa fa-minus"></i></button>
+             </div>
             </div>
             <div class="portlet-content">
               <div class="portlet-content" ng-if="betsPlacedList.length > 0">
+                <div id="bettableuno" class="collapse in">
                 <table class="table table-hover">
                   <tbody>
                     <tr ng-repeat="user in betsPlacedList">
@@ -133,6 +147,7 @@
                     </tr>
                   </tbody>
                 </table>
+                </div>
               </div>
             </div>
           </div>
@@ -146,8 +161,12 @@
               <i class="fa fa-calendar" style="color:#b94c50"></i>
               Current Bets on the Table
               </h3>
+              <div class="portlet-tools pull-right">
+                <button class="btn btn-xs" data-toggle="collapse" data-target="#bettabledos" style="margin-top:6px"><i class="fa fa-minus"></i></button>
+              </div>
             </div>
             <div class="portlet-content">
+             <div id="bettabledos" class="collapse in">
               <div ng-if="userBets.length > 0">
                 <table class="table table-hover">
                   <thead>
@@ -168,6 +187,7 @@
                   </tbody>
                 </table>
               </div>
+              </div>
             </div>
           </div>
   </div>
@@ -180,8 +200,13 @@
                 <i class="fa fa-trophy" style="color:#d1b102"></i>
                 BetterU Leaderboard
               </h3>
+              <div class="portlet-tools pull-right">
+                <button class="btn btn-xs" data-toggle="collapse" data-target="#betleaderboard" style="margin-top:6px"><i class="fa fa-minus"></i>
+              </button>
+          </div>
             </div>
             <div class="portlet-content">
+              <div id="betleaderboard" class="collapse in">
               <table class="table table-condensed">
                 <div class="col-md-2">
                 <thead>

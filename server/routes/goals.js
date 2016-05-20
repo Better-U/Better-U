@@ -35,11 +35,8 @@ router.get('/bets', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-  console.log(req.body)
   User.findUser(req.body.username)
     .then(function (id) {
-      console.log('id', id)
-      console.log('points', req.body.points)
       Goals.postLog(req.body.type,
         req.body.date,
         req.body.intensity,
@@ -58,7 +55,6 @@ router.post('/', function (req, res) {
 })
 
 router.delete('/', function (req, res) {
-  console.log('req.query', req.query)
   Goals.deleteLog(req.query.id)
     .then(function (data) {
       res.json({

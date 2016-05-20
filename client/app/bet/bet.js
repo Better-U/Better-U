@@ -1,5 +1,5 @@
 angular.module('myApp.bet', [])
-  
+
   .controller('betCtrl', function ($scope, AuthFactory, $cookies, GoalsFactory, BetsFactory, ProfileFactory, $state) {
     $scope.username = $cookies.get('username')
 

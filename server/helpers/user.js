@@ -4,7 +4,6 @@ var saltRounds = 10
 var User = {}
 
 User.findUser = function (username) {
-  console.log('findUser:', username)
   return db('user').where({username: username}).select('id')
 }
 
@@ -14,7 +13,6 @@ User.hashPassword = function (password) {
       if (err) {
         reject(err)
       }
-      console.log('hash', hash)
       resolve(hash)
     })
   })
@@ -30,10 +28,9 @@ User.comparePassword = function (username, password) {
       .then(function (data) {
         bcrypt.compare(password, data[0].password, function (err, response) {
           if (err) {
-            console.log(err)
+            console.error(err)
             reject(err)
           } else {
-            console.log('this is password response: ', response)
             resolve(response)
           }
         })
@@ -42,7 +39,6 @@ User.comparePassword = function (username, password) {
 }
 
 User.insertUserPw = function (username, password) {
-  console.log('password inside insertPW', password)
   var signUpObj = {
     username: username,
     password: password
@@ -51,7 +47,6 @@ User.insertUserPw = function (username, password) {
 }
 
 User.insertUserProfile = function (age, weight, height, gender, activitylvl, interest, gym, id) {
-  console.log('inside helper', id)
   var profileObj = {
     age: age,
     weight: weight,
@@ -74,17 +69,14 @@ User.registerProfile = function (username, weight, bodyFat, activitylvl, interes
     interest: interest,
     gym: gym
   }
-  console.log('User.registerProfile, profile details', profileDetails)
   return db('user').where({username: username}).update(profileDetails)
 }
 
 User.getProfileInfo = function (username) {
-  console.log('username inside getprofileinfo', username)
   return db('user').where({username: username}).select()
 }
 
 User.postFoodLog = function (id, name, date, time, serving, cal, carbs, fat, fiber, sodium, protein, water) {
-  console.log('inside postFoodLog')
   var foodLog = {
     user_id: id,
     name: name,

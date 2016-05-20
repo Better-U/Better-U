@@ -2,7 +2,6 @@ var db = require('../db')
 var Goals = {}
 
 Goals.postLog = function (type, date, intensity, category, value, measurement, id, points) {
-  console.log('this is points: ', points)
   var goalObj = {
     type: type,
     date: date,

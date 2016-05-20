@@ -17,7 +17,4 @@ angular.module('myApp.selectGoal', [])
         })
       }
     }
-
-
   })
-

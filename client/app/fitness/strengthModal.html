@@ -19,7 +19,7 @@
           <div class="col-md-7">
             <select multiple class="form-control" ng-model="str.type" required>
 
-              <option value="Bench">Bench</option>
+              <option id="bench" value="Bench">Bench</option>
               <option value="Squat">Squat</option>
               <option value="Deadlift">Deadlift</option>
               <option value="Bicep Curls">Biceps Curls</option>
@@ -70,7 +70,7 @@
           <label class="col-md-3 control-label">*Intensity</label>
             <div class="col-md-7">
                 <input type="radio" ng-model="str.intensity" value="1" ng-required="!str.intensity"> 1
-                <input type="radio" ng-model="str.intensity" value="2" ng-required="!str.intensity"> 2
+                <input type="radio" id="intensity2" ng-model="str.intensity" value="2" ng-required="!str.intensity"> 2
                 <input type="radio" ng-model="str.intensity" value="3" ng-required="!str.intensity"> 3
                 <input type="radio" ng-model="str.intensity" value="4" ng-required="!str.intensity"> 4
                 <input type="radio" ng-model="str.intensity" value="5" ng-required="!str.intensity"> 5
@@ -82,7 +82,7 @@
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-7">
-                    <input type="submit"  class="btn btn-primary" ng-disabled="strengthLog.$invalid">
+                    <input type="submit" id="submitStrength" class="btn btn-primary" ng-disabled="strengthLog.$invalid">
                     <button type="button" ng-click="$close()" class="btn default" ng-class='{red:hover}' ng-mouseenter="hover=true" ng-mouseleave="hover=false">Cancel</button>
                 </div>
             </div>
