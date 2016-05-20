@@ -49,49 +49,52 @@
   </div>
 </div>
 
-<!-- Main Container -->]
+<!-- Main Container -->
 
 <div class="container">
   <div class="content">
     <div class="content-container">
-      <div class="heading-inline">
-        <h2>Cardio Activity</h2>
-        <button class="callInputCardio btn btn-primary" ng-click="inputCardio()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Track your Cardio</button>
-        <br><br>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="portlet">
-            <div class="portlet-header">
-              <div>
-                <h3><i class="fa fa-bicycle" style="color:#87b94c"></i>Cumulative Cardio Log</h3>
-              </div>  
-            </div>
-            <div class="portlet-content">     
-              <table class="datagrid table">
-                <tr>
-                  <th style="border-bottom: 2px solid #ddd">Date</th>
-                  <th style="border-bottom: 2px solid #ddd">Time</th>
-                  <th style="border-bottom: 2px solid #ddd">Activity</th>
-                  <th style="border-bottom: 2px solid #ddd">Distance (miles)</th>
-                  <th style="border-bottom: 2px solid #ddd">Duration (minutes)</th>
-                  <th style="border-bottom: 2px solid #ddd" title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip' tooltip>Pace (mpm)</th>
-                  <th style="border-bottom: 2px solid #ddd">Intensity (1 - 5)</th>
-                </tr>
-                <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
-                  <td>{{shortenDate(cardio.date) | date: "MM-dd-yyyy"}}</td>
-                  <td>{{cardio.time}}</td>
-                  <td>{{cardio.type}}</td>
-                  <td>{{cardio.distance}}</td>
-                  <td>{{cardio.duration}}</td>
-                  <td>{{cardio.pace}}</td>
-                  <td>{{cardio.intensity}}</td>
-                </tr>
-              </table>
+      <div>
+        <div style="width: 100%; background-color: inherit; border: none">
+          <div class="heading-inline">
+            <h2>Cardio Activity</h2>
+            <button class="callInputCardio btn btn-primary" ng-click="inputCardio()"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Track your Cardio</button><br><br>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="portlet">
+                <div class="portlet-header">
+                  <div>
+                    <h3><i class="fa fa-bicycle" style="color:#87b94c"></i>Cumulative Cardio Log</h3>
+                  </div>  
+                </div>
+                <div class="portlet-content">     
+                  <table class="datagrid table">
+                    <tr>
+                      <th style="border-bottom: 2px solid #ddd">Date</th>
+                      <th style="border-bottom: 2px solid #ddd">Time</th>
+                      <th style="border-bottom: 2px solid #ddd">Activity</th>
+                      <th style="border-bottom: 2px solid #ddd">Distance (miles)</th>
+                      <th style="border-bottom: 2px solid #ddd">Duration (minutes)</th>
+                      <th style="border-bottom: 2px solid #ddd" title='Distance divided by duration in minutes per miles (mpm).' data-container='body' data-toggle='tooltip' tooltip>Pace (mpm)</th>
+                      <th style="border-bottom: 2px solid #ddd">Intensity (1 - 5)</th>
+                    </tr>
+                    <tr ng-repeat="cardio in cardioData | orderBy:'date':true">
+                      <td>{{shortenDate(cardio.date) | date: "MM-dd-yyyy"}}</td>
+                      <td>{{cardio.time}}</td>
+                      <td>{{cardio.type}}</td>
+                      <td>{{cardio.distance}}</td>
+                      <td>{{cardio.duration}}</td>
+                      <td>{{cardio.pace}}</td>
+                      <td>{{cardio.intensity}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  </div>

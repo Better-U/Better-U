@@ -1,7 +1,7 @@
 <div>
   <span ng-if="goalsData.length === 0">No goals have been logged yet.</span>
   <div class="progress-stat" ng-repeat="goals in goalsData | orderBy:'date'">
-    <div class="progress-stat-label goalsTitle" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }">
+    <div class="progress-stat-label goalsTitle" ng-class="{'overdue': goalOverdue(goals.date), 'achieved': achieved(goals.currentValue, goals.value) }"><i class="fa fa-thumbs-o-up"></i>&nbsp;
       I want to {{goals.intensity}} {{goals.category}} by {{goals.value}} {{goals.measurement}}
     </div>
     <div class="progress-stat-value">
